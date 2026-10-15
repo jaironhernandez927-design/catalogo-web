@@ -12,387 +12,212 @@ html { min-height: 100%; }
         .fondo-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; }
         .fondo-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 2s ease-in-out; }
         .fondo-slide.activo { opacity: 1; }
-        .overlay-oscuro { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(13, 17, 23, 0.85) 0%, rgba(13, 17, 23, 0.7999999999999999) 50%, rgba(13, 17, 23, 0.85) 100%); z-index: -1; pointer-events: none; }
+        .overlay-oscuro { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.85) 50%, rgba(13, 17, 23, 0.9) 100%); z-index: -1; pointer-events: none; }
         body { background: transparent; }
 
-body { color: #f0f6fc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; min-height: 100vh; padding-bottom: 60px; }
-.top-bar { position: sticky; top: 0; z-index: 100; background: rgba(13, 17, 23, 0.85); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(255, 107, 26, 0.15); }
+body { color: #f0f6fc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; min-height: 100vh; padding-bottom: 60px; -webkit-text-size-adjust: 100%; }
+.top-bar { position: sticky; top: 0; z-index: 100; background: rgba(13, 17, 23, 0.95); border-bottom: 1px solid rgba(255, 107, 26, 0.15); }
 header { background: linear-gradient(135deg, #ff6b1a 0%, #8b00ff 50%, #4a148c 100%); padding: 20px 24px; text-align: center; position: relative; overflow: hidden; }
-header::before { content: ""; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.2) 50%, transparent 100%); animation: shine 8s ease-in-out infinite; pointer-events: none; }
-@keyframes shine { 0% { left: -100%; } 50%, 100% { left: 100%; } }
 .header-content { display: flex; align-items: center; justify-content: center; gap: 18px; position: relative; z-index: 2; flex-wrap: wrap; }
-.logo-wrapper { width: 58px; height: 58px; flex-shrink: 0; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4)); animation: float 4s ease-in-out infinite; }
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+.logo-wrapper { width: 58px; height: 58px; flex-shrink: 0; }
 .header-text { text-align: left; }
-.header-text h1 { color: #ffffff; font-size: 30px; font-weight: 900; letter-spacing: 4px; line-height: 1; margin-bottom: 6px; text-shadow: 0 2px 12px rgba(0,0,0,0.4); display: flex; align-items: center; gap: 10px; justify-content: center; }
+.header-text h1 { color: #ffffff; font-size: 30px; font-weight: 900; letter-spacing: 4px; line-height: 1; margin-bottom: 6px; text-shadow: 0 2px 8px rgba(0,0,0,0.4); display: flex; align-items: center; gap: 10px; justify-content: center; }
 .badge-premium { background: rgba(0, 0, 0, 0.3); color: #fff; font-size: 9px; font-weight: 800; letter-spacing: 1.5px; padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.3); }
 .header-text p { color: rgba(255,255,255,0.9); font-size: 12px; letter-spacing: 1px; font-weight: 500; text-align: center; }
 .buscador-container { padding: 14px 20px; max-width: 1200px; margin: 0 auto; position: relative; }
 .buscador-container::before { content: "🔍"; position: absolute; left: 36px; top: 50%; transform: translateY(-50%); font-size: 16px; pointer-events: none; opacity: 0.6; z-index: 2; }
-.buscador { width: 100%; padding: 14px 20px 14px 46px; font-size: 16px; background: rgba(22, 27, 34, 0.85); color: #f0f6fc; border: 1px solid #30363d; border-radius: 12px; outline: none; transition: all 0.2s; }
-.buscador:focus { border-color: #ff6b1a; box-shadow: 0 0 0 3px rgba(255, 107, 26, 0.15); background: rgba(22, 27, 34, 0.95); }
+.buscador { width: 100%; padding: 14px 20px 14px 46px; font-size: 16px; background: #161b22; color: #f0f6fc; border: 1px solid #30363d; border-radius: 12px; outline: none; transition: border-color 0.2s; }
+.buscador:focus { border-color: #ff6b1a; }
 .buscador::placeholder { color: #8b949e; }
 .tabs { display: flex; gap: 8px; padding: 0 20px 14px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
-.tab { padding: 8px 18px; background: rgba(22, 27, 34, 0.75); color: #8b949e; border: 1px solid #30363d; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.2s; user-select: none; }
+.tab { padding: 8px 18px; background: #161b22; color: #8b949e; border: 1px solid #30363d; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.2s; user-select: none; }
 .tab:hover { border-color: #ff6b1a; color: #ff6b1a; }
-.tab.activa { background: linear-gradient(90deg, #ff6b1a, #4a148c); color: #fff; border-color: transparent; box-shadow: 0 4px 15px rgba(255, 107, 26, 0.4); }
+.tab.activa { background: linear-gradient(90deg, #ff6b1a, #4a148c); color: #fff; border-color: transparent; }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 18px; padding: 20px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 50; }
-.tarjeta { background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; transition: all 0.3s; display: flex; flex-direction: column; }
+.tarjeta { background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; transition: transform 0.2s, border-color 0.2s; display: flex; flex-direction: column; content-visibility: auto; contain-intrinsic-size: 320px; }
 .tarjeta:hover { transform: translateY(-4px); border-color: #ff6b1a; }
 .poster-wrapper { aspect-ratio: 2/3; background: #000; overflow: hidden; position: relative; }
-.poster-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
-.tarjeta:hover img { transform: scale(1.05); }
+.poster-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .badge-sin { position: absolute; top: 8px; right: 8px; background: rgba(255,107,26,0.95); color: #0d1117; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
 .info { padding: 12px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .titulo-peli { color: #f0f6fc; font-size: 13px; font-weight: 700; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 34px; }
 .categoria-tag { display: inline-block; padding: 2px 8px; background: rgba(139, 0, 255, 0.25); color: #ff6b1a; font-size: 10px; font-weight: 700; border-radius: 4px; text-transform: uppercase; width: fit-content; }
-.btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #25D366; color: #fff; text-decoration: none; font-size: 12px; font-weight: 700; border-radius: 8px; transition: all 0.2s; margin-top: auto; }
-.btn-whatsapp:hover { background: #1DA851; transform: scale(1.03); }
+.btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #25D366; color: #fff; text-decoration: none; font-size: 12px; font-weight: 700; border-radius: 8px; transition: background 0.2s; margin-top: auto; }
+.btn-whatsapp:hover { background: #1DA851; }
 .sin-resultados { text-align: center; padding: 60px 20px; color: #8b949e; font-size: 16px; display: none; position: relative; z-index: 50; }
 .sin-resultados.visible { display: block; }
-footer { text-align: center; padding: 30px 20px; color: #8b949e; font-size: 12px; border-top: 1px solid #30363d; margin-top: 40px; position: relative; z-index: 60; }
+footer { text-align: center; padding: 30px 20px; color: #8b949e; font-size: 12px; border-top: 1px solid #30363d; margin-top: 40px; position: relative; z-index: 60; background: rgba(13, 17, 23, 0.8); }
 footer strong { color: #ff6b1a; }
-.halloween-banner { position: fixed; top: 0; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, #ff6b1a, #8b00ff); color: white; padding: 4px 20px; border-radius: 0 0 15px 15px; font-size: 11px; font-weight: 800; letter-spacing: 2px; z-index: 200; box-shadow: 0 4px 20px rgba(255,107,26,0.6); animation: pulsoHalloween 2.5s infinite; }
-@keyframes pulsoHalloween { 0%, 100% { box-shadow: 0 4px 20px rgba(255,107,26,0.6); } 50% { box-shadow: 0 4px 35px rgba(255,107,26,1); } }
+.halloween-banner { position: fixed; top: 0; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, #ff6b1a, #8b00ff); color: white; padding: 4px 20px; border-radius: 0 0 15px 15px; font-size: 11px; font-weight: 800; letter-spacing: 2px; z-index: 200; }
 
-        .tarjeta { background: rgba(22, 27, 34, 0.75) !important; backdrop-filter: blur(12px) saturate(180%); -webkit-backdrop-filter: blur(12px) saturate(180%); border: 1px solid rgba(255, 107, 26, 0.2) !important; }
-        .tarjeta:hover { background: rgba(22, 27, 34, 0.9) !important; border-color: #ff6b1a !important; }
-        .buscador { background: rgba(22, 27, 34, 0.85) !important; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-        .tab { background: rgba(22, 27, 34, 0.75) !important; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-        footer { background: rgba(13, 17, 23, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 12px; margin: 40px 20px 0 20px; }
-
-    /* ============================================================
-       🦇 MURCIÉLAGOS COLGANTES
-       ============================================================ */
     #bats-container {
-        position: fixed;
-        top: 0; left: 0;
+        position: fixed; top: 0; left: 0;
         width: 0; height: 0;
         pointer-events: none;
         z-index: 80;
+        contain: strict;
     }
-
     .bat-hanging {
         position: fixed;
-        width: 46px;
-        height: 46px;
+        width: 42px; height: 42px;
         pointer-events: none;
         opacity: 0;
-        transition:
-            left 1.5s cubic-bezier(0.34, 1.3, 0.64, 1),
-            top 1.5s cubic-bezier(0.34, 1.3, 0.64, 1),
-            opacity 0.6s ease;
-        filter: drop-shadow(0 3px 8px rgba(139, 0, 255, 0.7))
-                drop-shadow(0 0 18px rgba(255, 107, 26, 0.35));
-        will-change: left, top, opacity;
+        transition: left 1.5s cubic-bezier(0.34, 1.3, 0.64, 1),
+                    top 1.5s cubic-bezier(0.34, 1.3, 0.64, 1),
+                    opacity 0.6s ease;
     }
-
     .bat-hanging .bat-form {
-        position: absolute;
-        top: 0; left: 0;
+        position: absolute; top: 0; left: 0;
         width: 100%; height: 100%;
-        overflow: visible;
         transition: opacity 0.25s ease;
     }
-
     .bat-form-fly { opacity: 0; }
-
-    .bat-hanging.sleeping {
-        animation: batBreathe 2.6s ease-in-out infinite;
-    }
+    .bat-hanging.sleeping { animation: batBreathe 2.6s ease-in-out infinite; }
     .bat-hanging.sleeping .bat-form-sleep { opacity: 1; }
     .bat-hanging.sleeping .bat-form-fly { opacity: 0; }
-
     @keyframes batBreathe {
-        0%, 100% { transform: scale(1) rotate(0deg); }
-        50%      { transform: scale(1.05) rotate(0.6deg); }
+        0%, 100% { transform: scale(1); }
+        50%      { transform: scale(1.05); }
     }
-
-    .bat-hanging.sleeping .bat-eye {
-        transform-origin: center;
-        animation: batPeek 7s ease-in-out infinite;
-    }
-
+    .bat-hanging.sleeping .bat-eye { animation: batPeek 7s ease-in-out infinite; }
     @keyframes batPeek {
-        0%, 25%   { transform: translateX(0) scaleY(1); }
-        30%, 40%  { transform: translateX(-2.5px) scaleY(1.15); }
-        45%, 55%  { transform: translateX(2.5px) scaleY(1.15); }
-        60%, 65%  { transform: translateX(0) scaleY(0.12); }
-        70%, 100% { transform: translateX(0) scaleY(1); }
+        0%, 25%   { transform: translateX(0); }
+        30%, 40%  { transform: translateX(-2.5px); }
+        45%, 55%  { transform: translateX(2.5px); }
+        60%, 65%  { opacity: 0.15; }
+        70%, 100% { transform: translateX(0); }
     }
-
-    .bat-hanging.waking {
-        animation: batWake 0.35s ease-out;
-    }
+    .bat-hanging.waking { animation: batWake 0.35s ease-out; }
     .bat-hanging.waking .bat-form-sleep { opacity: 1; }
     .bat-hanging.waking .bat-form-fly { opacity: 0; }
-
     @keyframes batWake {
-        0%   { transform: scale(1) rotate(0deg); }
-        40%  { transform: scale(1.1) rotate(5deg); }
-        100% { transform: scale(1) rotate(0deg); }
+        0%   { transform: scale(1); }
+        40%  { transform: scale(1.1); }
+        100% { transform: scale(1); }
     }
-
-    .bat-hanging.flying {
-        animation: batFlyWiggle 0.5s ease-in-out infinite;
-    }
+    .bat-hanging.flying { animation: batFlyWiggle 0.5s ease-in-out infinite; }
     .bat-hanging.flying .bat-form-sleep { opacity: 0; }
     .bat-hanging.flying .bat-form-fly { opacity: 1; }
-
-    .bat-hanging.flying .bat-wing-l {
-        transform-origin: 38px 40px;
-        animation: batFlapL 0.22s ease-in-out infinite;
-    }
-    .bat-hanging.flying .bat-wing-r {
-        transform-origin: 42px 40px;
-        animation: batFlapR 0.22s ease-in-out infinite;
-    }
-
+    .bat-hanging.flying .bat-wing-l { animation: batFlapL 0.22s ease-in-out infinite; }
+    .bat-hanging.flying .bat-wing-r { animation: batFlapR 0.22s ease-in-out infinite; }
     @keyframes batFlapL {
-        0%, 100% { transform: scaleY(1) rotate(0deg); }
-        50%      { transform: scaleY(0.35) rotate(-14deg); }
+        0%, 100% { transform: scaleY(1); }
+        50%      { transform: scaleY(0.35); }
     }
     @keyframes batFlapR {
-        0%, 100% { transform: scaleY(1) rotate(0deg); }
-        50%      { transform: scaleY(0.35) rotate(14deg); }
+        0%, 100% { transform: scaleY(1); }
+        50%      { transform: scaleY(0.35); }
     }
     @keyframes batFlyWiggle {
         0%, 100% { transform: rotate(-3deg); }
         50%      { transform: rotate(3deg); }
     }
 
-    /* ============================================================
-       🎃 CALABAZAS REALISTAS
-       ============================================================ */
     .pumpkin-deco {
         position: fixed;
-        bottom: 10px;
-        width: 100px;
-        height: 100px;
+        bottom: 15px;
+        width: 80px; height: 80px;
         z-index: 45;
         pointer-events: none;
-        transform-origin: center bottom;
+        contain: strict;
     }
-
-    .pumpkin-deco.pumpkin-izq {
-        left: 15px;
-        animation: pumpkinSwayLeft 5s ease-in-out infinite;
-    }
-    .pumpkin-deco.pumpkin-der {
-        right: 15px;
-        animation: pumpkinSwayRight 5.5s ease-in-out infinite;
-    }
-
+    .pumpkin-deco.pumpkin-izq { left: 15px; animation: pumpkinSwayLeft 5s ease-in-out infinite; }
+    .pumpkin-deco.pumpkin-der { right: 15px; animation: pumpkinSwayRight 5.5s ease-in-out infinite; }
     @keyframes pumpkinSwayLeft {
-        0%, 100% { transform: rotate(-3deg) translateY(0); }
-        50%      { transform: rotate(3deg) translateY(-3px); }
+        0%, 100% { transform: rotate(-3deg); }
+        50%      { transform: rotate(3deg); }
     }
     @keyframes pumpkinSwayRight {
-        0%, 100% { transform: rotate(3deg) translateY(0); }
-        50%      { transform: rotate(-3deg) translateY(-3px); }
+        0%, 100% { transform: rotate(3deg); }
+        50%      { transform: rotate(-3deg); }
     }
-
-    .pumpkin-full-svg {
-        width: 100%;
-        height: 100%;
-        display: block;
-        filter: drop-shadow(0 0 20px rgba(255, 107, 26, 0.5))
-                drop-shadow(0 0 40px rgba(255, 68, 0, 0.3));
-    }
-
-    /* LA LUZ INTERIOR TITILA (como vela real) */
-    .pumpkin-inner-light {
-        transform-origin: 50px 62px;
-        animation: pumpkinFlicker 2.5s ease-in-out infinite;
-    }
-
+    .pumpkin-full-svg { width: 100%; height: 100%; display: block; }
+    .pumpkin-inner-light { animation: pumpkinFlicker 2.5s ease-in-out infinite; transform-origin: 50px 62px; }
     @keyframes pumpkinFlicker {
-        0%   { opacity: 0.75; transform: scale(1); }
-        15%  { opacity: 1; transform: scale(1.04); }
-        25%  { opacity: 0.85; transform: scale(0.98); }
-        40%  { opacity: 1; transform: scale(1.06); }
-        55%  { opacity: 0.8; transform: scale(0.99); }
-        70%  { opacity: 1; transform: scale(1.05); }
-        85%  { opacity: 0.9; transform: scale(1.01); }
-        100% { opacity: 0.75; transform: scale(1); }
+        0%, 100% { opacity: 0.75; }
+        15%      { opacity: 1; }
+        40%      { opacity: 0.85; }
+        70%      { opacity: 1; }
     }
-
-    /* LOS OJOS BRILLAN CON MÁS FUERZA */
-    .pumpkin-eye-glow {
-        animation: pumpkinEyeGlow 3.5s ease-in-out infinite;
-        transform-origin: center;
-    }
-
+    .pumpkin-eye-glow { animation: pumpkinEyeGlow 3.5s ease-in-out infinite; }
     @keyframes pumpkinEyeGlow {
         0%, 100% { opacity: 0.7; }
         50%      { opacity: 1; }
     }
-
-    /* LA BOCA PULSA */
-    .pumpkin-mouth-glow {
-        animation: pumpkinMouthGlow 2.8s ease-in-out infinite;
-        transform-origin: center;
-    }
-
+    .pumpkin-mouth-glow { animation: pumpkinMouthGlow 2.8s ease-in-out infinite; }
     @keyframes pumpkinMouthGlow {
         0%, 100% { opacity: 0.6; }
         30%      { opacity: 1; }
-        60%      { opacity: 0.75; }
     }
 
-    /* EL AURA QUE EMANA (respiración de luz) */
-    .pumpkin-aura {
-        animation: pumpkinAura 3s ease-in-out infinite;
-        transform-origin: 50px 62px;
-    }
-
-    @keyframes pumpkinAura {
-        0%, 100% { opacity: 0.6; transform: scale(1); }
-        50%      { opacity: 1; transform: scale(1.15); }
-    }
-
-    /* CUANDO SE "AVIVA" AL SCROLL (se activa con JS) */
-    .pumpkin-deco.avivada .pumpkin-inner-light {
-        animation: pumpkinFlickerStrong 0.4s ease-in-out 3;
-    }
-
-    @keyframes pumpkinFlickerStrong {
-        0%, 100% { opacity: 1; transform: scale(1.05); }
-        50%      { opacity: 1.2; transform: scale(1.15); }
-    }
-
-    .pumpkin-deco.avivada .pumpkin-full-svg {
-        filter: drop-shadow(0 0 30px rgba(255, 150, 66, 0.9))
-                drop-shadow(0 0 60px rgba(255, 107, 26, 0.6));
-        transition: filter 0.3s ease;
-    }
-
-    /* ============================================================
-       ✨ BRASAS
-       ============================================================ */
     .brasas-container {
-        position: fixed;
-        top: 0; left: 0;
+        position: fixed; top: 0; left: 0;
         width: 100%; height: 100%;
         pointer-events: none;
         z-index: 44;
         overflow: hidden;
+        contain: strict;
     }
-
     .brasa {
         position: absolute;
         bottom: -20px;
-        background: radial-gradient(circle, #ffcc66 0%, #ff6b1a 40%, transparent 70%);
+        background: radial-gradient(circle, #ffcc66 0%, #ff6b1a 50%, transparent 70%);
         border-radius: 50%;
         opacity: 0;
         animation-name: subirBrasa;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
-        box-shadow: 0 0 8px rgba(255, 107, 26, 0.8);
     }
-
     @keyframes subirBrasa {
-        0%   { opacity: 0; transform: translateY(0) translateX(0) scale(1); }
+        0%   { opacity: 0; transform: translateY(0) translateX(0); }
         10%  { opacity: 1; }
-        50%  { opacity: 0.8; transform: translateY(-50vh) translateX(20px) scale(0.9); }
         90%  { opacity: 0.3; }
-        100% { opacity: 0; transform: translateY(-105vh) translateX(-15px) scale(0.4); }
+        100% { opacity: 0; transform: translateY(-105vh) translateX(-15px); }
     }
 
-    /* ============================================================
-       🌫️ NIEBLA
-       ============================================================ */
     .niebla-inferior {
         position: fixed;
-        bottom: -50px;
-        left: -10%;
-        width: 120%;
-        height: 250px;
-        background: radial-gradient(ellipse at center bottom,
-            rgba(139, 0, 255, 0.4) 0%,
-            rgba(74, 20, 140, 0.2) 30%,
-            transparent 70%);
+        bottom: 0; left: 0;
+        width: 100%; height: 120px;
+        background: linear-gradient(to top,
+            rgba(139, 0, 255, 0.25) 0%,
+            rgba(139, 0, 255, 0.08) 50%,
+            transparent 100%);
         pointer-events: none;
         z-index: 42;
         animation: moverNiebla 10s ease-in-out infinite;
-        filter: blur(25px);
     }
-    .niebla-inferior.niebla-2 {
-        height: 180px;
-        background: radial-gradient(ellipse at center bottom,
-            rgba(255, 107, 26, 0.25) 0%, transparent 70%);
-        animation: moverNiebla 14s ease-in-out infinite reverse;
-        animation-delay: 2s;
-    }
-
-    .niebla-lateral {
-        position: fixed;
-        top: 0;
-        width: 200px;
-        height: 100%;
-        pointer-events: none;
-        z-index: 42;
-        filter: blur(30px);
-    }
-    .niebla-lat-izq {
-        left: -100px;
-        background: radial-gradient(ellipse at left center,
-            rgba(139, 0, 255, 0.3) 0%, transparent 70%);
-        animation: moverNiebla 12s ease-in-out infinite;
-    }
-    .niebla-lat-der {
-        right: -100px;
-        background: radial-gradient(ellipse at right center,
-            rgba(74, 20, 140, 0.3) 0%, transparent 70%);
-        animation: moverNiebla 15s ease-in-out infinite reverse;
-    }
-
     @keyframes moverNiebla {
-        0%, 100% { transform: translateX(0) scaleY(1); opacity: 0.8; }
-        50%      { transform: translateX(40px) scaleY(1.2); opacity: 1; }
+        0%, 100% { opacity: 0.7; }
+        50%      { opacity: 1; }
     }
 
-    /* ============================================================
-       🎃 GLOW ATMOSFÉRICO
-       ============================================================ */
     .top-bar::after {
         content: '';
         position: absolute;
-        bottom: -2px;
-        left: 50%;
+        bottom: -2px; left: 50%;
         transform: translateX(-50%);
-        width: 80%;
-        height: 2px;
+        width: 80%; height: 2px;
         background: linear-gradient(90deg, transparent, rgba(255, 107, 26, 1), transparent);
         animation: pulsoGlow 2.5s ease-in-out infinite;
         pointer-events: none;
     }
-
     @keyframes pulsoGlow {
         0%, 100% { opacity: 0.5; }
         50%      { opacity: 1; }
     }
-
     .tarjeta:hover {
-        box-shadow: 0 8px 30px rgba(255, 107, 26, 0.5),
-                    0 0 60px rgba(255, 107, 26, 0.2) !important;
+        box-shadow: 0 8px 25px rgba(255, 107, 26, 0.4) !important;
     }
-
-    /* ============================================================
-       RESPONSIVE
-       ============================================================ */
     @media (max-width: 600px) {
-        .bat-hanging { width: 36px; height: 36px; }
-        .pumpkin-deco { width: 65px; height: 65px; bottom: 5px; }
-        .pumpkin-deco.pumpkin-izq { left: 5px; }
-        .pumpkin-deco.pumpkin-der { right: 5px; }
-        .niebla-inferior { height: 150px; }
-        .niebla-lateral { width: 100px; }
+        .bat-hanging { width: 34px; height: 34px; }
+        .pumpkin-deco { width: 55px; height: 55px; bottom: 8px; }
+        .pumpkin-deco.pumpkin-izq { left: 8px; }
+        .pumpkin-deco.pumpkin-der { right: 8px; }
+        .brasa { animation-duration: 12s !important; }
     }
-
     @media (prefers-reduced-motion: reduce) {
-        .bat-hanging { display: none; }
-        .pumpkin-deco { animation: none; }
+        .bat-hanging, .pumpkin-deco, .brasa { display: none; }
     }
     
 @media (max-width: 600px) {
@@ -400,7 +225,7 @@ footer strong { color: #ff6b1a; }
     .header-content { gap: 12px; }
     .logo-wrapper { width: 44px; height: 44px; }
     .header-text h1 { font-size: 20px; letter-spacing: 2px; }
-    .header-text p { font-size: 10px; letter-spacing: 0.5px; }
+    .header-text p { font-size: 10px; }
     .badge-premium { font-size: 8px; padding: 2px 6px; }
     .buscador-container { padding: 10px 12px; }
     .buscador-container::before { left: 26px; font-size: 14px; }
@@ -418,10 +243,7 @@ footer strong { color: #ff6b1a; }
 <body>
 
 <div class="halloween-banner">🎃 ESPECIAL HALLOWEEN 🎃</div>
-<!-- 🦇 CONTENEDOR DE MURCIÉLAGOS -->
 <div id="bats-container"></div>
-
-<!-- 🎃 CALABAZAS REALISTAS -->
 <div class="pumpkin-deco pumpkin-izq"><svg class="pumpkin-full-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
             <radialGradient id="pumpkinBody" cx="50%" cy="45%" r="55%">
@@ -429,79 +251,23 @@ footer strong { color: #ff6b1a; }
                 <stop offset="55%" stop-color="#e85d04"/>
                 <stop offset="100%" stop-color="#9d2f00"/>
             </radialGradient>
-            <radialGradient id="pumpkinHighlight" cx="35%" cy="30%" r="40%">
-                <stop offset="0%" stop-color="#ffd166" stop-opacity="0.7"/>
-                <stop offset="100%" stop-color="#ffd166" stop-opacity="0"/>
-            </radialGradient>
             <radialGradient id="innerGlow" cx="50%" cy="65%" r="45%">
                 <stop offset="0%" stop-color="#ffea00" stop-opacity="1"/>
                 <stop offset="40%" stop-color="#ffaa00" stop-opacity="0.9"/>
                 <stop offset="100%" stop-color="#ff4400" stop-opacity="0"/>
             </radialGradient>
-            <radialGradient id="lightGlow" cx="50%" cy="60%" r="60%">
-                <stop offset="0%" stop-color="#ffcc00" stop-opacity="0.6"/>
-                <stop offset="100%" stop-color="#ff6b1a" stop-opacity="0"/>
-            </radialGradient>
-            <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="2" result="blur"/>
-                <feMerge>
-                    <feMergeNode in="blur"/>
-                    <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-            </filter>
         </defs>
-
-        <!-- Sombra inferior -->
-        <ellipse cx="50" cy="92" rx="35" ry="4" fill="#000" opacity="0.5"/>
-
-        <!-- Cuerpo de la calabaza con gajos -->
         <ellipse cx="50" cy="58" rx="38" ry="32" fill="url(#pumpkinBody)"/>
-
-        <!-- Gajo izquierdo -->
-        <path d="M 50 26 Q 30 30 25 58 Q 25 82 50 90 Q 40 75 40 58 Q 40 38 50 26 Z"
-              fill="#c24500" opacity="0.5"/>
-
-        <!-- Gajo derecho -->
-        <path d="M 50 26 Q 70 30 75 58 Q 75 82 50 90 Q 60 75 60 58 Q 60 38 50 26 Z"
-              fill="#9d2f00" opacity="0.4"/>
-
-        <!-- Highlight superior -->
-        <ellipse cx="40" cy="42" rx="22" ry="14" fill="url(#pumpkinHighlight)"/>
-
-        <!-- Tallo -->
-        <path d="M 47 26 Q 44 18 46 12 Q 49 8 52 12 Q 52 18 53 26 Z"
-              fill="#4a3a1f"/>
-        <path d="M 50 20 Q 56 16 60 14 Q 58 18 54 22 Z"
-              fill="#3a2a14"/>
-
-        <!-- LUZ INTERIOR - brillo central -->
-        <g class="pumpkin-inner-light" filter="url(#softGlow)">
+        <path d="M 47 26 Q 44 18 46 12 Q 49 8 52 12 Q 52 18 53 26 Z" fill="#4a3a1f"/>
+        <g class="pumpkin-inner-light">
             <ellipse cx="50" cy="62" rx="28" ry="22" fill="url(#innerGlow)"/>
         </g>
-
-        <!-- CARA TALLADA - Ojos -->
-        <g class="pumpkin-face">
-            <!-- Ojo izquierdo (triángulo) -->
-            <polygon points="32,50 42,50 37,58" fill="#1a0f00"/>
-            <polygon points="34,51 40,51 37,56" fill="#ffea00" class="pumpkin-eye-glow"/>
-
-            <!-- Ojo derecho (triángulo) -->
-            <polygon points="58,50 68,50 63,58" fill="#1a0f00"/>
-            <polygon points="60,51 66,51 63,56" fill="#ffea00" class="pumpkin-eye-glow"/>
-
-            <!-- Boca con dientes -->
-            <path d="M 33 72 Q 40 68 50 68 Q 60 68 67 72 L 65 76 Q 60 74 55 76 L 52 72 L 48 76 L 45 72 L 42 76 Q 37 74 35 76 Z"
-                  fill="#1a0f00"/>
-            <path d="M 36 73 Q 42 70 50 70 Q 58 70 64 73 L 62 75 Q 58 73 54 75 L 52 72 L 48 75 L 46 72 L 42 75 Q 38 73 36 75 Z"
-                  fill="#ffaa00" class="pumpkin-mouth-glow"/>
-        </g>
-
-        <!-- Brillo que emana de la cara (efecto luz) -->
-        <g class="pumpkin-aura">
-            <ellipse cx="37" cy="53" rx="4" ry="3" fill="#ffea00" opacity="0.5"/>
-            <ellipse cx="63" cy="53" rx="4" ry="3" fill="#ffea00" opacity="0.5"/>
-            <ellipse cx="50" cy="72" rx="12" ry="5" fill="#ffaa00" opacity="0.4"/>
-        </g>
+        <polygon points="32,50 42,50 37,58" fill="#1a0f00"/>
+        <polygon points="58,50 68,50 63,58" fill="#1a0f00"/>
+        <polygon points="34,51 40,51 37,56" fill="#ffea00" class="pumpkin-eye-glow"/>
+        <polygon points="60,51 66,51 63,56" fill="#ffea00" class="pumpkin-eye-glow"/>
+        <path d="M 33 72 Q 40 68 50 68 Q 60 68 67 72 L 65 76 Q 60 74 55 76 L 52 72 L 48 76 L 45 72 L 42 76 Q 37 74 35 76 Z" fill="#1a0f00"/>
+        <path d="M 36 73 Q 42 70 50 70 Q 58 70 64 73 L 62 75 Q 58 73 54 75 L 52 72 L 48 75 L 46 72 L 42 75 Q 38 73 36 75 Z" fill="#ffaa00" class="pumpkin-mouth-glow"/>
     </svg></div>
 <div class="pumpkin-deco pumpkin-der"><svg class="pumpkin-full-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -510,82 +276,24 @@ footer strong { color: #ff6b1a; }
                 <stop offset="55%" stop-color="#e85d04"/>
                 <stop offset="100%" stop-color="#9d2f00"/>
             </radialGradient>
-            <radialGradient id="pumpkinHighlight" cx="35%" cy="30%" r="40%">
-                <stop offset="0%" stop-color="#ffd166" stop-opacity="0.7"/>
-                <stop offset="100%" stop-color="#ffd166" stop-opacity="0"/>
-            </radialGradient>
             <radialGradient id="innerGlow" cx="50%" cy="65%" r="45%">
                 <stop offset="0%" stop-color="#ffea00" stop-opacity="1"/>
                 <stop offset="40%" stop-color="#ffaa00" stop-opacity="0.9"/>
                 <stop offset="100%" stop-color="#ff4400" stop-opacity="0"/>
             </radialGradient>
-            <radialGradient id="lightGlow" cx="50%" cy="60%" r="60%">
-                <stop offset="0%" stop-color="#ffcc00" stop-opacity="0.6"/>
-                <stop offset="100%" stop-color="#ff6b1a" stop-opacity="0"/>
-            </radialGradient>
-            <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="2" result="blur"/>
-                <feMerge>
-                    <feMergeNode in="blur"/>
-                    <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-            </filter>
         </defs>
-
-        <!-- Sombra inferior -->
-        <ellipse cx="50" cy="92" rx="35" ry="4" fill="#000" opacity="0.5"/>
-
-        <!-- Cuerpo de la calabaza con gajos -->
         <ellipse cx="50" cy="58" rx="38" ry="32" fill="url(#pumpkinBody)"/>
-
-        <!-- Gajo izquierdo -->
-        <path d="M 50 26 Q 30 30 25 58 Q 25 82 50 90 Q 40 75 40 58 Q 40 38 50 26 Z"
-              fill="#c24500" opacity="0.5"/>
-
-        <!-- Gajo derecho -->
-        <path d="M 50 26 Q 70 30 75 58 Q 75 82 50 90 Q 60 75 60 58 Q 60 38 50 26 Z"
-              fill="#9d2f00" opacity="0.4"/>
-
-        <!-- Highlight superior -->
-        <ellipse cx="40" cy="42" rx="22" ry="14" fill="url(#pumpkinHighlight)"/>
-
-        <!-- Tallo -->
-        <path d="M 47 26 Q 44 18 46 12 Q 49 8 52 12 Q 52 18 53 26 Z"
-              fill="#4a3a1f"/>
-        <path d="M 50 20 Q 56 16 60 14 Q 58 18 54 22 Z"
-              fill="#3a2a14"/>
-
-        <!-- LUZ INTERIOR - brillo central -->
-        <g class="pumpkin-inner-light" filter="url(#softGlow)">
+        <path d="M 47 26 Q 44 18 46 12 Q 49 8 52 12 Q 52 18 53 26 Z" fill="#4a3a1f"/>
+        <g class="pumpkin-inner-light">
             <ellipse cx="50" cy="62" rx="28" ry="22" fill="url(#innerGlow)"/>
         </g>
-
-        <!-- CARA TALLADA - Ojos -->
-        <g class="pumpkin-face">
-            <!-- Ojo izquierdo (triángulo) -->
-            <polygon points="32,50 42,50 37,58" fill="#1a0f00"/>
-            <polygon points="34,51 40,51 37,56" fill="#ffea00" class="pumpkin-eye-glow"/>
-
-            <!-- Ojo derecho (triángulo) -->
-            <polygon points="58,50 68,50 63,58" fill="#1a0f00"/>
-            <polygon points="60,51 66,51 63,56" fill="#ffea00" class="pumpkin-eye-glow"/>
-
-            <!-- Boca con dientes -->
-            <path d="M 33 72 Q 40 68 50 68 Q 60 68 67 72 L 65 76 Q 60 74 55 76 L 52 72 L 48 76 L 45 72 L 42 76 Q 37 74 35 76 Z"
-                  fill="#1a0f00"/>
-            <path d="M 36 73 Q 42 70 50 70 Q 58 70 64 73 L 62 75 Q 58 73 54 75 L 52 72 L 48 75 L 46 72 L 42 75 Q 38 73 36 75 Z"
-                  fill="#ffaa00" class="pumpkin-mouth-glow"/>
-        </g>
-
-        <!-- Brillo que emana de la cara (efecto luz) -->
-        <g class="pumpkin-aura">
-            <ellipse cx="37" cy="53" rx="4" ry="3" fill="#ffea00" opacity="0.5"/>
-            <ellipse cx="63" cy="53" rx="4" ry="3" fill="#ffea00" opacity="0.5"/>
-            <ellipse cx="50" cy="72" rx="12" ry="5" fill="#ffaa00" opacity="0.4"/>
-        </g>
+        <polygon points="32,50 42,50 37,58" fill="#1a0f00"/>
+        <polygon points="58,50 68,50 63,58" fill="#1a0f00"/>
+        <polygon points="34,51 40,51 37,56" fill="#ffea00" class="pumpkin-eye-glow"/>
+        <polygon points="60,51 66,51 63,56" fill="#ffea00" class="pumpkin-eye-glow"/>
+        <path d="M 33 72 Q 40 68 50 68 Q 60 68 67 72 L 65 76 Q 60 74 55 76 L 52 72 L 48 76 L 45 72 L 42 76 Q 37 74 35 76 Z" fill="#1a0f00"/>
+        <path d="M 36 73 Q 42 70 50 70 Q 58 70 64 73 L 62 75 Q 58 73 54 75 L 52 72 L 48 75 L 46 72 L 42 75 Q 38 73 36 75 Z" fill="#ffaa00" class="pumpkin-mouth-glow"/>
     </svg></div>
-
-<!-- ✨ BRASAS -->
 <div class="brasas-container">
 <div class="brasa" style="left:81%;animation-delay:1.34s;animation-duration:12.19s;width:3px;height:3px;"></div>
 <div class="brasa" style="left:28%;animation-delay:1.67s;animation-duration:7.72s;width:5px;height:5px;"></div>
@@ -599,21 +307,8 @@ footer strong { color: #ff6b1a; }
 <div class="brasa" style="left:77%;animation-delay:3.17s;animation-duration:7.3s;width:4px;height:4px;"></div>
 <div class="brasa" style="left:68%;animation-delay:1.5s;animation-duration:13.46s;width:3px;height:3px;"></div>
 <div class="brasa" style="left:70%;animation-delay:3.52s;animation-duration:11.4s;width:4px;height:4px;"></div>
-<div class="brasa" style="left:73%;animation-delay:2.31s;animation-duration:7.49s;width:5px;height:5px;"></div>
-<div class="brasa" style="left:29%;animation-delay:9.28s;animation-duration:13.9s;width:3px;height:3px;"></div>
-<div class="brasa" style="left:12%;animation-delay:4.56s;animation-duration:10.17s;width:4px;height:4px;"></div>
-<div class="brasa" style="left:20%;animation-delay:4.44s;animation-duration:8.47s;width:4px;height:4px;"></div>
-<div class="brasa" style="left:89%;animation-delay:11.24s;animation-duration:11.54s;width:5px;height:5px;"></div>
-<div class="brasa" style="left:81%;animation-delay:2.05s;animation-duration:12.1s;width:3px;height:3px;"></div>
-<div class="brasa" style="left:59%;animation-delay:4.55s;animation-duration:13.93s;width:5px;height:5px;"></div>
-<div class="brasa" style="left:88%;animation-delay:6.68s;animation-duration:11.79s;width:3px;height:3px;"></div>
 </div>
-
-<!-- 🌫️ NIEBLA -->
 <div class="niebla-inferior"></div>
-<div class="niebla-inferior niebla-2"></div>
-<div class="niebla-lateral niebla-lat-izq"></div>
-<div class="niebla-lateral niebla-lat-der"></div>
 
 <div class="fondo-container">
 <div class="fondo-slide activo" style="background-image: url('fondo.jpg');"></div>
@@ -646,1777 +341,1777 @@ footer strong { color: #ff6b1a; }
 <div class="grid" id="grid">
         <div class="tarjeta" data-categoria="Muñes" data-nombre="101 dalmatas">
             <div class="poster-wrapper">
-                <img src="caratulas/101 Dalmatas.jpg" alt="101 Dalmatas" loading="lazy">
+                <img src="caratulas/101 Dalmatas.jpg" alt="101 Dalmatas" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">101 Dalmatas</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20101%20Dalmatas" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20101%20Dalmatas" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="aladdin (1992">
             <div class="poster-wrapper">
-                <img src="caratulas/Aladdin (1992.jpg" alt="Aladdin (1992" loading="lazy">
+                <img src="caratulas/Aladdin (1992.jpg" alt="Aladdin (1992" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Aladdin (1992</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Aladdin%20(1992" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Aladdin%20(1992" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="anastasia">
             <div class="poster-wrapper">
-                <img src="caratulas/Anastasia.jpg" alt="Anastasia" loading="lazy">
+                <img src="caratulas/Anastasia.jpg" alt="Anastasia" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Anastasia</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Anastasia" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Anastasia" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="atlantis">
             <div class="poster-wrapper">
-                <img src="caratulas/Atlantis.jpg" alt="Atlantis" loading="lazy">
+                <img src="caratulas/Atlantis.jpg" alt="Atlantis" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Atlantis</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Atlantis" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Atlantis" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="blancanieves y los siete enanitos">
             <div class="poster-wrapper">
-                <img src="caratulas/Blancanieves Y Los Siete Enanitos.jpg" alt="Blancanieves Y Los Siete Enanitos" loading="lazy">
+                <img src="caratulas/Blancanieves Y Los Siete Enanitos.jpg" alt="Blancanieves Y Los Siete Enanitos" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Blancanieves Y Los Siete Enanitos</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Blancanieves%20Y%20Los%20Siete%20Enanitos" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Blancanieves%20Y%20Los%20Siete%20Enanitos" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="estudios pixar cortos">
             <div class="poster-wrapper">
-                <img src="caratulas/Estudios Pixar Cortos.jpg" alt="Estudios Pixar Cortos" loading="lazy">
+                <img src="caratulas/Estudios Pixar Cortos.jpg" alt="Estudios Pixar Cortos" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Estudios Pixar Cortos</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Estudios%20Pixar%20Cortos" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Estudios%20Pixar%20Cortos" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="hercules (1997">
             <div class="poster-wrapper">
-                <img src="caratulas/Hercules (1997.jpg" alt="Hercules (1997" loading="lazy">
+                <img src="caratulas/Hercules (1997.jpg" alt="Hercules (1997" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Hercules (1997</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hercules%20(1997" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hercules%20(1997" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="la dama y el vagabundo">
             <div class="poster-wrapper">
-                <img src="caratulas/La Dama Y El Vagabundo.jpg" alt="La Dama Y El Vagabundo" loading="lazy">
+                <img src="caratulas/La Dama Y El Vagabundo.jpg" alt="La Dama Y El Vagabundo" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Dama Y El Vagabundo</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Dama%20Y%20El%20Vagabundo" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Dama%20Y%20El%20Vagabundo" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="la ruta hacia el dorado">
             <div class="poster-wrapper">
-                <img src="caratulas/La Ruta Hacia El Dorado.jpg" alt="La Ruta Hacia El Dorado" loading="lazy">
+                <img src="caratulas/La Ruta Hacia El Dorado.jpg" alt="La Ruta Hacia El Dorado" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Ruta Hacia El Dorado</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Ruta%20Hacia%20El%20Dorado" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Ruta%20Hacia%20El%20Dorado" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="la sirenita 1">
             <div class="poster-wrapper">
-                <img src="caratulas/La Sirenita 1.jpg" alt="La Sirenita 1" loading="lazy">
+                <img src="caratulas/La Sirenita 1.jpg" alt="La Sirenita 1" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Sirenita 1</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Sirenita%201" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Sirenita%201" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="las bratz">
             <div class="poster-wrapper">
-                <img src="caratulas/_placeholder_Las Bratz.svg" alt="Las Bratz" loading="lazy">
+                <img src="caratulas/_placeholder_Las Bratz.svg" alt="Las Bratz" loading="lazy" decoding="async" width="200" height="300">
                 <span class="badge-sin">Próximamente</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Las Bratz</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Las%20Bratz" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Las%20Bratz" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="los aristogatos">
             <div class="poster-wrapper">
-                <img src="caratulas/Los Aristogatos.jpg" alt="Los Aristogatos" loading="lazy">
+                <img src="caratulas/Los Aristogatos.jpg" alt="Los Aristogatos" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Los Aristogatos</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Los%20Aristogatos" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Los%20Aristogatos" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="manuelita la tortuguita">
             <div class="poster-wrapper">
-                <img src="caratulas/Manuelita La Tortuguita.jpg" alt="Manuelita La Tortuguita" loading="lazy">
+                <img src="caratulas/Manuelita La Tortuguita.jpg" alt="Manuelita La Tortuguita" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Manuelita La Tortuguita</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Manuelita%20La%20Tortuguita" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Manuelita%20La%20Tortuguita" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="mariposas negras">
             <div class="poster-wrapper">
-                <img src="caratulas/Mariposas Negras.jpg" alt="Mariposas Negras" loading="lazy">
+                <img src="caratulas/Mariposas Negras.jpg" alt="Mariposas Negras" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Mariposas Negras</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Mariposas%20Negras" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Mariposas%20Negras" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="mowgli y baloo - el libro de la selva 2">
             <div class="poster-wrapper">
-                <img src="caratulas/Mowgli Y Baloo - El Libro De La Selva 2.jpg" alt="Mowgli Y Baloo - El Libro De La Selva 2" loading="lazy">
+                <img src="caratulas/Mowgli Y Baloo - El Libro De La Selva 2.jpg" alt="Mowgli Y Baloo - El Libro De La Selva 2" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Mowgli Y Baloo - El Libro De La Selva 2</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Mowgli%20Y%20Baloo%20-%20El%20Libro%20De%20La%20Selva%202" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Mowgli%20Y%20Baloo%20-%20El%20Libro%20De%20La%20Selva%202" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="mulan">
             <div class="poster-wrapper">
-                <img src="caratulas/Mulan.jpg" alt="Mulan" loading="lazy">
+                <img src="caratulas/Mulan.jpg" alt="Mulan" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Mulan</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Mulan" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Mulan" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="peter pan pelicula">
             <div class="poster-wrapper">
-                <img src="caratulas/Peter Pan Pelicula.jpg" alt="Peter Pan Pelicula" loading="lazy">
+                <img src="caratulas/Peter Pan Pelicula.jpg" alt="Peter Pan Pelicula" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Peter Pan Pelicula</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Peter%20Pan%20Pelicula" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Peter%20Pan%20Pelicula" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="pinocho pelicula completa">
             <div class="poster-wrapper">
-                <img src="caratulas/Pinocho Pelicula Completa.jpg" alt="Pinocho Pelicula Completa" loading="lazy">
+                <img src="caratulas/Pinocho Pelicula Completa.jpg" alt="Pinocho Pelicula Completa" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Pinocho Pelicula Completa</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Pinocho%20Pelicula%20Completa" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Pinocho%20Pelicula%20Completa" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="pocahontas (1995">
             <div class="poster-wrapper">
-                <img src="caratulas/Pocahontas (1995.jpg" alt="Pocahontas (1995" loading="lazy">
+                <img src="caratulas/Pocahontas (1995.jpg" alt="Pocahontas (1995" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Pocahontas (1995</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Pocahontas%20(1995" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Pocahontas%20(1995" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="pocahontas (1998">
             <div class="poster-wrapper">
-                <img src="caratulas/Pocahontas (1998.jpg" alt="Pocahontas (1998" loading="lazy">
+                <img src="caratulas/Pocahontas (1998.jpg" alt="Pocahontas (1998" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Pocahontas (1998</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Pocahontas%20(1998" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Pocahontas%20(1998" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="ratatouille">
             <div class="poster-wrapper">
-                <img src="caratulas/Ratatouille.jpg" alt="Ratatouille" loading="lazy">
+                <img src="caratulas/Ratatouille.jpg" alt="Ratatouille" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Ratatouille</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Ratatouille" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Ratatouille" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="simbad la leyenda de los 7 mares">
             <div class="poster-wrapper">
-                <img src="caratulas/Simbad La Leyenda De Los 7 Mares.jpg" alt="Simbad La Leyenda De Los 7 Mares" loading="lazy">
+                <img src="caratulas/Simbad La Leyenda De Los 7 Mares.jpg" alt="Simbad La Leyenda De Los 7 Mares" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Simbad La Leyenda De Los 7 Mares</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Simbad%20La%20Leyenda%20De%20Los%207%20Mares" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Simbad%20La%20Leyenda%20De%20Los%207%20Mares" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="tierra de osos (2003">
             <div class="poster-wrapper">
-                <img src="caratulas/Tierra de Osos (2003.jpg" alt="Tierra de Osos (2003" loading="lazy">
+                <img src="caratulas/Tierra de Osos (2003.jpg" alt="Tierra de Osos (2003" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Tierra de Osos (2003</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Tierra%20de%20Osos%20(2003" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Tierra%20de%20Osos%20(2003" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="tierra de osos 2 (2006">
             <div class="poster-wrapper">
-                <img src="caratulas/Tierra De Osos 2 (2006.jpg" alt="Tierra De Osos 2 (2006" loading="lazy">
+                <img src="caratulas/Tierra De Osos 2 (2006.jpg" alt="Tierra De Osos 2 (2006" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Tierra De Osos 2 (2006</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Tierra%20De%20Osos%202%20(2006" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Tierra%20De%20Osos%202%20(2006" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="walt disney&#x27;s the old mill (1937">
             <div class="poster-wrapper">
-                <img src="caratulas/Walt Disney&#x27;s The Old Mill (1937.jpg" alt="Walt Disney&#x27;s The Old Mill (1937" loading="lazy">
+                <img src="caratulas/Walt Disney&#x27;s The Old Mill (1937.jpg" alt="Walt Disney&#x27;s The Old Mill (1937" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Walt Disney&#x27;s The Old Mill (1937</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Walt%20Disney's%20The%20Old%20Mill%20(1937" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Walt%20Disney's%20The%20Old%20Mill%20(1937" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="la era de hielo (2002">
             <div class="poster-wrapper">
-                <img src="caratulas/La Era De Hielo (2002.jpg" alt="La Era De Hielo (2002" loading="lazy">
+                <img src="caratulas/La Era De Hielo (2002.jpg" alt="La Era De Hielo (2002" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Era De Hielo (2002</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Era%20De%20Hielo%20(2002" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Era%20De%20Hielo%20(2002" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="la era de hielo (2006">
             <div class="poster-wrapper">
-                <img src="caratulas/La Era De Hielo (2006.jpg" alt="La Era De Hielo (2006" loading="lazy">
+                <img src="caratulas/La Era De Hielo (2006.jpg" alt="La Era De Hielo (2006" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Era De Hielo (2006</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Era%20De%20Hielo%20(2006" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Era%20De%20Hielo%20(2006" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="la era de hielo 3 el origen de los dinosaurios (2009">
             <div class="poster-wrapper">
-                <img src="caratulas/La Era De Hielo 3 El Origen De Los Dinosaurios (2009.jpg" alt="La Era De Hielo 3 El Origen De Los Dinosaurios (2009" loading="lazy">
+                <img src="caratulas/La Era De Hielo 3 El Origen De Los Dinosaurios (2009.jpg" alt="La Era De Hielo 3 El Origen De Los Dinosaurios (2009" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Era De Hielo 3 El Origen De Los Dinosaurios (2009</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Era%20De%20Hielo%203%20El%20Origen%20De%20Los%20Dinosaurios%20(2009" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Era%20De%20Hielo%203%20El%20Origen%20De%20Los%20Dinosaurios%20(2009" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="la era de hielo 4 (2012">
             <div class="poster-wrapper">
-                <img src="caratulas/La Era De Hielo 4 (2012.jpg" alt="La Era De Hielo 4 (2012" loading="lazy">
+                <img src="caratulas/La Era De Hielo 4 (2012.jpg" alt="La Era De Hielo 4 (2012" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Era De Hielo 4 (2012</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Era%20De%20Hielo%204%20(2012" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Era%20De%20Hielo%204%20(2012" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="madagascar 1">
             <div class="poster-wrapper">
-                <img src="caratulas/Madagascar 1.jpg" alt="Madagascar 1" loading="lazy">
+                <img src="caratulas/Madagascar 1.jpg" alt="Madagascar 1" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Madagascar 1</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Madagascar%201" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Madagascar%201" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="madagascar 2 escape de áfrica (2008">
             <div class="poster-wrapper">
-                <img src="caratulas/Madagascar 2 Escape de África (2008.jpg" alt="Madagascar 2 Escape de África (2008" loading="lazy">
+                <img src="caratulas/Madagascar 2 Escape de África (2008.jpg" alt="Madagascar 2 Escape de África (2008" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Madagascar 2 Escape de África (2008</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Madagascar%202%20Escape%20de%20África%20(2008" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Madagascar%202%20Escape%20de%20África%20(2008" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="madagascar 3">
             <div class="poster-wrapper">
-                <img src="caratulas/Madagascar 3.jpg" alt="Madagascar 3" loading="lazy">
+                <img src="caratulas/Madagascar 3.jpg" alt="Madagascar 3" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Madagascar 3</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Madagascar%203" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Madagascar%203" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="madagascar i hd (2005">
             <div class="poster-wrapper">
-                <img src="caratulas/Madagascar I Hd (2005.jpg" alt="Madagascar I Hd (2005" loading="lazy">
+                <img src="caratulas/Madagascar I Hd (2005.jpg" alt="Madagascar I Hd (2005" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Madagascar I Hd (2005</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Madagascar%20I%20Hd%20(2005" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Madagascar%20I%20Hd%20(2005" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="despicable me 1 (2010">
             <div class="poster-wrapper">
-                <img src="caratulas/Despicable Me 1 (2010.jpg" alt="Despicable Me 1 (2010" loading="lazy">
+                <img src="caratulas/Despicable Me 1 (2010.jpg" alt="Despicable Me 1 (2010" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Despicable Me 1 (2010</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Despicable%20Me%201%20(2010" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Despicable%20Me%201%20(2010" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="despicable me 2 (2013">
             <div class="poster-wrapper">
-                <img src="caratulas/Despicable Me 2 (2013.jpg" alt="Despicable Me 2 (2013" loading="lazy">
+                <img src="caratulas/Despicable Me 2 (2013.jpg" alt="Despicable Me 2 (2013" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Despicable Me 2 (2013</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Despicable%20Me%202%20(2013" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Despicable%20Me%202%20(2013" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="despicable me 3 (2017">
             <div class="poster-wrapper">
-                <img src="caratulas/Despicable Me 3 (2017.jpg" alt="Despicable Me 3 (2017" loading="lazy">
+                <img src="caratulas/Despicable Me 3 (2017.jpg" alt="Despicable Me 3 (2017" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Despicable Me 3 (2017</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Despicable%20Me%203%20(2017" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Despicable%20Me%203%20(2017" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="shrek (2001">
             <div class="poster-wrapper">
-                <img src="caratulas/Shrek (2001.jpg" alt="Shrek (2001" loading="lazy">
+                <img src="caratulas/Shrek (2001.jpg" alt="Shrek (2001" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Shrek (2001</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Shrek%20(2001" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Shrek%20(2001" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="shrek 2">
             <div class="poster-wrapper">
-                <img src="caratulas/Shrek 2.jpg" alt="Shrek 2" loading="lazy">
+                <img src="caratulas/Shrek 2.jpg" alt="Shrek 2" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Shrek 2</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Shrek%202" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Shrek%202" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="shrek 3">
             <div class="poster-wrapper">
-                <img src="caratulas/Shrek 3.jpg" alt="Shrek 3" loading="lazy">
+                <img src="caratulas/Shrek 3.jpg" alt="Shrek 3" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Shrek 3</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Shrek%203" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Shrek%203" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="shrek 4 para siempre">
             <div class="poster-wrapper">
-                <img src="caratulas/Shrek 4 Para Siempre.jpg" alt="Shrek 4 Para Siempre" loading="lazy">
+                <img src="caratulas/Shrek 4 Para Siempre.jpg" alt="Shrek 4 Para Siempre" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Shrek 4 Para Siempre</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Shrek%204%20Para%20Siempre" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Shrek%204%20Para%20Siempre" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="angry birds">
             <div class="poster-wrapper">
-                <img src="caratulas/Angry Birds.jpg" alt="Angry Birds" loading="lazy">
+                <img src="caratulas/Angry Birds.jpg" alt="Angry Birds" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Angry Birds</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Angry%20Birds" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Angry%20Birds" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="bee movie la historia de una abeja (2007">
             <div class="poster-wrapper">
-                <img src="caratulas/Bee Movie La Historia De Una Abeja (2007.jpg" alt="Bee Movie La Historia De Una Abeja (2007" loading="lazy">
+                <img src="caratulas/Bee Movie La Historia De Una Abeja (2007.jpg" alt="Bee Movie La Historia De Una Abeja (2007" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Bee Movie La Historia De Una Abeja (2007</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Bee%20Movie%20La%20Historia%20De%20Una%20Abeja%20(2007" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Bee%20Movie%20La%20Historia%20De%20Una%20Abeja%20(2007" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="bob esponja en busca de los pantalones cuadrados (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Bob Esponja En Busca De Los Pantalones Cuadrados (2025.jpg" alt="Bob Esponja En Busca De Los Pantalones Cuadrados (2025" loading="lazy">
+                <img src="caratulas/Bob Esponja En Busca De Los Pantalones Cuadrados (2025.jpg" alt="Bob Esponja En Busca De Los Pantalones Cuadrados (2025" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Bob Esponja En Busca De Los Pantalones Cuadrados (2025</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Bob%20Esponja%20En%20Busca%20De%20Los%20Pantalones%20Cuadrados%20(2025" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Bob%20Esponja%20En%20Busca%20De%20Los%20Pantalones%20Cuadrados%20(2025" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="coyote vs acme (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Coyote Vs Acme (2026.jpg" alt="Coyote Vs Acme (2026" loading="lazy">
+                <img src="caratulas/Coyote Vs Acme (2026.jpg" alt="Coyote Vs Acme (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Coyote Vs Acme (2026</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Coyote%20Vs%20Acme%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Coyote%20Vs%20Acme%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="el libro de la selva 2">
             <div class="poster-wrapper">
-                <img src="caratulas/El Libro De La Selva 2.jpg" alt="El Libro De La Selva 2" loading="lazy">
+                <img src="caratulas/El Libro De La Selva 2.jpg" alt="El Libro De La Selva 2" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Libro De La Selva 2</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Libro%20De%20La%20Selva%202" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Libro%20De%20La%20Selva%202" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="el origen de los guardianes">
             <div class="poster-wrapper">
-                <img src="caratulas/El Origen De Los Guardianes.jpg" alt="El Origen De Los Guardianes" loading="lazy">
+                <img src="caratulas/El Origen De Los Guardianes.jpg" alt="El Origen De Los Guardianes" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Origen De Los Guardianes</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Origen%20De%20Los%20Guardianes" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Origen%20De%20Los%20Guardianes" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="elementos (2023">
             <div class="poster-wrapper">
-                <img src="caratulas/Elementos (2023.jpg" alt="Elementos (2023" loading="lazy">
+                <img src="caratulas/Elementos (2023.jpg" alt="Elementos (2023" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Elementos (2023</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Elementos%20(2023" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Elementos%20(2023" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="ferdinand (2018">
             <div class="poster-wrapper">
-                <img src="caratulas/Ferdinand (2018.jpg" alt="Ferdinand (2018" loading="lazy">
+                <img src="caratulas/Ferdinand (2018.jpg" alt="Ferdinand (2018" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Ferdinand (2018</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Ferdinand%20(2018" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Ferdinand%20(2018" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="frozen 2">
             <div class="poster-wrapper">
-                <img src="caratulas/Frozen 2.jpg" alt="Frozen 2" loading="lazy">
+                <img src="caratulas/Frozen 2.jpg" alt="Frozen 2" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Frozen 2</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Frozen%202" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Frozen%202" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="frozen el reino del hielo">
             <div class="poster-wrapper">
-                <img src="caratulas/Frozen El Reino Del Hielo.jpg" alt="Frozen El Reino Del Hielo" loading="lazy">
+                <img src="caratulas/Frozen El Reino Del Hielo.jpg" alt="Frozen El Reino Del Hielo" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Frozen El Reino Del Hielo</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Frozen%20El%20Reino%20Del%20Hielo" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Frozen%20El%20Reino%20Del%20Hielo" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="goat (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Goat (2026.jpg" alt="Goat (2026" loading="lazy">
+                <img src="caratulas/Goat (2026.jpg" alt="Goat (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Goat (2026</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Goat%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Goat%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="guardianes del museo 2">
             <div class="poster-wrapper">
-                <img src="caratulas/Guardianes Del Museo 2.jpg" alt="Guardianes Del Museo 2" loading="lazy">
+                <img src="caratulas/Guardianes Del Museo 2.jpg" alt="Guardianes Del Museo 2" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Guardianes Del Museo 2</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Guardianes%20Del%20Museo%202" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Guardianes%20Del%20Museo%202" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="hop, rebelde sin pascua castellano (2011">
             <div class="poster-wrapper">
-                <img src="caratulas/Hop, Rebelde Sin Pascua Castellano (2011.jpg" alt="Hop, Rebelde Sin Pascua Castellano (2011" loading="lazy">
+                <img src="caratulas/Hop, Rebelde Sin Pascua Castellano (2011.jpg" alt="Hop, Rebelde Sin Pascua Castellano (2011" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Hop, Rebelde Sin Pascua Castellano (2011</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hop,%20Rebelde%20Sin%20Pascua%20Castellano%20(2011" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hop,%20Rebelde%20Sin%20Pascua%20Castellano%20(2011" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="horton castellano (2008">
             <div class="poster-wrapper">
-                <img src="caratulas/Horton Castellano (2008.jpg" alt="Horton Castellano (2008" loading="lazy">
+                <img src="caratulas/Horton Castellano (2008.jpg" alt="Horton Castellano (2008" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Horton Castellano (2008</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Horton%20Castellano%20(2008" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Horton%20Castellano%20(2008" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="hotel transylvania 2 (2015">
             <div class="poster-wrapper">
-                <img src="caratulas/Hotel Transylvania 2 (2015.jpg" alt="Hotel Transylvania 2 (2015" loading="lazy">
+                <img src="caratulas/Hotel Transylvania 2 (2015.jpg" alt="Hotel Transylvania 2 (2015" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Hotel Transylvania 2 (2015</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hotel%20Transylvania%202%20(2015" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hotel%20Transylvania%202%20(2015" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="huevitos congelados">
             <div class="poster-wrapper">
-                <img src="caratulas/Huevitos Congelados.jpg" alt="Huevitos Congelados" loading="lazy">
+                <img src="caratulas/Huevitos Congelados.jpg" alt="Huevitos Congelados" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Huevitos Congelados</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Huevitos%20Congelados" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Huevitos%20Congelados" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="hércules castellano (1997">
             <div class="poster-wrapper">
-                <img src="caratulas/Hércules Castellano (1997.jpg" alt="Hércules Castellano (1997" loading="lazy">
+                <img src="caratulas/Hércules Castellano (1997.jpg" alt="Hércules Castellano (1997" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Hércules Castellano (1997</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hércules%20Castellano%20(1997" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hércules%20Castellano%20(1997" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="intercambiados (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Intercambiados (2026.jpg" alt="Intercambiados (2026" loading="lazy">
+                <img src="caratulas/Intercambiados (2026.jpg" alt="Intercambiados (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Intercambiados (2026</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Intercambiados%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Intercambiados%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="kung fu panda (2008">
             <div class="poster-wrapper">
-                <img src="caratulas/Kung Fu Panda (2008.jpg" alt="Kung Fu Panda (2008" loading="lazy">
+                <img src="caratulas/Kung Fu Panda (2008.jpg" alt="Kung Fu Panda (2008" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Kung Fu Panda (2008</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Kung%20Fu%20Panda%20(2008" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Kung%20Fu%20Panda%20(2008" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="kung fu panda 4">
             <div class="poster-wrapper">
-                <img src="caratulas/Kung Fu Panda 4.jpg" alt="Kung Fu Panda 4" loading="lazy">
+                <img src="caratulas/Kung Fu Panda 4.jpg" alt="Kung Fu Panda 4" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Kung Fu Panda 4</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Kung%20Fu%20Panda%204" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Kung%20Fu%20Panda%204" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="las guerreras del kpop">
             <div class="poster-wrapper">
-                <img src="caratulas/Las Guerreras Del Kpop.jpg" alt="Las Guerreras Del Kpop" loading="lazy">
+                <img src="caratulas/Las Guerreras Del Kpop.jpg" alt="Las Guerreras Del Kpop" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Las Guerreras Del Kpop</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Las%20Guerreras%20Del%20Kpop" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Las%20Guerreras%20Del%20Kpop" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="looney toons en accion (la pelicula">
             <div class="poster-wrapper">
-                <img src="caratulas/Looney Toons En Accion (La Pelicula.jpg" alt="Looney Toons En Accion (La Pelicula" loading="lazy">
+                <img src="caratulas/Looney Toons En Accion (La Pelicula.jpg" alt="Looney Toons En Accion (La Pelicula" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Looney Toons En Accion (La Pelicula</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Looney%20Toons%20En%20Accion%20(La%20Pelicula" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Looney%20Toons%20En%20Accion%20(La%20Pelicula" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="los increibles 2 hd y latino dual (2018">
             <div class="poster-wrapper">
-                <img src="caratulas/Los Increibles 2 Hd Y Latino Dual (2018.jpg" alt="Los Increibles 2 Hd Y Latino Dual (2018" loading="lazy">
+                <img src="caratulas/Los Increibles 2 Hd Y Latino Dual (2018.jpg" alt="Los Increibles 2 Hd Y Latino Dual (2018" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Los Increibles 2 Hd Y Latino Dual (2018</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Los%20Increibles%202%20Hd%20Y%20Latino%20Dual%20(2018" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Los%20Increibles%202%20Hd%20Y%20Latino%20Dual%20(2018" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="minions &amp; monstruos">
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="minions &amp; monstruos (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Minions &amp; Monstruos.jpg" alt="Minions &amp; Monstruos" loading="lazy">
+                <img src="caratulas/Minions &amp; Monstruos (2026.jpg" alt="Minions &amp; Monstruos (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
-                <h3 class="titulo-peli">Minions &amp; Monstruos</h3>
+                <h3 class="titulo-peli">Minions &amp; Monstruos (2026</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Minions%20%26%20Monstruos" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Minions%20%26%20Monstruos%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="minions el origen de gru (2022">
             <div class="poster-wrapper">
-                <img src="caratulas/Minions El Origen De Gru (2022.jpg" alt="Minions El Origen De Gru (2022" loading="lazy">
+                <img src="caratulas/Minions El Origen De Gru (2022.jpg" alt="Minions El Origen De Gru (2022" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Minions El Origen De Gru (2022</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Minions%20El%20Origen%20De%20Gru%20(2022" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Minions%20El%20Origen%20De%20Gru%20(2022" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="moana (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Moana (2026.jpg" alt="Moana (2026" loading="lazy">
+                <img src="caratulas/Moana (2026.jpg" alt="Moana (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Moana (2026</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Moana%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Moana%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="moana">
             <div class="poster-wrapper">
-                <img src="caratulas/Moana.jpg" alt="Moana" loading="lazy">
+                <img src="caratulas/Moana.jpg" alt="Moana" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Moana</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Moana" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Moana" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="monster inc (2008">
             <div class="poster-wrapper">
-                <img src="caratulas/Monster Inc (2008.jpg" alt="Monster Inc (2008" loading="lazy">
+                <img src="caratulas/Monster Inc (2008.jpg" alt="Monster Inc (2008" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Monster Inc (2008</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Monster%20Inc%20(2008" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Monster%20Inc%20(2008" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="ponyo y el secreto de la sirenita">
             <div class="poster-wrapper">
-                <img src="caratulas/Ponyo Y El Secreto De La Sirenita.jpg" alt="Ponyo Y El Secreto De La Sirenita" loading="lazy">
+                <img src="caratulas/Ponyo Y El Secreto De La Sirenita.jpg" alt="Ponyo Y El Secreto De La Sirenita" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Ponyo Y El Secreto De La Sirenita</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Ponyo%20Y%20El%20Secreto%20De%20La%20Sirenita" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Ponyo%20Y%20El%20Secreto%20De%20La%20Sirenita" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="rey mono">
             <div class="poster-wrapper">
-                <img src="caratulas/Rey Mono.jpg" alt="Rey Mono" loading="lazy">
+                <img src="caratulas/Rey Mono.jpg" alt="Rey Mono" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Rey Mono</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Rey%20Mono" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Rey%20Mono" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="sing ven y canta (2016">
             <div class="poster-wrapper">
-                <img src="caratulas/Sing Ven Y Canta (2016.jpg" alt="Sing Ven Y Canta (2016" loading="lazy">
+                <img src="caratulas/Sing Ven Y Canta (2016.jpg" alt="Sing Ven Y Canta (2016" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Sing Ven Y Canta (2016</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Sing%20Ven%20Y%20Canta%20(2016" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Sing%20Ven%20Y%20Canta%20(2016" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="sing ven y canta de nuevo (2021">
             <div class="poster-wrapper">
-                <img src="caratulas/Sing Ven Y Canta De Nuevo (2021.jpg" alt="Sing Ven Y Canta De Nuevo (2021" loading="lazy">
+                <img src="caratulas/Sing Ven Y Canta De Nuevo (2021.jpg" alt="Sing Ven Y Canta De Nuevo (2021" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Sing Ven Y Canta De Nuevo (2021</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Sing%20Ven%20Y%20Canta%20De%20Nuevo%20(2021" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Sing%20Ven%20Y%20Canta%20De%20Nuevo%20(2021" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="soul (2020">
             <div class="poster-wrapper">
-                <img src="caratulas/Soul (2020.jpg" alt="Soul (2020" loading="lazy">
+                <img src="caratulas/Soul (2020.jpg" alt="Soul (2020" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Soul (2020</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Soul%20(2020" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Soul%20(2020" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="spermageddon (2024">
             <div class="poster-wrapper">
-                <img src="caratulas/Spermageddon (2024.jpg" alt="Spermageddon (2024" loading="lazy">
+                <img src="caratulas/Spermageddon (2024.jpg" alt="Spermageddon (2024" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Spermageddon (2024</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Spermageddon%20(2024" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Spermageddon%20(2024" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="spidey and the avengers halloween">
             <div class="poster-wrapper">
-                <img src="caratulas/Spidey And The Avengers Halloween.jpg" alt="Spidey And The Avengers Halloween" loading="lazy">
+                <img src="caratulas/Spidey And The Avengers Halloween.jpg" alt="Spidey And The Avengers Halloween" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Spidey And The Avengers Halloween</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Spidey%20And%20The%20Avengers%20Halloween" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Spidey%20And%20The%20Avengers%20Halloween" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Series" data-nombre="the pink panther la serie">
             <div class="poster-wrapper">
-                <img src="caratulas/The Pink Panther La Serie.jpg" alt="The Pink Panther La Serie" loading="lazy">
+                <img src="caratulas/The Pink Panther La Serie.jpg" alt="The Pink Panther La Serie" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">The Pink Panther La Serie</h3>
                 <span class="categoria-tag">Series</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20The%20Pink%20Panther%20La%20Serie" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20The%20Pink%20Panther%20La%20Serie" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="toy story 5 (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Toy Story 5 (2026.jpg" alt="Toy Story 5 (2026" loading="lazy">
+                <img src="caratulas/Toy Story 5 (2026.jpg" alt="Toy Story 5 (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Toy Story 5 (2026</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Toy%20Story%205%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Toy%20Story%205%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="trolls (2016">
             <div class="poster-wrapper">
-                <img src="caratulas/Trolls (2016.jpg" alt="Trolls (2016" loading="lazy">
+                <img src="caratulas/Trolls (2016.jpg" alt="Trolls (2016" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Trolls (2016</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Trolls%20(2016" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Trolls%20(2016" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="trolls 2 (2020">
             <div class="poster-wrapper">
-                <img src="caratulas/Trolls 2 (2020.jpg" alt="Trolls 2 (2020" loading="lazy">
+                <img src="caratulas/Trolls 2 (2020.jpg" alt="Trolls 2 (2020" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Trolls 2 (2020</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Trolls%202%20(2020" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Trolls%202%20(2020" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="turning red (2022">
             <div class="poster-wrapper">
-                <img src="caratulas/Turning Red (2022.jpg" alt="Turning Red (2022" loading="lazy">
+                <img src="caratulas/Turning Red (2022.jpg" alt="Turning Red (2022" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Turning Red (2022</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Turning%20Red%20(2022" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Turning%20Red%20(2022" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="una pelicula de huevos (2006">
             <div class="poster-wrapper">
-                <img src="caratulas/Una Pelicula De Huevos (2006.jpg" alt="Una Pelicula De Huevos (2006" loading="lazy">
+                <img src="caratulas/Una Pelicula De Huevos (2006.jpg" alt="Una Pelicula De Huevos (2006" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Una Pelicula De Huevos (2006</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Una%20Pelicula%20De%20Huevos%20(2006" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Una%20Pelicula%20De%20Huevos%20(2006" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="zootopia 2 (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Zootopia 2 (2025.jpg" alt="Zootopia 2 (2025" loading="lazy">
+                <img src="caratulas/Zootopia 2 (2025.jpg" alt="Zootopia 2 (2025" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Zootopia 2 (2025</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Zootopia%202%20(2025" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Zootopia%202%20(2025" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="zootopia">
             <div class="poster-wrapper">
-                <img src="caratulas/Zootopia.jpg" alt="Zootopia" loading="lazy">
+                <img src="caratulas/Zootopia.jpg" alt="Zootopia" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Zootopia</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Zootopia" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Zootopia" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="jack el caza gigantes">
             <div class="poster-wrapper">
-                <img src="caratulas/Jack El Caza Gigantes.jpg" alt="Jack El Caza Gigantes" loading="lazy">
+                <img src="caratulas/Jack El Caza Gigantes.jpg" alt="Jack El Caza Gigantes" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Jack El Caza Gigantes</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Jack%20El%20Caza%20Gigantes" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Jack%20El%20Caza%20Gigantes" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="shottas hermanos en el crimen (2002">
             <div class="poster-wrapper">
-                <img src="caratulas/Shottas Hermanos en el crimen (2002.jpg" alt="Shottas Hermanos en el crimen (2002" loading="lazy">
+                <img src="caratulas/Shottas Hermanos en el crimen (2002.jpg" alt="Shottas Hermanos en el crimen (2002" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Shottas Hermanos en el crimen (2002</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Shottas%20Hermanos%20en%20el%20crimen%20(2002" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Shottas%20Hermanos%20en%20el%20crimen%20(2002" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="soy leyenda (2007">
             <div class="poster-wrapper">
-                <img src="caratulas/Soy Leyenda (2007.jpg" alt="Soy Leyenda (2007" loading="lazy">
+                <img src="caratulas/Soy Leyenda (2007.jpg" alt="Soy Leyenda (2007" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Soy Leyenda (2007</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Soy%20Leyenda%20(2007" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Soy%20Leyenda%20(2007" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="campamento miasma (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Campamento Miasma (2026.jpg" alt="Campamento Miasma (2026" loading="lazy">
+                <img src="caratulas/Campamento Miasma (2026.jpg" alt="Campamento Miasma (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Campamento Miasma (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Campamento%20Miasma%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Campamento%20Miasma%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="codigo de venganza (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Codigo De Venganza (2026.jpg" alt="Codigo De Venganza (2026" loading="lazy">
+                <img src="caratulas/Codigo De Venganza (2026.jpg" alt="Codigo De Venganza (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Codigo De Venganza (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Codigo%20De%20Venganza%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Codigo%20De%20Venganza%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="dead man&#x27;s wire (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Dead Man&#x27;s Wire (2026.jpg" alt="Dead Man&#x27;s Wire (2026" loading="lazy">
+                <img src="caratulas/Dead Man&#x27;s Wire (2026.jpg" alt="Dead Man&#x27;s Wire (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Dead Man&#x27;s Wire (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Dead%20Man's%20Wire%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Dead%20Man's%20Wire%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el heladero (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/El Heladero (2026.jpg" alt="El Heladero (2026" loading="lazy">
+                <img src="caratulas/El Heladero (2026.jpg" alt="El Heladero (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Heladero (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Heladero%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Heladero%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el ultimo amanecer (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/El Ultimo Amanecer (2026.jpg" alt="El Ultimo Amanecer (2026" loading="lazy">
+                <img src="caratulas/El Ultimo Amanecer (2026.jpg" alt="El Ultimo Amanecer (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Ultimo Amanecer (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Ultimo%20Amanecer%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Ultimo%20Amanecer%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="entrega al límite (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Entrega Al Límite (2026.jpg" alt="Entrega Al Límite (2026" loading="lazy">
+                <img src="caratulas/Entrega Al Límite (2026.jpg" alt="Entrega Al Límite (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Entrega Al Límite (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Entrega%20Al%20Límite%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Entrega%20Al%20Límite%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="evil dead en llamas (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Evil Dead En Llamas (2026.jpg" alt="Evil Dead En Llamas (2026" loading="lazy">
+                <img src="caratulas/Evil Dead En Llamas (2026.jpg" alt="Evil Dead En Llamas (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Evil Dead En Llamas (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Evil%20Dead%20En%20Llamas%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Evil%20Dead%20En%20Llamas%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="insaciable (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Insaciable (2026.jpg" alt="Insaciable (2026" loading="lazy">
+                <img src="caratulas/Insaciable (2026.jpg" alt="Insaciable (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Insaciable (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Insaciable%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Insaciable%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="la boca del diablo (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/La Boca Del Diablo (2026.jpg" alt="La Boca Del Diablo (2026" loading="lazy">
+                <img src="caratulas/La Boca Del Diablo (2026.jpg" alt="La Boca Del Diablo (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Boca Del Diablo (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Boca%20Del%20Diablo%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Boca%20Del%20Diablo%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="la ultima bala (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/La Ultima Bala (2026.jpg" alt="La Ultima Bala (2026" loading="lazy">
+                <img src="caratulas/La Ultima Bala (2026.jpg" alt="La Ultima Bala (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Ultima Bala (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Ultima%20Bala%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Ultima%20Bala%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="la ultima casa (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/La Ultima Casa (2026.jpg" alt="La Ultima Casa (2026" loading="lazy">
+                <img src="caratulas/La Ultima Casa (2026.jpg" alt="La Ultima Casa (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Ultima Casa (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Ultima%20Casa%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Ultima%20Casa%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="michael jackson (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Michael Jackson (2026.jpg" alt="Michael Jackson (2026" loading="lazy">
+                <img src="caratulas/Michael Jackson (2026.jpg" alt="Michael Jackson (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Michael Jackson (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Michael%20Jackson%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Michael%20Jackson%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="pinocho (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Pinocho (2026.jpg" alt="Pinocho (2026" loading="lazy">
+                <img src="caratulas/Pinocho (2026.jpg" alt="Pinocho (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Pinocho (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Pinocho%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Pinocho%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="spider-man brand new day (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Spider-Man Brand New Day (2026.jpg" alt="Spider-Man Brand New Day (2026" loading="lazy">
+                <img src="caratulas/Spider-Man Brand New Day (2026.jpg" alt="Spider-Man Brand New Day (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Spider-Man Brand New Day (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Spider-Man%20Brand%20New%20Day%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Spider-Man%20Brand%20New%20Day%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="tú+yo - solos contra todos (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Tú+yo - Solos Contra Todos (2026.jpg" alt="Tú+yo - Solos Contra Todos (2026" loading="lazy">
+                <img src="caratulas/Tú+yo - Solos Contra Todos (2026.jpg" alt="Tú+yo - Solos Contra Todos (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Tú+yo - Solos Contra Todos (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Tú+yo%20-%20Solos%20Contra%20Todos%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Tú+yo%20-%20Solos%20Contra%20Todos%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="zona de riesgo (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Zona De Riesgo (2026.jpg" alt="Zona De Riesgo (2026" loading="lazy">
+                <img src="caratulas/Zona De Riesgo (2026.jpg" alt="Zona De Riesgo (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Zona De Riesgo (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Zona%20De%20Riesgo%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Zona%20De%20Riesgo%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="ángeles de guerra (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Ángeles De Guerra (2026.jpg" alt="Ángeles De Guerra (2026" loading="lazy">
+                <img src="caratulas/Ángeles De Guerra (2026.jpg" alt="Ángeles De Guerra (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Ángeles De Guerra (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Ángeles%20De%20Guerra%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Ángeles%20De%20Guerra%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="al borde de la extincion (2023">
             <div class="poster-wrapper">
-                <img src="caratulas/Al Borde De La Extincion (2023.jpg" alt="Al Borde De La Extincion (2023" loading="lazy">
+                <img src="caratulas/Al Borde De La Extincion (2023.jpg" alt="Al Borde De La Extincion (2023" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Al Borde De La Extincion (2023</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Al%20Borde%20De%20La%20Extincion%20(2023" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Al%20Borde%20De%20La%20Extincion%20(2023" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="anarchy la noche de las bestias">
             <div class="poster-wrapper">
-                <img src="caratulas/Anarchy La noche de las bestias.jpg" alt="Anarchy La noche de las bestias" loading="lazy">
+                <img src="caratulas/Anarchy La noche de las bestias.jpg" alt="Anarchy La noche de las bestias" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Anarchy La noche de las bestias</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Anarchy%20La%20noche%20de%20las%20bestias" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Anarchy%20La%20noche%20de%20las%20bestias" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="avatar fire and ash (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Avatar Fire And Ash (2025.jpg" alt="Avatar Fire And Ash (2025" loading="lazy">
+                <img src="caratulas/Avatar Fire And Ash (2025.jpg" alt="Avatar Fire And Ash (2025" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Avatar Fire And Ash (2025</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Avatar%20Fire%20And%20Ash%20(2025" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Avatar%20Fire%20And%20Ash%20(2025" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="carry on (2024">
             <div class="poster-wrapper">
-                <img src="caratulas/Carry On (2024.jpg" alt="Carry On (2024" loading="lazy">
+                <img src="caratulas/Carry On (2024.jpg" alt="Carry On (2024" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Carry On (2024</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Carry%20On%20(2024" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Carry%20On%20(2024" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="cell (2016">
             <div class="poster-wrapper">
-                <img src="caratulas/Cell (2016.jpg" alt="Cell (2016" loading="lazy">
+                <img src="caratulas/Cell (2016.jpg" alt="Cell (2016" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Cell (2016</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Cell%20(2016" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Cell%20(2016" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="como entrenar a tu dragon (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Como Entrenar A Tu Dragon (2025.jpg" alt="Como Entrenar A Tu Dragon (2025" loading="lazy">
+                <img src="caratulas/Como Entrenar A Tu Dragon (2025.jpg" alt="Como Entrenar A Tu Dragon (2025" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Como Entrenar A Tu Dragon (2025</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Como%20Entrenar%20A%20Tu%20Dragon%20(2025" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Como%20Entrenar%20A%20Tu%20Dragon%20(2025" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el abismo">
             <div class="poster-wrapper">
-                <img src="caratulas/El Abismo.jpg" alt="El Abismo" loading="lazy">
+                <img src="caratulas/El Abismo.jpg" alt="El Abismo" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Abismo</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Abismo" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Abismo" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el conjuro 4">
             <div class="poster-wrapper">
-                <img src="caratulas/El Conjuro 4.jpg" alt="El Conjuro 4" loading="lazy">
+                <img src="caratulas/El Conjuro 4.jpg" alt="El Conjuro 4" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Conjuro 4</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Conjuro%204" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Conjuro%204" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el dia de la revelacion (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/El dia de la revelacion (2026.jpg" alt="El dia de la revelacion (2026" loading="lazy">
+                <img src="caratulas/El dia de la revelacion (2026.jpg" alt="El dia de la revelacion (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El dia de la revelacion (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20dia%20de%20la%20revelacion%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20dia%20de%20la%20revelacion%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el elixir de la inmortalidad">
             <div class="poster-wrapper">
-                <img src="caratulas/El Elixir De La Inmortalidad.jpg" alt="El Elixir De La Inmortalidad" loading="lazy">
+                <img src="caratulas/El Elixir De La Inmortalidad.jpg" alt="El Elixir De La Inmortalidad" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Elixir De La Inmortalidad</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Elixir%20De%20La%20Inmortalidad" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Elixir%20De%20La%20Inmortalidad" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el gran huracán categoría 5">
             <div class="poster-wrapper">
-                <img src="caratulas/El Gran Huracán Categoría 5.jpg" alt="El Gran Huracán Categoría 5" loading="lazy">
+                <img src="caratulas/El Gran Huracán Categoría 5.jpg" alt="El Gran Huracán Categoría 5" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Gran Huracán Categoría 5</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Gran%20Huracán%20Categoría%205" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Gran%20Huracán%20Categoría%205" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el hoyo">
             <div class="poster-wrapper">
-                <img src="caratulas/El Hoyo.jpg" alt="El Hoyo" loading="lazy">
+                <img src="caratulas/El Hoyo.jpg" alt="El Hoyo" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Hoyo</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Hoyo" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Hoyo" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el sobreviviente">
             <div class="poster-wrapper">
-                <img src="caratulas/El Sobreviviente.jpg" alt="El Sobreviviente" loading="lazy">
+                <img src="caratulas/El Sobreviviente.jpg" alt="El Sobreviviente" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Sobreviviente</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Sobreviviente" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Sobreviviente" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el susurro (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/El Susurro (2025.jpg" alt="El Susurro (2025" loading="lazy">
+                <img src="caratulas/El Susurro (2025.jpg" alt="El Susurro (2025" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Susurro (2025</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Susurro%20(2025" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Susurro%20(2025" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="havoc (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Havoc (2025.jpg" alt="Havoc (2025" loading="lazy">
+                <img src="caratulas/Havoc (2025.jpg" alt="Havoc (2025" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Havoc (2025</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Havoc%20(2025" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Havoc%20(2025" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="hidden">
             <div class="poster-wrapper">
-                <img src="caratulas/Hidden.jpg" alt="Hidden" loading="lazy">
+                <img src="caratulas/Hidden.jpg" alt="Hidden" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Hidden</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hidden" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hidden" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="kill masacre en el tren (2023">
             <div class="poster-wrapper">
-                <img src="caratulas/Kill Masacre En El Tren (2023.jpg" alt="Kill Masacre En El Tren (2023" loading="lazy">
+                <img src="caratulas/Kill Masacre En El Tren (2023.jpg" alt="Kill Masacre En El Tren (2023" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Kill Masacre En El Tren (2023</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Kill%20Masacre%20En%20El%20Tren%20(2023" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Kill%20Masacre%20En%20El%20Tren%20(2023" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="kraven (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Kraven (2025.jpg" alt="Kraven (2025" loading="lazy">
+                <img src="caratulas/Kraven (2025.jpg" alt="Kraven (2025" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Kraven (2025</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Kraven%20(2025" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Kraven%20(2025" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="la hermanastra fea (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/La Hermanastra Fea (2025.jpg" alt="La Hermanastra Fea (2025" loading="lazy">
+                <img src="caratulas/La Hermanastra Fea (2025.jpg" alt="La Hermanastra Fea (2025" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Hermanastra Fea (2025</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Hermanastra%20Fea%20(2025" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Hermanastra%20Fea%20(2025" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="los ilusionistas 3 (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Los Ilusionistas 3 (2025.jpg" alt="Los Ilusionistas 3 (2025" loading="lazy">
+                <img src="caratulas/Los Ilusionistas 3 (2025.jpg" alt="Los Ilusionistas 3 (2025" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Los Ilusionistas 3 (2025</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Los%20Ilusionistas%203%20(2025" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Los%20Ilusionistas%203%20(2025" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="operacion teheran (2024">
             <div class="poster-wrapper">
-                <img src="caratulas/Operacion Teheran (2024.jpg" alt="Operacion Teheran (2024" loading="lazy">
+                <img src="caratulas/Operacion Teheran (2024.jpg" alt="Operacion Teheran (2024" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Operacion Teheran (2024</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Operacion%20Teheran%20(2024" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Operacion%20Teheran%20(2024" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="perdido en la montaña">
             <div class="poster-wrapper">
-                <img src="caratulas/Perdido En La Montaña.jpg" alt="Perdido En La Montaña" loading="lazy">
+                <img src="caratulas/Perdido En La Montaña.jpg" alt="Perdido En La Montaña" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Perdido En La Montaña</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Perdido%20En%20La%20Montaña" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Perdido%20En%20La%20Montaña" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="rabbit trap (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Rabbit Trap (2025.jpg" alt="Rabbit Trap (2025" loading="lazy">
+                <img src="caratulas/Rabbit Trap (2025.jpg" alt="Rabbit Trap (2025" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Rabbit Trap (2025</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Rabbit%20Trap%20(2025" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Rabbit%20Trap%20(2025" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="red tóxica (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Red Tóxica (2025.jpg" alt="Red Tóxica (2025" loading="lazy">
+                <img src="caratulas/Red Tóxica (2025.jpg" alt="Red Tóxica (2025" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Red Tóxica (2025</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Red%20Tóxica%20(2025" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Red%20Tóxica%20(2025" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="soulm8te">
             <div class="poster-wrapper">
-                <img src="caratulas/Soulm8te.jpg" alt="Soulm8te" loading="lazy">
+                <img src="caratulas/Soulm8te.jpg" alt="Soulm8te" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Soulm8te</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Soulm8te" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Soulm8te" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="supergirl (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Supergirl (2026.jpg" alt="Supergirl (2026" loading="lazy">
+                <img src="caratulas/Supergirl (2026.jpg" alt="Supergirl (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Supergirl (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Supergirl%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Supergirl%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="the ministry of ungentlemanly warfare (2024">
             <div class="poster-wrapper">
-                <img src="caratulas/The Ministry Of Ungentlemanly Warfare (2024.jpg" alt="The Ministry Of Ungentlemanly Warfare (2024" loading="lazy">
+                <img src="caratulas/The Ministry Of Ungentlemanly Warfare (2024.jpg" alt="The Ministry Of Ungentlemanly Warfare (2024" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">The Ministry Of Ungentlemanly Warfare (2024</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20The%20Ministry%20Of%20Ungentlemanly%20Warfare%20(2024" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20The%20Ministry%20Of%20Ungentlemanly%20Warfare%20(2024" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="the purge la pelicula">
             <div class="poster-wrapper">
-                <img src="caratulas/The Purge La Pelicula.jpg" alt="The Purge La Pelicula" loading="lazy">
+                <img src="caratulas/The Purge La Pelicula.jpg" alt="The Purge La Pelicula" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">The Purge La Pelicula</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20The%20Purge%20La%20Pelicula" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20The%20Purge%20La%20Pelicula" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="the trap (2019">
             <div class="poster-wrapper">
-                <img src="caratulas/The Trap (2019.jpg" alt="The Trap (2019" loading="lazy">
+                <img src="caratulas/The Trap (2019.jpg" alt="The Trap (2019" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">The Trap (2019</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20The%20Trap%20(2019" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20The%20Trap%20(2019" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="the uprising">
             <div class="poster-wrapper">
-                <img src="caratulas/The Uprising.jpg" alt="The Uprising" loading="lazy">
+                <img src="caratulas/The Uprising.jpg" alt="The Uprising" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">The Uprising</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20The%20Uprising" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20The%20Uprising" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="tiburon de guerra (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Tiburon De Guerra (2025.jpg" alt="Tiburon De Guerra (2025" loading="lazy">
+                <img src="caratulas/Tiburon De Guerra (2025.jpg" alt="Tiburon De Guerra (2025" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Tiburon De Guerra (2025</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Tiburon%20De%20Guerra%20(2025" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Tiburon%20De%20Guerra%20(2025" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="trece vidas (2022">
             <div class="poster-wrapper">
-                <img src="caratulas/Trece Vidas (2022.jpg" alt="Trece Vidas (2022" loading="lazy">
+                <img src="caratulas/Trece Vidas (2022.jpg" alt="Trece Vidas (2022" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Trece Vidas (2022</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Trece%20Vidas%20(2022" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Trece%20Vidas%20(2022" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="tron ares (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Tron Ares (2025.jpg" alt="Tron Ares (2025" loading="lazy">
+                <img src="caratulas/Tron Ares (2025.jpg" alt="Tron Ares (2025" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Tron Ares (2025</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Tron%20Ares%20(2025" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Tron%20Ares%20(2025" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="tu corazón será destrozado (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Tu Corazón Será Destrozado (2026.jpg" alt="Tu Corazón Será Destrozado (2026" loading="lazy">
+                <img src="caratulas/Tu Corazón Será Destrozado (2026.jpg" alt="Tu Corazón Será Destrozado (2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Tu Corazón Será Destrozado (2026</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Tu%20Corazón%20Será%20Destrozado%20(2026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Tu%20Corazón%20Será%20Destrozado%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="una verdad inquietante (2018">
             <div class="poster-wrapper">
-                <img src="caratulas/Una verdad inquietante (2018.jpg" alt="Una verdad inquietante (2018" loading="lazy">
+                <img src="caratulas/Una verdad inquietante (2018.jpg" alt="Una verdad inquietante (2018" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Una verdad inquietante (2018</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Una%20verdad%20inquietante%20(2018" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Una%20verdad%20inquietante%20(2018" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Series" data-nombre="dany y el club de los berracos">
             <div class="poster-wrapper">
-                <img src="caratulas/Dany y el Club de los Berracos.jpg" alt="Dany y el Club de los Berracos" loading="lazy">
+                <img src="caratulas/Dany y el Club de los Berracos.jpg" alt="Dany y el Club de los Berracos" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Dany y el Club de los Berracos</h3>
                 <span class="categoria-tag">Series</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Dany%20y%20el%20Club%20de%20los%20Berracos" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Dany%20y%20el%20Club%20de%20los%20Berracos" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Series" data-nombre="el tabo su propia guerra (1 - 10">
             <div class="poster-wrapper">
-                <img src="caratulas/El Tabo Su Propia Guerra (1 - 10.jpg" alt="El Tabo Su Propia Guerra (1 - 10" loading="lazy">
+                <img src="caratulas/El Tabo Su Propia Guerra (1 - 10.jpg" alt="El Tabo Su Propia Guerra (1 - 10" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Tabo Su Propia Guerra (1 - 10</h3>
                 <span class="categoria-tag">Series</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Tabo%20Su%20Propia%20Guerra%20(1%20-%2010" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Tabo%20Su%20Propia%20Guerra%20(1%20-%2010" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Series" data-nombre="coven academy (el secreto de las brujas">
             <div class="poster-wrapper">
-                <img src="caratulas/Coven Academy (El Secreto De Las Brujas.jpg" alt="Coven Academy (El Secreto De Las Brujas" loading="lazy">
+                <img src="caratulas/Coven Academy (El Secreto De Las Brujas.jpg" alt="Coven Academy (El Secreto De Las Brujas" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Coven Academy (El Secreto De Las Brujas</h3>
                 <span class="categoria-tag">Series</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Coven%20Academy%20(El%20Secreto%20De%20Las%20Brujas" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Coven%20Academy%20(El%20Secreto%20De%20Las%20Brujas" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Series" data-nombre="neagley (2026) 1era temp">
             <div class="poster-wrapper">
-                <img src="caratulas/Neagley (2026) 1era Temp.jpg" alt="Neagley (2026) 1era Temp" loading="lazy">
+                <img src="caratulas/Neagley (2026) 1era Temp.jpg" alt="Neagley (2026) 1era Temp" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Neagley (2026) 1era Temp</h3>
                 <span class="categoria-tag">Series</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Neagley%20(2026)%201era%20Temp" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Neagley%20(2026)%201era%20Temp" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Series" data-nombre="operativo lioness 1 era temp">
             <div class="poster-wrapper">
-                <img src="caratulas/Operativo Lioness 1 era Temp.jpg" alt="Operativo Lioness 1 era Temp" loading="lazy">
+                <img src="caratulas/Operativo Lioness 1 era Temp.jpg" alt="Operativo Lioness 1 era Temp" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Operativo Lioness 1 era Temp</h3>
                 <span class="categoria-tag">Series</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Operativo%20Lioness%201%20era%20Temp" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Operativo%20Lioness%201%20era%20Temp" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Series" data-nombre="reacher 1era temp">
             <div class="poster-wrapper">
-                <img src="caratulas/Reacher 1era Temp.jpg" alt="Reacher 1era Temp" loading="lazy">
+                <img src="caratulas/Reacher 1era Temp.jpg" alt="Reacher 1era Temp" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Reacher 1era Temp</h3>
                 <span class="categoria-tag">Series</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Reacher%201era%20Temp" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Reacher%201era%20Temp" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Series" data-nombre="see (1era temp (2019">
             <div class="poster-wrapper">
-                <img src="caratulas/See (1era Temp (2019.jpg" alt="See (1era Temp (2019" loading="lazy">
+                <img src="caratulas/See (1era Temp (2019.jpg" alt="See (1era Temp (2019" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">See (1era Temp (2019</h3>
                 <span class="categoria-tag">Series</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20See%20(1era%20Temp%20(2019" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20See%20(1era%20Temp%20(2019" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Series" data-nombre="the punisher (temp 1 2026">
             <div class="poster-wrapper">
-                <img src="caratulas/The Punisher (Temp 1 2026.jpg" alt="The Punisher (Temp 1 2026" loading="lazy">
+                <img src="caratulas/The Punisher (Temp 1 2026.jpg" alt="The Punisher (Temp 1 2026" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">The Punisher (Temp 1 2026</h3>
                 <span class="categoria-tag">Series</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20The%20Punisher%20(Temp%201%202026" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20The%20Punisher%20(Temp%201%202026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Series" data-nombre="the purge 1era temp (2018">
             <div class="poster-wrapper">
-                <img src="caratulas/The Purge 1era Temp (2018.jpg" alt="The Purge 1era Temp (2018" loading="lazy">
+                <img src="caratulas/The Purge 1era Temp (2018.jpg" alt="The Purge 1era Temp (2018" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">The Purge 1era Temp (2018</h3>
                 <span class="categoria-tag">Series</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20The%20Purge%201era%20Temp%20(2018" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20The%20Purge%201era%20Temp%20(2018" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Animes" data-nombre="jin roh the wolf brigade (1999">
             <div class="poster-wrapper">
-                <img src="caratulas/Jin Roh The Wolf Brigade (1999.jpg" alt="Jin Roh The Wolf Brigade (1999" loading="lazy">
+                <img src="caratulas/Jin Roh The Wolf Brigade (1999.jpg" alt="Jin Roh The Wolf Brigade (1999" loading="lazy" decoding="async" width="200" height="300">
                 
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Jin Roh The Wolf Brigade (1999</h3>
                 <span class="categoria-tag">Animes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Jin%20Roh%20The%20Wolf%20Brigade%20(1999" target="_blank" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Jin%20Roh%20The%20Wolf%20Brigade%20(1999" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div></div>
 <div class="sin-resultados" id="sinResultados">😕 No se encontraron resultados</div>
@@ -2431,18 +2126,22 @@ footer strong { color: #ff6b1a; }
     var tarjetas = document.querySelectorAll(".tarjeta");
     var sinResultados = document.getElementById("sinResultados");
     var filtroActual = "todos";
+    var timeoutFiltro = null;
     function filtrar() {
-        var texto = buscador.value.toLowerCase().trim();
-        var visibles = 0;
-        tarjetas.forEach(function(t) {
-            var nombre = t.dataset.nombre;
-            var cat = t.dataset.categoria;
-            var okTexto = !texto || nombre.indexOf(texto) !== -1;
-            var okCat = filtroActual === "todos" || cat === filtroActual;
-            if (okTexto && okCat) { t.style.display = ""; visibles++; }
-            else { t.style.display = "none"; }
-        });
-        sinResultados.classList.toggle("visible", visibles === 0);
+        if (timeoutFiltro) clearTimeout(timeoutFiltro);
+        timeoutFiltro = setTimeout(function() {
+            var texto = buscador.value.toLowerCase().trim();
+            var visibles = 0;
+            tarjetas.forEach(function(t) {
+                var nombre = t.dataset.nombre;
+                var cat = t.dataset.categoria;
+                var okTexto = !texto || nombre.indexOf(texto) !== -1;
+                var okCat = filtroActual === "todos" || cat === filtroActual;
+                if (okTexto && okCat) { t.style.display = ""; visibles++; }
+                else { t.style.display = "none"; }
+            });
+            sinResultados.classList.toggle("visible", visibles === 0);
+        }, 150);
     }
     buscador.addEventListener("input", filtrar);
     tabs.forEach(function(tab) {
@@ -2474,14 +2173,13 @@ footer strong { color: #ff6b1a; }
     <script>
     (function() {
         'use strict';
-
         var BAT_COUNT = 2;
         var SCROLL_STOP_DELAY = 1000;
-        var BAT_WIDTH = 46;
-
+        var BAT_WIDTH = 42;
         var bats = [];
         var scrollTimer = null;
         var isReady = false;
+        var isMobile = window.innerWidth < 600;
 
         function getRandomVisiblePoster() {
             var posters = document.querySelectorAll('.poster-wrapper');
@@ -2501,13 +2199,11 @@ footer strong { color: #ff6b1a; }
             var fallback = posters[Math.floor(Math.random() * posters.length)];
             return { el: fallback, rect: fallback.getBoundingClientRect() };
         }
-
         function computePosterAttach(post) {
             var x = post.rect.left + post.rect.width / 2 - BAT_WIDTH / 2 + (Math.random() * 20 - 10);
             var y = post.rect.bottom - 4;
             return { x: x, y: y };
         }
-
         function sleepBat(bat, poster) {
             var pos = computePosterAttach(poster);
             bat.el.style.left = pos.x + 'px';
@@ -2519,7 +2215,6 @@ footer strong { color: #ff6b1a; }
                 bat.state = 'sleeping';
             }, 1500);
         }
-
         function wakeBat(bat) {
             if (bat.state !== 'sleeping') return;
             bat.el.classList.remove('sleeping');
@@ -2527,7 +2222,6 @@ footer strong { color: #ff6b1a; }
             bat.state = 'waking';
             setTimeout(function() { flyBat(bat); }, 280);
         }
-
         function flyBat(bat) {
             var maxX = Math.max(100, window.innerWidth - BAT_WIDTH - 30);
             var maxY = Math.max(200, Math.min(window.innerHeight - 150, 500));
@@ -2539,29 +2233,9 @@ footer strong { color: #ff6b1a; }
             bat.el.classList.add('flying');
             bat.state = 'flying';
         }
-
-        // 🎃 FUNCIÓN: avivar las calabazas al scroll
-        function avivarCalabazas() {
-            var calabazas = document.querySelectorAll('.pumpkin-deco');
-            for (var i = 0; i < calabazas.length; i++) {
-                (function(pumpkin) {
-                    pumpkin.classList.remove('avivada');
-                    void pumpkin.offsetWidth; // Force reflow para reiniciar animación
-                    pumpkin.classList.add('avivada');
-                    setTimeout(function() {
-                        pumpkin.classList.remove('avivada');
-                    }, 1300);
-                })(calabazas[i]);
-            }
-        }
-
         function onScroll() {
             if (!isReady) return;
-            for (var i = 0; i < bats.length; i++) {
-                wakeBat(bats[i]);
-            }
-            avivarCalabazas();
-
+            for (var i = 0; i < bats.length; i++) wakeBat(bats[i]);
             clearTimeout(scrollTimer);
             scrollTimer = setTimeout(function() {
                 for (var i = 0; i < bats.length; i++) {
@@ -2573,30 +2247,24 @@ footer strong { color: #ff6b1a; }
                 }
             }, SCROLL_STOP_DELAY);
         }
-
         function createBatSvg(index) {
-            var g1 = 'batFurGrad' + index;
-            var g2 = 'batFurGradFly' + index;
-
-            var sleepSvg = '<svg class="bat-form bat-form-sleep" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">'
+            var g1 = 'bg' + index;
+            var g2 = 'bf' + index;
+            return '<svg class="bat-form bat-form-sleep" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">'
                 + '<defs><linearGradient id="' + g1 + '" x1="0%" y1="0%" x2="0%" y2="100%">'
-                + '<stop offset="0%" stop-color="#3a1a4a"/>'
-                + '<stop offset="100%" stop-color="#0d0d0d"/>'
+                + '<stop offset="0%" stop-color="#3a1a4a"/><stop offset="100%" stop-color="#0d0d0d"/>'
                 + '</linearGradient></defs>'
                 + '<line x1="36" y1="2" x2="36" y2="10" stroke="#1a0a1a" stroke-width="2.5" stroke-linecap="round"/>'
                 + '<line x1="44" y1="2" x2="44" y2="10" stroke="#1a0a1a" stroke-width="2.5" stroke-linecap="round"/>'
                 + '<path d="M 40 8 Q 27 22 27 45 Q 27 65 32 70 Q 36 74 40 74 Q 44 74 48 70 Q 53 65 53 45 Q 53 22 40 8 Z" fill="url(#' + g1 + ')"/>'
-                + '<path d="M 32 20 Q 28 40 32 58 M 48 20 Q 52 40 48 58" stroke="#1a0a1a" stroke-width="0.7" fill="none" opacity="0.6"/>'
                 + '<polygon points="33,64 32,54 37,63" fill="#0d0d0d"/>'
                 + '<polygon points="47,64 48,54 43,63" fill="#0d0d0d"/>'
                 + '<circle class="bat-eye" cx="36" cy="66" r="1.6" fill="#ff2e2e"/>'
                 + '<circle class="bat-eye" cx="44" cy="66" r="1.6" fill="#ff2e2e"/>'
-                + '</svg>';
-
-            var flySvg = '<svg class="bat-form bat-form-fly" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">'
+                + '</svg>'
+                + '<svg class="bat-form bat-form-fly" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">'
                 + '<defs><linearGradient id="' + g2 + '" x1="0%" y1="0%" x2="0%" y2="100%">'
-                + '<stop offset="0%" stop-color="#3a1a4a"/>'
-                + '<stop offset="100%" stop-color="#0d0d0d"/>'
+                + '<stop offset="0%" stop-color="#3a1a4a"/><stop offset="100%" stop-color="#0d0d0d"/>'
                 + '</linearGradient></defs>'
                 + '<g class="bat-wing-l"><path d="M 38 40 Q 15 12 2 30 Q 10 33 6 40 Q 14 38 10 45 Q 20 44 16 50 Q 26 47 32 50 Q 36 45 38 40 Z" fill="url(#' + g2 + ')"/></g>'
                 + '<g class="bat-wing-r"><path d="M 42 40 Q 65 12 78 30 Q 70 33 74 40 Q 66 38 70 45 Q 60 44 64 50 Q 54 47 48 50 Q 44 45 42 40 Z" fill="url(#' + g2 + ')"/></g>'
@@ -2606,14 +2274,10 @@ footer strong { color: #ff6b1a; }
                 + '<circle cx="38" cy="39" r="1.2" fill="#ff2e2e"/>'
                 + '<circle cx="42" cy="39" r="1.2" fill="#ff2e2e"/>'
                 + '</svg>';
-
-            return sleepSvg + flySvg;
         }
-
         function init() {
             var container = document.getElementById('bats-container');
             if (!container) return;
-
             for (var i = 0; i < BAT_COUNT; i++) {
                 var el = document.createElement('div');
                 el.className = 'bat-hanging';
@@ -2621,7 +2285,6 @@ footer strong { color: #ff6b1a; }
                 container.appendChild(el);
                 bats.push({ el: el, state: 'idle', posterEl: null });
             }
-
             setTimeout(function() {
                 isReady = true;
                 for (var i = 0; i < bats.length; i++) {
@@ -2642,9 +2305,7 @@ footer strong { color: #ff6b1a; }
                     })(i);
                 }
             }, 800);
-
             window.addEventListener('scroll', onScroll, { passive: true });
-
             window.addEventListener('resize', function() {
                 for (var i = 0; i < bats.length; i++) {
                     var bat = bats[i];
@@ -2659,7 +2320,6 @@ footer strong { color: #ff6b1a; }
                 }
             });
         }
-
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', init);
         } else {
