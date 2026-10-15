@@ -2,243 +2,202 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#ff6b1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Catálogo · La Balanza</title>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { min-height: 100%; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { min-height: 100%; -webkit-text-size-adjust: 100%; }
 
-        .fondo-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; }
-        .fondo-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 2s ease-in-out; }
-        .fondo-slide.activo { opacity: 1; }
-        .overlay-oscuro { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.85) 50%, rgba(13, 17, 23, 0.9) 100%); z-index: -1; pointer-events: none; }
-        body { background: transparent; }
+.fondo-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; }
+.fondo-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 2s ease-in-out; }
+.fondo-slide.activo { opacity: 1; }
+.overlay-oscuro { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.85) 50%, rgba(13, 17, 23, 0.9) 100%); z-index: -1; pointer-events: none; }
+body { background: transparent; }
 
-body { color: #f0f6fc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; min-height: 100vh; padding-bottom: 60px; -webkit-text-size-adjust: 100%; }
+body { color: #f0f6fc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; min-height: 100vh; padding-bottom: 80px; overflow-x: hidden; }
 .top-bar { position: sticky; top: 0; z-index: 100; background: rgba(13, 17, 23, 0.95); border-bottom: 1px solid rgba(255, 107, 26, 0.15); }
-header { background: linear-gradient(135deg, #ff6b1a 0%, #8b00ff 50%, #4a148c 100%); padding: 20px 24px; text-align: center; position: relative; overflow: hidden; }
-.header-content { display: flex; align-items: center; justify-content: center; gap: 18px; position: relative; z-index: 2; flex-wrap: wrap; }
-.logo-wrapper { width: 58px; height: 58px; flex-shrink: 0; }
-.header-text { text-align: left; }
-.header-text h1 { color: #ffffff; font-size: 30px; font-weight: 900; letter-spacing: 4px; line-height: 1; margin-bottom: 6px; text-shadow: 0 2px 8px rgba(0,0,0,0.4); display: flex; align-items: center; gap: 10px; justify-content: center; }
-.badge-premium { background: rgba(0, 0, 0, 0.3); color: #fff; font-size: 9px; font-weight: 800; letter-spacing: 1.5px; padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.3); }
-.header-text p { color: rgba(255,255,255,0.9); font-size: 12px; letter-spacing: 1px; font-weight: 500; text-align: center; }
-.buscador-container { padding: 14px 20px; max-width: 1200px; margin: 0 auto; position: relative; }
-.buscador-container::before { content: "🔍"; position: absolute; left: 36px; top: 50%; transform: translateY(-50%); font-size: 16px; pointer-events: none; opacity: 0.6; z-index: 2; }
-.buscador { width: 100%; padding: 14px 20px 14px 46px; font-size: 16px; background: #161b22; color: #f0f6fc; border: 1px solid #30363d; border-radius: 12px; outline: none; transition: border-color 0.2s; }
+header { background: linear-gradient(135deg, #ff6b1a 0%, #8b00ff 50%, #4a148c 100%); padding: 14px 16px; text-align: center; }
+.header-content { display: flex; align-items: center; justify-content: space-between; gap: 10px; max-width: 1200px; margin: 0 auto; }
+.header-left { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+.hamburger { width: 42px; height: 42px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.3); border-radius: 10px; cursor: pointer; display: none; align-items: center; justify-content: center; flex-shrink: 0; padding: 0; }
+.hamburger span { display: block; width: 20px; height: 2px; background: #fff; position: relative; border-radius: 2px; }
+.hamburger span::before, .hamburger span::after { content: ""; position: absolute; left: 0; width: 20px; height: 2px; background: #fff; border-radius: 2px; }
+.hamburger span::before { top: -6px; }
+.hamburger span::after { top: 6px; }
+.logo-wrapper { width: 40px; height: 40px; flex-shrink: 0; }
+.header-text { text-align: left; min-width: 0; }
+.header-text h1 { color: #ffffff; font-size: 20px; font-weight: 900; letter-spacing: 2px; line-height: 1; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.badge-premium { background: rgba(0,0,0,0.3); color: #fff; font-size: 8px; font-weight: 800; letter-spacing: 1px; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.3); }
+.header-text p { color: rgba(255,255,255,0.9); font-size: 10px; letter-spacing: 0.3px; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.header-right { display: flex; gap: 8px; flex-shrink: 0; }
+.btn-icon { width: 42px; height: 42px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.3); border-radius: 10px; cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 18px; padding: 0; color: #fff; text-decoration: none; }
+.buscador-container { padding: 10px 16px; max-width: 1200px; margin: 0 auto; position: relative; }
+.buscador-container::before { content: "🔍"; position: absolute; left: 30px; top: 50%; transform: translateY(-50%); font-size: 15px; pointer-events: none; opacity: 0.6; z-index: 2; }
+.buscador { width: 100%; padding: 13px 16px 13px 42px; font-size: 15px; background: #161b22; color: #f0f6fc; border: 1px solid #30363d; border-radius: 12px; outline: none; }
 .buscador:focus { border-color: #ff6b1a; }
-.buscador::placeholder { color: #8b949e; }
-.tabs { display: flex; gap: 8px; padding: 0 20px 14px; max-width: 1200px; margin: 0 auto; flex-wrap: wrap; justify-content: center; }
-.tab { padding: 8px 18px; background: #161b22; color: #8b949e; border: 1px solid #30363d; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; transition: all 0.2s; user-select: none; }
-.tab:hover { border-color: #ff6b1a; color: #ff6b1a; }
+.tabs { display: flex; gap: 8px; padding: 0 16px 12px; max-width: 1200px; margin: 0 auto; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { padding: 8px 16px; background: #161b22; color: #8b949e; border: 1px solid #30363d; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; white-space: nowrap; flex-shrink: 0; }
 .tab.activa { background: linear-gradient(90deg, #ff6b1a, #4a148c); color: #fff; border-color: transparent; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 18px; padding: 20px; max-width: 1200px; margin: 0 auto; position: relative; z-index: 50; }
-.tarjeta { background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; transition: transform 0.2s, border-color 0.2s; display: flex; flex-direction: column; content-visibility: auto; contain-intrinsic-size: 320px; }
-.tarjeta:hover { transform: translateY(-4px); border-color: #ff6b1a; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 18px; padding: 16px; max-width: 1200px; margin: 0 auto; }
+.tarjeta { background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; content-visibility: auto; contain-intrinsic-size: 320px; }
 .poster-wrapper { aspect-ratio: 2/3; background: #000; overflow: hidden; position: relative; }
 .poster-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.badge-sin { position: absolute; top: 8px; right: 8px; background: rgba(255,107,26,0.95); color: #0d1117; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+.badge-sin { position: absolute; top: 8px; right: 8px; background: rgba(255,107,26,0.95); color: #0d1117; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 10px; text-transform: uppercase; }
 .info { padding: 12px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .titulo-peli { color: #f0f6fc; font-size: 13px; font-weight: 700; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 34px; }
 .categoria-tag { display: inline-block; padding: 2px 8px; background: rgba(139, 0, 255, 0.25); color: #ff6b1a; font-size: 10px; font-weight: 700; border-radius: 4px; text-transform: uppercase; width: fit-content; }
-.btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: #25D366; color: #fff; text-decoration: none; font-size: 12px; font-weight: 700; border-radius: 8px; transition: background 0.2s; margin-top: auto; }
-.btn-whatsapp:hover { background: #1DA851; }
-.sin-resultados { text-align: center; padding: 60px 20px; color: #8b949e; font-size: 16px; display: none; position: relative; z-index: 50; }
+.btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px; background: #25D366; color: #fff; text-decoration: none; font-size: 13px; font-weight: 700; border-radius: 8px; margin-top: auto; min-height: 44px; }
+.sin-resultados { text-align: center; padding: 60px 20px; color: #8b949e; font-size: 16px; display: none; }
 .sin-resultados.visible { display: block; }
-footer { text-align: center; padding: 30px 20px; color: #8b949e; font-size: 12px; border-top: 1px solid #30363d; margin-top: 40px; position: relative; z-index: 60; background: rgba(13, 17, 23, 0.8); }
+footer { text-align: center; padding: 30px 20px; color: #8b949e; font-size: 12px; border-top: 1px solid #30363d; margin-top: 40px; background: rgba(13, 17, 23, 0.85); }
 footer strong { color: #ff6b1a; }
-.halloween-banner { position: fixed; top: 0; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, #ff6b1a, #8b00ff); color: white; padding: 4px 20px; border-radius: 0 0 15px 15px; font-size: 11px; font-weight: 800; letter-spacing: 2px; z-index: 200; }
+.halloween-banner { position: fixed; top: 0; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, #ff6b1a, #8b00ff); color: white; padding: 3px 16px; border-radius: 0 0 12px 12px; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; z-index: 200; }
 
-    #bats-container {
-        position: fixed; top: 0; left: 0;
-        width: 0; height: 0;
-        pointer-events: none;
-        z-index: 80;
-        contain: strict;
-    }
+/* ============================================================
+   📱 SIDEBAR MOBILE
+   ============================================================ */
+.sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 300; opacity: 0; visibility: hidden; transition: opacity 0.25s ease, visibility 0.25s ease; }
+.sidebar-overlay.active { opacity: 1; visibility: visible; }
+.sidebar { position: fixed; top: 0; left: 0; width: 300px; max-width: 85vw; height: 100vh; height: 100dvh; background: #0d1117; z-index: 310; transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; border-right: 1px solid #30363d; }
+.sidebar.active { transform: translateX(0); }
+.sidebar-header { background: linear-gradient(135deg, #ff6b1a, #4a148c); padding: 20px 18px; display: flex; align-items: center; gap: 12px; }
+.sidebar-logo { width: 42px; height: 42px; flex-shrink: 0; }
+.sidebar-title { color: #fff; font-size: 15px; font-weight: 900; letter-spacing: 2px; }
+.sidebar-subtitle { color: rgba(255,255,255,0.85); font-size: 10px; margin-top: 2px; }
+.sidebar-search { padding: 14px 18px; border-bottom: 1px solid #30363d; position: relative; }
+.sidebar-search input { width: 100%; padding: 11px 12px 11px 38px; font-size: 14px; background: #161b22; color: #f0f6fc; border: 1px solid #30363d; border-radius: 10px; outline: none; }
+.sidebar-search input:focus { border-color: #ff6b1a; }
+.sidebar-search::before { content: "🔍"; position: absolute; left: 30px; top: 50%; transform: translateY(-50%); font-size: 14px; pointer-events: none; opacity: 0.6; }
+.sidebar-nav { flex: 1; overflow-y: auto; padding: 10px 0; }
+.sidebar-nav ul { list-style: none; }
+.sidebar-nav li { padding: 0; }
+.sidebar-nav a { display: flex; align-items: center; gap: 12px; padding: 13px 18px; color: #f0f6fc; text-decoration: none; font-size: 14px; font-weight: 600; border-left: 3px solid transparent; transition: all 0.15s; min-height: 48px; }
+.sidebar-nav a:hover, .sidebar-nav a:active { background: rgba(255, 107, 26, 0.1); border-left-color: #ff6b1a; }
+.sidebar-nav a.active { background: rgba(255, 107, 26, 0.15); border-left-color: #ff6b1a; color: #ff6b1a; }
+.sidebar-nav a span:first-child { font-size: 20px; }
+.sidebar-nav .count { margin-left: auto; background: rgba(255,255,255,0.1); color: #8b949e; padding: 3px 9px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+.sidebar-footer { padding: 14px 18px; border-top: 1px solid #30363d; background: #161b22; }
+.sidebar-wa { display: flex; align-items: center; justify-content: center; gap: 8px; background: #25D366; color: #fff; padding: 13px 16px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 14px; min-height: 48px; }
+.sidebar-wa:hover { background: #1DA851; }
+.sidebar-close { position: absolute; top: 18px; right: 18px; width: 32px; height: 32px; background: rgba(0,0,0,0.25); border: none; border-radius: 50%; color: #fff; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+
+/* ============================================================
+   📱 BOTTOM NAV (solo móvil)
+   ============================================================ */
+.bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: rgba(13, 17, 23, 0.98); border-top: 1px solid #30363d; z-index: 90; padding: 6px 4px; padding-bottom: calc(6px + env(safe-area-inset-bottom)); }
+.bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; max-width: 600px; margin: 0 auto; }
+.bottom-nav-btn { background: none; border: none; color: #8b949e; padding: 6px 8px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; border-radius: 10px; min-width: 56px; min-height: 48px; font-family: inherit; transition: all 0.15s; }
+.bottom-nav-btn.active { color: #ff6b1a; background: rgba(255, 107, 26, 0.1); }
+.bottom-nav-btn .bn-icon { font-size: 20px; line-height: 1; }
+.bottom-nav-btn .bn-label { font-size: 10px; font-weight: 700; letter-spacing: 0.3px; }
+
+/* ============================================================
+   📱 FLOATING WHATSAPP BUTTON
+   ============================================================ */
+.fab-wa { position: fixed; bottom: 90px; right: 16px; width: 56px; height: 56px; border-radius: 50%; background: #25D366; color: #fff; display: none; align-items: center; justify-content: center; text-decoration: none; z-index: 85; font-size: 26px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); animation: fabPulse 2s ease-in-out infinite; }
+@keyframes fabPulse {
+    0%, 100% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); transform: scale(1); }
+    50% { box-shadow: 0 6px 30px rgba(37, 211, 102, 0.9); transform: scale(1.05); }
+}
+
+/* ============================================================
+   📱 MEDIA QUERIES - MOBILE FIRST
+   ============================================================ */
+@media (max-width: 700px) {
+    .hamburger { display: flex; }
+    .btn-icon { display: flex; }
+    .tabs { display: none; }
+    .bottom-nav { display: block; }
+    .fab-wa { display: flex; }
+    header { padding: 12px 14px; }
+    .header-text h1 { font-size: 17px; letter-spacing: 1.5px; }
+    .header-text p { display: none; }
+    .buscador-container { padding: 10px 14px; }
+    .buscador-container::before { left: 26px; }
+    .buscador { padding: 12px 14px 12px 40px; font-size: 14px; }
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 12px; }
+    .titulo-peli { font-size: 12px; min-height: 30px; }
+    .btn-whatsapp { font-size: 12px; padding: 8px; }
+    footer { margin: 30px 12px 90px 12px; padding: 20px 14px; }
+    body { padding-bottom: 110px; }
+}
+@media (min-width: 701px) {
+    .sidebar, .sidebar-overlay { display: none !important; }
+    header { padding: 20px 24px; }
+    .header-content { justify-content: center; }
+    .header-left { flex: 0 1 auto; }
+    .header-text h1 { font-size: 30px; letter-spacing: 4px; }
+    .header-text p { font-size: 12px; display: block; }
+    .header-right { display: none; }
+}
+
+    #bats-container { position: fixed; top: 0; left: 0; width: 0; height: 0; pointer-events: none; z-index: 80; }
     .bat-hanging {
-        position: fixed;
-        width: 42px; height: 42px;
-        pointer-events: none;
-        opacity: 0;
+        position: fixed; width: 40px; height: 40px;
+        pointer-events: none; opacity: 0;
         transition: left 1.5s cubic-bezier(0.34, 1.3, 0.64, 1),
                     top 1.5s cubic-bezier(0.34, 1.3, 0.64, 1),
                     opacity 0.6s ease;
     }
-    .bat-hanging .bat-form {
-        position: absolute; top: 0; left: 0;
-        width: 100%; height: 100%;
-        transition: opacity 0.25s ease;
-    }
+    .bat-hanging .bat-form { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transition: opacity 0.25s ease; }
     .bat-form-fly { opacity: 0; }
     .bat-hanging.sleeping { animation: batBreathe 2.6s ease-in-out infinite; }
     .bat-hanging.sleeping .bat-form-sleep { opacity: 1; }
     .bat-hanging.sleeping .bat-form-fly { opacity: 0; }
-    @keyframes batBreathe {
-        0%, 100% { transform: scale(1); }
-        50%      { transform: scale(1.05); }
-    }
+    @keyframes batBreathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
     .bat-hanging.sleeping .bat-eye { animation: batPeek 7s ease-in-out infinite; }
-    @keyframes batPeek {
-        0%, 25%   { transform: translateX(0); }
-        30%, 40%  { transform: translateX(-2.5px); }
-        45%, 55%  { transform: translateX(2.5px); }
-        60%, 65%  { opacity: 0.15; }
-        70%, 100% { transform: translateX(0); }
-    }
+    @keyframes batPeek { 0%, 25% { transform: translateX(0); } 30%, 40% { transform: translateX(-2px); } 45%, 55% { transform: translateX(2px); } 60%, 65% { opacity: 0.15; } 70%, 100% { transform: translateX(0); } }
     .bat-hanging.waking { animation: batWake 0.35s ease-out; }
     .bat-hanging.waking .bat-form-sleep { opacity: 1; }
     .bat-hanging.waking .bat-form-fly { opacity: 0; }
-    @keyframes batWake {
-        0%   { transform: scale(1); }
-        40%  { transform: scale(1.1); }
-        100% { transform: scale(1); }
-    }
+    @keyframes batWake { 0% { transform: scale(1); } 40% { transform: scale(1.1); } 100% { transform: scale(1); } }
     .bat-hanging.flying { animation: batFlyWiggle 0.5s ease-in-out infinite; }
     .bat-hanging.flying .bat-form-sleep { opacity: 0; }
     .bat-hanging.flying .bat-form-fly { opacity: 1; }
     .bat-hanging.flying .bat-wing-l { animation: batFlapL 0.22s ease-in-out infinite; }
     .bat-hanging.flying .bat-wing-r { animation: batFlapR 0.22s ease-in-out infinite; }
-    @keyframes batFlapL {
-        0%, 100% { transform: scaleY(1); }
-        50%      { transform: scaleY(0.35); }
-    }
-    @keyframes batFlapR {
-        0%, 100% { transform: scaleY(1); }
-        50%      { transform: scaleY(0.35); }
-    }
-    @keyframes batFlyWiggle {
-        0%, 100% { transform: rotate(-3deg); }
-        50%      { transform: rotate(3deg); }
-    }
-
-    .pumpkin-deco {
-        position: fixed;
-        bottom: 15px;
-        width: 80px; height: 80px;
-        z-index: 45;
-        pointer-events: none;
-        contain: strict;
-    }
+    @keyframes batFlapL { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.35); } }
+    @keyframes batFlapR { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.35); } }
+    @keyframes batFlyWiggle { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+    .pumpkin-deco { position: fixed; bottom: 15px; width: 70px; height: 70px; z-index: 45; pointer-events: none; }
     .pumpkin-deco.pumpkin-izq { left: 15px; animation: pumpkinSwayLeft 5s ease-in-out infinite; }
     .pumpkin-deco.pumpkin-der { right: 15px; animation: pumpkinSwayRight 5.5s ease-in-out infinite; }
-    @keyframes pumpkinSwayLeft {
-        0%, 100% { transform: rotate(-3deg); }
-        50%      { transform: rotate(3deg); }
-    }
-    @keyframes pumpkinSwayRight {
-        0%, 100% { transform: rotate(3deg); }
-        50%      { transform: rotate(-3deg); }
-    }
+    @keyframes pumpkinSwayLeft { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+    @keyframes pumpkinSwayRight { 0%, 100% { transform: rotate(3deg); } 50% { transform: rotate(-3deg); } }
     .pumpkin-full-svg { width: 100%; height: 100%; display: block; }
     .pumpkin-inner-light { animation: pumpkinFlicker 2.5s ease-in-out infinite; transform-origin: 50px 62px; }
-    @keyframes pumpkinFlicker {
-        0%, 100% { opacity: 0.75; }
-        15%      { opacity: 1; }
-        40%      { opacity: 0.85; }
-        70%      { opacity: 1; }
-    }
+    @keyframes pumpkinFlicker { 0%, 100% { opacity: 0.75; } 15% { opacity: 1; } 40% { opacity: 0.85; } 70% { opacity: 1; } }
     .pumpkin-eye-glow { animation: pumpkinEyeGlow 3.5s ease-in-out infinite; }
-    @keyframes pumpkinEyeGlow {
-        0%, 100% { opacity: 0.7; }
-        50%      { opacity: 1; }
-    }
+    @keyframes pumpkinEyeGlow { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
     .pumpkin-mouth-glow { animation: pumpkinMouthGlow 2.8s ease-in-out infinite; }
-    @keyframes pumpkinMouthGlow {
-        0%, 100% { opacity: 0.6; }
-        30%      { opacity: 1; }
-    }
-
-    .brasas-container {
-        position: fixed; top: 0; left: 0;
-        width: 100%; height: 100%;
-        pointer-events: none;
-        z-index: 44;
-        overflow: hidden;
-        contain: strict;
-    }
+    @keyframes pumpkinMouthGlow { 0%, 100% { opacity: 0.6; } 30% { opacity: 1; } }
+    .brasas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 44; overflow: hidden; }
     .brasa {
-        position: absolute;
-        bottom: -20px;
+        position: absolute; bottom: -20px;
         background: radial-gradient(circle, #ffcc66 0%, #ff6b1a 50%, transparent 70%);
-        border-radius: 50%;
-        opacity: 0;
-        animation-name: subirBrasa;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
+        border-radius: 50%; opacity: 0;
+        animation-name: subirBrasa; animation-timing-function: linear; animation-iteration-count: infinite;
     }
     @keyframes subirBrasa {
-        0%   { opacity: 0; transform: translateY(0) translateX(0); }
-        10%  { opacity: 1; }
-        90%  { opacity: 0.3; }
+        0% { opacity: 0; transform: translateY(0); }
+        10% { opacity: 1; }
+        90% { opacity: 0.3; }
         100% { opacity: 0; transform: translateY(-105vh) translateX(-15px); }
     }
-
-    .niebla-inferior {
-        position: fixed;
-        bottom: 0; left: 0;
-        width: 100%; height: 120px;
-        background: linear-gradient(to top,
-            rgba(139, 0, 255, 0.25) 0%,
-            rgba(139, 0, 255, 0.08) 50%,
-            transparent 100%);
-        pointer-events: none;
-        z-index: 42;
-        animation: moverNiebla 10s ease-in-out infinite;
-    }
-    @keyframes moverNiebla {
-        0%, 100% { opacity: 0.7; }
-        50%      { opacity: 1; }
-    }
-
-    .top-bar::after {
-        content: '';
-        position: absolute;
-        bottom: -2px; left: 50%;
-        transform: translateX(-50%);
-        width: 80%; height: 2px;
-        background: linear-gradient(90deg, transparent, rgba(255, 107, 26, 1), transparent);
-        animation: pulsoGlow 2.5s ease-in-out infinite;
-        pointer-events: none;
-    }
-    @keyframes pulsoGlow {
-        0%, 100% { opacity: 0.5; }
-        50%      { opacity: 1; }
-    }
-    .tarjeta:hover {
-        box-shadow: 0 8px 25px rgba(255, 107, 26, 0.4) !important;
-    }
-    @media (max-width: 600px) {
-        .bat-hanging { width: 34px; height: 34px; }
-        .pumpkin-deco { width: 55px; height: 55px; bottom: 8px; }
+    @media (max-width: 700px) {
+        .bat-hanging { width: 32px; height: 32px; }
+        .pumpkin-deco { width: 50px; height: 50px; bottom: 70px; }
         .pumpkin-deco.pumpkin-izq { left: 8px; }
         .pumpkin-deco.pumpkin-der { right: 8px; }
-        .brasa { animation-duration: 12s !important; }
     }
     @media (prefers-reduced-motion: reduce) {
         .bat-hanging, .pumpkin-deco, .brasa { display: none; }
     }
-    
-@media (max-width: 600px) {
-    header { padding: 14px 16px; }
-    .header-content { gap: 12px; }
-    .logo-wrapper { width: 44px; height: 44px; }
-    .header-text h1 { font-size: 20px; letter-spacing: 2px; }
-    .header-text p { font-size: 10px; }
-    .badge-premium { font-size: 8px; padding: 2px 6px; }
-    .buscador-container { padding: 10px 12px; }
-    .buscador-container::before { left: 26px; font-size: 14px; }
-    .buscador { padding: 12px 16px 12px 40px; font-size: 14px; }
-    .tabs { padding: 0 12px 12px; gap: 6px; }
-    .tab { padding: 6px 14px; font-size: 12px; }
-    .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 12px; }
-    .titulo-peli { font-size: 12px; }
-    .btn-whatsapp { font-size: 11px; padding: 7px; }
-    footer { margin: 40px 12px 0 12px; }
-    .halloween-banner { font-size: 9px; padding: 3px 12px; }
-}
-</style>
+    </style>
 </head>
 <body>
 
@@ -246,21 +205,21 @@ footer strong { color: #ff6b1a; }
 <div id="bats-container"></div>
 <div class="pumpkin-deco pumpkin-izq"><svg class="pumpkin-full-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
-            <radialGradient id="pumpkinBody" cx="50%" cy="45%" r="55%">
+            <radialGradient id="pkb" cx="50%" cy="45%" r="55%">
                 <stop offset="0%" stop-color="#ff9642"/>
                 <stop offset="55%" stop-color="#e85d04"/>
                 <stop offset="100%" stop-color="#9d2f00"/>
             </radialGradient>
-            <radialGradient id="innerGlow" cx="50%" cy="65%" r="45%">
+            <radialGradient id="igl" cx="50%" cy="65%" r="45%">
                 <stop offset="0%" stop-color="#ffea00" stop-opacity="1"/>
                 <stop offset="40%" stop-color="#ffaa00" stop-opacity="0.9"/>
                 <stop offset="100%" stop-color="#ff4400" stop-opacity="0"/>
             </radialGradient>
         </defs>
-        <ellipse cx="50" cy="58" rx="38" ry="32" fill="url(#pumpkinBody)"/>
+        <ellipse cx="50" cy="58" rx="38" ry="32" fill="url(#pkb)"/>
         <path d="M 47 26 Q 44 18 46 12 Q 49 8 52 12 Q 52 18 53 26 Z" fill="#4a3a1f"/>
         <g class="pumpkin-inner-light">
-            <ellipse cx="50" cy="62" rx="28" ry="22" fill="url(#innerGlow)"/>
+            <ellipse cx="50" cy="62" rx="28" ry="22" fill="url(#igl)"/>
         </g>
         <polygon points="32,50 42,50 37,58" fill="#1a0f00"/>
         <polygon points="58,50 68,50 63,58" fill="#1a0f00"/>
@@ -271,21 +230,21 @@ footer strong { color: #ff6b1a; }
     </svg></div>
 <div class="pumpkin-deco pumpkin-der"><svg class="pumpkin-full-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
-            <radialGradient id="pumpkinBody" cx="50%" cy="45%" r="55%">
+            <radialGradient id="pkb" cx="50%" cy="45%" r="55%">
                 <stop offset="0%" stop-color="#ff9642"/>
                 <stop offset="55%" stop-color="#e85d04"/>
                 <stop offset="100%" stop-color="#9d2f00"/>
             </radialGradient>
-            <radialGradient id="innerGlow" cx="50%" cy="65%" r="45%">
+            <radialGradient id="igl" cx="50%" cy="65%" r="45%">
                 <stop offset="0%" stop-color="#ffea00" stop-opacity="1"/>
                 <stop offset="40%" stop-color="#ffaa00" stop-opacity="0.9"/>
                 <stop offset="100%" stop-color="#ff4400" stop-opacity="0"/>
             </radialGradient>
         </defs>
-        <ellipse cx="50" cy="58" rx="38" ry="32" fill="url(#pumpkinBody)"/>
+        <ellipse cx="50" cy="58" rx="38" ry="32" fill="url(#pkb)"/>
         <path d="M 47 26 Q 44 18 46 12 Q 49 8 52 12 Q 52 18 53 26 Z" fill="#4a3a1f"/>
         <g class="pumpkin-inner-light">
-            <ellipse cx="50" cy="62" rx="28" ry="22" fill="url(#innerGlow)"/>
+            <ellipse cx="50" cy="62" rx="28" ry="22" fill="url(#igl)"/>
         </g>
         <polygon points="32,50 42,50 37,58" fill="#1a0f00"/>
         <polygon points="58,50 68,50 63,58" fill="#1a0f00"/>
@@ -305,10 +264,7 @@ footer strong { color: #ff6b1a; }
 <div class="brasa" style="left:35%;animation-delay:1.87s;animation-duration:13.7s;width:4px;height:4px;"></div>
 <div class="brasa" style="left:13%;animation-delay:1.11s;animation-duration:7.68s;width:4px;height:4px;"></div>
 <div class="brasa" style="left:77%;animation-delay:3.17s;animation-duration:7.3s;width:4px;height:4px;"></div>
-<div class="brasa" style="left:68%;animation-delay:1.5s;animation-duration:13.46s;width:3px;height:3px;"></div>
-<div class="brasa" style="left:70%;animation-delay:3.52s;animation-duration:11.4s;width:4px;height:4px;"></div>
 </div>
-<div class="niebla-inferior"></div>
 
 <div class="fondo-container">
 <div class="fondo-slide activo" style="background-image: url('fondo.jpg');"></div>
@@ -317,31 +273,76 @@ footer strong { color: #ff6b1a; }
 </div>
 <div class="overlay-oscuro"></div>
 
+<!-- 📱 SIDEBAR -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<aside class="sidebar" id="sidebar">
+    <button class="sidebar-close" id="sidebarClose" aria-label="Cerrar">×</button>
+    <div class="sidebar-header">
+        <div class="sidebar-logo"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"><line x1="50" y1="15" x2="50" y2="82" /><line x1="25" y1="85" x2="75" y2="85" /><line x1="18" y1="28" x2="82" y2="28" /><circle cx="50" cy="15" r="5" fill="#ffffff" /><line x1="18" y1="28" x2="18" y2="50" /><line x1="82" y1="28" x2="82" y2="50" /><path d="M 8 50 Q 18 68 28 50" /><path d="M 72 50 Q 82 68 92 50" /></g></svg></div>
+        <div>
+            <div class="sidebar-title">LA BALANZA</div>
+            <div class="sidebar-subtitle">Grabaciones Premium</div>
+        </div>
+    </div>
+    <div class="sidebar-search">
+        <input type="text" id="buscadorSidebar" placeholder="Buscar película, serie...">
+    </div>
+    <nav class="sidebar-nav">
+        <ul>
+            <li><a href="#" data-cat="todos" class="active"><span>🎬</span> Todos <span class="count">148</span></a></li>
+<li><a href="#" data-cat="Muñes"><span>🧸</span> Muñes <span class="count">82</span></a></li>
+<li><a href="#" data-cat="Películas"><span>🎥</span> Películas <span class="count">55</span></a></li>
+<li><a href="#" data-cat="Series"><span>📺</span> Series <span class="count">10</span></a></li>
+<li><a href="#" data-cat="Animes"><span>🎌</span> Animes <span class="count">1</span></a></li>
+        </ul>
+    </nav>
+    <div class="sidebar-footer">
+        <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" class="sidebar-wa">💬 WhatsApp</a>
+    </div>
+</aside>
+
+<!-- 📱 BOTÓN FLOTANTE WHATSAPP -->
+<a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" class="fab-wa" aria-label="WhatsApp">💬</a>
+
+<!-- 📱 BOTTOM NAV -->
+<nav class="bottom-nav">
+    <div class="bottom-nav-inner">
+        <button class="bottom-nav-btn active" data-cat="todos"><span class="bn-icon">🏠</span><span class="bn-label">Todos</span></button>
+<button class="bottom-nav-btn" data-cat="Muñes"><span class="bn-icon">🧸</span><span class="bn-label">Muñes</span></button>
+<button class="bottom-nav-btn" data-cat="Películas"><span class="bn-icon">🎥</span><span class="bn-label">Películas</span></button>
+<button class="bottom-nav-btn" data-cat="Series"><span class="bn-icon">📺</span><span class="bn-label">Series</span></button>
+<button class="bottom-nav-btn" data-cat="Animes"><span class="bn-icon">🎌</span><span class="bn-label">Animes</span></button>
+    </div>
+</nav>
+
+<!-- 🔝 TOP BAR -->
 <div class="top-bar">
     <header>
         <div class="header-content">
-            <div class="logo-wrapper"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"><line x1="50" y1="15" x2="50" y2="82" /><line x1="25" y1="85" x2="75" y2="85" /><line x1="18" y1="28" x2="82" y2="28" /><circle cx="50" cy="15" r="5" fill="#ffffff" /><line x1="18" y1="28" x2="18" y2="50" /><line x1="82" y1="28" x2="82" y2="50" /><path d="M 8 50 Q 18 68 28 50" /><path d="M 72 50 Q 82 68 92 50" /></g></svg></div>
-            <div class="header-text">
-                <h1>LA BALANZA <span class="badge-premium">PREMIUM</span></h1>
-                <p>Grabaciones Premium · Películas · Series · Muñes · Animes</p>
+            <div class="header-left">
+                <button class="hamburger" id="hamburger" aria-label="Menú"><span></span></button>
+                <div class="logo-wrapper"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"><line x1="50" y1="15" x2="50" y2="82" /><line x1="25" y1="85" x2="75" y2="85" /><line x1="18" y1="28" x2="82" y2="28" /><circle cx="50" cy="15" r="5" fill="#ffffff" /><line x1="18" y1="28" x2="18" y2="50" /><line x1="82" y1="28" x2="82" y2="50" /><path d="M 8 50 Q 18 68 28 50" /><path d="M 72 50 Q 82 68 92 50" /></g></svg></div>
+                <div class="header-text">
+                    <h1>LA BALANZA <span class="badge-premium">PREMIUM</span></h1>
+                    <p>Grabaciones Premium · Películas · Series · Muñes · Animes</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <a href="https://wa.me/5353549987" target="_blank" rel="noopener" class="btn-icon" aria-label="WhatsApp">💬</a>
             </div>
         </div>
     </header>
     <div class="buscador-container">
         <input type="text" class="buscador" id="buscador" placeholder="Buscar película, serie, muñe o anime...">
     </div>
-    <div class="tabs"><div class="tab activa" data-filtro="todos">Todos (148)</div>
-    <div class="tab" data-filtro="Muñes">Muñes (82)</div>
-    <div class="tab" data-filtro="Películas">Películas (55)</div>
-    <div class="tab" data-filtro="Series">Series (10)</div>
-    <div class="tab" data-filtro="Animes">Animes (1)</div>
-</div>
+    <div class="tabs" id="tabsTop"><div class="tab activa" data-filtro="todos">Todos (148)</div><div class="tab" data-filtro="MUÑES">Muñes (82)</div><div class="tab" data-filtro="PELICULAS">Películas (55)</div><div class="tab" data-filtro="SERIES">Series (10)</div><div class="tab" data-filtro="ANIMES">Animes (1)</div></div>
 </div>
 
+<!-- 🎬 GRID -->
 <div class="grid" id="grid">
         <div class="tarjeta" data-categoria="Muñes" data-nombre="101 dalmatas">
             <div class="poster-wrapper">
-                <img src="caratulas/101 Dalmatas.jpg" alt="101 Dalmatas" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/101 Dalmatas.jpg" alt="101 Dalmatas" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -353,7 +354,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="aladdin (1992">
             <div class="poster-wrapper">
-                <img src="caratulas/Aladdin (1992.jpg" alt="Aladdin (1992" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Aladdin (1992.jpg" alt="Aladdin (1992" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -365,7 +366,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="anastasia">
             <div class="poster-wrapper">
-                <img src="caratulas/Anastasia.jpg" alt="Anastasia" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Anastasia.jpg" alt="Anastasia" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -377,7 +378,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="atlantis">
             <div class="poster-wrapper">
-                <img src="caratulas/Atlantis.jpg" alt="Atlantis" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Atlantis.jpg" alt="Atlantis" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -389,7 +390,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="blancanieves y los siete enanitos">
             <div class="poster-wrapper">
-                <img src="caratulas/Blancanieves Y Los Siete Enanitos.jpg" alt="Blancanieves Y Los Siete Enanitos" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Blancanieves Y Los Siete Enanitos.jpg" alt="Blancanieves Y Los Siete Enanitos" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -401,7 +402,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="estudios pixar cortos">
             <div class="poster-wrapper">
-                <img src="caratulas/Estudios Pixar Cortos.jpg" alt="Estudios Pixar Cortos" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Estudios Pixar Cortos.jpg" alt="Estudios Pixar Cortos" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -413,7 +414,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="hercules (1997">
             <div class="poster-wrapper">
-                <img src="caratulas/Hercules (1997.jpg" alt="Hercules (1997" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Hercules (1997.jpg" alt="Hercules (1997" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -425,7 +426,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="la dama y el vagabundo">
             <div class="poster-wrapper">
-                <img src="caratulas/La Dama Y El Vagabundo.jpg" alt="La Dama Y El Vagabundo" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/La Dama Y El Vagabundo.jpg" alt="La Dama Y El Vagabundo" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -437,7 +438,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="la ruta hacia el dorado">
             <div class="poster-wrapper">
-                <img src="caratulas/La Ruta Hacia El Dorado.jpg" alt="La Ruta Hacia El Dorado" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/La Ruta Hacia El Dorado.jpg" alt="La Ruta Hacia El Dorado" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -449,7 +450,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="la sirenita 1">
             <div class="poster-wrapper">
-                <img src="caratulas/La Sirenita 1.jpg" alt="La Sirenita 1" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/La Sirenita 1.jpg" alt="La Sirenita 1" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -461,7 +462,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="las bratz">
             <div class="poster-wrapper">
-                <img src="caratulas/_placeholder_Las Bratz.svg" alt="Las Bratz" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/_placeholder_Las Bratz.svg" alt="Las Bratz" loading="lazy" decoding="async">
                 <span class="badge-sin">Próximamente</span>
             </div>
             <div class="info">
@@ -473,7 +474,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="los aristogatos">
             <div class="poster-wrapper">
-                <img src="caratulas/Los Aristogatos.jpg" alt="Los Aristogatos" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Los Aristogatos.jpg" alt="Los Aristogatos" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -485,7 +486,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="manuelita la tortuguita">
             <div class="poster-wrapper">
-                <img src="caratulas/Manuelita La Tortuguita.jpg" alt="Manuelita La Tortuguita" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Manuelita La Tortuguita.jpg" alt="Manuelita La Tortuguita" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -497,7 +498,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="mariposas negras">
             <div class="poster-wrapper">
-                <img src="caratulas/Mariposas Negras.jpg" alt="Mariposas Negras" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Mariposas Negras.jpg" alt="Mariposas Negras" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -509,7 +510,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="mowgli y baloo - el libro de la selva 2">
             <div class="poster-wrapper">
-                <img src="caratulas/Mowgli Y Baloo - El Libro De La Selva 2.jpg" alt="Mowgli Y Baloo - El Libro De La Selva 2" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Mowgli Y Baloo - El Libro De La Selva 2.jpg" alt="Mowgli Y Baloo - El Libro De La Selva 2" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -521,7 +522,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="mulan">
             <div class="poster-wrapper">
-                <img src="caratulas/Mulan.jpg" alt="Mulan" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Mulan.jpg" alt="Mulan" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -533,7 +534,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="peter pan pelicula">
             <div class="poster-wrapper">
-                <img src="caratulas/Peter Pan Pelicula.jpg" alt="Peter Pan Pelicula" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Peter Pan Pelicula.jpg" alt="Peter Pan Pelicula" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -545,7 +546,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="pinocho pelicula completa">
             <div class="poster-wrapper">
-                <img src="caratulas/Pinocho Pelicula Completa.jpg" alt="Pinocho Pelicula Completa" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Pinocho Pelicula Completa.jpg" alt="Pinocho Pelicula Completa" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -557,7 +558,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="pocahontas (1995">
             <div class="poster-wrapper">
-                <img src="caratulas/Pocahontas (1995.jpg" alt="Pocahontas (1995" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Pocahontas (1995.jpg" alt="Pocahontas (1995" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -569,7 +570,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="pocahontas (1998">
             <div class="poster-wrapper">
-                <img src="caratulas/Pocahontas (1998.jpg" alt="Pocahontas (1998" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Pocahontas (1998.jpg" alt="Pocahontas (1998" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -581,7 +582,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="ratatouille">
             <div class="poster-wrapper">
-                <img src="caratulas/Ratatouille.jpg" alt="Ratatouille" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Ratatouille.jpg" alt="Ratatouille" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -593,7 +594,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="simbad la leyenda de los 7 mares">
             <div class="poster-wrapper">
-                <img src="caratulas/Simbad La Leyenda De Los 7 Mares.jpg" alt="Simbad La Leyenda De Los 7 Mares" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Simbad La Leyenda De Los 7 Mares.jpg" alt="Simbad La Leyenda De Los 7 Mares" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -605,7 +606,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="tierra de osos (2003">
             <div class="poster-wrapper">
-                <img src="caratulas/Tierra de Osos (2003.jpg" alt="Tierra de Osos (2003" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Tierra de Osos (2003.jpg" alt="Tierra de Osos (2003" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -617,7 +618,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="tierra de osos 2 (2006">
             <div class="poster-wrapper">
-                <img src="caratulas/Tierra De Osos 2 (2006.jpg" alt="Tierra De Osos 2 (2006" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Tierra De Osos 2 (2006.jpg" alt="Tierra De Osos 2 (2006" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -629,7 +630,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="walt disney&#x27;s the old mill (1937">
             <div class="poster-wrapper">
-                <img src="caratulas/Walt Disney&#x27;s The Old Mill (1937.jpg" alt="Walt Disney&#x27;s The Old Mill (1937" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Walt Disney&#x27;s The Old Mill (1937.jpg" alt="Walt Disney&#x27;s The Old Mill (1937" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -641,7 +642,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="la era de hielo (2002">
             <div class="poster-wrapper">
-                <img src="caratulas/La Era De Hielo (2002.jpg" alt="La Era De Hielo (2002" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/La Era De Hielo (2002.jpg" alt="La Era De Hielo (2002" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -653,7 +654,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="la era de hielo (2006">
             <div class="poster-wrapper">
-                <img src="caratulas/La Era De Hielo (2006.jpg" alt="La Era De Hielo (2006" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/La Era De Hielo (2006.jpg" alt="La Era De Hielo (2006" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -665,7 +666,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="la era de hielo 3 el origen de los dinosaurios (2009">
             <div class="poster-wrapper">
-                <img src="caratulas/La Era De Hielo 3 El Origen De Los Dinosaurios (2009.jpg" alt="La Era De Hielo 3 El Origen De Los Dinosaurios (2009" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/La Era De Hielo 3 El Origen De Los Dinosaurios (2009.jpg" alt="La Era De Hielo 3 El Origen De Los Dinosaurios (2009" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -677,7 +678,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="la era de hielo 4 (2012">
             <div class="poster-wrapper">
-                <img src="caratulas/La Era De Hielo 4 (2012.jpg" alt="La Era De Hielo 4 (2012" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/La Era De Hielo 4 (2012.jpg" alt="La Era De Hielo 4 (2012" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -689,7 +690,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="madagascar 1">
             <div class="poster-wrapper">
-                <img src="caratulas/Madagascar 1.jpg" alt="Madagascar 1" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Madagascar 1.jpg" alt="Madagascar 1" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -701,7 +702,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="madagascar 2 escape de áfrica (2008">
             <div class="poster-wrapper">
-                <img src="caratulas/Madagascar 2 Escape de África (2008.jpg" alt="Madagascar 2 Escape de África (2008" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Madagascar 2 Escape de África (2008.jpg" alt="Madagascar 2 Escape de África (2008" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -713,7 +714,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="madagascar 3">
             <div class="poster-wrapper">
-                <img src="caratulas/Madagascar 3.jpg" alt="Madagascar 3" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Madagascar 3.jpg" alt="Madagascar 3" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -725,7 +726,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="madagascar i hd (2005">
             <div class="poster-wrapper">
-                <img src="caratulas/Madagascar I Hd (2005.jpg" alt="Madagascar I Hd (2005" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Madagascar I Hd (2005.jpg" alt="Madagascar I Hd (2005" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -737,7 +738,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="despicable me 1 (2010">
             <div class="poster-wrapper">
-                <img src="caratulas/Despicable Me 1 (2010.jpg" alt="Despicable Me 1 (2010" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Despicable Me 1 (2010.jpg" alt="Despicable Me 1 (2010" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -749,7 +750,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="despicable me 2 (2013">
             <div class="poster-wrapper">
-                <img src="caratulas/Despicable Me 2 (2013.jpg" alt="Despicable Me 2 (2013" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Despicable Me 2 (2013.jpg" alt="Despicable Me 2 (2013" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -761,7 +762,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="despicable me 3 (2017">
             <div class="poster-wrapper">
-                <img src="caratulas/Despicable Me 3 (2017.jpg" alt="Despicable Me 3 (2017" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Despicable Me 3 (2017.jpg" alt="Despicable Me 3 (2017" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -773,7 +774,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="shrek (2001">
             <div class="poster-wrapper">
-                <img src="caratulas/Shrek (2001.jpg" alt="Shrek (2001" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Shrek (2001.jpg" alt="Shrek (2001" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -785,7 +786,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="shrek 2">
             <div class="poster-wrapper">
-                <img src="caratulas/Shrek 2.jpg" alt="Shrek 2" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Shrek 2.jpg" alt="Shrek 2" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -797,7 +798,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="shrek 3">
             <div class="poster-wrapper">
-                <img src="caratulas/Shrek 3.jpg" alt="Shrek 3" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Shrek 3.jpg" alt="Shrek 3" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -809,7 +810,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="shrek 4 para siempre">
             <div class="poster-wrapper">
-                <img src="caratulas/Shrek 4 Para Siempre.jpg" alt="Shrek 4 Para Siempre" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Shrek 4 Para Siempre.jpg" alt="Shrek 4 Para Siempre" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -821,7 +822,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="angry birds">
             <div class="poster-wrapper">
-                <img src="caratulas/Angry Birds.jpg" alt="Angry Birds" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Angry Birds.jpg" alt="Angry Birds" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -833,7 +834,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="bee movie la historia de una abeja (2007">
             <div class="poster-wrapper">
-                <img src="caratulas/Bee Movie La Historia De Una Abeja (2007.jpg" alt="Bee Movie La Historia De Una Abeja (2007" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Bee Movie La Historia De Una Abeja (2007.jpg" alt="Bee Movie La Historia De Una Abeja (2007" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -845,7 +846,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="bob esponja en busca de los pantalones cuadrados (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Bob Esponja En Busca De Los Pantalones Cuadrados (2025.jpg" alt="Bob Esponja En Busca De Los Pantalones Cuadrados (2025" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Bob Esponja En Busca De Los Pantalones Cuadrados (2025.jpg" alt="Bob Esponja En Busca De Los Pantalones Cuadrados (2025" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -857,7 +858,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="coyote vs acme (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Coyote Vs Acme (2026.jpg" alt="Coyote Vs Acme (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Coyote Vs Acme (2026.jpg" alt="Coyote Vs Acme (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -869,7 +870,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="el libro de la selva 2">
             <div class="poster-wrapper">
-                <img src="caratulas/El Libro De La Selva 2.jpg" alt="El Libro De La Selva 2" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/El Libro De La Selva 2.jpg" alt="El Libro De La Selva 2" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -881,7 +882,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="el origen de los guardianes">
             <div class="poster-wrapper">
-                <img src="caratulas/El Origen De Los Guardianes.jpg" alt="El Origen De Los Guardianes" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/El Origen De Los Guardianes.jpg" alt="El Origen De Los Guardianes" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -893,7 +894,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="elementos (2023">
             <div class="poster-wrapper">
-                <img src="caratulas/Elementos (2023.jpg" alt="Elementos (2023" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Elementos (2023.jpg" alt="Elementos (2023" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -905,7 +906,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="ferdinand (2018">
             <div class="poster-wrapper">
-                <img src="caratulas/Ferdinand (2018.jpg" alt="Ferdinand (2018" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Ferdinand (2018.jpg" alt="Ferdinand (2018" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -917,7 +918,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="frozen 2">
             <div class="poster-wrapper">
-                <img src="caratulas/Frozen 2.jpg" alt="Frozen 2" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Frozen 2.jpg" alt="Frozen 2" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -929,7 +930,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="frozen el reino del hielo">
             <div class="poster-wrapper">
-                <img src="caratulas/Frozen El Reino Del Hielo.jpg" alt="Frozen El Reino Del Hielo" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Frozen El Reino Del Hielo.jpg" alt="Frozen El Reino Del Hielo" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -941,7 +942,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="goat (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Goat (2026.jpg" alt="Goat (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Goat (2026.jpg" alt="Goat (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -953,7 +954,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="guardianes del museo 2">
             <div class="poster-wrapper">
-                <img src="caratulas/Guardianes Del Museo 2.jpg" alt="Guardianes Del Museo 2" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Guardianes Del Museo 2.jpg" alt="Guardianes Del Museo 2" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -965,7 +966,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="hop, rebelde sin pascua castellano (2011">
             <div class="poster-wrapper">
-                <img src="caratulas/Hop, Rebelde Sin Pascua Castellano (2011.jpg" alt="Hop, Rebelde Sin Pascua Castellano (2011" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Hop, Rebelde Sin Pascua Castellano (2011.jpg" alt="Hop, Rebelde Sin Pascua Castellano (2011" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -977,7 +978,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="horton castellano (2008">
             <div class="poster-wrapper">
-                <img src="caratulas/Horton Castellano (2008.jpg" alt="Horton Castellano (2008" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Horton Castellano (2008.jpg" alt="Horton Castellano (2008" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -989,7 +990,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="hotel transylvania 2 (2015">
             <div class="poster-wrapper">
-                <img src="caratulas/Hotel Transylvania 2 (2015.jpg" alt="Hotel Transylvania 2 (2015" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Hotel Transylvania 2 (2015.jpg" alt="Hotel Transylvania 2 (2015" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1001,7 +1002,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="huevitos congelados">
             <div class="poster-wrapper">
-                <img src="caratulas/Huevitos Congelados.jpg" alt="Huevitos Congelados" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Huevitos Congelados.jpg" alt="Huevitos Congelados" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1013,7 +1014,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="hércules castellano (1997">
             <div class="poster-wrapper">
-                <img src="caratulas/Hércules Castellano (1997.jpg" alt="Hércules Castellano (1997" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Hércules Castellano (1997.jpg" alt="Hércules Castellano (1997" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1025,7 +1026,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="intercambiados (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Intercambiados (2026.jpg" alt="Intercambiados (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Intercambiados (2026.jpg" alt="Intercambiados (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1037,7 +1038,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="kung fu panda (2008">
             <div class="poster-wrapper">
-                <img src="caratulas/Kung Fu Panda (2008.jpg" alt="Kung Fu Panda (2008" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Kung Fu Panda (2008.jpg" alt="Kung Fu Panda (2008" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1049,7 +1050,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="kung fu panda 4">
             <div class="poster-wrapper">
-                <img src="caratulas/Kung Fu Panda 4.jpg" alt="Kung Fu Panda 4" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Kung Fu Panda 4.jpg" alt="Kung Fu Panda 4" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1061,7 +1062,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="las guerreras del kpop">
             <div class="poster-wrapper">
-                <img src="caratulas/Las Guerreras Del Kpop.jpg" alt="Las Guerreras Del Kpop" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Las Guerreras Del Kpop.jpg" alt="Las Guerreras Del Kpop" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1073,7 +1074,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="looney toons en accion (la pelicula">
             <div class="poster-wrapper">
-                <img src="caratulas/Looney Toons En Accion (La Pelicula.jpg" alt="Looney Toons En Accion (La Pelicula" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Looney Toons En Accion (La Pelicula.jpg" alt="Looney Toons En Accion (La Pelicula" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1085,7 +1086,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="los increibles 2 hd y latino dual (2018">
             <div class="poster-wrapper">
-                <img src="caratulas/Los Increibles 2 Hd Y Latino Dual (2018.jpg" alt="Los Increibles 2 Hd Y Latino Dual (2018" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Los Increibles 2 Hd Y Latino Dual (2018.jpg" alt="Los Increibles 2 Hd Y Latino Dual (2018" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1097,7 +1098,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="minions &amp; monstruos (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Minions &amp; Monstruos (2026.jpg" alt="Minions &amp; Monstruos (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Minions &amp; Monstruos (2026.jpg" alt="Minions &amp; Monstruos (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1109,7 +1110,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="minions el origen de gru (2022">
             <div class="poster-wrapper">
-                <img src="caratulas/Minions El Origen De Gru (2022.jpg" alt="Minions El Origen De Gru (2022" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Minions El Origen De Gru (2022.jpg" alt="Minions El Origen De Gru (2022" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1121,7 +1122,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="moana (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Moana (2026.jpg" alt="Moana (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Moana (2026.jpg" alt="Moana (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1133,7 +1134,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="moana">
             <div class="poster-wrapper">
-                <img src="caratulas/Moana.jpg" alt="Moana" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Moana.jpg" alt="Moana" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1145,7 +1146,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="monster inc (2008">
             <div class="poster-wrapper">
-                <img src="caratulas/Monster Inc (2008.jpg" alt="Monster Inc (2008" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Monster Inc (2008.jpg" alt="Monster Inc (2008" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1157,7 +1158,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="ponyo y el secreto de la sirenita">
             <div class="poster-wrapper">
-                <img src="caratulas/Ponyo Y El Secreto De La Sirenita.jpg" alt="Ponyo Y El Secreto De La Sirenita" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Ponyo Y El Secreto De La Sirenita.jpg" alt="Ponyo Y El Secreto De La Sirenita" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1169,7 +1170,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="rey mono">
             <div class="poster-wrapper">
-                <img src="caratulas/Rey Mono.jpg" alt="Rey Mono" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Rey Mono.jpg" alt="Rey Mono" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1181,7 +1182,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="sing ven y canta (2016">
             <div class="poster-wrapper">
-                <img src="caratulas/Sing Ven Y Canta (2016.jpg" alt="Sing Ven Y Canta (2016" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Sing Ven Y Canta (2016.jpg" alt="Sing Ven Y Canta (2016" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1193,7 +1194,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="sing ven y canta de nuevo (2021">
             <div class="poster-wrapper">
-                <img src="caratulas/Sing Ven Y Canta De Nuevo (2021.jpg" alt="Sing Ven Y Canta De Nuevo (2021" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Sing Ven Y Canta De Nuevo (2021.jpg" alt="Sing Ven Y Canta De Nuevo (2021" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1205,7 +1206,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="soul (2020">
             <div class="poster-wrapper">
-                <img src="caratulas/Soul (2020.jpg" alt="Soul (2020" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Soul (2020.jpg" alt="Soul (2020" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1217,7 +1218,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="spermageddon (2024">
             <div class="poster-wrapper">
-                <img src="caratulas/Spermageddon (2024.jpg" alt="Spermageddon (2024" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Spermageddon (2024.jpg" alt="Spermageddon (2024" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1229,7 +1230,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="spidey and the avengers halloween">
             <div class="poster-wrapper">
-                <img src="caratulas/Spidey And The Avengers Halloween.jpg" alt="Spidey And The Avengers Halloween" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Spidey And The Avengers Halloween.jpg" alt="Spidey And The Avengers Halloween" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1241,7 +1242,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Series" data-nombre="the pink panther la serie">
             <div class="poster-wrapper">
-                <img src="caratulas/The Pink Panther La Serie.jpg" alt="The Pink Panther La Serie" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/The Pink Panther La Serie.jpg" alt="The Pink Panther La Serie" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1253,7 +1254,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="toy story 5 (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Toy Story 5 (2026.jpg" alt="Toy Story 5 (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Toy Story 5 (2026.jpg" alt="Toy Story 5 (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1265,7 +1266,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="trolls (2016">
             <div class="poster-wrapper">
-                <img src="caratulas/Trolls (2016.jpg" alt="Trolls (2016" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Trolls (2016.jpg" alt="Trolls (2016" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1277,7 +1278,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="trolls 2 (2020">
             <div class="poster-wrapper">
-                <img src="caratulas/Trolls 2 (2020.jpg" alt="Trolls 2 (2020" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Trolls 2 (2020.jpg" alt="Trolls 2 (2020" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1289,7 +1290,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="turning red (2022">
             <div class="poster-wrapper">
-                <img src="caratulas/Turning Red (2022.jpg" alt="Turning Red (2022" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Turning Red (2022.jpg" alt="Turning Red (2022" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1301,7 +1302,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="una pelicula de huevos (2006">
             <div class="poster-wrapper">
-                <img src="caratulas/Una Pelicula De Huevos (2006.jpg" alt="Una Pelicula De Huevos (2006" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Una Pelicula De Huevos (2006.jpg" alt="Una Pelicula De Huevos (2006" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1313,7 +1314,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="zootopia 2 (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Zootopia 2 (2025.jpg" alt="Zootopia 2 (2025" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Zootopia 2 (2025.jpg" alt="Zootopia 2 (2025" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1325,7 +1326,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Muñes" data-nombre="zootopia">
             <div class="poster-wrapper">
-                <img src="caratulas/Zootopia.jpg" alt="Zootopia" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Zootopia.jpg" alt="Zootopia" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1337,7 +1338,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="jack el caza gigantes">
             <div class="poster-wrapper">
-                <img src="caratulas/Jack El Caza Gigantes.jpg" alt="Jack El Caza Gigantes" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Jack El Caza Gigantes.jpg" alt="Jack El Caza Gigantes" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1349,7 +1350,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="shottas hermanos en el crimen (2002">
             <div class="poster-wrapper">
-                <img src="caratulas/Shottas Hermanos en el crimen (2002.jpg" alt="Shottas Hermanos en el crimen (2002" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Shottas Hermanos en el crimen (2002.jpg" alt="Shottas Hermanos en el crimen (2002" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1361,7 +1362,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="soy leyenda (2007">
             <div class="poster-wrapper">
-                <img src="caratulas/Soy Leyenda (2007.jpg" alt="Soy Leyenda (2007" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Soy Leyenda (2007.jpg" alt="Soy Leyenda (2007" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1373,7 +1374,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="campamento miasma (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Campamento Miasma (2026.jpg" alt="Campamento Miasma (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Campamento Miasma (2026.jpg" alt="Campamento Miasma (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1385,7 +1386,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="codigo de venganza (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Codigo De Venganza (2026.jpg" alt="Codigo De Venganza (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Codigo De Venganza (2026.jpg" alt="Codigo De Venganza (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1397,7 +1398,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="dead man&#x27;s wire (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Dead Man&#x27;s Wire (2026.jpg" alt="Dead Man&#x27;s Wire (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Dead Man&#x27;s Wire (2026.jpg" alt="Dead Man&#x27;s Wire (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1409,7 +1410,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el heladero (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/El Heladero (2026.jpg" alt="El Heladero (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/El Heladero (2026.jpg" alt="El Heladero (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1421,7 +1422,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el ultimo amanecer (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/El Ultimo Amanecer (2026.jpg" alt="El Ultimo Amanecer (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/El Ultimo Amanecer (2026.jpg" alt="El Ultimo Amanecer (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1433,7 +1434,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="entrega al límite (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Entrega Al Límite (2026.jpg" alt="Entrega Al Límite (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Entrega Al Límite (2026.jpg" alt="Entrega Al Límite (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1445,7 +1446,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="evil dead en llamas (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Evil Dead En Llamas (2026.jpg" alt="Evil Dead En Llamas (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Evil Dead En Llamas (2026.jpg" alt="Evil Dead En Llamas (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1457,7 +1458,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="insaciable (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Insaciable (2026.jpg" alt="Insaciable (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Insaciable (2026.jpg" alt="Insaciable (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1469,7 +1470,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="la boca del diablo (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/La Boca Del Diablo (2026.jpg" alt="La Boca Del Diablo (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/La Boca Del Diablo (2026.jpg" alt="La Boca Del Diablo (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1481,7 +1482,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="la ultima bala (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/La Ultima Bala (2026.jpg" alt="La Ultima Bala (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/La Ultima Bala (2026.jpg" alt="La Ultima Bala (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1493,7 +1494,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="la ultima casa (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/La Ultima Casa (2026.jpg" alt="La Ultima Casa (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/La Ultima Casa (2026.jpg" alt="La Ultima Casa (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1505,7 +1506,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="michael jackson (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Michael Jackson (2026.jpg" alt="Michael Jackson (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Michael Jackson (2026.jpg" alt="Michael Jackson (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1517,7 +1518,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="pinocho (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Pinocho (2026.jpg" alt="Pinocho (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Pinocho (2026.jpg" alt="Pinocho (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1529,7 +1530,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="spider-man brand new day (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Spider-Man Brand New Day (2026.jpg" alt="Spider-Man Brand New Day (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Spider-Man Brand New Day (2026.jpg" alt="Spider-Man Brand New Day (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1541,7 +1542,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="tú+yo - solos contra todos (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Tú+yo - Solos Contra Todos (2026.jpg" alt="Tú+yo - Solos Contra Todos (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Tú+yo - Solos Contra Todos (2026.jpg" alt="Tú+yo - Solos Contra Todos (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1553,7 +1554,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="zona de riesgo (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Zona De Riesgo (2026.jpg" alt="Zona De Riesgo (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Zona De Riesgo (2026.jpg" alt="Zona De Riesgo (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1565,7 +1566,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="ángeles de guerra (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Ángeles De Guerra (2026.jpg" alt="Ángeles De Guerra (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Ángeles De Guerra (2026.jpg" alt="Ángeles De Guerra (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1577,7 +1578,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="al borde de la extincion (2023">
             <div class="poster-wrapper">
-                <img src="caratulas/Al Borde De La Extincion (2023.jpg" alt="Al Borde De La Extincion (2023" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Al Borde De La Extincion (2023.jpg" alt="Al Borde De La Extincion (2023" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1589,7 +1590,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="anarchy la noche de las bestias">
             <div class="poster-wrapper">
-                <img src="caratulas/Anarchy La noche de las bestias.jpg" alt="Anarchy La noche de las bestias" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Anarchy La noche de las bestias.jpg" alt="Anarchy La noche de las bestias" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1601,7 +1602,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="avatar fire and ash (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Avatar Fire And Ash (2025.jpg" alt="Avatar Fire And Ash (2025" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Avatar Fire And Ash (2025.jpg" alt="Avatar Fire And Ash (2025" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1613,7 +1614,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="carry on (2024">
             <div class="poster-wrapper">
-                <img src="caratulas/Carry On (2024.jpg" alt="Carry On (2024" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Carry On (2024.jpg" alt="Carry On (2024" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1625,7 +1626,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="cell (2016">
             <div class="poster-wrapper">
-                <img src="caratulas/Cell (2016.jpg" alt="Cell (2016" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Cell (2016.jpg" alt="Cell (2016" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1637,7 +1638,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="como entrenar a tu dragon (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Como Entrenar A Tu Dragon (2025.jpg" alt="Como Entrenar A Tu Dragon (2025" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Como Entrenar A Tu Dragon (2025.jpg" alt="Como Entrenar A Tu Dragon (2025" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1649,7 +1650,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el abismo">
             <div class="poster-wrapper">
-                <img src="caratulas/El Abismo.jpg" alt="El Abismo" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/El Abismo.jpg" alt="El Abismo" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1661,7 +1662,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el conjuro 4">
             <div class="poster-wrapper">
-                <img src="caratulas/El Conjuro 4.jpg" alt="El Conjuro 4" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/El Conjuro 4.jpg" alt="El Conjuro 4" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1673,7 +1674,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el dia de la revelacion (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/El dia de la revelacion (2026.jpg" alt="El dia de la revelacion (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/El dia de la revelacion (2026.jpg" alt="El dia de la revelacion (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1685,7 +1686,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el elixir de la inmortalidad">
             <div class="poster-wrapper">
-                <img src="caratulas/El Elixir De La Inmortalidad.jpg" alt="El Elixir De La Inmortalidad" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/El Elixir De La Inmortalidad.jpg" alt="El Elixir De La Inmortalidad" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1697,7 +1698,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el gran huracán categoría 5">
             <div class="poster-wrapper">
-                <img src="caratulas/El Gran Huracán Categoría 5.jpg" alt="El Gran Huracán Categoría 5" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/El Gran Huracán Categoría 5.jpg" alt="El Gran Huracán Categoría 5" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1709,7 +1710,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el hoyo">
             <div class="poster-wrapper">
-                <img src="caratulas/El Hoyo.jpg" alt="El Hoyo" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/El Hoyo.jpg" alt="El Hoyo" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1721,7 +1722,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el sobreviviente">
             <div class="poster-wrapper">
-                <img src="caratulas/El Sobreviviente.jpg" alt="El Sobreviviente" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/El Sobreviviente.jpg" alt="El Sobreviviente" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1733,7 +1734,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="el susurro (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/El Susurro (2025.jpg" alt="El Susurro (2025" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/El Susurro (2025.jpg" alt="El Susurro (2025" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1745,7 +1746,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="havoc (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Havoc (2025.jpg" alt="Havoc (2025" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Havoc (2025.jpg" alt="Havoc (2025" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1757,7 +1758,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="hidden">
             <div class="poster-wrapper">
-                <img src="caratulas/Hidden.jpg" alt="Hidden" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Hidden.jpg" alt="Hidden" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1769,7 +1770,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="kill masacre en el tren (2023">
             <div class="poster-wrapper">
-                <img src="caratulas/Kill Masacre En El Tren (2023.jpg" alt="Kill Masacre En El Tren (2023" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Kill Masacre En El Tren (2023.jpg" alt="Kill Masacre En El Tren (2023" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1781,7 +1782,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="kraven (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Kraven (2025.jpg" alt="Kraven (2025" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Kraven (2025.jpg" alt="Kraven (2025" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1793,7 +1794,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="la hermanastra fea (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/La Hermanastra Fea (2025.jpg" alt="La Hermanastra Fea (2025" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/La Hermanastra Fea (2025.jpg" alt="La Hermanastra Fea (2025" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1805,7 +1806,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="los ilusionistas 3 (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Los Ilusionistas 3 (2025.jpg" alt="Los Ilusionistas 3 (2025" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Los Ilusionistas 3 (2025.jpg" alt="Los Ilusionistas 3 (2025" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1817,7 +1818,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="operacion teheran (2024">
             <div class="poster-wrapper">
-                <img src="caratulas/Operacion Teheran (2024.jpg" alt="Operacion Teheran (2024" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Operacion Teheran (2024.jpg" alt="Operacion Teheran (2024" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1829,7 +1830,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="perdido en la montaña">
             <div class="poster-wrapper">
-                <img src="caratulas/Perdido En La Montaña.jpg" alt="Perdido En La Montaña" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Perdido En La Montaña.jpg" alt="Perdido En La Montaña" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1841,7 +1842,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="rabbit trap (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Rabbit Trap (2025.jpg" alt="Rabbit Trap (2025" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Rabbit Trap (2025.jpg" alt="Rabbit Trap (2025" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1853,7 +1854,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="red tóxica (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Red Tóxica (2025.jpg" alt="Red Tóxica (2025" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Red Tóxica (2025.jpg" alt="Red Tóxica (2025" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1865,7 +1866,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="soulm8te">
             <div class="poster-wrapper">
-                <img src="caratulas/Soulm8te.jpg" alt="Soulm8te" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Soulm8te.jpg" alt="Soulm8te" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1877,7 +1878,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="supergirl (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Supergirl (2026.jpg" alt="Supergirl (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Supergirl (2026.jpg" alt="Supergirl (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1889,7 +1890,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="the ministry of ungentlemanly warfare (2024">
             <div class="poster-wrapper">
-                <img src="caratulas/The Ministry Of Ungentlemanly Warfare (2024.jpg" alt="The Ministry Of Ungentlemanly Warfare (2024" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/The Ministry Of Ungentlemanly Warfare (2024.jpg" alt="The Ministry Of Ungentlemanly Warfare (2024" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1901,7 +1902,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="the purge la pelicula">
             <div class="poster-wrapper">
-                <img src="caratulas/The Purge La Pelicula.jpg" alt="The Purge La Pelicula" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/The Purge La Pelicula.jpg" alt="The Purge La Pelicula" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1913,7 +1914,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="the trap (2019">
             <div class="poster-wrapper">
-                <img src="caratulas/The Trap (2019.jpg" alt="The Trap (2019" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/The Trap (2019.jpg" alt="The Trap (2019" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1925,7 +1926,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="the uprising">
             <div class="poster-wrapper">
-                <img src="caratulas/The Uprising.jpg" alt="The Uprising" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/The Uprising.jpg" alt="The Uprising" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1937,7 +1938,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="tiburon de guerra (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Tiburon De Guerra (2025.jpg" alt="Tiburon De Guerra (2025" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Tiburon De Guerra (2025.jpg" alt="Tiburon De Guerra (2025" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1949,7 +1950,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="trece vidas (2022">
             <div class="poster-wrapper">
-                <img src="caratulas/Trece Vidas (2022.jpg" alt="Trece Vidas (2022" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Trece Vidas (2022.jpg" alt="Trece Vidas (2022" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1961,7 +1962,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="tron ares (2025">
             <div class="poster-wrapper">
-                <img src="caratulas/Tron Ares (2025.jpg" alt="Tron Ares (2025" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Tron Ares (2025.jpg" alt="Tron Ares (2025" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1973,7 +1974,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="tu corazón será destrozado (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Tu Corazón Será Destrozado (2026.jpg" alt="Tu Corazón Será Destrozado (2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Tu Corazón Será Destrozado (2026.jpg" alt="Tu Corazón Será Destrozado (2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1985,7 +1986,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Películas" data-nombre="una verdad inquietante (2018">
             <div class="poster-wrapper">
-                <img src="caratulas/Una verdad inquietante (2018.jpg" alt="Una verdad inquietante (2018" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Una verdad inquietante (2018.jpg" alt="Una verdad inquietante (2018" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -1997,7 +1998,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Series" data-nombre="dany y el club de los berracos">
             <div class="poster-wrapper">
-                <img src="caratulas/Dany y el Club de los Berracos.jpg" alt="Dany y el Club de los Berracos" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Dany y el Club de los Berracos.jpg" alt="Dany y el Club de los Berracos" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -2009,7 +2010,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Series" data-nombre="el tabo su propia guerra (1 - 10">
             <div class="poster-wrapper">
-                <img src="caratulas/El Tabo Su Propia Guerra (1 - 10.jpg" alt="El Tabo Su Propia Guerra (1 - 10" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/El Tabo Su Propia Guerra (1 - 10.jpg" alt="El Tabo Su Propia Guerra (1 - 10" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -2021,7 +2022,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Series" data-nombre="coven academy (el secreto de las brujas">
             <div class="poster-wrapper">
-                <img src="caratulas/Coven Academy (El Secreto De Las Brujas.jpg" alt="Coven Academy (El Secreto De Las Brujas" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Coven Academy (El Secreto De Las Brujas.jpg" alt="Coven Academy (El Secreto De Las Brujas" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -2033,7 +2034,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Series" data-nombre="neagley (2026) 1era temp">
             <div class="poster-wrapper">
-                <img src="caratulas/Neagley (2026) 1era Temp.jpg" alt="Neagley (2026) 1era Temp" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Neagley (2026) 1era Temp.jpg" alt="Neagley (2026) 1era Temp" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -2045,7 +2046,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Series" data-nombre="operativo lioness 1 era temp">
             <div class="poster-wrapper">
-                <img src="caratulas/Operativo Lioness 1 era Temp.jpg" alt="Operativo Lioness 1 era Temp" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Operativo Lioness 1 era Temp.jpg" alt="Operativo Lioness 1 era Temp" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -2057,7 +2058,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Series" data-nombre="reacher 1era temp">
             <div class="poster-wrapper">
-                <img src="caratulas/Reacher 1era Temp.jpg" alt="Reacher 1era Temp" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Reacher 1era Temp.jpg" alt="Reacher 1era Temp" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -2069,7 +2070,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Series" data-nombre="see (1era temp (2019">
             <div class="poster-wrapper">
-                <img src="caratulas/See (1era Temp (2019.jpg" alt="See (1era Temp (2019" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/See (1era Temp (2019.jpg" alt="See (1era Temp (2019" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -2081,7 +2082,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Series" data-nombre="the punisher (temp 1 2026">
             <div class="poster-wrapper">
-                <img src="caratulas/The Punisher (Temp 1 2026.jpg" alt="The Punisher (Temp 1 2026" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/The Punisher (Temp 1 2026.jpg" alt="The Punisher (Temp 1 2026" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -2093,7 +2094,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Series" data-nombre="the purge 1era temp (2018">
             <div class="poster-wrapper">
-                <img src="caratulas/The Purge 1era Temp (2018.jpg" alt="The Purge 1era Temp (2018" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/The Purge 1era Temp (2018.jpg" alt="The Purge 1era Temp (2018" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -2105,7 +2106,7 @@ footer strong { color: #ff6b1a; }
 
         <div class="tarjeta" data-categoria="Animes" data-nombre="jin roh the wolf brigade (1999">
             <div class="poster-wrapper">
-                <img src="caratulas/Jin Roh The Wolf Brigade (1999.jpg" alt="Jin Roh The Wolf Brigade (1999" loading="lazy" decoding="async" width="200" height="300">
+                <img src="caratulas/Jin Roh The Wolf Brigade (1999.jpg" alt="Jin Roh The Wolf Brigade (1999" loading="lazy" decoding="async">
                 
             </div>
             <div class="info">
@@ -2121,36 +2122,133 @@ footer strong { color: #ff6b1a; }
 </footer>
 
 <script>
+    // ============================================================
+    // 📱 SIDEBAR MOBILE
+    // ============================================================
+    var sidebar = document.getElementById("sidebar");
+    var sidebarOverlay = document.getElementById("sidebarOverlay");
+    var hamburger = document.getElementById("hamburger");
+    var sidebarClose = document.getElementById("sidebarClose");
+
+    function abrirSidebar() {
+        sidebar.classList.add("active");
+        sidebarOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+    }
+    function cerrarSidebar() {
+        sidebar.classList.remove("active");
+        sidebarOverlay.classList.remove("active");
+        document.body.style.overflow = "";
+    }
+    if (hamburger) hamburger.addEventListener("click", abrirSidebar);
+    if (sidebarClose) sidebarClose.addEventListener("click", cerrarSidebar);
+    if (sidebarOverlay) sidebarOverlay.addEventListener("click", cerrarSidebar);
+
+    // ============================================================
+    // 🔍 FILTRADO
+    // ============================================================
     var buscador = document.getElementById("buscador");
-    var tabs = document.querySelectorAll(".tab");
+    var buscadorSidebar = document.getElementById("buscadorSidebar");
     var tarjetas = document.querySelectorAll(".tarjeta");
     var sinResultados = document.getElementById("sinResultados");
     var filtroActual = "todos";
     var timeoutFiltro = null;
+
+    function aplicarFiltro(texto) {
+        texto = texto.toLowerCase().trim();
+        var visibles = 0;
+        tarjetas.forEach(function(t) {
+            var nombre = t.dataset.nombre;
+            var cat = t.dataset.categoria;
+            var okTexto = !texto || nombre.indexOf(texto) !== -1;
+            var okCat = filtroActual === "todos" || cat === filtroActual;
+            if (okTexto && okCat) { t.style.display = ""; visibles++; }
+            else { t.style.display = "none"; }
+        });
+        sinResultados.classList.toggle("visible", visibles === 0);
+    }
+
     function filtrar() {
         if (timeoutFiltro) clearTimeout(timeoutFiltro);
         timeoutFiltro = setTimeout(function() {
-            var texto = buscador.value.toLowerCase().trim();
-            var visibles = 0;
-            tarjetas.forEach(function(t) {
-                var nombre = t.dataset.nombre;
-                var cat = t.dataset.categoria;
-                var okTexto = !texto || nombre.indexOf(texto) !== -1;
-                var okCat = filtroActual === "todos" || cat === filtroActual;
-                if (okTexto && okCat) { t.style.display = ""; visibles++; }
-                else { t.style.display = "none"; }
-            });
-            sinResultados.classList.toggle("visible", visibles === 0);
+            var texto = buscador ? buscador.value : "";
+            aplicarFiltro(texto);
         }, 150);
     }
-    buscador.addEventListener("input", filtrar);
-    tabs.forEach(function(tab) {
+
+    function filtrarSidebar() {
+        if (timeoutFiltro) clearTimeout(timeoutFiltro);
+        timeoutFiltro = setTimeout(function() {
+            var texto = buscadorSidebar.value;
+            if (buscador) buscador.value = texto;
+            aplicarFiltro(texto);
+        }, 150);
+    }
+
+    if (buscador) buscador.addEventListener("input", filtrar);
+    if (buscadorSidebar) buscadorSidebar.addEventListener("input", filtrarSidebar);
+
+    // ============================================================
+    // 🏷️ CAMBIO DE CATEGORÍA
+    // ============================================================
+    function cambiarCategoria(cat, botonActivo) {
+        filtroActual = cat;
+        // Quitar active de todos
+        document.querySelectorAll(".tab").forEach(function(t) { t.classList.remove("activa"); });
+        document.querySelectorAll(".sidebar-nav a").forEach(function(a) { a.classList.remove("active"); });
+        document.querySelectorAll(".bottom-nav-btn").forEach(function(b) { b.classList.remove("active"); });
+        // Poner active en el que se tocó
+        if (botonActivo) botonActivo.classList.add("active");
+        // Sincronizar tabs de arriba si existen
+        if (cat !== "todos") {
+            var tabTop = document.querySelector('.tab[data-filtro="' + cat + '"]');
+            if (tabTop) tabTop.classList.add("activa");
+            var sidebarLink = document.querySelector('.sidebar-nav a[data-cat="' + cat + '"]');
+            if (sidebarLink) sidebarLink.classList.add("active");
+            var bottomBtn = document.querySelector('.bottom-nav-btn[data-cat="' + cat + '"]');
+            if (bottomBtn) bottomBtn.classList.add("active");
+        } else {
+            var tabTodos = document.querySelector('.tab[data-filtro="todos"]');
+            if (tabTodos) tabTodos.classList.add("activa");
+            var sidebarTodos = document.querySelector('.sidebar-nav a[data-cat="todos"]');
+            if (sidebarTodos) sidebarTodos.classList.add("active");
+            var bottomTodos = document.querySelector('.bottom-nav-btn[data-cat="todos"]');
+            if (bottomTodos) bottomTodos.classList.add("active");
+        }
+        // Scroll al inicio
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        // Aplicar filtro
+        var texto = buscador ? buscador.value : "";
+        aplicarFiltro(texto);
+        // Cerrar sidebar
+        cerrarSidebar();
+    }
+
+    // Tabs de arriba (desktop)
+    document.querySelectorAll(".tab").forEach(function(tab) {
         tab.addEventListener("click", function() {
-            tabs.forEach(function(t) { t.classList.remove("activa"); });
-            tab.classList.add("activa");
-            filtroActual = tab.dataset.filtro;
-            filtrar();
+            cambiarCategoria(tab.dataset.filtro, tab);
         });
+    });
+
+    // Links del sidebar
+    document.querySelectorAll(".sidebar-nav a").forEach(function(link) {
+        link.addEventListener("click", function(e) {
+            e.preventDefault();
+            cambiarCategoria(link.dataset.cat, link);
+        });
+    });
+
+    // Botones del bottom nav
+    document.querySelectorAll(".bottom-nav-btn").forEach(function(btn) {
+        btn.addEventListener("click", function() {
+            cambiarCategoria(btn.dataset.cat, btn);
+        });
+    });
+
+    // Cerrar sidebar con Escape
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape") cerrarSidebar();
     });
 </script>
 
@@ -2175,11 +2273,10 @@ footer strong { color: #ff6b1a; }
         'use strict';
         var BAT_COUNT = 2;
         var SCROLL_STOP_DELAY = 1000;
-        var BAT_WIDTH = 42;
+        var BAT_WIDTH = 40;
         var bats = [];
         var scrollTimer = null;
         var isReady = false;
-        var isMobile = window.innerWidth < 600;
 
         function getRandomVisiblePoster() {
             var posters = document.querySelectorAll('.poster-wrapper');
@@ -2193,9 +2290,7 @@ footer strong { color: #ff6b1a; }
                     visible.push({ el: p, rect: r });
                 }
             }
-            if (visible.length > 0) {
-                return visible[Math.floor(Math.random() * visible.length)];
-            }
+            if (visible.length > 0) return visible[Math.floor(Math.random() * visible.length)];
             var fallback = posters[Math.floor(Math.random() * posters.length)];
             return { el: fallback, rect: fallback.getBoundingClientRect() };
         }
@@ -2248,8 +2343,7 @@ footer strong { color: #ff6b1a; }
             }, SCROLL_STOP_DELAY);
         }
         function createBatSvg(index) {
-            var g1 = 'bg' + index;
-            var g2 = 'bf' + index;
+            var g1 = 'bg' + index, g2 = 'bf' + index;
             return '<svg class="bat-form bat-form-sleep" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">'
                 + '<defs><linearGradient id="' + g1 + '" x1="0%" y1="0%" x2="0%" y2="100%">'
                 + '<stop offset="0%" stop-color="#3a1a4a"/><stop offset="100%" stop-color="#0d0d0d"/>'
