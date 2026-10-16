@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#ff6b1a">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Catálogo · La Balanza</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -38,6 +36,7 @@ header { background: linear-gradient(135deg, #ff6b1a 0%, #8b00ff 50%, #4a148c 10
 .buscador-container::before { content: "🔍"; position: absolute; left: 30px; top: 50%; transform: translateY(-50%); font-size: 15px; pointer-events: none; opacity: 0.6; z-index: 2; }
 .buscador { width: 100%; padding: 13px 16px 13px 42px; font-size: 15px; background: #161b22; color: #f0f6fc; border: 1px solid #30363d; border-radius: 12px; outline: none; }
 .buscador:focus { border-color: #ff6b1a; }
+.buscador::placeholder { color: #8b949e; }
 .tabs { display: flex; gap: 8px; padding: 0 16px 12px; max-width: 1200px; margin: 0 auto; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
 .tabs::-webkit-scrollbar { display: none; }
 .tab { padding: 8px 16px; background: #161b22; color: #8b949e; border: 1px solid #30363d; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; white-space: nowrap; flex-shrink: 0; }
@@ -56,15 +55,11 @@ header { background: linear-gradient(135deg, #ff6b1a 0%, #8b00ff 50%, #4a148c 10
 footer { text-align: center; padding: 30px 20px; color: #8b949e; font-size: 12px; border-top: 1px solid #30363d; margin-top: 40px; background: rgba(13, 17, 23, 0.85); }
 footer strong { color: #ff6b1a; }
 .halloween-banner { position: fixed; top: 0; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, #ff6b1a, #8b00ff); color: white; padding: 3px 16px; border-radius: 0 0 12px 12px; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; z-index: 200; }
-
-/* ============================================================
-   📱 SIDEBAR MOBILE
-   ============================================================ */
 .sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 300; opacity: 0; visibility: hidden; transition: opacity 0.25s ease, visibility 0.25s ease; }
 .sidebar-overlay.active { opacity: 1; visibility: visible; }
 .sidebar { position: fixed; top: 0; left: 0; width: 300px; max-width: 85vw; height: 100vh; height: 100dvh; background: #0d1117; z-index: 310; transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; border-right: 1px solid #30363d; }
 .sidebar.active { transform: translateX(0); }
-.sidebar-header { background: linear-gradient(135deg, #ff6b1a, #4a148c); padding: 20px 18px; display: flex; align-items: center; gap: 12px; }
+.sidebar-header { background: linear-gradient(135deg, #ff6b1a, #4a148c); padding: 20px 18px; display: flex; align-items: center; gap: 12px; position: relative; }
 .sidebar-logo { width: 42px; height: 42px; flex-shrink: 0; }
 .sidebar-title { color: #fff; font-size: 15px; font-weight: 900; letter-spacing: 2px; }
 .sidebar-subtitle { color: rgba(255,255,255,0.85); font-size: 10px; margin-top: 2px; }
@@ -74,39 +69,22 @@ footer strong { color: #ff6b1a; }
 .sidebar-search::before { content: "🔍"; position: absolute; left: 30px; top: 50%; transform: translateY(-50%); font-size: 14px; pointer-events: none; opacity: 0.6; }
 .sidebar-nav { flex: 1; overflow-y: auto; padding: 10px 0; }
 .sidebar-nav ul { list-style: none; }
-.sidebar-nav li { padding: 0; }
-.sidebar-nav a { display: flex; align-items: center; gap: 12px; padding: 13px 18px; color: #f0f6fc; text-decoration: none; font-size: 14px; font-weight: 600; border-left: 3px solid transparent; transition: all 0.15s; min-height: 48px; }
+.sidebar-nav a { display: flex; align-items: center; gap: 12px; padding: 13px 18px; color: #f0f6fc; text-decoration: none; font-size: 14px; font-weight: 600; border-left: 3px solid transparent; min-height: 48px; }
 .sidebar-nav a:hover, .sidebar-nav a:active { background: rgba(255, 107, 26, 0.1); border-left-color: #ff6b1a; }
 .sidebar-nav a.active { background: rgba(255, 107, 26, 0.15); border-left-color: #ff6b1a; color: #ff6b1a; }
 .sidebar-nav a span:first-child { font-size: 20px; }
 .sidebar-nav .count { margin-left: auto; background: rgba(255,255,255,0.1); color: #8b949e; padding: 3px 9px; border-radius: 10px; font-size: 11px; font-weight: 700; }
 .sidebar-footer { padding: 14px 18px; border-top: 1px solid #30363d; background: #161b22; }
 .sidebar-wa { display: flex; align-items: center; justify-content: center; gap: 8px; background: #25D366; color: #fff; padding: 13px 16px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 14px; min-height: 48px; }
-.sidebar-wa:hover { background: #1DA851; }
 .sidebar-close { position: absolute; top: 18px; right: 18px; width: 32px; height: 32px; background: rgba(0,0,0,0.25); border: none; border-radius: 50%; color: #fff; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
-
-/* ============================================================
-   📱 BOTTOM NAV (solo móvil)
-   ============================================================ */
 .bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: rgba(13, 17, 23, 0.98); border-top: 1px solid #30363d; z-index: 90; padding: 6px 4px; padding-bottom: calc(6px + env(safe-area-inset-bottom)); }
 .bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; max-width: 600px; margin: 0 auto; }
-.bottom-nav-btn { background: none; border: none; color: #8b949e; padding: 6px 8px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; border-radius: 10px; min-width: 56px; min-height: 48px; font-family: inherit; transition: all 0.15s; }
+.bottom-nav-btn { background: none; border: none; color: #8b949e; padding: 6px 8px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; border-radius: 10px; min-width: 56px; min-height: 48px; font-family: inherit; }
 .bottom-nav-btn.active { color: #ff6b1a; background: rgba(255, 107, 26, 0.1); }
 .bottom-nav-btn .bn-icon { font-size: 20px; line-height: 1; }
 .bottom-nav-btn .bn-label { font-size: 10px; font-weight: 700; letter-spacing: 0.3px; }
-
-/* ============================================================
-   📱 FLOATING WHATSAPP BUTTON
-   ============================================================ */
 .fab-wa { position: fixed; bottom: 90px; right: 16px; width: 56px; height: 56px; border-radius: 50%; background: #25D366; color: #fff; display: none; align-items: center; justify-content: center; text-decoration: none; z-index: 85; font-size: 26px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); animation: fabPulse 2s ease-in-out infinite; }
-@keyframes fabPulse {
-    0%, 100% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); transform: scale(1); }
-    50% { box-shadow: 0 6px 30px rgba(37, 211, 102, 0.9); transform: scale(1.05); }
-}
-
-/* ============================================================
-   📱 MEDIA QUERIES - MOBILE FIRST
-   ============================================================ */
+@keyframes fabPulse { 0%, 100% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); transform: scale(1); } 50% { box-shadow: 0 6px 30px rgba(37, 211, 102, 0.9); transform: scale(1.05); } }
 @media (max-width: 700px) {
     .hamburger { display: flex; }
     .btn-icon { display: flex; }
@@ -117,7 +95,7 @@ footer strong { color: #ff6b1a; }
     .header-text h1 { font-size: 17px; letter-spacing: 1.5px; }
     .header-text p { display: none; }
     .buscador-container { padding: 10px 14px; }
-    .buscador-container::before { left: 26px; }
+    .buscador-container::before { left: 24px; }
     .buscador { padding: 12px 14px 12px 40px; font-size: 14px; }
     .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 12px; }
     .titulo-peli { font-size: 12px; min-height: 30px; }
@@ -136,13 +114,8 @@ footer strong { color: #ff6b1a; }
 }
 
     #bats-container { position: fixed; top: 0; left: 0; width: 0; height: 0; pointer-events: none; z-index: 80; }
-    .bat-hanging {
-        position: fixed; width: 40px; height: 40px;
-        pointer-events: none; opacity: 0;
-        transition: left 1.5s cubic-bezier(0.34, 1.3, 0.64, 1),
-                    top 1.5s cubic-bezier(0.34, 1.3, 0.64, 1),
-                    opacity 0.6s ease;
-    }
+    .bat-hanging { position: fixed; width: 40px; height: 40px; pointer-events: none; opacity: 0;
+        transition: left 1.5s cubic-bezier(0.34, 1.3, 0.64, 1), top 1.5s cubic-bezier(0.34, 1.3, 0.64, 1), opacity 0.6s ease; }
     .bat-hanging .bat-form { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transition: opacity 0.25s ease; }
     .bat-form-fly { opacity: 0; }
     .bat-hanging.sleeping { animation: batBreathe 2.6s ease-in-out infinite; }
@@ -176,18 +149,8 @@ footer strong { color: #ff6b1a; }
     .pumpkin-mouth-glow { animation: pumpkinMouthGlow 2.8s ease-in-out infinite; }
     @keyframes pumpkinMouthGlow { 0%, 100% { opacity: 0.6; } 30% { opacity: 1; } }
     .brasas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 44; overflow: hidden; }
-    .brasa {
-        position: absolute; bottom: -20px;
-        background: radial-gradient(circle, #ffcc66 0%, #ff6b1a 50%, transparent 70%);
-        border-radius: 50%; opacity: 0;
-        animation-name: subirBrasa; animation-timing-function: linear; animation-iteration-count: infinite;
-    }
-    @keyframes subirBrasa {
-        0% { opacity: 0; transform: translateY(0); }
-        10% { opacity: 1; }
-        90% { opacity: 0.3; }
-        100% { opacity: 0; transform: translateY(-105vh) translateX(-15px); }
-    }
+    .brasa { position: absolute; bottom: -20px; background: radial-gradient(circle, #ffcc66 0%, #ff6b1a 50%, transparent 70%); border-radius: 50%; opacity: 0; animation-name: subirBrasa; animation-timing-function: linear; animation-iteration-count: infinite; }
+    @keyframes subirBrasa { 0% { opacity: 0; transform: translateY(0); } 10% { opacity: 1; } 90% { opacity: 0.3; } 100% { opacity: 0; transform: translateY(-105vh) translateX(-15px); } }
     @media (max-width: 700px) {
         .bat-hanging { width: 32px; height: 32px; }
         .pumpkin-deco { width: 50px; height: 50px; bottom: 70px; }
@@ -273,25 +236,24 @@ footer strong { color: #ff6b1a; }
 </div>
 <div class="overlay-oscuro"></div>
 
-<!-- 📱 SIDEBAR -->
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 <aside class="sidebar" id="sidebar">
-    <button class="sidebar-close" id="sidebarClose" aria-label="Cerrar">×</button>
     <div class="sidebar-header">
         <div class="sidebar-logo"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"><line x1="50" y1="15" x2="50" y2="82" /><line x1="25" y1="85" x2="75" y2="85" /><line x1="18" y1="28" x2="82" y2="28" /><circle cx="50" cy="15" r="5" fill="#ffffff" /><line x1="18" y1="28" x2="18" y2="50" /><line x1="82" y1="28" x2="82" y2="50" /><path d="M 8 50 Q 18 68 28 50" /><path d="M 72 50 Q 82 68 92 50" /></g></svg></div>
         <div>
             <div class="sidebar-title">LA BALANZA</div>
             <div class="sidebar-subtitle">Grabaciones Premium</div>
         </div>
+        <button class="sidebar-close" id="sidebarClose" aria-label="Cerrar">×</button>
     </div>
     <div class="sidebar-search">
         <input type="text" id="buscadorSidebar" placeholder="Buscar película, serie...">
     </div>
     <nav class="sidebar-nav">
         <ul>
-            <li><a href="#" data-cat="todos" class="active"><span>🎬</span> Todos <span class="count">122</span></a></li>
-<li><a href="#" data-cat="Muñes"><span>🧸</span> Muñes <span class="count">45</span></a></li>
-<li><a href="#" data-cat="Películas"><span>🎥</span> Películas <span class="count">62</span></a></li>
+            <li><a href="#" data-cat="todos" class="active"><span>🎬</span> Todos <span class="count">175</span></a></li>
+<li><a href="#" data-cat="Muñes"><span>🧸</span> Muñes <span class="count">96</span></a></li>
+<li><a href="#" data-cat="Películas"><span>🎥</span> Películas <span class="count">64</span></a></li>
 <li><a href="#" data-cat="Series"><span>📺</span> Series <span class="count">13</span></a></li>
 <li><a href="#" data-cat="Animes"><span>🎌</span> Animes <span class="count">2</span></a></li>
         </ul>
@@ -301,10 +263,8 @@ footer strong { color: #ff6b1a; }
     </div>
 </aside>
 
-<!-- 📱 BOTÓN FLOTANTE WHATSAPP -->
 <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" class="fab-wa" aria-label="WhatsApp">💬</a>
 
-<!-- 📱 BOTTOM NAV -->
 <nav class="bottom-nav">
     <div class="bottom-nav-inner">
         <button class="bottom-nav-btn active" data-cat="todos"><span class="bn-icon">🏠</span><span class="bn-label">Todos</span></button>
@@ -315,7 +275,6 @@ footer strong { color: #ff6b1a; }
     </div>
 </nav>
 
-<!-- 🔝 TOP BAR -->
 <div class="top-bar">
     <header>
         <div class="header-content">
@@ -335,35 +294,10 @@ footer strong { color: #ff6b1a; }
     <div class="buscador-container">
         <input type="text" class="buscador" id="buscador" placeholder="Buscar película, serie, muñe o anime...">
     </div>
-    <div class="tabs" id="tabsTop"><div class="tab activa" data-filtro="todos">Todos (122)</div><div class="tab" data-filtro="MUÑES">Muñes (45)</div><div class="tab" data-filtro="PELICULAS">Películas (62)</div><div class="tab" data-filtro="SERIES">Series (13)</div><div class="tab" data-filtro="ANIMES">Animes (2)</div></div>
+    <div class="tabs" id="tabsTop"><div class="tab activa" data-filtro="todos">Todos (175)</div><div class="tab" data-filtro="Muñes">Muñes (96)</div><div class="tab" data-filtro="Películas">Películas (64)</div><div class="tab" data-filtro="Series">Series (13)</div><div class="tab" data-filtro="Animes">Animes (2)</div></div>
 </div>
 
-<!-- 🎬 GRID -->
 <div class="grid" id="grid">
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="+clasicos">
-            <div class="poster-wrapper">
-                <img src="caratulas/_placeholder_+CLASICOS.svg" alt="+CLASICOS" loading="lazy" decoding="async">
-                <span class="badge-sin">Próximamente</span>
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">+CLASICOS</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20+CLASICOS" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="+sagas">
-            <div class="poster-wrapper">
-                <img src="caratulas/_placeholder_+SAGAS.svg" alt="+SAGAS" loading="lazy" decoding="async">
-                <span class="badge-sin">Próximamente</span>
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">+SAGAS</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20+SAGAS" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
         <div class="tarjeta" data-categoria="Muñes" data-nombre="angry birds">
             <div class="poster-wrapper">
                 <img src="caratulas/Angry Birds.jpg" alt="Angry Birds" loading="lazy" decoding="async">
@@ -397,6 +331,450 @@ footer strong { color: #ff6b1a; }
                 <h3 class="titulo-peli">Bob Esponja En Busca De Los Pantalones Cuadrados (2025</h3>
                 <span class="categoria-tag">Muñes</span>
                 <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Bob%20Esponja%20En%20Busca%20De%20Los%20Pantalones%20Cuadrados%20(2025" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="101 dalmatas">
+            <div class="poster-wrapper">
+                <img src="caratulas/101 Dalmatas.jpg" alt="101 Dalmatas" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">101 Dalmatas</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20101%20Dalmatas" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="aladdin (1992">
+            <div class="poster-wrapper">
+                <img src="caratulas/Aladdin (1992.jpg" alt="Aladdin (1992" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Aladdin (1992</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Aladdin%20(1992" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="anastasia">
+            <div class="poster-wrapper">
+                <img src="caratulas/Anastasia.jpg" alt="Anastasia" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Anastasia</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Anastasia" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="atlantis">
+            <div class="poster-wrapper">
+                <img src="caratulas/Atlantis.jpg" alt="Atlantis" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Atlantis</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Atlantis" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="blancanieves y los siete enanitos">
+            <div class="poster-wrapper">
+                <img src="caratulas/Blancanieves Y Los Siete Enanitos.jpg" alt="Blancanieves Y Los Siete Enanitos" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Blancanieves Y Los Siete Enanitos</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Blancanieves%20Y%20Los%20Siete%20Enanitos" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="buscando a nemo (2003">
+            <div class="poster-wrapper">
+                <img src="caratulas/Buscando a Nemo (2003.jpg" alt="Buscando a Nemo (2003" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Buscando a Nemo (2003</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Buscando%20a%20Nemo%20(2003" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="estudios pixar cortos">
+            <div class="poster-wrapper">
+                <img src="caratulas/Estudios Pixar Cortos.jpg" alt="Estudios Pixar Cortos" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Estudios Pixar Cortos</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Estudios%20Pixar%20Cortos" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="hercules (1997">
+            <div class="poster-wrapper">
+                <img src="caratulas/Hercules (1997.jpg" alt="Hercules (1997" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Hercules (1997</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hercules%20(1997" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="la dama y el vagabundo">
+            <div class="poster-wrapper">
+                <img src="caratulas/La Dama Y El Vagabundo.jpg" alt="La Dama Y El Vagabundo" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">La Dama Y El Vagabundo</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Dama%20Y%20El%20Vagabundo" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="la ruta hacia el dorado">
+            <div class="poster-wrapper">
+                <img src="caratulas/La Ruta Hacia El Dorado.jpg" alt="La Ruta Hacia El Dorado" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">La Ruta Hacia El Dorado</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Ruta%20Hacia%20El%20Dorado" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="la sirenita 1">
+            <div class="poster-wrapper">
+                <img src="caratulas/La Sirenita 1.jpg" alt="La Sirenita 1" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">La Sirenita 1</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Sirenita%201" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="1 bratz starrin&#x27; &amp; stylin&#x27; (2004">
+            <div class="poster-wrapper">
+                <img src="caratulas/1 Bratz Starrin&#x27; &amp; Stylin&#x27; (2004.jpg" alt="1 Bratz Starrin&#x27; &amp; Stylin&#x27; (2004" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">1 Bratz Starrin&#x27; &amp; Stylin&#x27; (2004</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%201%20Bratz%20Starrin'%20%26%20Stylin'%20(2004" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="10 bratz kids fairy tales (2008">
+            <div class="poster-wrapper">
+                <img src="caratulas/10 Bratz Kids Fairy Tales (2008.jpg" alt="10 Bratz Kids Fairy Tales (2008" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">10 Bratz Kids Fairy Tales (2008</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%2010%20Bratz%20Kids%20Fairy%20Tales%20(2008" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="12 bratz pampered petz (2011">
+            <div class="poster-wrapper">
+                <img src="caratulas/12 Bratz Pampered Petz (2011.jpg" alt="12 Bratz Pampered Petz (2011" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">12 Bratz Pampered Petz (2011</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%2012%20Bratz%20Pampered%20Petz%20(2011" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="13 bratz good vibes (2011">
+            <div class="poster-wrapper">
+                <img src="caratulas/13 Bratz Good Vibes (2011.jpg" alt="13 Bratz Good Vibes (2011" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">13 Bratz Good Vibes (2011</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%2013%20Bratz%20Good%20Vibes%20(2011" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="2 bratz rock angelz (2005">
+            <div class="poster-wrapper">
+                <img src="caratulas/2 Bratz Rock Angelz (2005.jpg" alt="2 Bratz Rock Angelz (2005" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">2 Bratz Rock Angelz (2005</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%202%20Bratz%20Rock%20Angelz%20(2005" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="3 bratz genie magic (2006">
+            <div class="poster-wrapper">
+                <img src="caratulas/3 Bratz Genie Magic (2006.jpg" alt="3 Bratz Genie Magic (2006" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">3 Bratz Genie Magic (2006</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%203%20Bratz%20Genie%20Magic%20(2006" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="4 bratz babyz the movie (2006">
+            <div class="poster-wrapper">
+                <img src="caratulas/4 Bratz Babyz The Movie (2006.jpg" alt="4 Bratz Babyz The Movie (2006" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">4 Bratz Babyz The Movie (2006</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%204%20Bratz%20Babyz%20The%20Movie%20(2006" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="5 bratz passion 4 fashion diamondz (2006">
+            <div class="poster-wrapper">
+                <img src="caratulas/5 Bratz Passion 4 Fashion Diamondz (2006.jpg" alt="5 Bratz Passion 4 Fashion Diamondz (2006" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">5 Bratz Passion 4 Fashion Diamondz (2006</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%205%20Bratz%20Passion%204%20Fashion%20Diamondz%20(2006" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="6 bratz kidz sleep over adventures (2007">
+            <div class="poster-wrapper">
+                <img src="caratulas/6 Bratz Kidz Sleep Over Adventures (2007.jpg" alt="6 Bratz Kidz Sleep Over Adventures (2007" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">6 Bratz Kidz Sleep Over Adventures (2007</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%206%20Bratz%20Kidz%20Sleep%20Over%20Adventures%20(2007" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="7 bratz fashion pixiez (2007">
+            <div class="poster-wrapper">
+                <img src="caratulas/7 Bratz Fashion Pixiez (2007.jpg" alt="7 Bratz Fashion Pixiez (2007" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">7 Bratz Fashion Pixiez (2007</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%207%20Bratz%20Fashion%20Pixiez%20(2007" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="8 bratz super babyz (2007">
+            <div class="poster-wrapper">
+                <img src="caratulas/8 Bratz Super Babyz (2007.jpg" alt="8 Bratz Super Babyz (2007" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">8 Bratz Super Babyz (2007</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%208%20Bratz%20Super%20Babyz%20(2007" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="9 bratz girlz really rock (2008">
+            <div class="poster-wrapper">
+                <img src="caratulas/9 Bratz Girlz Really Rock (2008.jpg" alt="9 Bratz Girlz Really Rock (2008" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">9 Bratz Girlz Really Rock (2008</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%209%20Bratz%20Girlz%20Really%20Rock%20(2008" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="los aristogatos">
+            <div class="poster-wrapper">
+                <img src="caratulas/Los Aristogatos.jpg" alt="Los Aristogatos" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Los Aristogatos</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Los%20Aristogatos" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="manuelita la tortuguita">
+            <div class="poster-wrapper">
+                <img src="caratulas/Manuelita La Tortuguita.jpg" alt="Manuelita La Tortuguita" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Manuelita La Tortuguita</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Manuelita%20La%20Tortuguita" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="mariposas negras">
+            <div class="poster-wrapper">
+                <img src="caratulas/Mariposas Negras.jpg" alt="Mariposas Negras" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Mariposas Negras</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Mariposas%20Negras" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="mowgli y baloo - el libro de la selva 2">
+            <div class="poster-wrapper">
+                <img src="caratulas/Mowgli Y Baloo - El Libro De La Selva 2.jpg" alt="Mowgli Y Baloo - El Libro De La Selva 2" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Mowgli Y Baloo - El Libro De La Selva 2</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Mowgli%20Y%20Baloo%20-%20El%20Libro%20De%20La%20Selva%202" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="mulan">
+            <div class="poster-wrapper">
+                <img src="caratulas/Mulan.jpg" alt="Mulan" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Mulan</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Mulan" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="peter pan pelicula">
+            <div class="poster-wrapper">
+                <img src="caratulas/Peter Pan Pelicula.jpg" alt="Peter Pan Pelicula" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Peter Pan Pelicula</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Peter%20Pan%20Pelicula" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="pinocho pelicula completa">
+            <div class="poster-wrapper">
+                <img src="caratulas/Pinocho Pelicula Completa.jpg" alt="Pinocho Pelicula Completa" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Pinocho Pelicula Completa</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Pinocho%20Pelicula%20Completa" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="pocahontas (1995">
+            <div class="poster-wrapper">
+                <img src="caratulas/Pocahontas (1995.jpg" alt="Pocahontas (1995" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Pocahontas (1995</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Pocahontas%20(1995" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="pocahontas (1998">
+            <div class="poster-wrapper">
+                <img src="caratulas/Pocahontas (1998.jpg" alt="Pocahontas (1998" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Pocahontas (1998</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Pocahontas%20(1998" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="ratatouille">
+            <div class="poster-wrapper">
+                <img src="caratulas/Ratatouille.jpg" alt="Ratatouille" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Ratatouille</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Ratatouille" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="simbad la leyenda de los 7 mares">
+            <div class="poster-wrapper">
+                <img src="caratulas/Simbad La Leyenda De Los 7 Mares.jpg" alt="Simbad La Leyenda De Los 7 Mares" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Simbad La Leyenda De Los 7 Mares</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Simbad%20La%20Leyenda%20De%20Los%207%20Mares" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="tierra de osos (2003">
+            <div class="poster-wrapper">
+                <img src="caratulas/Tierra de Osos (2003.jpg" alt="Tierra de Osos (2003" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Tierra de Osos (2003</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Tierra%20de%20Osos%20(2003" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="tierra de osos 2 (2006">
+            <div class="poster-wrapper">
+                <img src="caratulas/Tierra De Osos 2 (2006.jpg" alt="Tierra De Osos 2 (2006" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Tierra De Osos 2 (2006</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Tierra%20De%20Osos%202%20(2006" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="walt disney&#x27;s the old mill (1937">
+            <div class="poster-wrapper">
+                <img src="caratulas/Walt Disney&#x27;s The Old Mill (1937.jpg" alt="Walt Disney&#x27;s The Old Mill (1937" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Walt Disney&#x27;s The Old Mill (1937</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Walt%20Disney's%20The%20Old%20Mill%20(1937" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -733,6 +1111,198 @@ footer strong { color: #ff6b1a; }
                 <h3 class="titulo-peli">Rey Mono</h3>
                 <span class="categoria-tag">Muñes</span>
                 <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Rey%20Mono" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="la era de hielo (2002">
+            <div class="poster-wrapper">
+                <img src="caratulas/La Era De Hielo (2002.jpg" alt="La Era De Hielo (2002" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">La Era De Hielo (2002</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Era%20De%20Hielo%20(2002" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="la era de hielo (2006">
+            <div class="poster-wrapper">
+                <img src="caratulas/La Era De Hielo (2006.jpg" alt="La Era De Hielo (2006" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">La Era De Hielo (2006</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Era%20De%20Hielo%20(2006" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="la era de hielo 3 el origen de los dinosaurios (2009">
+            <div class="poster-wrapper">
+                <img src="caratulas/La Era De Hielo 3 El Origen De Los Dinosaurios (2009.jpg" alt="La Era De Hielo 3 El Origen De Los Dinosaurios (2009" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">La Era De Hielo 3 El Origen De Los Dinosaurios (2009</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Era%20De%20Hielo%203%20El%20Origen%20De%20Los%20Dinosaurios%20(2009" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="la era de hielo 4 (2012">
+            <div class="poster-wrapper">
+                <img src="caratulas/La Era De Hielo 4 (2012.jpg" alt="La Era De Hielo 4 (2012" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">La Era De Hielo 4 (2012</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Era%20De%20Hielo%204%20(2012" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="madagascar 1">
+            <div class="poster-wrapper">
+                <img src="caratulas/Madagascar 1.jpg" alt="Madagascar 1" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Madagascar 1</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Madagascar%201" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="madagascar 2 escape de áfrica (2008">
+            <div class="poster-wrapper">
+                <img src="caratulas/Madagascar 2 Escape de África (2008.jpg" alt="Madagascar 2 Escape de África (2008" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Madagascar 2 Escape de África (2008</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Madagascar%202%20Escape%20de%20África%20(2008" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="madagascar 3">
+            <div class="poster-wrapper">
+                <img src="caratulas/Madagascar 3.jpg" alt="Madagascar 3" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Madagascar 3</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Madagascar%203" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="madagascar i hd (2005">
+            <div class="poster-wrapper">
+                <img src="caratulas/Madagascar I Hd (2005.jpg" alt="Madagascar I Hd (2005" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Madagascar I Hd (2005</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Madagascar%20I%20Hd%20(2005" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="mi villano favorito 1 (2010">
+            <div class="poster-wrapper">
+                <img src="caratulas/Mi Villano Favorito 1 (2010.jpg" alt="Mi Villano Favorito 1 (2010" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Mi Villano Favorito 1 (2010</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Mi%20Villano%20Favorito%201%20(2010" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="mi villano favorito 2 (2013">
+            <div class="poster-wrapper">
+                <img src="caratulas/Mi Villano Favorito 2 (2013.jpg" alt="Mi Villano Favorito 2 (2013" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Mi Villano Favorito 2 (2013</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Mi%20Villano%20Favorito%202%20(2013" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="mi villano favorito 3 (2017">
+            <div class="poster-wrapper">
+                <img src="caratulas/Mi Villano Favorito 3 (2017.jpg" alt="Mi Villano Favorito 3 (2017" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Mi Villano Favorito 3 (2017</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Mi%20Villano%20Favorito%203%20(2017" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="mi villano favorito 4 (2024">
+            <div class="poster-wrapper">
+                <img src="caratulas/Mi Villano Favorito 4 (2024.jpg" alt="Mi Villano Favorito 4 (2024" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Mi Villano Favorito 4 (2024</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Mi%20Villano%20Favorito%204%20(2024" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="shrek (2001">
+            <div class="poster-wrapper">
+                <img src="caratulas/Shrek (2001.jpg" alt="Shrek (2001" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Shrek (2001</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Shrek%20(2001" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="shrek 2">
+            <div class="poster-wrapper">
+                <img src="caratulas/Shrek 2.jpg" alt="Shrek 2" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Shrek 2</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Shrek%202" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="shrek 3">
+            <div class="poster-wrapper">
+                <img src="caratulas/Shrek 3.jpg" alt="Shrek 3" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Shrek 3</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Shrek%203" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="shrek 4 para siempre">
+            <div class="poster-wrapper">
+                <img src="caratulas/Shrek 4 Para Siempre.jpg" alt="Shrek 4 Para Siempre" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Shrek 4 Para Siempre</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Shrek%204%20Para%20Siempre" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -1213,6 +1783,30 @@ footer strong { color: #ff6b1a; }
                 <h3 class="titulo-peli">Scary Movie 2 (2001</h3>
                 <span class="categoria-tag">Películas</span>
                 <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Scary%20Movie%202%20(2001" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="scary movie 3 (2003">
+            <div class="poster-wrapper">
+                <img src="caratulas/Scary Movie 3 (2003.jpg" alt="Scary Movie 3 (2003" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Scary Movie 3 (2003</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Scary%20Movie%203%20(2003" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="scary movie 4 (2006">
+            <div class="poster-wrapper">
+                <img src="caratulas/Scary Movie 4 (2006.jpg" alt="Scary Movie 4 (2006" loading="lazy" decoding="async">
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Scary Movie 4 (2006</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Scary%20Movie%204%20(2006" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -1810,14 +2404,10 @@ footer strong { color: #ff6b1a; }
 </footer>
 
 <script>
-    // ============================================================
-    // 📱 SIDEBAR MOBILE
-    // ============================================================
     var sidebar = document.getElementById("sidebar");
     var sidebarOverlay = document.getElementById("sidebarOverlay");
     var hamburger = document.getElementById("hamburger");
     var sidebarClose = document.getElementById("sidebarClose");
-
     function abrirSidebar() {
         sidebar.classList.add("active");
         sidebarOverlay.classList.add("active");
@@ -1831,17 +2421,12 @@ footer strong { color: #ff6b1a; }
     if (hamburger) hamburger.addEventListener("click", abrirSidebar);
     if (sidebarClose) sidebarClose.addEventListener("click", cerrarSidebar);
     if (sidebarOverlay) sidebarOverlay.addEventListener("click", cerrarSidebar);
-
-    // ============================================================
-    // 🔍 FILTRADO
-    // ============================================================
     var buscador = document.getElementById("buscador");
     var buscadorSidebar = document.getElementById("buscadorSidebar");
     var tarjetas = document.querySelectorAll(".tarjeta");
     var sinResultados = document.getElementById("sinResultados");
     var filtroActual = "todos";
     var timeoutFiltro = null;
-
     function aplicarFiltro(texto) {
         texto = texto.toLowerCase().trim();
         var visibles = 0;
@@ -1855,7 +2440,6 @@ footer strong { color: #ff6b1a; }
         });
         sinResultados.classList.toggle("visible", visibles === 0);
     }
-
     function filtrar() {
         if (timeoutFiltro) clearTimeout(timeoutFiltro);
         timeoutFiltro = setTimeout(function() {
@@ -1863,7 +2447,6 @@ footer strong { color: #ff6b1a; }
             aplicarFiltro(texto);
         }, 150);
     }
-
     function filtrarSidebar() {
         if (timeoutFiltro) clearTimeout(timeoutFiltro);
         timeoutFiltro = setTimeout(function() {
@@ -1872,22 +2455,14 @@ footer strong { color: #ff6b1a; }
             aplicarFiltro(texto);
         }, 150);
     }
-
     if (buscador) buscador.addEventListener("input", filtrar);
     if (buscadorSidebar) buscadorSidebar.addEventListener("input", filtrarSidebar);
-
-    // ============================================================
-    // 🏷️ CAMBIO DE CATEGORÍA
-    // ============================================================
     function cambiarCategoria(cat, botonActivo) {
         filtroActual = cat;
-        // Quitar active de todos
         document.querySelectorAll(".tab").forEach(function(t) { t.classList.remove("activa"); });
         document.querySelectorAll(".sidebar-nav a").forEach(function(a) { a.classList.remove("active"); });
         document.querySelectorAll(".bottom-nav-btn").forEach(function(b) { b.classList.remove("active"); });
-        // Poner active en el que se tocó
         if (botonActivo) botonActivo.classList.add("active");
-        // Sincronizar tabs de arriba si existen
         if (cat !== "todos") {
             var tabTop = document.querySelector('.tab[data-filtro="' + cat + '"]');
             if (tabTop) tabTop.classList.add("activa");
@@ -1903,38 +2478,23 @@ footer strong { color: #ff6b1a; }
             var bottomTodos = document.querySelector('.bottom-nav-btn[data-cat="todos"]');
             if (bottomTodos) bottomTodos.classList.add("active");
         }
-        // Scroll al inicio
         window.scrollTo({ top: 0, behavior: "smooth" });
-        // Aplicar filtro
         var texto = buscador ? buscador.value : "";
         aplicarFiltro(texto);
-        // Cerrar sidebar
         cerrarSidebar();
     }
-
-    // Tabs de arriba (desktop)
     document.querySelectorAll(".tab").forEach(function(tab) {
-        tab.addEventListener("click", function() {
-            cambiarCategoria(tab.dataset.filtro, tab);
-        });
+        tab.addEventListener("click", function() { cambiarCategoria(tab.dataset.filtro, tab); });
     });
-
-    // Links del sidebar
     document.querySelectorAll(".sidebar-nav a").forEach(function(link) {
         link.addEventListener("click", function(e) {
             e.preventDefault();
             cambiarCategoria(link.dataset.cat, link);
         });
     });
-
-    // Botones del bottom nav
     document.querySelectorAll(".bottom-nav-btn").forEach(function(btn) {
-        btn.addEventListener("click", function() {
-            cambiarCategoria(btn.dataset.cat, btn);
-        });
+        btn.addEventListener("click", function() { cambiarCategoria(btn.dataset.cat, btn); });
     });
-
-    // Cerrar sidebar con Escape
     document.addEventListener("keydown", function(e) {
         if (e.key === "Escape") cerrarSidebar();
     });
