@@ -45,7 +45,8 @@ header { background: linear-gradient(135deg, #ff6b1a 0%, #8b00ff 50%, #4a148c 10
 .tarjeta { background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; content-visibility: auto; contain-intrinsic-size: 320px; }
 .poster-wrapper { aspect-ratio: 2/3; background: #000; overflow: hidden; position: relative; }
 .poster-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.badge-sin { position: absolute; top: 8px; right: 8px; background: rgba(255,107,26,0.95); color: #0d1117; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 10px; text-transform: uppercase; }
+.badge-sin { position: absolute; top: 8px; right: 8px; background: rgba(255,107,26,0.95); color: #0d1117; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 10px; text-transform: uppercase; z-index: 2; }
+.badge-rating { position: absolute; bottom: 8px; left: 8px; background: rgba(13, 17, 23, 0.85); color: #ffcc00; font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 8px; border: 1px solid rgba(255, 204, 0, 0.3); z-index: 2; }
 .info { padding: 12px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .titulo-peli { color: #f0f6fc; font-size: 13px; font-weight: 700; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 34px; }
 .categoria-tag { display: inline-block; padding: 2px 8px; background: rgba(139, 0, 255, 0.25); color: #ff6b1a; font-size: 10px; font-weight: 700; border-radius: 4px; text-transform: uppercase; width: fit-content; }
@@ -78,11 +79,11 @@ footer strong { color: #ff6b1a; }
 .sidebar-wa { display: flex; align-items: center; justify-content: center; gap: 8px; background: #25D366; color: #fff; padding: 13px 16px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 14px; min-height: 48px; }
 .sidebar-close { position: absolute; top: 18px; right: 18px; width: 32px; height: 32px; background: rgba(0,0,0,0.25); border: none; border-radius: 50%; color: #fff; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
 .bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: rgba(13, 17, 23, 0.98); border-top: 1px solid #30363d; z-index: 90; padding: 6px 4px; padding-bottom: calc(6px + env(safe-area-inset-bottom)); }
-.bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; max-width: 600px; margin: 0 auto; }
-.bottom-nav-btn { background: none; border: none; color: #8b949e; padding: 6px 8px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; border-radius: 10px; min-width: 56px; min-height: 48px; font-family: inherit; }
+.bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; max-width: 700px; margin: 0 auto; }
+.bottom-nav-btn { background: none; border: none; color: #8b949e; padding: 6px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; border-radius: 10px; min-width: 48px; min-height: 48px; font-family: inherit; }
 .bottom-nav-btn.active { color: #ff6b1a; background: rgba(255, 107, 26, 0.1); }
-.bottom-nav-btn .bn-icon { font-size: 20px; line-height: 1; }
-.bottom-nav-btn .bn-label { font-size: 10px; font-weight: 700; letter-spacing: 0.3px; }
+.bottom-nav-btn .bn-icon { font-size: 18px; line-height: 1; }
+.bottom-nav-btn .bn-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2px; }
 .fab-wa { position: fixed; bottom: 90px; right: 16px; width: 56px; height: 56px; border-radius: 50%; background: #25D366; color: #fff; display: none; align-items: center; justify-content: center; text-decoration: none; z-index: 85; font-size: 26px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); animation: fabPulse 2s ease-in-out infinite; }
 @keyframes fabPulse { 0%, 100% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); transform: scale(1); } 50% { box-shadow: 0 6px 30px rgba(37, 211, 102, 0.9); transform: scale(1.05); } }
 @media (max-width: 700px) {
@@ -100,6 +101,7 @@ footer strong { color: #ff6b1a; }
     .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 12px; }
     .titulo-peli { font-size: 12px; min-height: 30px; }
     .btn-whatsapp { font-size: 12px; padding: 8px; }
+    .badge-rating { font-size: 10px; padding: 3px 6px; }
     footer { margin: 30px 12px 90px 12px; padding: 20px 14px; }
     body { padding-bottom: 110px; }
 }
@@ -251,11 +253,12 @@ footer strong { color: #ff6b1a; }
     </div>
     <nav class="sidebar-nav">
         <ul>
-            <li><a href="#" data-cat="todos" class="active"><span>🎬</span> Todos <span class="count">175</span></a></li>
+            <li><a href="#" data-cat="todos" class="active"><span>🎬</span> Todos <span class="count">232</span></a></li>
 <li><a href="#" data-cat="Muñes"><span>🧸</span> Muñes <span class="count">96</span></a></li>
-<li><a href="#" data-cat="Películas"><span>🎥</span> Películas <span class="count">64</span></a></li>
-<li><a href="#" data-cat="Series"><span>📺</span> Series <span class="count">13</span></a></li>
+<li><a href="#" data-cat="Películas"><span>🎥</span> Películas <span class="count">85</span></a></li>
+<li><a href="#" data-cat="Series"><span>📺</span> Series <span class="count">20</span></a></li>
 <li><a href="#" data-cat="Animes"><span>🎌</span> Animes <span class="count">2</span></a></li>
+<li><a href="#" data-cat="Doramas"><span>💕</span> Doramas <span class="count">29</span></a></li>
         </ul>
     </nav>
     <div class="sidebar-footer">
@@ -272,6 +275,7 @@ footer strong { color: #ff6b1a; }
 <button class="bottom-nav-btn" data-cat="Películas"><span class="bn-icon">🎥</span><span class="bn-label">Películas</span></button>
 <button class="bottom-nav-btn" data-cat="Series"><span class="bn-icon">📺</span><span class="bn-label">Series</span></button>
 <button class="bottom-nav-btn" data-cat="Animes"><span class="bn-icon">🎌</span><span class="bn-label">Animes</span></button>
+<button class="bottom-nav-btn" data-cat="Doramas"><span class="bn-icon">💕</span><span class="bn-label">Doramas</span></button>
     </div>
 </nav>
 
@@ -283,7 +287,7 @@ footer strong { color: #ff6b1a; }
                 <div class="logo-wrapper"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"><line x1="50" y1="15" x2="50" y2="82" /><line x1="25" y1="85" x2="75" y2="85" /><line x1="18" y1="28" x2="82" y2="28" /><circle cx="50" cy="15" r="5" fill="#ffffff" /><line x1="18" y1="28" x2="18" y2="50" /><line x1="82" y1="28" x2="82" y2="50" /><path d="M 8 50 Q 18 68 28 50" /><path d="M 72 50 Q 82 68 92 50" /></g></svg></div>
                 <div class="header-text">
                     <h1>LA BALANZA <span class="badge-premium">PREMIUM</span></h1>
-                    <p>Grabaciones Premium · Películas · Series · Muñes · Animes</p>
+                    <p>Grabaciones Premium · Películas · Series · Muñes · Animes · Doramas</p>
                 </div>
             </div>
             <div class="header-right">
@@ -292,52 +296,17 @@ footer strong { color: #ff6b1a; }
         </div>
     </header>
     <div class="buscador-container">
-        <input type="text" class="buscador" id="buscador" placeholder="Buscar película, serie, muñe o anime...">
+        <input type="text" class="buscador" id="buscador" placeholder="Buscar película, serie, muñe, anime o dorama...">
     </div>
-    <div class="tabs" id="tabsTop"><div class="tab activa" data-filtro="todos">Todos (175)</div><div class="tab" data-filtro="Muñes">Muñes (96)</div><div class="tab" data-filtro="Películas">Películas (64)</div><div class="tab" data-filtro="Series">Series (13)</div><div class="tab" data-filtro="Animes">Animes (2)</div></div>
+    <div class="tabs" id="tabsTop"><div class="tab activa" data-filtro="todos">Todos (232)</div><div class="tab" data-filtro="Muñes">Muñes (96)</div><div class="tab" data-filtro="Películas">Películas (85)</div><div class="tab" data-filtro="Series">Series (20)</div><div class="tab" data-filtro="Animes">Animes (2)</div><div class="tab" data-filtro="Doramas">Doramas (29)</div></div>
 </div>
 
 <div class="grid" id="grid">
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="angry birds">
-            <div class="poster-wrapper">
-                <img src="caratulas/Angry Birds.jpg" alt="Angry Birds" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Angry Birds</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Angry%20Birds" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="bee movie la historia de una abeja (2007">
-            <div class="poster-wrapper">
-                <img src="caratulas/Bee Movie La Historia De Una Abeja (2007.jpg" alt="Bee Movie La Historia De Una Abeja (2007" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Bee Movie La Historia De Una Abeja (2007</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Bee%20Movie%20La%20Historia%20De%20Una%20Abeja%20(2007" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="bob esponja en busca de los pantalones cuadrados (2025">
-            <div class="poster-wrapper">
-                <img src="caratulas/Bob Esponja En Busca De Los Pantalones Cuadrados (2025.jpg" alt="Bob Esponja En Busca De Los Pantalones Cuadrados (2025" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Bob Esponja En Busca De Los Pantalones Cuadrados (2025</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Bob%20Esponja%20En%20Busca%20De%20Los%20Pantalones%20Cuadrados%20(2025" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
         <div class="tarjeta" data-categoria="Muñes" data-nombre="101 dalmatas">
             <div class="poster-wrapper">
                 <img src="caratulas/101 Dalmatas.jpg" alt="101 Dalmatas" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.2</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">101 Dalmatas</h3>
@@ -350,6 +319,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Aladdin (1992.jpg" alt="Aladdin (1992" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.7</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Aladdin (1992</h3>
@@ -362,6 +332,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Anastasia.jpg" alt="Anastasia" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.601</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Anastasia</h3>
@@ -374,6 +345,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Atlantis.jpg" alt="Atlantis" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.051</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Atlantis</h3>
@@ -386,6 +358,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Blancanieves Y Los Siete Enanitos.jpg" alt="Blancanieves Y Los Siete Enanitos" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.1</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Blancanieves Y Los Siete Enanitos</h3>
@@ -398,6 +371,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Buscando a Nemo (2003.jpg" alt="Buscando a Nemo (2003" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.822</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Buscando a Nemo (2003</h3>
@@ -406,10 +380,24 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="el extraño mundo de jack">
+            <div class="poster-wrapper">
+                <img src="caratulas/El Extraño Mundo De Jack.jpg" alt="El Extraño Mundo De Jack" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.85</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">El Extraño Mundo De Jack</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Extraño%20Mundo%20De%20Jack" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Muñes" data-nombre="estudios pixar cortos">
             <div class="poster-wrapper">
                 <img src="caratulas/Estudios Pixar Cortos.jpg" alt="Estudios Pixar Cortos" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.2</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Estudios Pixar Cortos</h3>
@@ -418,22 +406,11 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="hercules (1997">
-            <div class="poster-wrapper">
-                <img src="caratulas/Hercules (1997.jpg" alt="Hercules (1997" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Hercules (1997</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hercules%20(1997" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
         <div class="tarjeta" data-categoria="Muñes" data-nombre="la dama y el vagabundo">
             <div class="poster-wrapper">
                 <img src="caratulas/La Dama Y El Vagabundo.jpg" alt="La Dama Y El Vagabundo" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.1</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Dama Y El Vagabundo</h3>
@@ -446,6 +423,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/La Ruta Hacia El Dorado.jpg" alt="La Ruta Hacia El Dorado" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.305</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Ruta Hacia El Dorado</h3>
@@ -458,6 +436,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/La Sirenita 1.jpg" alt="La Sirenita 1" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.352</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Sirenita 1</h3>
@@ -470,6 +449,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/1 Bratz Starrin&#x27; &amp; Stylin&#x27; (2004.jpg" alt="1 Bratz Starrin&#x27; &amp; Stylin&#x27; (2004" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.9</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">1 Bratz Starrin&#x27; &amp; Stylin&#x27; (2004</h3>
@@ -481,6 +461,7 @@ footer strong { color: #ff6b1a; }
         <div class="tarjeta" data-categoria="Muñes" data-nombre="10 bratz kids fairy tales (2008">
             <div class="poster-wrapper">
                 <img src="caratulas/10 Bratz Kids Fairy Tales (2008.jpg" alt="10 Bratz Kids Fairy Tales (2008" loading="lazy" decoding="async">
+                
                 
             </div>
             <div class="info">
@@ -494,6 +475,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/12 Bratz Pampered Petz (2011.jpg" alt="12 Bratz Pampered Petz (2011" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.3</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">12 Bratz Pampered Petz (2011</h3>
@@ -506,6 +488,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/13 Bratz Good Vibes (2011.jpg" alt="13 Bratz Good Vibes (2011" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 8.9</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">13 Bratz Good Vibes (2011</h3>
@@ -518,6 +501,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/2 Bratz Rock Angelz (2005.jpg" alt="2 Bratz Rock Angelz (2005" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.5</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">2 Bratz Rock Angelz (2005</h3>
@@ -530,6 +514,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/3 Bratz Genie Magic (2006.jpg" alt="3 Bratz Genie Magic (2006" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.1</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">3 Bratz Genie Magic (2006</h3>
@@ -542,6 +527,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/4 Bratz Babyz The Movie (2006.jpg" alt="4 Bratz Babyz The Movie (2006" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 8.0</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">4 Bratz Babyz The Movie (2006</h3>
@@ -553,6 +539,7 @@ footer strong { color: #ff6b1a; }
         <div class="tarjeta" data-categoria="Muñes" data-nombre="5 bratz passion 4 fashion diamondz (2006">
             <div class="poster-wrapper">
                 <img src="caratulas/5 Bratz Passion 4 Fashion Diamondz (2006.jpg" alt="5 Bratz Passion 4 Fashion Diamondz (2006" loading="lazy" decoding="async">
+                
                 
             </div>
             <div class="info">
@@ -566,6 +553,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/6 Bratz Kidz Sleep Over Adventures (2007.jpg" alt="6 Bratz Kidz Sleep Over Adventures (2007" loading="lazy" decoding="async">
                 
+                
             </div>
             <div class="info">
                 <h3 class="titulo-peli">6 Bratz Kidz Sleep Over Adventures (2007</h3>
@@ -578,6 +566,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/7 Bratz Fashion Pixiez (2007.jpg" alt="7 Bratz Fashion Pixiez (2007" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.7</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">7 Bratz Fashion Pixiez (2007</h3>
@@ -590,6 +579,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/8 Bratz Super Babyz (2007.jpg" alt="8 Bratz Super Babyz (2007" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.5</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">8 Bratz Super Babyz (2007</h3>
@@ -602,6 +592,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/9 Bratz Girlz Really Rock (2008.jpg" alt="9 Bratz Girlz Really Rock (2008" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.2</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">9 Bratz Girlz Really Rock (2008</h3>
@@ -614,6 +605,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Los Aristogatos.jpg" alt="Los Aristogatos" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.302</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Los Aristogatos</h3>
@@ -626,6 +618,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Manuelita La Tortuguita.jpg" alt="Manuelita La Tortuguita" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.6</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Manuelita La Tortuguita</h3>
@@ -637,6 +630,7 @@ footer strong { color: #ff6b1a; }
         <div class="tarjeta" data-categoria="Muñes" data-nombre="mariposas negras">
             <div class="poster-wrapper">
                 <img src="caratulas/Mariposas Negras.jpg" alt="Mariposas Negras" loading="lazy" decoding="async">
+                
                 
             </div>
             <div class="info">
@@ -650,6 +644,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Mowgli Y Baloo - El Libro De La Selva 2.jpg" alt="Mowgli Y Baloo - El Libro De La Selva 2" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 5.8</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Mowgli Y Baloo - El Libro De La Selva 2</h3>
@@ -662,6 +657,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Mulan.jpg" alt="Mulan" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.903</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Mulan</h3>
@@ -673,6 +669,7 @@ footer strong { color: #ff6b1a; }
         <div class="tarjeta" data-categoria="Muñes" data-nombre="peter pan pelicula">
             <div class="poster-wrapper">
                 <img src="caratulas/Peter Pan Pelicula.jpg" alt="Peter Pan Pelicula" loading="lazy" decoding="async">
+                
                 
             </div>
             <div class="info">
@@ -686,6 +683,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Pinocho Pelicula Completa.jpg" alt="Pinocho Pelicula Completa" loading="lazy" decoding="async">
                 
+                
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Pinocho Pelicula Completa</h3>
@@ -698,6 +696,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Pocahontas (1995.jpg" alt="Pocahontas (1995" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.912</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Pocahontas (1995</h3>
@@ -710,6 +709,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Pocahontas (1998.jpg" alt="Pocahontas (1998" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 5.562</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Pocahontas (1998</h3>
@@ -722,6 +722,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Ratatouille.jpg" alt="Ratatouille" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.848</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Ratatouille</h3>
@@ -734,6 +735,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Simbad La Leyenda De Los 7 Mares.jpg" alt="Simbad La Leyenda De Los 7 Mares" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.067</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Simbad La Leyenda De Los 7 Mares</h3>
@@ -746,6 +748,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Tierra de Osos (2003.jpg" alt="Tierra de Osos (2003" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.287</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Tierra de Osos (2003</h3>
@@ -758,6 +761,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Tierra De Osos 2 (2006.jpg" alt="Tierra De Osos 2 (2006" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.659</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Tierra De Osos 2 (2006</h3>
@@ -770,6 +774,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Walt Disney&#x27;s The Old Mill (1937.jpg" alt="Walt Disney&#x27;s The Old Mill (1937" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.343</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Walt Disney&#x27;s The Old Mill (1937</h3>
@@ -778,346 +783,11 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="coyote vs acme (2026">
-            <div class="poster-wrapper">
-                <img src="caratulas/Coyote Vs Acme (2026.jpg" alt="Coyote Vs Acme (2026" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Coyote Vs Acme (2026</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Coyote%20Vs%20Acme%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="el libro de la selva 2">
-            <div class="poster-wrapper">
-                <img src="caratulas/El Libro De La Selva 2.jpg" alt="El Libro De La Selva 2" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">El Libro De La Selva 2</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Libro%20De%20La%20Selva%202" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="el origen de los guardianes">
-            <div class="poster-wrapper">
-                <img src="caratulas/El Origen De Los Guardianes.jpg" alt="El Origen De Los Guardianes" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">El Origen De Los Guardianes</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Origen%20De%20Los%20Guardianes" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="elementos (2023">
-            <div class="poster-wrapper">
-                <img src="caratulas/Elementos (2023.jpg" alt="Elementos (2023" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Elementos (2023</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Elementos%20(2023" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="ferdinand (2018">
-            <div class="poster-wrapper">
-                <img src="caratulas/Ferdinand (2018.jpg" alt="Ferdinand (2018" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Ferdinand (2018</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Ferdinand%20(2018" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="frozen 2">
-            <div class="poster-wrapper">
-                <img src="caratulas/Frozen 2.jpg" alt="Frozen 2" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Frozen 2</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Frozen%202" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="frozen el reino del hielo">
-            <div class="poster-wrapper">
-                <img src="caratulas/Frozen El Reino Del Hielo.jpg" alt="Frozen El Reino Del Hielo" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Frozen El Reino Del Hielo</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Frozen%20El%20Reino%20Del%20Hielo" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="goat (2026">
-            <div class="poster-wrapper">
-                <img src="caratulas/Goat (2026.jpg" alt="Goat (2026" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Goat (2026</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Goat%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="guardianes del museo 2">
-            <div class="poster-wrapper">
-                <img src="caratulas/Guardianes Del Museo 2.jpg" alt="Guardianes Del Museo 2" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Guardianes Del Museo 2</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Guardianes%20Del%20Museo%202" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="hop, rebelde sin pascua castellano (2011">
-            <div class="poster-wrapper">
-                <img src="caratulas/Hop, Rebelde Sin Pascua Castellano (2011.jpg" alt="Hop, Rebelde Sin Pascua Castellano (2011" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Hop, Rebelde Sin Pascua Castellano (2011</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hop,%20Rebelde%20Sin%20Pascua%20Castellano%20(2011" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="horton castellano (2008">
-            <div class="poster-wrapper">
-                <img src="caratulas/Horton Castellano (2008.jpg" alt="Horton Castellano (2008" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Horton Castellano (2008</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Horton%20Castellano%20(2008" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="hotel transylvania 2 (2015">
-            <div class="poster-wrapper">
-                <img src="caratulas/Hotel Transylvania 2 (2015.jpg" alt="Hotel Transylvania 2 (2015" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Hotel Transylvania 2 (2015</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hotel%20Transylvania%202%20(2015" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="huevitos congelados">
-            <div class="poster-wrapper">
-                <img src="caratulas/Huevitos Congelados.jpg" alt="Huevitos Congelados" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Huevitos Congelados</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Huevitos%20Congelados" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="hércules castellano (1997">
-            <div class="poster-wrapper">
-                <img src="caratulas/Hércules Castellano (1997.jpg" alt="Hércules Castellano (1997" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Hércules Castellano (1997</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hércules%20Castellano%20(1997" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="intercambiados (2026">
-            <div class="poster-wrapper">
-                <img src="caratulas/Intercambiados (2026.jpg" alt="Intercambiados (2026" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Intercambiados (2026</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Intercambiados%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="kung fu panda (2008">
-            <div class="poster-wrapper">
-                <img src="caratulas/Kung Fu Panda (2008.jpg" alt="Kung Fu Panda (2008" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Kung Fu Panda (2008</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Kung%20Fu%20Panda%20(2008" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="kung fu panda 4">
-            <div class="poster-wrapper">
-                <img src="caratulas/Kung Fu Panda 4.jpg" alt="Kung Fu Panda 4" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Kung Fu Panda 4</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Kung%20Fu%20Panda%204" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="las guerreras del kpop">
-            <div class="poster-wrapper">
-                <img src="caratulas/Las Guerreras Del Kpop.jpg" alt="Las Guerreras Del Kpop" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Las Guerreras Del Kpop</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Las%20Guerreras%20Del%20Kpop" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="looney toons en accion (la pelicula">
-            <div class="poster-wrapper">
-                <img src="caratulas/Looney Toons En Accion (La Pelicula.jpg" alt="Looney Toons En Accion (La Pelicula" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Looney Toons En Accion (La Pelicula</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Looney%20Toons%20En%20Accion%20(La%20Pelicula" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="los increibles (2004">
-            <div class="poster-wrapper">
-                <img src="caratulas/Los Increibles (2004.jpg" alt="Los Increibles (2004" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Los Increibles (2004</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Los%20Increibles%20(2004" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="los increibles 2 (2018">
-            <div class="poster-wrapper">
-                <img src="caratulas/Los Increibles 2 (2018.jpg" alt="Los Increibles 2 (2018" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Los Increibles 2 (2018</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Los%20Increibles%202%20(2018" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="minions &amp; monstruos (2026">
-            <div class="poster-wrapper">
-                <img src="caratulas/Minions &amp; Monstruos (2026.jpg" alt="Minions &amp; Monstruos (2026" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Minions &amp; Monstruos (2026</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Minions%20%26%20Monstruos%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="minions el origen de gru (2022">
-            <div class="poster-wrapper">
-                <img src="caratulas/Minions El Origen De Gru (2022.jpg" alt="Minions El Origen De Gru (2022" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Minions El Origen De Gru (2022</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Minions%20El%20Origen%20De%20Gru%20(2022" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="moana (2026">
-            <div class="poster-wrapper">
-                <img src="caratulas/Moana (2026.jpg" alt="Moana (2026" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Moana (2026</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Moana%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="moana">
-            <div class="poster-wrapper">
-                <img src="caratulas/Moana.jpg" alt="Moana" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Moana</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Moana" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="monster inc (2008">
-            <div class="poster-wrapper">
-                <img src="caratulas/Monster Inc (2008.jpg" alt="Monster Inc (2008" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Monster Inc (2008</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Monster%20Inc%20(2008" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="ponyo y el secreto de la sirenita">
-            <div class="poster-wrapper">
-                <img src="caratulas/Ponyo Y El Secreto De La Sirenita.jpg" alt="Ponyo Y El Secreto De La Sirenita" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Ponyo Y El Secreto De La Sirenita</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Ponyo%20Y%20El%20Secreto%20De%20La%20Sirenita" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="rey mono">
-            <div class="poster-wrapper">
-                <img src="caratulas/Rey Mono.jpg" alt="Rey Mono" loading="lazy" decoding="async">
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Rey Mono</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Rey%20Mono" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
         <div class="tarjeta" data-categoria="Muñes" data-nombre="la era de hielo (2002">
             <div class="poster-wrapper">
                 <img src="caratulas/La Era De Hielo (2002.jpg" alt="La Era De Hielo (2002" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.4</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Era De Hielo (2002</h3>
@@ -1130,6 +800,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/La Era De Hielo (2006.jpg" alt="La Era De Hielo (2006" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.73</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Era De Hielo (2006</h3>
@@ -1142,6 +813,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/La Era De Hielo 3 El Origen De Los Dinosaurios (2009.jpg" alt="La Era De Hielo 3 El Origen De Los Dinosaurios (2009" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.78</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Era De Hielo 3 El Origen De Los Dinosaurios (2009</h3>
@@ -1154,6 +826,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/La Era De Hielo 4 (2012.jpg" alt="La Era De Hielo 4 (2012" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.396</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Era De Hielo 4 (2012</h3>
@@ -1166,6 +839,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Madagascar 1.jpg" alt="Madagascar 1" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.934</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Madagascar 1</h3>
@@ -1178,6 +852,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Madagascar 2 Escape de África (2008.jpg" alt="Madagascar 2 Escape de África (2008" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.536</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Madagascar 2 Escape de África (2008</h3>
@@ -1190,6 +865,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Madagascar 3.jpg" alt="Madagascar 3" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.65</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Madagascar 3</h3>
@@ -1201,6 +877,7 @@ footer strong { color: #ff6b1a; }
         <div class="tarjeta" data-categoria="Muñes" data-nombre="madagascar i hd (2005">
             <div class="poster-wrapper">
                 <img src="caratulas/Madagascar I Hd (2005.jpg" alt="Madagascar I Hd (2005" loading="lazy" decoding="async">
+                
                 
             </div>
             <div class="info">
@@ -1214,6 +891,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Mi Villano Favorito 1 (2010.jpg" alt="Mi Villano Favorito 1 (2010" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.1</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Mi Villano Favorito 1 (2010</h3>
@@ -1226,6 +904,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Mi Villano Favorito 2 (2013.jpg" alt="Mi Villano Favorito 2 (2013" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.9</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Mi Villano Favorito 2 (2013</h3>
@@ -1238,6 +917,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Mi Villano Favorito 3 (2017.jpg" alt="Mi Villano Favorito 3 (2017" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.468</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Mi Villano Favorito 3 (2017</h3>
@@ -1250,6 +930,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Mi Villano Favorito 4 (2024.jpg" alt="Mi Villano Favorito 4 (2024" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.966</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Mi Villano Favorito 4 (2024</h3>
@@ -1262,6 +943,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Shrek (2001.jpg" alt="Shrek (2001" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.78</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Shrek (2001</h3>
@@ -1274,6 +956,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Shrek 2.jpg" alt="Shrek 2" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.332</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Shrek 2</h3>
@@ -1286,6 +969,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Shrek 3.jpg" alt="Shrek 3" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.0</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Shrek 3</h3>
@@ -1298,6 +982,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Shrek 4 Para Siempre.jpg" alt="Shrek 4 Para Siempre" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.415</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Shrek 4 Para Siempre</h3>
@@ -1306,10 +991,414 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="angry birds">
+            <div class="poster-wrapper">
+                <img src="caratulas/Angry Birds.jpg" alt="Angry Birds" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.568</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Angry Birds</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Angry%20Birds" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="bee movie la historia de una abeja (2007">
+            <div class="poster-wrapper">
+                <img src="caratulas/Bee Movie La Historia De Una Abeja (2007.jpg" alt="Bee Movie La Historia De Una Abeja (2007" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.053</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Bee Movie La Historia De Una Abeja (2007</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Bee%20Movie%20La%20Historia%20De%20Una%20Abeja%20(2007" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="bob esponja en busca de los pantalones cuadrados (2025">
+            <div class="poster-wrapper">
+                <img src="caratulas/Bob Esponja En Busca De Los Pantalones Cuadrados (2025.jpg" alt="Bob Esponja En Busca De Los Pantalones Cuadrados (2025" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.8</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Bob Esponja En Busca De Los Pantalones Cuadrados (2025</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Bob%20Esponja%20En%20Busca%20De%20Los%20Pantalones%20Cuadrados%20(2025" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="coyote vs acme (2026">
+            <div class="poster-wrapper">
+                <img src="caratulas/Coyote Vs Acme (2026.jpg" alt="Coyote Vs Acme (2026" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.5</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Coyote Vs Acme (2026</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Coyote%20Vs%20Acme%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="el libro de la selva 2">
+            <div class="poster-wrapper">
+                <img src="caratulas/El Libro De La Selva 2.jpg" alt="El Libro De La Selva 2" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 5.9</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">El Libro De La Selva 2</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Libro%20De%20La%20Selva%202" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="el origen de los guardianes">
+            <div class="poster-wrapper">
+                <img src="caratulas/El Origen De Los Guardianes.jpg" alt="El Origen De Los Guardianes" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.4</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">El Origen De Los Guardianes</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Origen%20De%20Los%20Guardianes" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="elementos (2023">
+            <div class="poster-wrapper">
+                <img src="caratulas/Elementos (2023.jpg" alt="Elementos (2023" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.591</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Elementos (2023</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Elementos%20(2023" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="ferdinand (2018">
+            <div class="poster-wrapper">
+                <img src="caratulas/Ferdinand (2018.jpg" alt="Ferdinand (2018" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.209</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Ferdinand (2018</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Ferdinand%20(2018" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="frozen 2">
+            <div class="poster-wrapper">
+                <img src="caratulas/Frozen 2.jpg" alt="Frozen 2" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.221</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Frozen 2</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Frozen%202" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="frozen el reino del hielo">
+            <div class="poster-wrapper">
+                <img src="caratulas/Frozen El Reino Del Hielo.jpg" alt="Frozen El Reino Del Hielo" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.25</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Frozen El Reino Del Hielo</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Frozen%20El%20Reino%20Del%20Hielo" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="goat (2026">
+            <div class="poster-wrapper">
+                <img src="caratulas/Goat (2026.jpg" alt="Goat (2026" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 8.0</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Goat (2026</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Goat%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="guardianes del museo 2">
+            <div class="poster-wrapper">
+                <img src="caratulas/Guardianes Del Museo 2.jpg" alt="Guardianes Del Museo 2" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.25</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Guardianes Del Museo 2</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Guardianes%20Del%20Museo%202" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="hop, rebelde sin pascua castellano (2011">
+            <div class="poster-wrapper">
+                <img src="caratulas/Hop, Rebelde Sin Pascua Castellano (2011.jpg" alt="Hop, Rebelde Sin Pascua Castellano (2011" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 5.8</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Hop, Rebelde Sin Pascua Castellano (2011</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hop,%20Rebelde%20Sin%20Pascua%20Castellano%20(2011" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="horton castellano (2008">
+            <div class="poster-wrapper">
+                <img src="caratulas/Horton Castellano (2008.jpg" alt="Horton Castellano (2008" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.526</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Horton Castellano (2008</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Horton%20Castellano%20(2008" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="hotel transylvania 2 (2015">
+            <div class="poster-wrapper">
+                <img src="caratulas/Hotel Transylvania 2 (2015.jpg" alt="Hotel Transylvania 2 (2015" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.766</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Hotel Transylvania 2 (2015</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hotel%20Transylvania%202%20(2015" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="huevitos congelados">
+            <div class="poster-wrapper">
+                <img src="caratulas/Huevitos Congelados.jpg" alt="Huevitos Congelados" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Huevitos Congelados</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Huevitos%20Congelados" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="hércules castellano (1997">
+            <div class="poster-wrapper">
+                <img src="caratulas/Hércules Castellano (1997.jpg" alt="Hércules Castellano (1997" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.5</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Hércules Castellano (1997</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hércules%20Castellano%20(1997" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="intercambiados (2026">
+            <div class="poster-wrapper">
+                <img src="caratulas/Intercambiados (2026.jpg" alt="Intercambiados (2026" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 8.861</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Intercambiados (2026</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Intercambiados%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="kung fu panda (2008">
+            <div class="poster-wrapper">
+                <img src="caratulas/Kung Fu Panda (2008.jpg" alt="Kung Fu Panda (2008" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.342</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Kung Fu Panda (2008</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Kung%20Fu%20Panda%20(2008" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="kung fu panda 4">
+            <div class="poster-wrapper">
+                <img src="caratulas/Kung Fu Panda 4.jpg" alt="Kung Fu Panda 4" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.994</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Kung Fu Panda 4</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Kung%20Fu%20Panda%204" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="las guerreras del kpop">
+            <div class="poster-wrapper">
+                <img src="caratulas/Las Guerreras Del Kpop.jpg" alt="Las Guerreras Del Kpop" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.989</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Las Guerreras Del Kpop</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Las%20Guerreras%20Del%20Kpop" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="looney toons en accion (la pelicula">
+            <div class="poster-wrapper">
+                <img src="caratulas/Looney Toons En Accion (La Pelicula.jpg" alt="Looney Toons En Accion (La Pelicula" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.387</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Looney Toons En Accion (La Pelicula</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Looney%20Toons%20En%20Accion%20(La%20Pelicula" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="los increibles (2004">
+            <div class="poster-wrapper">
+                <img src="caratulas/Los Increibles (2004.jpg" alt="Los Increibles (2004" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.73</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Los Increibles (2004</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Los%20Increibles%20(2004" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="los increibles 2 (2018">
+            <div class="poster-wrapper">
+                <img src="caratulas/Los Increibles 2 (2018.jpg" alt="Los Increibles 2 (2018" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.452</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Los Increibles 2 (2018</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Los%20Increibles%202%20(2018" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="minions &amp; monstruos (2026">
+            <div class="poster-wrapper">
+                <img src="caratulas/Minions &amp; Monstruos (2026.jpg" alt="Minions &amp; Monstruos (2026" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.564</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Minions &amp; Monstruos (2026</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Minions%20%26%20Monstruos%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="minions el origen de gru (2022">
+            <div class="poster-wrapper">
+                <img src="caratulas/Minions El Origen De Gru (2022.jpg" alt="Minions El Origen De Gru (2022" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.3</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Minions El Origen De Gru (2022</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Minions%20El%20Origen%20De%20Gru%20(2022" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="moana (2026">
+            <div class="poster-wrapper">
+                <img src="caratulas/Moana (2026.jpg" alt="Moana (2026" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.442</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Moana (2026</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Moana%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="moana">
+            <div class="poster-wrapper">
+                <img src="caratulas/Moana.jpg" alt="Moana" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.566</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Moana</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Moana" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="monster inc (2008">
+            <div class="poster-wrapper">
+                <img src="caratulas/Monster Inc (2008.jpg" alt="Monster Inc (2008" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.859</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Monster Inc (2008</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Monster%20Inc%20(2008" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="ponyo y el secreto de la sirenita">
+            <div class="poster-wrapper">
+                <img src="caratulas/Ponyo Y El Secreto De La Sirenita.jpg" alt="Ponyo Y El Secreto De La Sirenita" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.763</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Ponyo Y El Secreto De La Sirenita</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Ponyo%20Y%20El%20Secreto%20De%20La%20Sirenita" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="rey mono">
+            <div class="poster-wrapper">
+                <img src="caratulas/Rey Mono.jpg" alt="Rey Mono" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Rey Mono</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Rey%20Mono" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Muñes" data-nombre="sing ven y canta (2016">
             <div class="poster-wrapper">
                 <img src="caratulas/Sing Ven Y Canta (2016.jpg" alt="Sing Ven Y Canta (2016" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.124</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Sing Ven Y Canta (2016</h3>
@@ -1322,6 +1411,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Sing Ven Y Canta De Nuevo (2021.jpg" alt="Sing Ven Y Canta De Nuevo (2021" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.833</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Sing Ven Y Canta De Nuevo (2021</h3>
@@ -1333,6 +1423,7 @@ footer strong { color: #ff6b1a; }
         <div class="tarjeta" data-categoria="Muñes" data-nombre="soul (2020">
             <div class="poster-wrapper">
                 <img src="caratulas/Soul (2020.jpg" alt="Soul (2020" loading="lazy" decoding="async">
+                
                 
             </div>
             <div class="info">
@@ -1346,6 +1437,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Spermageddon (2024.jpg" alt="Spermageddon (2024" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.5</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Spermageddon (2024</h3>
@@ -1358,6 +1450,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Spidey And The Avengers Halloween.jpg" alt="Spidey And The Avengers Halloween" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.75</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Spidey And The Avengers Halloween</h3>
@@ -1370,6 +1463,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/The Pink Panther La Serie.jpg" alt="The Pink Panther La Serie" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.0</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">The Pink Panther La Serie</h3>
@@ -1382,6 +1476,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Toy Story 5 (2026.jpg" alt="Toy Story 5 (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 8.292</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Toy Story 5 (2026</h3>
@@ -1393,6 +1488,7 @@ footer strong { color: #ff6b1a; }
         <div class="tarjeta" data-categoria="Muñes" data-nombre="trolls (2016">
             <div class="poster-wrapper">
                 <img src="caratulas/Trolls (2016.jpg" alt="Trolls (2016" loading="lazy" decoding="async">
+                
                 
             </div>
             <div class="info">
@@ -1406,6 +1502,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Trolls 2 (2020.jpg" alt="Trolls 2 (2020" loading="lazy" decoding="async">
                 
+                
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Trolls 2 (2020</h3>
@@ -1418,6 +1515,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Turning Red (2022.jpg" alt="Turning Red (2022" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.326</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Turning Red (2022</h3>
@@ -1430,6 +1528,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Una Pelicula De Huevos (2006.jpg" alt="Una Pelicula De Huevos (2006" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.9</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Una Pelicula De Huevos (2006</h3>
@@ -1442,6 +1541,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Zootopia 2 (2025.jpg" alt="Zootopia 2 (2025" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.665</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Zootopia 2 (2025</h3>
@@ -1454,6 +1554,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Zootopia.jpg" alt="Zootopia" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.765</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Zootopia</h3>
@@ -1462,10 +1563,37 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Películas" data-nombre="cadena perpetua">
+            <div class="poster-wrapper">
+                <img src="caratulas/Cadena Perpetua.jpg" alt="Cadena Perpetua" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 8.733</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Cadena Perpetua</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Cadena%20Perpetua" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="charlie&#x27;s angels">
+            <div class="poster-wrapper">
+                <img src="caratulas/Charlie&#x27;s Angels.jpg" alt="Charlie&#x27;s Angels" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 5.855</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Charlie&#x27;s Angels</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Charlie's%20Angels" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Películas" data-nombre="hechizo de amor (1998">
             <div class="poster-wrapper">
                 <img src="caratulas/Hechizo De Amor (1998.jpg" alt="Hechizo De Amor (1998" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.8</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Hechizo De Amor (1998</h3>
@@ -1478,6 +1606,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Jack El Caza Gigantes.jpg" alt="Jack El Caza Gigantes" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 5.9</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Jack El Caza Gigantes</h3>
@@ -1490,6 +1619,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Shottas Hermanos En El Crimen (2002.jpg" alt="Shottas Hermanos En El Crimen (2002" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.666</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Shottas Hermanos En El Crimen (2002</h3>
@@ -1502,6 +1632,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Soy Leyenda (2007.jpg" alt="Soy Leyenda (2007" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.224</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Soy Leyenda (2007</h3>
@@ -1510,10 +1641,24 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Películas" data-nombre="waterworld (1995">
+            <div class="poster-wrapper">
+                <img src="caratulas/Waterworld (1995.jpg" alt="Waterworld (1995" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.246</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Waterworld (1995</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Waterworld%20(1995" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Películas" data-nombre="campamento miasma (2026">
             <div class="poster-wrapper">
                 <img src="caratulas/Campamento Miasma (2026.jpg" alt="Campamento Miasma (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.2</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Campamento Miasma (2026</h3>
@@ -1526,6 +1671,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Codigo De Venganza (2026.jpg" alt="Codigo De Venganza (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 4.9</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Codigo De Venganza (2026</h3>
@@ -1538,6 +1684,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Dead Man&#x27;s Wire (2026.jpg" alt="Dead Man&#x27;s Wire (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.513</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Dead Man&#x27;s Wire (2026</h3>
@@ -1550,6 +1697,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/El Heladero (2026.jpg" alt="El Heladero (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 4.9</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Heladero (2026</h3>
@@ -1562,6 +1710,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/El Ultimo Amanecer (2026.jpg" alt="El Ultimo Amanecer (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.864</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Ultimo Amanecer (2026</h3>
@@ -1574,6 +1723,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Entrega Al Límite (2026.jpg" alt="Entrega Al Límite (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 8.3</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Entrega Al Límite (2026</h3>
@@ -1586,6 +1736,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Evil Dead En Llamas (2026.jpg" alt="Evil Dead En Llamas (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.625</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Evil Dead En Llamas (2026</h3>
@@ -1598,6 +1749,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Hope (2026.jpg" alt="Hope (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.1</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Hope (2026</h3>
@@ -1610,6 +1762,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Insaciable (2026.jpg" alt="Insaciable (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.053</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Insaciable (2026</h3>
@@ -1622,6 +1775,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/La Boca Del Diablo (2026.jpg" alt="La Boca Del Diablo (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.493</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Boca Del Diablo (2026</h3>
@@ -1634,6 +1788,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/La Ultima Bala (2026.jpg" alt="La Ultima Bala (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.432</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Ultima Bala (2026</h3>
@@ -1646,6 +1801,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/La Ultima Casa (2026.jpg" alt="La Ultima Casa (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.822</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Ultima Casa (2026</h3>
@@ -1657,6 +1813,7 @@ footer strong { color: #ff6b1a; }
         <div class="tarjeta" data-categoria="Películas" data-nombre="michael jackson (2026">
             <div class="poster-wrapper">
                 <img src="caratulas/Michael Jackson (2026.jpg" alt="Michael Jackson (2026" loading="lazy" decoding="async">
+                
                 
             </div>
             <div class="info">
@@ -1670,6 +1827,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Pinocho (2026.jpg" alt="Pinocho (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.5</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Pinocho (2026</h3>
@@ -1678,10 +1836,24 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Películas" data-nombre="scary movie terroríficamente incorrecta 6">
+            <div class="poster-wrapper">
+                <img src="caratulas/Scary Movie Terroríficamente Incorrecta 6.jpg" alt="Scary Movie Terroríficamente Incorrecta 6" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.34</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Scary Movie Terroríficamente Incorrecta 6</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Scary%20Movie%20Terroríficamente%20Incorrecta%206" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Películas" data-nombre="spider man brand new day (2026">
             <div class="poster-wrapper">
                 <img src="caratulas/Spider Man Brand New Day (2026.jpg" alt="Spider Man Brand New Day (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 8.448</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Spider Man Brand New Day (2026</h3>
@@ -1694,6 +1866,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Tú+yo Solos Contra Todos (2026.jpg" alt="Tú+yo Solos Contra Todos (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 5.519</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Tú+yo Solos Contra Todos (2026</h3>
@@ -1706,6 +1879,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Zona De Riesgo (2026.jpg" alt="Zona De Riesgo (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.152</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Zona De Riesgo (2026</h3>
@@ -1718,6 +1892,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Ángeles De Guerra (2026.jpg" alt="Ángeles De Guerra (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 4.0</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Ángeles De Guerra (2026</h3>
@@ -1726,10 +1901,76 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Películas" data-nombre="american pie 1 presenta campamento de bandas">
+            <div class="poster-wrapper">
+                <img src="caratulas/American Pie 1 Presenta Campamento De Bandas.jpg" alt="American Pie 1 Presenta Campamento De Bandas" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 5.468</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">American Pie 1 Presenta Campamento De Bandas</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20American%20Pie%201%20Presenta%20Campamento%20De%20Bandas" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="american pie 2 tu segunda vez es mejor">
+            <div class="poster-wrapper">
+                <img src="caratulas/American Pie 2 Tu Segunda Vez Es Mejor.jpg" alt="American Pie 2 Tu Segunda Vez Es Mejor" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.343</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">American Pie 2 Tu Segunda Vez Es Mejor</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20American%20Pie%202%20Tu%20Segunda%20Vez%20Es%20Mejor" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="american pie 3 la boda">
+            <div class="poster-wrapper">
+                <img src="caratulas/American Pie 3 La Boda.jpg" alt="American Pie 3 La Boda" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.23</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">American Pie 3 La Boda</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20American%20Pie%203%20La%20Boda" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="american pie 4 presenta el libro del amor">
+            <div class="poster-wrapper">
+                <img src="caratulas/American Pie 4 Presenta El Libro Del Amor.jpg" alt="American Pie 4 Presenta El Libro Del Amor" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 5.3</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">American Pie 4 Presenta El Libro Del Amor</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20American%20Pie%204%20Presenta%20El%20Libro%20Del%20Amor" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="american pie 5 presents girls&#x27; rules">
+            <div class="poster-wrapper">
+                <img src="caratulas/American Pie 5 Presents Girls&#x27; Rules.jpg" alt="American Pie 5 Presents Girls&#x27; Rules" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.1</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">American Pie 5 Presents Girls&#x27; Rules</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20American%20Pie%205%20Presents%20Girls'%20Rules" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Películas" data-nombre="busqueda implacable 3">
             <div class="poster-wrapper">
                 <img src="caratulas/Busqueda Implacable 3.jpg" alt="Busqueda Implacable 3" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.3</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Busqueda Implacable 3</h3>
@@ -1742,6 +1983,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Búsqueda Implacable 1.jpg" alt="Búsqueda Implacable 1" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.414</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Búsqueda Implacable 1</h3>
@@ -1754,6 +1996,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Búsqueda Implacable 2.jpg" alt="Búsqueda Implacable 2" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.372</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Búsqueda Implacable 2</h3>
@@ -1766,6 +2009,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Scary Movie 1 (2000.jpg" alt="Scary Movie 1 (2000" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.416</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Scary Movie 1 (2000</h3>
@@ -1778,6 +2022,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Scary Movie 2 (2001.jpg" alt="Scary Movie 2 (2001" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 5.853</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Scary Movie 2 (2001</h3>
@@ -1790,6 +2035,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Scary Movie 3 (2003.jpg" alt="Scary Movie 3 (2003" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 5.979</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Scary Movie 3 (2003</h3>
@@ -1802,6 +2048,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Scary Movie 4 (2006.jpg" alt="Scary Movie 4 (2006" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 5.497</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Scary Movie 4 (2006</h3>
@@ -1810,10 +2057,89 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Películas" data-nombre="step up (2006">
+            <div class="poster-wrapper">
+                <img src="caratulas/Step Up (2006.jpg" alt="Step Up (2006" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.9</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Step Up (2006</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Step%20Up%20(2006" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="step up 2 the streets (2008">
+            <div class="poster-wrapper">
+                <img src="caratulas/Step Up 2 The Streets (2008.jpg" alt="Step Up 2 The Streets (2008" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.7</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Step Up 2 The Streets (2008</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Step%20Up%202%20The%20Streets%20(2008" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="step up 3 (2010">
+            <div class="poster-wrapper">
+                <img src="caratulas/Step Up 3 (2010.jpg" alt="Step Up 3 (2010" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.8</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Step Up 3 (2010</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Step%20Up%203%20(2010" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="step up 4 revolution (2012">
+            <div class="poster-wrapper">
+                <img src="caratulas/Step Up 4 Revolution (2012.jpg" alt="Step Up 4 Revolution (2012" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.9</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Step Up 4 Revolution (2012</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Step%20Up%204%20Revolution%20(2012" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="step up 5 (2014">
+            <div class="poster-wrapper">
+                <img src="caratulas/Step Up 5 (2014.jpg" alt="Step Up 5 (2014" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.8</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Step Up 5 (2014</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Step%20Up%205%20(2014" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="12 años de esclavitud">
+            <div class="poster-wrapper">
+                <img src="caratulas/12 Años De Esclavitud.jpg" alt="12 Años De Esclavitud" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.928</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">12 Años De Esclavitud</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%2012%20Años%20De%20Esclavitud" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Películas" data-nombre="al borde de la extincion (2023">
             <div class="poster-wrapper">
                 <img src="caratulas/Al Borde De La Extincion (2023.jpg" alt="Al Borde De La Extincion (2023" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 5.0</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Al Borde De La Extincion (2023</h3>
@@ -1822,10 +2148,24 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Películas" data-nombre="amigos por siempre (2017">
+            <div class="poster-wrapper">
+                <img src="caratulas/Amigos por siempre (2017.jpg" alt="Amigos por siempre (2017" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.113</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Amigos por siempre (2017</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Amigos%20por%20siempre%20(2017" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Películas" data-nombre="anarchy la noche de las bestias">
             <div class="poster-wrapper">
                 <img src="caratulas/Anarchy La Noche De Las Bestias.jpg" alt="Anarchy La Noche De Las Bestias" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.618</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Anarchy La Noche De Las Bestias</h3>
@@ -1838,6 +2178,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Avatar Fire And Ash (2025.jpg" alt="Avatar Fire And Ash (2025" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.6</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Avatar Fire And Ash (2025</h3>
@@ -1850,6 +2191,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Carry On (2024.jpg" alt="Carry On (2024" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.868</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Carry On (2024</h3>
@@ -1862,6 +2204,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Cell (2016.jpg" alt="Cell (2016" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 4.709</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Cell (2016</h3>
@@ -1874,6 +2217,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Como Entrenar A Tu Dragon (2025.jpg" alt="Como Entrenar A Tu Dragon (2025" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.9</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Como Entrenar A Tu Dragon (2025</h3>
@@ -1882,10 +2226,24 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Películas" data-nombre="constantine">
+            <div class="poster-wrapper">
+                <img src="caratulas/Constantine.jpg" alt="Constantine" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.212</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Constantine</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Constantine" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Películas" data-nombre="el abismo">
             <div class="poster-wrapper">
                 <img src="caratulas/El Abismo.jpg" alt="El Abismo" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.702</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Abismo</h3>
@@ -1898,6 +2256,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/El Conjuro 4.jpg" alt="El Conjuro 4" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.941</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Conjuro 4</h3>
@@ -1910,6 +2269,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/El Dia De La Revelacion (2026.jpg" alt="El Dia De La Revelacion (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.446</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Dia De La Revelacion (2026</h3>
@@ -1922,6 +2282,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/El Elixir De La Inmortalidad.jpg" alt="El Elixir De La Inmortalidad" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 5.9</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Elixir De La Inmortalidad</h3>
@@ -1930,10 +2291,37 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Películas" data-nombre="el exorcismo de dios">
+            <div class="poster-wrapper">
+                <img src="caratulas/El Exorcismo De Dios.jpg" alt="El Exorcismo De Dios" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.1</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">El Exorcismo De Dios</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Exorcismo%20De%20Dios" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="el exorcismo de emily rose">
+            <div class="poster-wrapper">
+                <img src="caratulas/El Exorcismo De Emily Rose.jpg" alt="El Exorcismo De Emily Rose" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.608</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">El Exorcismo De Emily Rose</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Exorcismo%20De%20Emily%20Rose" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Películas" data-nombre="el gran huracán categoría 5">
             <div class="poster-wrapper">
                 <img src="caratulas/El Gran Huracán Categoría 5.jpg" alt="El Gran Huracán Categoría 5" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 5.7</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Gran Huracán Categoría 5</h3>
@@ -1946,6 +2334,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/El Hoyo.jpg" alt="El Hoyo" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.965</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Hoyo</h3>
@@ -1958,6 +2347,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/El Sobreviviente.jpg" alt="El Sobreviviente" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.7</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Sobreviviente</h3>
@@ -1970,6 +2360,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/El Susurro (2025.jpg" alt="El Susurro (2025" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.155</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Susurro (2025</h3>
@@ -1978,10 +2369,24 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Películas" data-nombre="el último exorcismo">
+            <div class="poster-wrapper">
+                <img src="caratulas/El Último Exorcismo.jpg" alt="El Último Exorcismo" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 5.671</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">El Último Exorcismo</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Último%20Exorcismo" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Películas" data-nombre="havoc (2025">
             <div class="poster-wrapper">
                 <img src="caratulas/Havoc (2025.jpg" alt="Havoc (2025" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.395</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Havoc (2025</h3>
@@ -1990,15 +2395,16 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
-        <div class="tarjeta" data-categoria="Películas" data-nombre="hidden">
+        <div class="tarjeta" data-categoria="Películas" data-nombre="hidden (2015">
             <div class="poster-wrapper">
-                <img src="caratulas/Hidden.jpg" alt="Hidden" loading="lazy" decoding="async">
+                <img src="caratulas/Hidden (2015.jpg" alt="Hidden (2015" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.956</span>
             </div>
             <div class="info">
-                <h3 class="titulo-peli">Hidden</h3>
+                <h3 class="titulo-peli">Hidden (2015</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hidden" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hidden%20(2015" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -2006,6 +2412,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Kill Masacre En El Tren (2023.jpg" alt="Kill Masacre En El Tren (2023" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.173</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Kill Masacre En El Tren (2023</h3>
@@ -2018,6 +2425,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Kraven (2025.jpg" alt="Kraven (2025" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.414</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Kraven (2025</h3>
@@ -2030,6 +2438,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/La Hermanastra Fea (2025.jpg" alt="La Hermanastra Fea (2025" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.334</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Hermanastra Fea (2025</h3>
@@ -2038,10 +2447,24 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Películas" data-nombre="la llamada de lo salvaje (2020">
+            <div class="poster-wrapper">
+                <img src="caratulas/La Llamada De Lo Salvaje (2020.jpg" alt="La Llamada De Lo Salvaje (2020" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.504</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">La Llamada De Lo Salvaje (2020</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Llamada%20De%20Lo%20Salvaje%20(2020" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Películas" data-nombre="los ilusionistas 3 (2025">
             <div class="poster-wrapper">
                 <img src="caratulas/Los Ilusionistas 3 (2025.jpg" alt="Los Ilusionistas 3 (2025" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.4</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Los Ilusionistas 3 (2025</h3>
@@ -2054,6 +2477,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Operacion Teheran (2024.jpg" alt="Operacion Teheran (2024" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.831</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Operacion Teheran (2024</h3>
@@ -2066,6 +2490,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Perdido En La Montaña.jpg" alt="Perdido En La Montaña" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.0</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Perdido En La Montaña</h3>
@@ -2078,6 +2503,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Rabbit Trap (2025.jpg" alt="Rabbit Trap (2025" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 5.6</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Rabbit Trap (2025</h3>
@@ -2089,6 +2515,7 @@ footer strong { color: #ff6b1a; }
         <div class="tarjeta" data-categoria="Películas" data-nombre="red tóxica (2025">
             <div class="poster-wrapper">
                 <img src="caratulas/Red Tóxica (2025.jpg" alt="Red Tóxica (2025" loading="lazy" decoding="async">
+                
                 
             </div>
             <div class="info">
@@ -2102,6 +2529,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Soulm8te.jpg" alt="Soulm8te" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.5</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Soulm8te</h3>
@@ -2114,6 +2542,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Supergirl (2026.jpg" alt="Supergirl (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.658</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Supergirl (2026</h3>
@@ -2126,6 +2555,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/The Ministry Of Ungentlemanly Warfare (2024.jpg" alt="The Ministry Of Ungentlemanly Warfare (2024" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.99</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">The Ministry Of Ungentlemanly Warfare (2024</h3>
@@ -2138,6 +2568,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/The Purge La Pelicula.jpg" alt="The Purge La Pelicula" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 5.993</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">The Purge La Pelicula</h3>
@@ -2150,6 +2581,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/The Trap (2019.jpg" alt="The Trap (2019" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 4.888</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">The Trap (2019</h3>
@@ -2162,6 +2594,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/The Uprising.jpg" alt="The Uprising" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.933</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">The Uprising</h3>
@@ -2174,6 +2607,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Tiburon De Guerra (2025.jpg" alt="Tiburon De Guerra (2025" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.2</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Tiburon De Guerra (2025</h3>
@@ -2186,6 +2620,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Trece Vidas (2022.jpg" alt="Trece Vidas (2022" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.831</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Trece Vidas (2022</h3>
@@ -2198,6 +2633,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Tron Ares (2025.jpg" alt="Tron Ares (2025" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.5</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Tron Ares (2025</h3>
@@ -2210,6 +2646,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Tu Corazón Será Destrozado (2026.jpg" alt="Tu Corazón Será Destrozado (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.04</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Tu Corazón Será Destrozado (2026</h3>
@@ -2222,6 +2659,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Una Verdad Inquietante (2018.jpg" alt="Una Verdad Inquietante (2018" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 5.2</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Una Verdad Inquietante (2018</h3>
@@ -2233,6 +2671,7 @@ footer strong { color: #ff6b1a; }
         <div class="tarjeta" data-categoria="Series" data-nombre="dany y el club de los berracos">
             <div class="poster-wrapper">
                 <img src="caratulas/Dany y el Club de los Berracos.jpg" alt="Dany y el Club de los Berracos" loading="lazy" decoding="async">
+                
                 
             </div>
             <div class="info">
@@ -2246,6 +2685,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/El Tabo Su Propia Guerra (1 - 10.jpg" alt="El Tabo Su Propia Guerra (1 - 10" loading="lazy" decoding="async">
                 
+                
             </div>
             <div class="info">
                 <h3 class="titulo-peli">El Tabo Su Propia Guerra (1 - 10</h3>
@@ -2257,6 +2697,7 @@ footer strong { color: #ff6b1a; }
         <div class="tarjeta" data-categoria="Series" data-nombre="carrie 1ra temp (2026">
             <div class="poster-wrapper">
                 <img src="caratulas/Carrie 1ra Temp (2026.jpg" alt="Carrie 1ra Temp (2026" loading="lazy" decoding="async">
+                
                 
             </div>
             <div class="info">
@@ -2270,6 +2711,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Coven Academy (El Secreto De Las Brujas.jpg" alt="Coven Academy (El Secreto De Las Brujas" loading="lazy" decoding="async">
                 
+                
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Coven Academy (El Secreto De Las Brujas</h3>
@@ -2278,10 +2720,24 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Series" data-nombre="good omens 1ra temporada (2019">
+            <div class="poster-wrapper">
+                <img src="caratulas/Good Omens 1ra Temporada (2019.jpg" alt="Good Omens 1ra Temporada (2019" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.621</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Good Omens 1ra Temporada (2019</h3>
+                <span class="categoria-tag">Series</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Good%20Omens%201ra%20Temporada%20(2019" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Series" data-nombre="jack ryan 1ra temp (2026">
             <div class="poster-wrapper">
                 <img src="caratulas/Jack Ryan 1ra Temp (2026.jpg" alt="Jack Ryan 1ra Temp (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.925</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Jack Ryan 1ra Temp (2026</h3>
@@ -2294,6 +2750,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/La Lista Final 1ra Temp.jpg" alt="La Lista Final 1ra Temp" loading="lazy" decoding="async">
                 
+                
             </div>
             <div class="info">
                 <h3 class="titulo-peli">La Lista Final 1ra Temp</h3>
@@ -2302,27 +2759,42 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
-        <div class="tarjeta" data-categoria="Series" data-nombre="neagley (2026) 1era temp">
+        <div class="tarjeta" data-categoria="Series" data-nombre="mirame asi el camino de noa (transmision (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/Neagley (2026) 1era Temp.jpg" alt="Neagley (2026) 1era Temp" loading="lazy" decoding="async">
+                <img src="caratulas/Mirame Asi El Camino De Noa (Transmision (2026.jpg" alt="Mirame Asi El Camino De Noa (Transmision (2026" loading="lazy" decoding="async">
+                
                 
             </div>
             <div class="info">
-                <h3 class="titulo-peli">Neagley (2026) 1era Temp</h3>
+                <h3 class="titulo-peli">Mirame Asi El Camino De Noa (Transmision (2026</h3>
                 <span class="categoria-tag">Series</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Neagley%20(2026)%201era%20Temp" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Mirame%20Asi%20El%20Camino%20De%20Noa%20(Transmision%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Series" data-nombre="neagley 1era temp (2026">
+            <div class="poster-wrapper">
+                <img src="caratulas/Neagley 1era Temp (2026.jpg" alt="Neagley 1era Temp (2026" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 8.13</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Neagley 1era Temp (2026</h3>
+                <span class="categoria-tag">Series</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Neagley%201era%20Temp%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
         <div class="tarjeta" data-categoria="Series" data-nombre="operativo lioness 1 era temp">
             <div class="poster-wrapper">
-                <img src="caratulas/Operativo Lioness 1 era Temp.jpg" alt="Operativo Lioness 1 era Temp" loading="lazy" decoding="async">
+                <img src="caratulas/Operativo Lioness 1 Era Temp.jpg" alt="Operativo Lioness 1 Era Temp" loading="lazy" decoding="async">
+                
                 
             </div>
             <div class="info">
-                <h3 class="titulo-peli">Operativo Lioness 1 era Temp</h3>
+                <h3 class="titulo-peli">Operativo Lioness 1 Era Temp</h3>
                 <span class="categoria-tag">Series</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Operativo%20Lioness%201%20era%20Temp" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Operativo%20Lioness%201%20Era%20Temp" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -2330,6 +2802,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Reacher 1era Temp.jpg" alt="Reacher 1era Temp" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 8.136</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Reacher 1era Temp</h3>
@@ -2342,6 +2815,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/See 1ra Temp (2019.jpg" alt="See 1ra Temp (2019" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 8.1</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">See 1ra Temp (2019</h3>
@@ -2350,15 +2824,16 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
-        <div class="tarjeta" data-categoria="Series" data-nombre="the punisher (temp 1 2026">
+        <div class="tarjeta" data-categoria="Series" data-nombre="the punisher (temp 1 (2026">
             <div class="poster-wrapper">
-                <img src="caratulas/The Punisher (Temp 1 2026.jpg" alt="The Punisher (Temp 1 2026" loading="lazy" decoding="async">
+                <img src="caratulas/The Punisher (Temp 1 (2026.jpg" alt="The Punisher (Temp 1 (2026" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 8.256</span>
             </div>
             <div class="info">
-                <h3 class="titulo-peli">The Punisher (Temp 1 2026</h3>
+                <h3 class="titulo-peli">The Punisher (Temp 1 (2026</h3>
                 <span class="categoria-tag">Series</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20The%20Punisher%20(Temp%201%202026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20The%20Punisher%20(Temp%201%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -2366,6 +2841,7 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/The Purge 1era Temp (2018.jpg" alt="The Purge 1era Temp (2018" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 6.246</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">The Purge 1era Temp (2018</h3>
@@ -2374,15 +2850,29 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
-        <div class="tarjeta" data-categoria="Animes" data-nombre="bartender glass of god">
+        <div class="tarjeta" data-categoria="Series" data-nombre="the rookie 1ra temporada (2018">
             <div class="poster-wrapper">
-                <img src="caratulas/Bartender Glass of God.jpg" alt="Bartender Glass of God" loading="lazy" decoding="async">
+                <img src="caratulas/The Rookie 1ra Temporada (2018.jpg" alt="The Rookie 1ra Temporada (2018" loading="lazy" decoding="async">
+                
                 
             </div>
             <div class="info">
-                <h3 class="titulo-peli">Bartender Glass of God</h3>
+                <h3 class="titulo-peli">The Rookie 1ra Temporada (2018</h3>
+                <span class="categoria-tag">Series</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20The%20Rookie%201ra%20Temporada%20(2018" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Animes" data-nombre="bartender glass of god">
+            <div class="poster-wrapper">
+                <img src="caratulas/Bartender Glass Of God.jpg" alt="Bartender Glass Of God" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Bartender Glass Of God</h3>
                 <span class="categoria-tag">Animes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Bartender%20Glass%20of%20God" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Bartender%20Glass%20Of%20God" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -2390,16 +2880,446 @@ footer strong { color: #ff6b1a; }
             <div class="poster-wrapper">
                 <img src="caratulas/Jin Roh The Wolf Brigade (1999.jpg" alt="Jin Roh The Wolf Brigade (1999" loading="lazy" decoding="async">
                 
+                <span class="badge-rating">⭐ 7.4</span>
             </div>
             <div class="info">
                 <h3 class="titulo-peli">Jin Roh The Wolf Brigade (1999</h3>
                 <span class="categoria-tag">Animes</span>
                 <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Jin%20Roh%20The%20Wolf%20Brigade%20(1999" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="acaramelados (transmision">
+            <div class="poster-wrapper">
+                <img src="caratulas/Acaramelados (Transmision.jpg" alt="Acaramelados (Transmision" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Acaramelados (Transmision</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Acaramelados%20(Transmision" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Series" data-nombre="alquimia de almas temp 1 hd completa latino dual (2022">
+            <div class="poster-wrapper">
+                <img src="caratulas/Alquimia De Almas Temp 1 Hd Completa Latino Dual (2022.jpg" alt="Alquimia De Almas Temp 1 Hd Completa Latino Dual (2022" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 8.6</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Alquimia De Almas Temp 1 Hd Completa Latino Dual (2022</h3>
+                <span class="categoria-tag">Series</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Alquimia%20De%20Almas%20Temp%201%20Hd%20Completa%20Latino%20Dual%20(2022" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Series" data-nombre="alquimia de almas temporada 2 hd latino dual (2022">
+            <div class="poster-wrapper">
+                <img src="caratulas/Alquimia De Almas Temporada 2 Hd Latino Dual (2022.jpg" alt="Alquimia De Almas Temporada 2 Hd Latino Dual (2022" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Alquimia De Almas Temporada 2 Hd Latino Dual (2022</h3>
+                <span class="categoria-tag">Series</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Alquimia%20De%20Almas%20Temporada%202%20Hd%20Latino%20Dual%20(2022" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="belleza verdadera">
+            <div class="poster-wrapper">
+                <img src="caratulas/Belleza Verdadera.jpg" alt="Belleza Verdadera" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Belleza Verdadera</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Belleza%20Verdadera" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="cuando el telefono suena (coreana">
+            <div class="poster-wrapper">
+                <img src="caratulas/Cuando El Telefono Suena (Coreana.jpg" alt="Cuando El Telefono Suena (Coreana" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Cuando El Telefono Suena (Coreana</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Cuando%20El%20Telefono%20Suena%20(Coreana" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="cuatro manos y dos sonatas (transmision">
+            <div class="poster-wrapper">
+                <img src="caratulas/Cuatro manos y dos sonatas (Transmision.jpg" alt="Cuatro manos y dos sonatas (Transmision" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Cuatro manos y dos sonatas (Transmision</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Cuatro%20manos%20y%20dos%20sonatas%20(Transmision" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="doctor">
+            <div class="poster-wrapper">
+                <img src="caratulas/Doctor.jpg" alt="Doctor" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Doctor</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Doctor" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="doctor x mafia de blanco (transmision">
+            <div class="poster-wrapper">
+                <img src="caratulas/Doctor X Mafia De Blanco (Transmision.jpg" alt="Doctor X Mafia De Blanco (Transmision" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Doctor X Mafia De Blanco (Transmision</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Doctor%20X%20Mafia%20De%20Blanco%20(Transmision" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="dream to you (2026">
+            <div class="poster-wrapper">
+                <img src="caratulas/Dream To You (2026.jpg" alt="Dream To You (2026" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Dream To You (2026</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Dream%20To%20You%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="el genio y los deseos (gene make a wish) (corea) (13 caps) (cast">
+            <div class="poster-wrapper">
+                <img src="caratulas/El Genio Y Los Deseos (Gene Make A Wish) (Corea) (13 Caps) (Cast.jpg" alt="El Genio Y Los Deseos (Gene Make A Wish) (Corea) (13 Caps) (Cast" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.9</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">El Genio Y Los Deseos (Gene Make A Wish) (Corea) (13 Caps) (Cast</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Genio%20Y%20Los%20Deseos%20(Gene%20Make%20A%20Wish)%20(Corea)%20(13%20Caps)%20(Cast" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="el prisionero de la belleza">
+            <div class="poster-wrapper">
+                <img src="caratulas/El Prisionero De La Belleza.jpg" alt="El Prisionero De La Belleza" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">El Prisionero De La Belleza</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Prisionero%20De%20La%20Belleza" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="fatalidad a tu servicio (2021">
+            <div class="poster-wrapper">
+                <img src="caratulas/Fatalidad A Tu Servicio (2021.jpg" alt="Fatalidad A Tu Servicio (2021" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Fatalidad A Tu Servicio (2021</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Fatalidad%20A%20Tu%20Servicio%20(2021" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="forest (2020">
+            <div class="poster-wrapper">
+                <img src="caratulas/Forest (2020.jpg" alt="Forest (2020" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.7</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Forest (2020</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Forest%20(2020" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="here we meet again (2023">
+            <div class="poster-wrapper">
+                <img src="caratulas/Here We Meet Again (2023.jpg" alt="Here We Meet Again (2023" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Here We Meet Again (2023</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Here%20We%20Meet%20Again%20(2023" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="hola tirador">
+            <div class="poster-wrapper">
+                <img src="caratulas/Hola Tirador.jpg" alt="Hola Tirador" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Hola Tirador</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hola%20Tirador" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="humana por accidente (2026">
+            <div class="poster-wrapper">
+                <img src="caratulas/Humana Por Accidente (2026.jpg" alt="Humana Por Accidente (2026" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Humana Por Accidente (2026</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Humana%20Por%20Accidente%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="la chispa del amor (2026">
+            <div class="poster-wrapper">
+                <img src="caratulas/La Chispa Del Amor (2026.jpg" alt="La Chispa Del Amor (2026" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">La Chispa Del Amor (2026</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Chispa%20Del%20Amor%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="la corona perfecta (2026">
+            <div class="poster-wrapper">
+                <img src="caratulas/La Corona Perfecta (2026.jpg" alt="La Corona Perfecta (2026" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">La Corona Perfecta (2026</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Corona%20Perfecta%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="la leyenda de la general">
+            <div class="poster-wrapper">
+                <img src="caratulas/La Leyenda De La General.jpg" alt="La Leyenda De La General" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">La Leyenda De La General</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Leyenda%20De%20La%20General" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="la princesa y el hombre lobo">
+            <div class="poster-wrapper">
+                <img src="caratulas/La Princesa Y El Hombre Lobo.jpg" alt="La Princesa Y El Hombre Lobo" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">La Princesa Y El Hombre Lobo</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Princesa%20Y%20El%20Hombre%20Lobo" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="la reina de las lagrimas (coreana">
+            <div class="poster-wrapper">
+                <img src="caratulas/La Reina De Las Lagrimas (Coreana.jpg" alt="La Reina De Las Lagrimas (Coreana" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">La Reina De Las Lagrimas (Coreana</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20La%20Reina%20De%20Las%20Lagrimas%20(Coreana" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="los superfrikis (2026">
+            <div class="poster-wrapper">
+                <img src="caratulas/Los SuperFrikis (2026.jpg" alt="Los SuperFrikis (2026" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Los SuperFrikis (2026</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Los%20SuperFrikis%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="mi nemesis con aire de realeza (2026">
+            <div class="poster-wrapper">
+                <img src="caratulas/Mi nemesis con aire de realeza (2026.jpg" alt="Mi nemesis con aire de realeza (2026" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Mi nemesis con aire de realeza (2026</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Mi%20nemesis%20con%20aire%20de%20realeza%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="otra vez senorita oh">
+            <div class="poster-wrapper">
+                <img src="caratulas/Otra Vez Senorita Oh.jpg" alt="Otra Vez Senorita Oh" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Otra Vez Senorita Oh</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Otra%20Vez%20Senorita%20Oh" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Series" data-nombre="primavera temprana (2026">
+            <div class="poster-wrapper">
+                <img src="caratulas/Primavera Temprana (2026.jpg" alt="Primavera Temprana (2026" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Primavera Temprana (2026</h3>
+                <span class="categoria-tag">Series</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Primavera%20Temprana%20(2026" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="regreso del margen">
+            <div class="poster-wrapper">
+                <img src="caratulas/Regreso Del Margen.jpg" alt="Regreso Del Margen" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Regreso Del Margen</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Regreso%20Del%20Margen" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="ruler master of the mask (k dorama) 40 cap (2017">
+            <div class="poster-wrapper">
+                <img src="caratulas/Ruler Master Of The Mask (K Dorama) 40 Cap (2017.jpg" alt="Ruler Master Of The Mask (K Dorama) 40 Cap (2017" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Ruler Master Of The Mask (K Dorama) 40 Cap (2017</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Ruler%20Master%20Of%20The%20Mask%20(K%20Dorama)%2040%20Cap%20(2017" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="sabuesos">
+            <div class="poster-wrapper">
+                <img src="caratulas/Sabuesos.jpg" alt="Sabuesos" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Sabuesos</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Sabuesos" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="strong woman do bong soon (2017">
+            <div class="poster-wrapper">
+                <img src="caratulas/Strong Woman Do Bong Soon (2017.jpg" alt="Strong Woman Do Bong Soon (2017" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Strong Woman Do Bong Soon (2017</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Strong%20Woman%20Do%20Bong%20Soon%20(2017" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Series" data-nombre="sweet home temp 1 caps 10 sub">
+            <div class="poster-wrapper">
+                <img src="caratulas/Sweet Home Temp 1 Caps 10 Sub.jpg" alt="Sweet Home Temp 1 Caps 10 Sub" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 8.2</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Sweet Home Temp 1 Caps 10 Sub</h3>
+                <span class="categoria-tag">Series</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Sweet%20Home%20Temp%201%20Caps%2010%20Sub" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="un beso romantico">
+            <div class="poster-wrapper">
+                <img src="caratulas/Un Beso Romantico.jpg" alt="Un Beso Romantico" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Un Beso Romantico</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Un%20Beso%20Romantico" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="un buen dia para ser un perro">
+            <div class="poster-wrapper">
+                <img src="caratulas/Un Buen Dia Para Ser Un Perro.jpg" alt="Un Buen Dia Para Ser Un Perro" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Un Buen Dia Para Ser Un Perro</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Un%20Buen%20Dia%20Para%20Ser%20Un%20Perro" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Doramas" data-nombre="when the weather is fine (2020">
+            <div class="poster-wrapper">
+                <img src="caratulas/When The Weather Is Fine (2020.jpg" alt="When The Weather Is Fine (2020" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.3</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">When The Weather Is Fine (2020</h3>
+                <span class="categoria-tag">Doramas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20When%20The%20Weather%20Is%20Fine%20(2020" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
         </div></div>
 <div class="sin-resultados" id="sinResultados">😕 No se encontraron resultados</div>
 <footer>
-    ✨ <strong>La Balanza</strong> · Catálogo actualizado el 16/10/2026<br>
+    ✨ <strong>La Balanza</strong> · Catálogo actualizado el 17/10/2026<br>
     📱 Pide por WhatsApp: <strong>+53 5354 9987</strong>
 </footer>
 
