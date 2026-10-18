@@ -8,13 +8,7 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html { min-height: 100%; -webkit-text-size-adjust: 100%; }
-
-.fondo-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; }
-.fondo-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 2s ease-in-out; }
-.fondo-slide.activo { opacity: 1; }
-.overlay-oscuro { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.85) 50%, rgba(13, 17, 23, 0.9) 100%); z-index: -1; pointer-events: none; }
-body { background: transparent; }
-
+body { background: #0d1117; }
 body { color: #f0f6fc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; min-height: 100vh; padding-bottom: 80px; overflow-x: hidden; }
 .top-bar { position: sticky; top: 0; z-index: 100; background: rgba(13, 17, 23, 0.95); border-bottom: 1px solid rgba(255, 107, 26, 0.15); }
 header { background: linear-gradient(135deg, #ff6b1a 0%, #8b00ff 50%, #4a148c 100%); padding: 14px 16px; text-align: center; }
@@ -232,9 +226,6 @@ footer strong { color: #ff6b1a; }
 </div>
 
 <div class="fondo-container">
-<div class="fondo-slide activo" style="background-image: url('fondo.jpg');"></div>
-<div class="fondo-slide" style="background-image: url('fondo2.jpg');"></div>
-<div class="fondo-slide" style="background-image: url('fondo3.jpg');"></div>
 </div>
 <div class="overlay-oscuro"></div>
 
@@ -253,10 +244,10 @@ footer strong { color: #ff6b1a; }
     </div>
     <nav class="sidebar-nav">
         <ul>
-            <li><a href="#" data-cat="todos" class="active"><span>🎬</span> Todos <span class="count">232</span></a></li>
+            <li><a href="#" data-cat="todos" class="active"><span>🎬</span> Todos <span class="count">239</span></a></li>
 <li><a href="#" data-cat="Muñes"><span>🧸</span> Muñes <span class="count">96</span></a></li>
-<li><a href="#" data-cat="Películas"><span>🎥</span> Películas <span class="count">85</span></a></li>
-<li><a href="#" data-cat="Series"><span>📺</span> Series <span class="count">20</span></a></li>
+<li><a href="#" data-cat="Películas"><span>🎥</span> Películas <span class="count">87</span></a></li>
+<li><a href="#" data-cat="Series"><span>📺</span> Series <span class="count">25</span></a></li>
 <li><a href="#" data-cat="Animes"><span>🎌</span> Animes <span class="count">2</span></a></li>
 <li><a href="#" data-cat="Doramas"><span>💕</span> Doramas <span class="count">29</span></a></li>
         </ul>
@@ -298,7 +289,7 @@ footer strong { color: #ff6b1a; }
     <div class="buscador-container">
         <input type="text" class="buscador" id="buscador" placeholder="Buscar película, serie, muñe, anime o dorama...">
     </div>
-    <div class="tabs" id="tabsTop"><div class="tab activa" data-filtro="todos">Todos (232)</div><div class="tab" data-filtro="Muñes">Muñes (96)</div><div class="tab" data-filtro="Películas">Películas (85)</div><div class="tab" data-filtro="Series">Series (20)</div><div class="tab" data-filtro="Animes">Animes (2)</div><div class="tab" data-filtro="Doramas">Doramas (29)</div></div>
+    <div class="tabs" id="tabsTop"><div class="tab activa" data-filtro="todos">Todos (239)</div><div class="tab" data-filtro="Muñes">Muñes (96)</div><div class="tab" data-filtro="Películas">Películas (87)</div><div class="tab" data-filtro="Series">Series (25)</div><div class="tab" data-filtro="Animes">Animes (2)</div><div class="tab" data-filtro="Doramas">Doramas (29)</div></div>
 </div>
 
 <div class="grid" id="grid">
@@ -1589,6 +1580,19 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Películas" data-nombre="gladiador (2000">
+            <div class="poster-wrapper">
+                <img src="caratulas/Gladiador (2000.jpg" alt="Gladiador (2000" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 8.232</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Gladiador (2000</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Gladiador%20(2000" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Películas" data-nombre="hechizo de amor (1998">
             <div class="poster-wrapper">
                 <img src="caratulas/Hechizo De Amor (1998.jpg" alt="Hechizo De Amor (1998" loading="lazy" decoding="async">
@@ -2408,6 +2412,19 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Películas" data-nombre="interestelar (2024">
+            <div class="poster-wrapper">
+                <img src="caratulas/Interestelar (2024.jpg" alt="Interestelar (2024" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 8.491</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Interestelar (2024</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Interestelar%20(2024" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Películas" data-nombre="kill masacre en el tren (2023">
             <div class="poster-wrapper">
                 <img src="caratulas/Kill Masacre En El Tren (2023.jpg" alt="Kill Masacre En El Tren (2023" loading="lazy" decoding="async">
@@ -2876,6 +2893,71 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Series" data-nombre="castlevania 1ra temporada">
+            <div class="poster-wrapper">
+                <img src="caratulas/Castlevania 1ra Temporada.jpg" alt="Castlevania 1ra Temporada" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Castlevania 1ra Temporada</h3>
+                <span class="categoria-tag">Series</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Castlevania%201ra%20Temporada" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Series" data-nombre="castlevania 2da temporada">
+            <div class="poster-wrapper">
+                <img src="caratulas/Castlevania 2da Temporada.jpg" alt="Castlevania 2da Temporada" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Castlevania 2da Temporada</h3>
+                <span class="categoria-tag">Series</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Castlevania%202da%20Temporada" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Series" data-nombre="devil may cry 1ra temporada">
+            <div class="poster-wrapper">
+                <img src="caratulas/Devil May Cry 1ra Temporada.jpg" alt="Devil May Cry 1ra Temporada" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Devil May Cry 1ra Temporada</h3>
+                <span class="categoria-tag">Series</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Devil%20May%20Cry%201ra%20Temporada" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Series" data-nombre="devil may cry 2da temporada">
+            <div class="poster-wrapper">
+                <img src="caratulas/Devil May Cry 2da Temporada.jpg" alt="Devil May Cry 2da Temporada" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Devil May Cry 2da Temporada</h3>
+                <span class="categoria-tag">Series</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Devil%20May%20Cry%202da%20Temporada" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Series" data-nombre="hellsing 1ra temporada">
+            <div class="poster-wrapper">
+                <img src="caratulas/Hellsing 1ra Temporada.jpg" alt="Hellsing 1ra Temporada" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Hellsing 1ra Temporada</h3>
+                <span class="categoria-tag">Series</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Hellsing%201ra%20Temporada" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Animes" data-nombre="jin roh the wolf brigade (1999">
             <div class="poster-wrapper">
                 <img src="caratulas/Jin Roh The Wolf Brigade (1999.jpg" alt="Jin Roh The Wolf Brigade (1999" loading="lazy" decoding="async">
@@ -3319,7 +3401,7 @@ footer strong { color: #ff6b1a; }
         </div></div>
 <div class="sin-resultados" id="sinResultados">😕 No se encontraron resultados</div>
 <footer>
-    ✨ <strong>La Balanza</strong> · Catálogo actualizado el 17/10/2026<br>
+    ✨ <strong>La Balanza</strong> · Catálogo actualizado el 18/10/2026<br>
     📱 Pide por WhatsApp: <strong>+53 5354 9987</strong>
 </footer>
 
@@ -3420,20 +3502,6 @@ footer strong { color: #ff6b1a; }
     });
 </script>
 
-
-        <script>
-        (function() {
-            var fondos = document.querySelectorAll(".fondo-slide");
-            if (fondos.length <= 1) return;
-            var actual = 0;
-            var SEGUNDOS = 10000;
-            setInterval(function() {
-                fondos[actual].classList.remove("activo");
-                actual = (actual + 1) % fondos.length;
-                fondos[actual].classList.add("activo");
-            }, SEGUNDOS);
-        })();
-        </script>
 
 
     <script>
