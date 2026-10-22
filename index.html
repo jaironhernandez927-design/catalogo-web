@@ -3,233 +3,118 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#ff6b1a">
+<meta name="theme-color" content="#0f1115">
 <title>Catálogo · La Balanza</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html { min-height: 100%; -webkit-text-size-adjust: 100%; }
+html { min-height: 100%; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
 .fondo-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; overflow: hidden; }
 .fondo-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0; transition: opacity 2s ease-in-out; }
 .fondo-slide.activo { opacity: 1; }
-.overlay-oscuro { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(13, 17, 23, 0.9) 0%, rgba(13, 17, 23, 0.85) 50%, rgba(13, 17, 23, 0.9) 100%); z-index: -1; pointer-events: none; }
+.overlay-oscuro { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(15, 17, 21, 0.92) 0%, rgba(15, 17, 21, 0.87) 50%, rgba(15, 17, 21, 0.92) 100%); z-index: -1; pointer-events: none; }
 body { background: transparent; }
 
-body { color: #f0f6fc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; min-height: 100vh; padding-bottom: 80px; overflow-x: hidden; }
-.top-bar { position: sticky; top: 0; z-index: 100; background: rgba(13, 17, 23, 0.95); border-bottom: 1px solid rgba(255, 107, 26, 0.15); }
-header { background: linear-gradient(135deg, #ff6b1a 0%, #8b00ff 50%, #4a148c 100%); padding: 14px 16px; text-align: center; }
+body { color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; min-height: 100vh; padding-bottom: 80px; overflow-x: hidden; }
+.top-bar { position: sticky; top: 0; z-index: 100; background: rgba(15, 17, 21, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid #2a2e37; }
+header { padding: 16px 20px; text-align: center; }
 .header-content { display: flex; align-items: center; justify-content: space-between; gap: 10px; max-width: 1200px; margin: 0 auto; }
-.header-left { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
-.hamburger { width: 42px; height: 42px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.3); border-radius: 10px; cursor: pointer; display: none; align-items: center; justify-content: center; flex-shrink: 0; padding: 0; }
+.header-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+.hamburger { width: 44px; height: 44px; background: transparent; border: 1px solid #2a2e37; border-radius: 12px; cursor: pointer; display: none; align-items: center; justify-content: center; flex-shrink: 0; padding: 0; color: #fff; }
 .hamburger span { display: block; width: 20px; height: 2px; background: #fff; position: relative; border-radius: 2px; }
 .hamburger span::before, .hamburger span::after { content: ""; position: absolute; left: 0; width: 20px; height: 2px; background: #fff; border-radius: 2px; }
 .hamburger span::before { top: -6px; }
 .hamburger span::after { top: 6px; }
-.logo-wrapper { width: 40px; height: 40px; flex-shrink: 0; }
+.logo-wrapper { width: 40px; height: 40px; flex-shrink: 0; color: #f5c2e7; }
 .header-text { text-align: left; min-width: 0; }
-.header-text h1 { color: #ffffff; font-size: 20px; font-weight: 900; letter-spacing: 2px; line-height: 1; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.badge-premium { background: rgba(0,0,0,0.3); color: #fff; font-size: 8px; font-weight: 800; letter-spacing: 1px; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.3); }
-.header-text p { color: rgba(255,255,255,0.9); font-size: 10px; letter-spacing: 0.3px; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.header-right { display: flex; gap: 8px; flex-shrink: 0; }
-.btn-icon { width: 42px; height: 42px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.3); border-radius: 10px; cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 18px; padding: 0; color: #fff; text-decoration: none; }
-.buscador-container { padding: 10px 16px; max-width: 1200px; margin: 0 auto; position: relative; }
-.buscador-container::before { content: "🔍"; position: absolute; left: 30px; top: 50%; transform: translateY(-50%); font-size: 15px; pointer-events: none; opacity: 0.6; z-index: 2; }
-.buscador { width: 100%; padding: 13px 16px 13px 42px; font-size: 15px; background: #161b22; color: #f0f6fc; border: 1px solid #30363d; border-radius: 12px; outline: none; }
-.buscador:focus { border-color: #ff6b1a; }
+.header-text h1 { color: #ffffff; font-size: 20px; font-weight: 800; letter-spacing: -0.5px; line-height: 1; display: flex; align-items: center; gap: 8px; }
+.header-text p { color: #8b949e; font-size: 11px; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.btn-icon { width: 44px; height: 44px; background: transparent; border: 1px solid #2a2e37; border-radius: 12px; cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 18px; padding: 0; color: #fff; text-decoration: none; }
+.buscador-container { padding: 12px 20px; max-width: 1200px; margin: 0 auto; position: relative; }
+.buscador-container::before { content: "🔍"; position: absolute; left: 34px; top: 50%; transform: translateY(-50%); font-size: 15px; pointer-events: none; opacity: 0.6; z-index: 2; }
+.buscador { width: 100%; padding: 14px 16px 14px 44px; font-size: 15px; background: #181b21; color: #fff; border: 1px solid #2a2e37; border-radius: 12px; outline: none; transition: border-color 0.2s; }
+.buscador:focus { border-color: #f5c2e7; }
 .buscador::placeholder { color: #8b949e; }
-.tabs { display: flex; gap: 8px; padding: 0 16px 12px; max-width: 1200px; margin: 0 auto; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.tabs { display: flex; gap: 8px; padding: 0 20px 16px; max-width: 1200px; margin: 0 auto; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
 .tabs::-webkit-scrollbar { display: none; }
-.tab { padding: 8px 16px; background: #161b22; color: #8b949e; border: 1px solid #30363d; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 600; white-space: nowrap; flex-shrink: 0; }
-.tab.activa { background: linear-gradient(90deg, #ff6b1a, #4a148c); color: #fff; border-color: transparent; }
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 18px; padding: 16px; max-width: 1200px; margin: 0 auto; }
-.tarjeta { background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; content-visibility: auto; contain-intrinsic-size: 320px; }
+.tab { padding: 8px 18px; background: #181b21; color: #8b949e; border: 1px solid #2a2e37; border-radius: 20px; cursor: pointer; font-size: 13px; font-weight: 500; white-space: nowrap; flex-shrink: 0; transition: all 0.2s; }
+.tab:hover { color: #fff; border-color: #8b949e; }
+.tab.activa { background: linear-gradient(135deg, #f5c2e7, #7c3aed); color: #fff; border-color: transparent; font-weight: 700; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 20px; padding: 20px; max-width: 1200px; margin: 0 auto; }
+.tarjeta { background: #181b21; border: 1px solid #2a2e37; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; content-visibility: auto; contain-intrinsic-size: 320px; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s; }
+.tarjeta:hover { transform: translateY(-6px); border-color: rgba(245, 194, 231, 0.4); box-shadow: 0 12px 30px rgba(0,0,0,0.4); }
 .poster-wrapper { aspect-ratio: 2/3; background: #000; overflow: hidden; position: relative; }
-.poster-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.badge-sin { position: absolute; top: 8px; right: 8px; background: rgba(255,107,26,0.95); color: #0d1117; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 10px; text-transform: uppercase; z-index: 2; }
-.badge-rating { position: absolute; bottom: 8px; left: 8px; background: rgba(13, 17, 23, 0.85); color: #ffcc00; font-size: 11px; font-weight: 800; padding: 4px 8px; border-radius: 8px; border: 1px solid rgba(255, 204, 0, 0.3); z-index: 2; }
-.info { padding: 12px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
-.titulo-peli { color: #f0f6fc; font-size: 13px; font-weight: 700; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 34px; }
-.categoria-tag { display: inline-block; padding: 2px 8px; background: rgba(139, 0, 255, 0.25); color: #ff6b1a; font-size: 10px; font-weight: 700; border-radius: 4px; text-transform: uppercase; width: fit-content; }
-.btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px; background: #25D366; color: #fff; text-decoration: none; font-size: 13px; font-weight: 700; border-radius: 8px; margin-top: auto; min-height: 44px; }
+.poster-wrapper img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+.tarjeta:hover .poster-wrapper img { transform: scale(1.06); }
+.badge-sin { position: absolute; top: 10px; right: 10px; background: #f5c2e7; color: #000; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; z-index: 2; }
+.badge-rating { position: absolute; bottom: 10px; left: 10px; background: rgba(0, 0, 0, 0.7); color: #f5c2e7; font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 8px; border: 1px solid rgba(245, 194, 231, 0.2); z-index: 2; backdrop-filter: blur(4px); }
+.info { padding: 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.titulo-peli { color: #fff; font-size: 14px; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 40px; }
+.categoria-tag { display: inline-block; padding: 3px 10px; background: rgba(255, 255, 255, 0.05); color: #8b949e; font-size: 11px; font-weight: 600; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.5px; width: fit-content; }
+.btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; background: rgba(255, 255, 255, 0.05); color: #fff; text-decoration: none; font-size: 13px; font-weight: 600; border-radius: 10px; border: 1px solid #2a2e37; margin-top: auto; transition: all 0.2s; }
+.btn-whatsapp:hover { background: #25D366; color: #000; border-color: #25D366; }
 .sin-resultados { text-align: center; padding: 60px 20px; color: #8b949e; font-size: 16px; display: none; }
 .sin-resultados.visible { display: block; }
-footer { text-align: center; padding: 30px 20px; color: #8b949e; font-size: 12px; border-top: 1px solid #30363d; margin-top: 40px; background: rgba(13, 17, 23, 0.85); }
-footer strong { color: #ff6b1a; }
-.halloween-banner { position: fixed; top: 0; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, #ff6b1a, #8b00ff); color: white; padding: 3px 16px; border-radius: 0 0 12px 12px; font-size: 10px; font-weight: 800; letter-spacing: 1.5px; z-index: 200; }
-.sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 300; opacity: 0; visibility: hidden; transition: opacity 0.25s ease, visibility 0.25s ease; }
+footer { text-align: center; padding: 40px 20px; color: #8b949e; font-size: 12px; border-top: 1px solid #2a2e37; margin-top: 40px; }
+footer strong { color: #fff; }
+.sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 300; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
 .sidebar-overlay.active { opacity: 1; visibility: visible; }
-.sidebar { position: fixed; top: 0; left: 0; width: 300px; max-width: 85vw; height: 100vh; height: 100dvh; background: #0d1117; z-index: 310; transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; border-right: 1px solid #30363d; }
+.sidebar { position: fixed; top: 0; left: 0; width: 300px; max-width: 85vw; height: 100vh; height: 100dvh; background: #0f1115; z-index: 310; transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; border-right: 1px solid #2a2e37; }
 .sidebar.active { transform: translateX(0); }
-.sidebar-header { background: linear-gradient(135deg, #ff6b1a, #4a148c); padding: 20px 18px; display: flex; align-items: center; gap: 12px; position: relative; }
-.sidebar-logo { width: 42px; height: 42px; flex-shrink: 0; }
-.sidebar-title { color: #fff; font-size: 15px; font-weight: 900; letter-spacing: 2px; }
-.sidebar-subtitle { color: rgba(255,255,255,0.85); font-size: 10px; margin-top: 2px; }
-.sidebar-search { padding: 14px 18px; border-bottom: 1px solid #30363d; position: relative; }
-.sidebar-search input { width: 100%; padding: 11px 12px 11px 38px; font-size: 14px; background: #161b22; color: #f0f6fc; border: 1px solid #30363d; border-radius: 10px; outline: none; }
-.sidebar-search input:focus { border-color: #ff6b1a; }
-.sidebar-search::before { content: "🔍"; position: absolute; left: 30px; top: 50%; transform: translateY(-50%); font-size: 14px; pointer-events: none; opacity: 0.6; }
-.sidebar-nav { flex: 1; overflow-y: auto; padding: 10px 0; }
+.sidebar-header { padding: 24px 20px; display: flex; align-items: center; gap: 12px; position: relative; border-bottom: 1px solid #2a2e37; }
+.sidebar-logo { width: 42px; height: 42px; flex-shrink: 0; color: #f5c2e7; }
+.sidebar-title { color: #fff; font-size: 16px; font-weight: 800; letter-spacing: -0.5px; }
+.sidebar-subtitle { color: #8b949e; font-size: 11px; margin-top: 2px; }
+.sidebar-search { padding: 16px 20px; border-bottom: 1px solid #2a2e37; position: relative; }
+.sidebar-search input { width: 100%; padding: 12px 12px 12px 38px; font-size: 14px; background: #181b21; color: #fff; border: 1px solid #2a2e37; border-radius: 10px; outline: none; }
+.sidebar-search input:focus { border-color: #f5c2e7; }
+.sidebar-search::before { content: "🔍"; position: absolute; left: 32px; top: 50%; transform: translateY(-50%); font-size: 14px; pointer-events: none; opacity: 0.6; }
+.sidebar-nav { flex: 1; overflow-y: auto; padding: 16px 0; }
 .sidebar-nav ul { list-style: none; }
-.sidebar-nav a { display: flex; align-items: center; gap: 12px; padding: 13px 18px; color: #f0f6fc; text-decoration: none; font-size: 14px; font-weight: 600; border-left: 3px solid transparent; min-height: 48px; }
-.sidebar-nav a:hover, .sidebar-nav a:active { background: rgba(255, 107, 26, 0.1); border-left-color: #ff6b1a; }
-.sidebar-nav a.active { background: rgba(255, 107, 26, 0.15); border-left-color: #ff6b1a; color: #ff6b1a; }
+.sidebar-nav a { display: flex; align-items: center; gap: 14px; padding: 14px 20px; color: #8b949e; text-decoration: none; font-size: 15px; font-weight: 500; transition: all 0.2s; }
+.sidebar-nav a:hover, .sidebar-nav a:active { color: #fff; background: rgba(255, 255, 255, 0.03); }
+.sidebar-nav a.active { color: #f5c2e7; font-weight: 700; }
 .sidebar-nav a span:first-child { font-size: 20px; }
-.sidebar-nav .count { margin-left: auto; background: rgba(255,255,255,0.1); color: #8b949e; padding: 3px 9px; border-radius: 10px; font-size: 11px; font-weight: 700; }
-.sidebar-footer { padding: 14px 18px; border-top: 1px solid #30363d; background: #161b22; }
-.sidebar-wa { display: flex; align-items: center; justify-content: center; gap: 8px; background: #25D366; color: #fff; padding: 13px 16px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 14px; min-height: 48px; }
-.sidebar-close { position: absolute; top: 18px; right: 18px; width: 32px; height: 32px; background: rgba(0,0,0,0.25); border: none; border-radius: 50%; color: #fff; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
-.bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: rgba(13, 17, 23, 0.98); border-top: 1px solid #30363d; z-index: 90; padding: 6px 4px; padding-bottom: calc(6px + env(safe-area-inset-bottom)); }
+.sidebar-nav .count { margin-left: auto; background: #181b21; color: #8b949e; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; border: 1px solid #2a2e37; }
+.sidebar-footer { padding: 20px; border-top: 1px solid #2a2e37; }
+.sidebar-wa { display: flex; align-items: center; justify-content: center; gap: 8px; background: #25D366; color: #000; padding: 14px 16px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 15px; }
+.sidebar-close { position: absolute; top: 24px; right: 20px; width: 32px; height: 32px; background: #181b21; border: 1px solid #2a2e37; border-radius: 50%; color: #fff; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; }
+.bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: rgba(15, 17, 21, 0.9); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-top: 1px solid #2a2e37; z-index: 90; padding: 8px 4px; padding-bottom: calc(8px + env(safe-area-inset-bottom)); }
 .bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; max-width: 700px; margin: 0 auto; }
-.bottom-nav-btn { background: none; border: none; color: #8b949e; padding: 6px 4px; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer; border-radius: 10px; min-width: 48px; min-height: 48px; font-family: inherit; }
-.bottom-nav-btn.active { color: #ff6b1a; background: rgba(255, 107, 26, 0.1); }
-.bottom-nav-btn .bn-icon { font-size: 18px; line-height: 1; }
-.bottom-nav-btn .bn-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2px; }
-.fab-wa { position: fixed; bottom: 90px; right: 16px; width: 56px; height: 56px; border-radius: 50%; background: #25D366; color: #fff; display: none; align-items: center; justify-content: center; text-decoration: none; z-index: 85; font-size: 26px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); animation: fabPulse 2s ease-in-out infinite; }
-@keyframes fabPulse { 0%, 100% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); transform: scale(1); } 50% { box-shadow: 0 6px 30px rgba(37, 211, 102, 0.9); transform: scale(1.05); } }
-@media (max-width: 700px) {
+.bottom-nav-btn { background: none; border: none; color: #8b949e; padding: 8px 6px; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; border-radius: 12px; min-width: 56px; min-height: 52px; font-family: inherit; transition: all 0.2s; }
+.bottom-nav-btn.active { color: #f5c2e7; }
+.bottom-nav-btn .bn-icon { font-size: 20px; line-height: 1; }
+.bottom-nav-btn .bn-label { font-size: 10px; font-weight: 600; letter-spacing: 0.2px; }
+.fab-wa { position: fixed; bottom: 100px; right: 20px; width: 60px; height: 60px; border-radius: 50%; background: #25D366; color: #000; display: none; align-items: center; justify-content: center; text-decoration: none; z-index: 85; font-size: 28px; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4); transition: transform 0.2s; }
+.fab-wa:hover { transform: scale(1.1); }
+@media (max-width: 800px) {
     .hamburger { display: flex; }
     .btn-icon { display: flex; }
     .tabs { display: none; }
     .bottom-nav { display: block; }
     .fab-wa { display: flex; }
-    header { padding: 12px 14px; }
-    .header-text h1 { font-size: 17px; letter-spacing: 1.5px; }
-    .header-text p { display: none; }
-    .buscador-container { padding: 10px 14px; }
-    .buscador-container::before { left: 24px; }
-    .buscador { padding: 12px 14px 12px 40px; font-size: 14px; }
-    .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 12px; }
-    .titulo-peli { font-size: 12px; min-height: 30px; }
-    .btn-whatsapp { font-size: 12px; padding: 8px; }
-    .badge-rating { font-size: 10px; padding: 3px 6px; }
-    footer { margin: 30px 12px 90px 12px; padding: 20px 14px; }
-    body { padding-bottom: 110px; }
+    header { padding: 16px 20px; }
+    .header-text h1 { font-size: 18px; }
+    .buscador-container { padding: 12px 20px; }
+    .buscador-container::before { left: 34px; }
+    .buscador { padding: 14px 16px 14px 44px; font-size: 15px; }
+    .grid { grid-template-columns: repeat(2, 1fr); gap: 14px; padding: 16px; }
+    .titulo-peli { font-size: 13px; min-height: 36px; }
+    .btn-whatsapp { font-size: 12px; padding: 10px; }
+    footer { padding: 30px 20px 110px; }
 }
-@media (min-width: 701px) {
+@media (min-width: 801px) {
     .sidebar, .sidebar-overlay { display: none !important; }
-    header { padding: 20px 24px; }
     .header-content { justify-content: center; }
-    .header-left { flex: 0 1 auto; }
-    .header-text h1 { font-size: 30px; letter-spacing: 4px; }
-    .header-text p { font-size: 12px; display: block; }
+    .header-left { flex: 0 1 auto; justify-content: center; }
+    .header-text { text-align: center; }
+    .header-text h1 { font-size: 28px; justify-content: center; }
+    .header-text p { font-size: 13px; }
     .header-right { display: none; }
 }
-
-    #bats-container { position: fixed; top: 0; left: 0; width: 0; height: 0; pointer-events: none; z-index: 80; }
-    .bat-hanging { position: fixed; width: 40px; height: 40px; pointer-events: none; opacity: 0;
-        transition: left 1.5s cubic-bezier(0.34, 1.3, 0.64, 1), top 1.5s cubic-bezier(0.34, 1.3, 0.64, 1), opacity 0.6s ease; }
-    .bat-hanging .bat-form { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transition: opacity 0.25s ease; }
-    .bat-form-fly { opacity: 0; }
-    .bat-hanging.sleeping { animation: batBreathe 2.6s ease-in-out infinite; }
-    .bat-hanging.sleeping .bat-form-sleep { opacity: 1; }
-    .bat-hanging.sleeping .bat-form-fly { opacity: 0; }
-    @keyframes batBreathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-    .bat-hanging.sleeping .bat-eye { animation: batPeek 7s ease-in-out infinite; }
-    @keyframes batPeek { 0%, 25% { transform: translateX(0); } 30%, 40% { transform: translateX(-2px); } 45%, 55% { transform: translateX(2px); } 60%, 65% { opacity: 0.15; } 70%, 100% { transform: translateX(0); } }
-    .bat-hanging.waking { animation: batWake 0.35s ease-out; }
-    .bat-hanging.waking .bat-form-sleep { opacity: 1; }
-    .bat-hanging.waking .bat-form-fly { opacity: 0; }
-    @keyframes batWake { 0% { transform: scale(1); } 40% { transform: scale(1.1); } 100% { transform: scale(1); } }
-    .bat-hanging.flying { animation: batFlyWiggle 0.5s ease-in-out infinite; }
-    .bat-hanging.flying .bat-form-sleep { opacity: 0; }
-    .bat-hanging.flying .bat-form-fly { opacity: 1; }
-    .bat-hanging.flying .bat-wing-l { animation: batFlapL 0.22s ease-in-out infinite; }
-    .bat-hanging.flying .bat-wing-r { animation: batFlapR 0.22s ease-in-out infinite; }
-    @keyframes batFlapL { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.35); } }
-    @keyframes batFlapR { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.35); } }
-    @keyframes batFlyWiggle { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
-    .pumpkin-deco { position: fixed; bottom: 15px; width: 70px; height: 70px; z-index: 45; pointer-events: none; }
-    .pumpkin-deco.pumpkin-izq { left: 15px; animation: pumpkinSwayLeft 5s ease-in-out infinite; }
-    .pumpkin-deco.pumpkin-der { right: 15px; animation: pumpkinSwayRight 5.5s ease-in-out infinite; }
-    @keyframes pumpkinSwayLeft { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
-    @keyframes pumpkinSwayRight { 0%, 100% { transform: rotate(3deg); } 50% { transform: rotate(-3deg); } }
-    .pumpkin-full-svg { width: 100%; height: 100%; display: block; }
-    .pumpkin-inner-light { animation: pumpkinFlicker 2.5s ease-in-out infinite; transform-origin: 50px 62px; }
-    @keyframes pumpkinFlicker { 0%, 100% { opacity: 0.75; } 15% { opacity: 1; } 40% { opacity: 0.85; } 70% { opacity: 1; } }
-    .pumpkin-eye-glow { animation: pumpkinEyeGlow 3.5s ease-in-out infinite; }
-    @keyframes pumpkinEyeGlow { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
-    .pumpkin-mouth-glow { animation: pumpkinMouthGlow 2.8s ease-in-out infinite; }
-    @keyframes pumpkinMouthGlow { 0%, 100% { opacity: 0.6; } 30% { opacity: 1; } }
-    .brasas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 44; overflow: hidden; }
-    .brasa { position: absolute; bottom: -20px; background: radial-gradient(circle, #ffcc66 0%, #ff6b1a 50%, transparent 70%); border-radius: 50%; opacity: 0; animation-name: subirBrasa; animation-timing-function: linear; animation-iteration-count: infinite; }
-    @keyframes subirBrasa { 0% { opacity: 0; transform: translateY(0); } 10% { opacity: 1; } 90% { opacity: 0.3; } 100% { opacity: 0; transform: translateY(-105vh) translateX(-15px); } }
-    @media (max-width: 700px) {
-        .bat-hanging { width: 32px; height: 32px; }
-        .pumpkin-deco { width: 50px; height: 50px; bottom: 70px; }
-        .pumpkin-deco.pumpkin-izq { left: 8px; }
-        .pumpkin-deco.pumpkin-der { right: 8px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-        .bat-hanging, .pumpkin-deco, .brasa { display: none; }
-    }
-    </style>
+</style>
 </head>
 <body>
-
-<div class="halloween-banner">🎃 ESPECIAL HALLOWEEN 🎃</div>
-<div id="bats-container"></div>
-<div class="pumpkin-deco pumpkin-izq"><svg class="pumpkin-full-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <radialGradient id="pkb" cx="50%" cy="45%" r="55%">
-                <stop offset="0%" stop-color="#ff9642"/>
-                <stop offset="55%" stop-color="#e85d04"/>
-                <stop offset="100%" stop-color="#9d2f00"/>
-            </radialGradient>
-            <radialGradient id="igl" cx="50%" cy="65%" r="45%">
-                <stop offset="0%" stop-color="#ffea00" stop-opacity="1"/>
-                <stop offset="40%" stop-color="#ffaa00" stop-opacity="0.9"/>
-                <stop offset="100%" stop-color="#ff4400" stop-opacity="0"/>
-            </radialGradient>
-        </defs>
-        <ellipse cx="50" cy="58" rx="38" ry="32" fill="url(#pkb)"/>
-        <path d="M 47 26 Q 44 18 46 12 Q 49 8 52 12 Q 52 18 53 26 Z" fill="#4a3a1f"/>
-        <g class="pumpkin-inner-light">
-            <ellipse cx="50" cy="62" rx="28" ry="22" fill="url(#igl)"/>
-        </g>
-        <polygon points="32,50 42,50 37,58" fill="#1a0f00"/>
-        <polygon points="58,50 68,50 63,58" fill="#1a0f00"/>
-        <polygon points="34,51 40,51 37,56" fill="#ffea00" class="pumpkin-eye-glow"/>
-        <polygon points="60,51 66,51 63,56" fill="#ffea00" class="pumpkin-eye-glow"/>
-        <path d="M 33 72 Q 40 68 50 68 Q 60 68 67 72 L 65 76 Q 60 74 55 76 L 52 72 L 48 76 L 45 72 L 42 76 Q 37 74 35 76 Z" fill="#1a0f00"/>
-        <path d="M 36 73 Q 42 70 50 70 Q 58 70 64 73 L 62 75 Q 58 73 54 75 L 52 72 L 48 75 L 46 72 L 42 75 Q 38 73 36 75 Z" fill="#ffaa00" class="pumpkin-mouth-glow"/>
-    </svg></div>
-<div class="pumpkin-deco pumpkin-der"><svg class="pumpkin-full-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <radialGradient id="pkb" cx="50%" cy="45%" r="55%">
-                <stop offset="0%" stop-color="#ff9642"/>
-                <stop offset="55%" stop-color="#e85d04"/>
-                <stop offset="100%" stop-color="#9d2f00"/>
-            </radialGradient>
-            <radialGradient id="igl" cx="50%" cy="65%" r="45%">
-                <stop offset="0%" stop-color="#ffea00" stop-opacity="1"/>
-                <stop offset="40%" stop-color="#ffaa00" stop-opacity="0.9"/>
-                <stop offset="100%" stop-color="#ff4400" stop-opacity="0"/>
-            </radialGradient>
-        </defs>
-        <ellipse cx="50" cy="58" rx="38" ry="32" fill="url(#pkb)"/>
-        <path d="M 47 26 Q 44 18 46 12 Q 49 8 52 12 Q 52 18 53 26 Z" fill="#4a3a1f"/>
-        <g class="pumpkin-inner-light">
-            <ellipse cx="50" cy="62" rx="28" ry="22" fill="url(#igl)"/>
-        </g>
-        <polygon points="32,50 42,50 37,58" fill="#1a0f00"/>
-        <polygon points="58,50 68,50 63,58" fill="#1a0f00"/>
-        <polygon points="34,51 40,51 37,56" fill="#ffea00" class="pumpkin-eye-glow"/>
-        <polygon points="60,51 66,51 63,56" fill="#ffea00" class="pumpkin-eye-glow"/>
-        <path d="M 33 72 Q 40 68 50 68 Q 60 68 67 72 L 65 76 Q 60 74 55 76 L 52 72 L 48 76 L 45 72 L 42 76 Q 37 74 35 76 Z" fill="#1a0f00"/>
-        <path d="M 36 73 Q 42 70 50 70 Q 58 70 64 73 L 62 75 Q 58 73 54 75 L 52 72 L 48 75 L 46 72 L 42 75 Q 38 73 36 75 Z" fill="#ffaa00" class="pumpkin-mouth-glow"/>
-    </svg></div>
-<div class="brasas-container">
-<div class="brasa" style="left:81%;animation-delay:1.34s;animation-duration:12.19s;width:3px;height:3px;"></div>
-<div class="brasa" style="left:28%;animation-delay:1.67s;animation-duration:7.72s;width:5px;height:5px;"></div>
-<div class="brasa" style="left:69%;animation-delay:1.04s;animation-duration:9.95s;width:3px;height:3px;"></div>
-<div class="brasa" style="left:11%;animation-delay:2.62s;animation-duration:10.54s;width:3px;height:3px;"></div>
-<div class="brasa" style="left:71%;animation-delay:2.39s;animation-duration:11.55s;width:5px;height:5px;"></div>
-<div class="brasa" style="left:53%;animation-delay:2.65s;animation-duration:11.12s;width:3px;height:3px;"></div>
-<div class="brasa" style="left:97%;animation-delay:9.67s;animation-duration:11.89s;width:4px;height:4px;"></div>
-<div class="brasa" style="left:35%;animation-delay:1.87s;animation-duration:13.7s;width:4px;height:4px;"></div>
-<div class="brasa" style="left:13%;animation-delay:1.11s;animation-duration:7.68s;width:4px;height:4px;"></div>
-<div class="brasa" style="left:77%;animation-delay:3.17s;animation-duration:7.3s;width:4px;height:4px;"></div>
-</div>
 
 <div class="fondo-container">
 <div class="fondo-slide activo" style="background-image: url('fondo1.jpg');"></div>
@@ -241,7 +126,7 @@ footer strong { color: #ff6b1a; }
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-        <div class="sidebar-logo"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"><line x1="50" y1="15" x2="50" y2="82" /><line x1="25" y1="85" x2="75" y2="85" /><line x1="18" y1="28" x2="82" y2="28" /><circle cx="50" cy="15" r="5" fill="#ffffff" /><line x1="18" y1="28" x2="18" y2="50" /><line x1="82" y1="28" x2="82" y2="50" /><path d="M 8 50 Q 18 68 28 50" /><path d="M 72 50 Q 82 68 92 50" /></g></svg></div>
+        <div class="sidebar-logo"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><g stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"><line x1="50" y1="15" x2="50" y2="82" /><line x1="25" y1="85" x2="75" y2="85" /><line x1="18" y1="28" x2="82" y2="28" /><circle cx="50" cy="15" r="5" fill="currentColor" /><line x1="18" y1="28" x2="18" y2="50" /><line x1="82" y1="28" x2="82" y2="50" /><path d="M 8 50 Q 18 68 28 50" /><path d="M 72 50 Q 82 68 92 50" /></g></svg></div>
         <div>
             <div class="sidebar-title">LA BALANZA</div>
             <div class="sidebar-subtitle">Grabaciones Premium</div>
@@ -249,14 +134,14 @@ footer strong { color: #ff6b1a; }
         <button class="sidebar-close" id="sidebarClose" aria-label="Cerrar">×</button>
     </div>
     <div class="sidebar-search">
-        <input type="text" id="buscadorSidebar" placeholder="Buscar película, serie...">
+        <input type="text" id="buscadorSidebar" placeholder="Buscar...">
     </div>
     <nav class="sidebar-nav">
         <ul>
-            <li><a href="#" data-cat="todos" class="active"><span>🎬</span> Todos <span class="count">289</span></a></li>
-<li><a href="#" data-cat="Muñes"><span>🧸</span> Muñes <span class="count">107</span></a></li>
-<li><a href="#" data-cat="Películas"><span>🎥</span> Películas <span class="count">117</span></a></li>
-<li><a href="#" data-cat="Series"><span>📺</span> Series <span class="count">22</span></a></li>
+            <li><a href="#" data-cat="todos" class="active"><span>🎬</span> Todos <span class="count">316</span></a></li>
+<li><a href="#" data-cat="Muñes"><span>🧸</span> Muñes <span class="count">121</span></a></li>
+<li><a href="#" data-cat="Películas"><span>🎥</span> Películas <span class="count">127</span></a></li>
+<li><a href="#" data-cat="Series"><span>📺</span> Series <span class="count">25</span></a></li>
 <li><a href="#" data-cat="Animes"><span>🎌</span> Animes <span class="count">10</span></a></li>
 <li><a href="#" data-cat="Doramas"><span>💕</span> Doramas <span class="count">33</span></a></li>
         </ul>
@@ -284,9 +169,9 @@ footer strong { color: #ff6b1a; }
         <div class="header-content">
             <div class="header-left">
                 <button class="hamburger" id="hamburger" aria-label="Menú"><span></span></button>
-                <div class="logo-wrapper"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"><line x1="50" y1="15" x2="50" y2="82" /><line x1="25" y1="85" x2="75" y2="85" /><line x1="18" y1="28" x2="82" y2="28" /><circle cx="50" cy="15" r="5" fill="#ffffff" /><line x1="18" y1="28" x2="18" y2="50" /><line x1="82" y1="28" x2="82" y2="50" /><path d="M 8 50 Q 18 68 28 50" /><path d="M 72 50 Q 82 68 92 50" /></g></svg></div>
+                <div class="logo-wrapper"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><g stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"><line x1="50" y1="15" x2="50" y2="82" /><line x1="25" y1="85" x2="75" y2="85" /><line x1="18" y1="28" x2="82" y2="28" /><circle cx="50" cy="15" r="5" fill="currentColor" /><line x1="18" y1="28" x2="18" y2="50" /><line x1="82" y1="28" x2="82" y2="50" /><path d="M 8 50 Q 18 68 28 50" /><path d="M 72 50 Q 82 68 92 50" /></g></svg></div>
                 <div class="header-text">
-                    <h1>LA BALANZA <span class="badge-premium">PREMIUM</span></h1>
+                    <h1>LA BALANZA</h1>
                     <p>Grabaciones Premium · Películas · Series · Muñes · Animes · Doramas</p>
                 </div>
             </div>
@@ -296,9 +181,9 @@ footer strong { color: #ff6b1a; }
         </div>
     </header>
     <div class="buscador-container">
-        <input type="text" class="buscador" id="buscador" placeholder="Buscar película, serie, muñe, anime o dorama...">
+        <input type="text" class="buscador" id="buscador" placeholder="Buscar películas, series, animes...">
     </div>
-    <div class="tabs" id="tabsTop"><div class="tab activa" data-filtro="todos">Todos (289)</div><div class="tab" data-filtro="Muñes">Muñes (107)</div><div class="tab" data-filtro="Películas">Películas (117)</div><div class="tab" data-filtro="Series">Series (22)</div><div class="tab" data-filtro="Animes">Animes (10)</div><div class="tab" data-filtro="Doramas">Doramas (33)</div></div>
+    <div class="tabs" id="tabsTop"><div class="tab activa" data-filtro="todos">Todos (316)</div><div class="tab" data-filtro="Muñes">Muñes (121)</div><div class="tab" data-filtro="Películas">Películas (127)</div><div class="tab" data-filtro="Series">Series (25)</div><div class="tab" data-filtro="Animes">Animes (10)</div><div class="tab" data-filtro="Doramas">Doramas (33)</div></div>
 </div>
 
 <div class="grid" id="grid">
@@ -341,6 +226,32 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="arthur (y los minimoys) (2007)">
+            <div class="poster-wrapper">
+                <img src="caratulas/arthur_y_los_minimoys_2007.jpg" alt="Arthur (Y Los Minimoys) (2007)" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.397</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Arthur (Y Los Minimoys) (2007)</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Arthur%20(Y%20Los%20Minimoys)%20(2007)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="asterix and cleopatra">
+            <div class="poster-wrapper">
+                <img src="caratulas/asterix_and_cleopatra.jpg" alt="Asterix And Cleopatra" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.932</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Asterix And Cleopatra</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Asterix%20And%20Cleopatra" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Muñes" data-nombre="atlantis">
             <div class="poster-wrapper">
                 <img src="caratulas/atlantis.jpg" alt="Atlantis" loading="lazy" decoding="async">
@@ -377,6 +288,19 @@ footer strong { color: #ff6b1a; }
                 <h3 class="titulo-peli">Buscando A Nemo (2003)</h3>
                 <span class="categoria-tag">Muñes</span>
                 <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Buscando%20A%20Nemo%20(2003)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="dumbo (1941)">
+            <div class="poster-wrapper">
+                <img src="caratulas/dumbo_1941.jpg" alt="Dumbo (1941)" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Dumbo (1941)</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Dumbo%20(1941)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -1147,16 +1071,146 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="angry birds">
+        <div class="tarjeta" data-categoria="Series" data-nombre="angry birds (serie)">
             <div class="poster-wrapper">
-                <img src="caratulas/angry_birds.jpg" alt="Angry Birds" loading="lazy" decoding="async">
+                <img src="caratulas/angry_birds_serie.jpg" alt="Angry Birds (Serie)" loading="lazy" decoding="async">
                 
                 <span class="badge-rating">⭐ 6.568</span>
             </div>
             <div class="info">
-                <h3 class="titulo-peli">Angry Birds</h3>
+                <h3 class="titulo-peli">Angry Birds (Serie)</h3>
+                <span class="categoria-tag">Series</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Angry%20Birds%20(Serie)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Series" data-nombre="regal academy (serie) temp 1">
+            <div class="poster-wrapper">
+                <img src="caratulas/regal_academy_serie_temp_1.jpg" alt="Regal Academy (Serie) Temp 1" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Regal Academy (Serie) Temp 1</h3>
+                <span class="categoria-tag">Series</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Regal%20Academy%20(Serie)%20Temp%201" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Series" data-nombre="scooby doo (serie animada)">
+            <div class="poster-wrapper">
+                <img src="caratulas/scooby_doo_serie_animada.jpg" alt="Scooby Doo (Serie Animada)" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Scooby Doo (Serie Animada)</h3>
+                <span class="categoria-tag">Series</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Scooby%20Doo%20(Serie%20Animada)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="aaa la película 2010">
+            <div class="poster-wrapper">
+                <img src="caratulas/aaa_la_pelicula_2010.jpg" alt="AAA La Película 2010" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.5</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">AAA La Película 2010</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Angry%20Birds" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20AAA%20La%20Película%202010" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="adventures of petey and friends 2019">
+            <div class="poster-wrapper">
+                <img src="caratulas/adventures_of_petey_and_friends_2019.jpg" alt="Adventures of petey and friends 2019" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.0</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Adventures of petey and friends 2019</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Adventures%20of%20petey%20and%20friends%202019" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="ahi viene cascarrabias 2018">
+            <div class="poster-wrapper">
+                <img src="caratulas/ahi_viene_cascarrabias_2018.jpg" alt="Ahi Viene Cascarrabias 2018" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 5.8</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Ahi Viene Cascarrabias 2018</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Ahi%20Viene%20Cascarrabias%202018" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="ana y bruno 2019">
+            <div class="poster-wrapper">
+                <img src="caratulas/ana_y_bruno_2019.jpg" alt="Ana Y Bruno 2019" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.6</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Ana Y Bruno 2019</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Ana%20Y%20Bruno%202019" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="angry birds 2, la pelicula 2019">
+            <div class="poster-wrapper">
+                <img src="caratulas/angry_birds_2_la_pelicula_2019.jpg" alt="Angry Birds 2, La Pelicula 2019" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Angry Birds 2, La Pelicula 2019</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Angry%20Birds%202,%20La%20Pelicula%202019" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="astro boy (2014)">
+            <div class="poster-wrapper">
+                <img src="caratulas/astro_boy_2014.jpg" alt="Astro Boy (2014)" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.343</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Astro Boy (2014)</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Astro%20Boy%20(2014)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="avatar aang el último maestro aire (2026)">
+            <div class="poster-wrapper">
+                <img src="caratulas/avatar_aang_el_ultimo_maestro_aire_2026.jpg" alt="Avatar Aang El último Maestro Aire (2026)" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 9.04</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Avatar Aang El último Maestro Aire (2026)</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Avatar%20Aang%20El%20último%20Maestro%20Aire%20(2026)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="aviones equipo de rescate 2014 532,7 mb">
+            <div class="poster-wrapper">
+                <img src="caratulas/aviones_equipo_de_rescate_2014_532_7_mb.jpg" alt="Aviones Equipo de Rescate 2014 532,7 Mb" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.2</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Aviones Equipo de Rescate 2014 532,7 Mb</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Aviones%20Equipo%20de%20Rescate%202014%20532,7%20Mb" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -1173,6 +1227,19 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="bling 2016">
+            <div class="poster-wrapper">
+                <img src="caratulas/bling_2016.jpg" alt="Bling 2016" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 5.5</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Bling 2016</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Bling%202016" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Muñes" data-nombre="bob esponja en busca de los pantalones cuadrados (2025)">
             <div class="poster-wrapper">
                 <img src="caratulas/bob_esponja_en_busca_de_los_pantalones_cuadrados_2025.jpg" alt="Bob Esponja En Busca De Los Pantalones Cuadrados (2025)" loading="lazy" decoding="async">
@@ -1186,16 +1253,29 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="buscando a dory">
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="buscando a dory (2016)">
             <div class="poster-wrapper">
-                <img src="caratulas/buscando_a_dory.jpg" alt="Buscando A Dory" loading="lazy" decoding="async">
+                <img src="caratulas/buscando_a_dory_2016.jpg" alt="Buscando A Dory (2016)" loading="lazy" decoding="async">
                 
                 <span class="badge-rating">⭐ 7.044</span>
             </div>
             <div class="info">
-                <h3 class="titulo-peli">Buscando A Dory</h3>
+                <h3 class="titulo-peli">Buscando A Dory (2016)</h3>
                 <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Buscando%20A%20Dory" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Buscando%20A%20Dory%20(2016)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="coco (2017)">
+            <div class="poster-wrapper">
+                <img src="caratulas/coco_2017.jpg" alt="Coco (2017)" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Coco (2017)</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Coco%20(2017)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -1248,6 +1328,19 @@ footer strong { color: #ff6b1a; }
                 <h3 class="titulo-peli">Elementos (2023)</h3>
                 <span class="categoria-tag">Muñes</span>
                 <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Elementos%20(2023)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="epic el reino secreto (2013)">
+            <div class="poster-wrapper">
+                <img src="caratulas/epic_el_reino_secreto_2013.jpg" alt="Epic El Reino Secreto (2013)" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Epic El Reino Secreto (2013)</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Epic%20El%20Reino%20Secreto%20(2013)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -1485,6 +1578,19 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="moana (2016)">
+            <div class="poster-wrapper">
+                <img src="caratulas/moana_2016.jpg" alt="Moana (2016)" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.566</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Moana (2016)</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Moana%20(2016)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Muñes" data-nombre="moana (2026)">
             <div class="poster-wrapper">
                 <img src="caratulas/moana_2026.jpg" alt="Moana (2026)" loading="lazy" decoding="async">
@@ -1495,19 +1601,6 @@ footer strong { color: #ff6b1a; }
                 <h3 class="titulo-peli">Moana (2026)</h3>
                 <span class="categoria-tag">Muñes</span>
                 <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Moana%20(2026)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Muñes" data-nombre="moana">
-            <div class="poster-wrapper">
-                <img src="caratulas/moana.jpg" alt="Moana" loading="lazy" decoding="async">
-                
-                <span class="badge-rating">⭐ 7.566</span>
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Moana</h3>
-                <span class="categoria-tag">Muñes</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Moana" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -1547,19 +1640,6 @@ footer strong { color: #ff6b1a; }
                 <h3 class="titulo-peli">Rey Mono</h3>
                 <span class="categoria-tag">Muñes</span>
                 <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Rey%20Mono" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
-            </div>
-        </div>
-
-        <div class="tarjeta" data-categoria="Series" data-nombre="scooby doo (serie animada)">
-            <div class="poster-wrapper">
-                <img src="caratulas/scooby_doo_serie_animada.jpg" alt="Scooby Doo (Serie Animada)" loading="lazy" decoding="async">
-                
-                
-            </div>
-            <div class="info">
-                <h3 class="titulo-peli">Scooby Doo (Serie Animada)</h3>
-                <span class="categoria-tag">Series</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Scooby%20Doo%20(Serie%20Animada)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -1625,6 +1705,19 @@ footer strong { color: #ff6b1a; }
                 <h3 class="titulo-peli">Spidey And The Avengers Halloween</h3>
                 <span class="categoria-tag">Muñes</span>
                 <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Spidey%20And%20The%20Avengers%20Halloween" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Muñes" data-nombre="the good dinosaur (el viaje de arlo) (2015)">
+            <div class="poster-wrapper">
+                <img src="caratulas/the_good_dinosaur_el_viaje_de_arlo_2015.jpg" alt="The Good Dinosaur (El viaje de Arlo) (2015)" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.755</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">The Good Dinosaur (El viaje de Arlo) (2015)</h3>
+                <span class="categoria-tag">Muñes</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20The%20Good%20Dinosaur%20(El%20viaje%20de%20Arlo)%20(2015)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -1807,6 +1900,19 @@ footer strong { color: #ff6b1a; }
                 <h3 class="titulo-peli">Soy Leyenda (2007)</h3>
                 <span class="categoria-tag">Películas</span>
                 <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Soy%20Leyenda%20(2007)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="terminator ii judgment day 1991">
+            <div class="poster-wrapper">
+                <img src="caratulas/terminator_ii_judgment_day_1991.jpg" alt="Terminator II Judgment day 1991" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 8.173</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Terminator II Judgment day 1991</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Terminator%20II%20Judgment%20day%201991" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -2239,16 +2345,42 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
-        <div class="tarjeta" data-categoria="Películas" data-nombre="harry potter y la piedra filosofal">
+        <div class="tarjeta" data-categoria="Películas" data-nombre="harry potter y el prisionero de azkaban (2004)">
             <div class="poster-wrapper">
-                <img src="caratulas/harry_potter_y_la_piedra_filosofal.jpg" alt="Harry Potter Y La Piedra Filosofal" loading="lazy" decoding="async">
+                <img src="caratulas/harry_potter_y_el_prisionero_de_azkaban_2004.jpg" alt="Harry Potter y El Prisionero De Azkaban (2004)" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 8.0</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Harry Potter y El Prisionero De Azkaban (2004)</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Harry%20Potter%20y%20El%20Prisionero%20De%20Azkaban%20(2004)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="harry potter y la cámara secreta (2002)">
+            <div class="poster-wrapper">
+                <img src="caratulas/harry_potter_y_la_camara_secreta_2002.jpg" alt="Harry Potter y La Cámara Secreta (2002)" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 7.709</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Harry Potter y La Cámara Secreta (2002)</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Harry%20Potter%20y%20La%20Cámara%20Secreta%20(2002)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="harry potter y la piedra filosofal (2001)">
+            <div class="poster-wrapper">
+                <img src="caratulas/harry_potter_y_la_piedra_filosofal_2001.jpg" alt="Harry Potter Y La Piedra Filosofal (2001)" loading="lazy" decoding="async">
                 
                 <span class="badge-rating">⭐ 7.905</span>
             </div>
             <div class="info">
-                <h3 class="titulo-peli">Harry Potter Y La Piedra Filosofal</h3>
+                <h3 class="titulo-peli">Harry Potter Y La Piedra Filosofal (2001)</h3>
                 <span class="categoria-tag">Películas</span>
-                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Harry%20Potter%20Y%20La%20Piedra%20Filosofal" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Harry%20Potter%20Y%20La%20Piedra%20Filosofal%20(2001)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -2538,6 +2670,19 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Películas" data-nombre="terminator destino oscuro (2020)">
+            <div class="poster-wrapper">
+                <img src="caratulas/terminator_destino_oscuro_2020.jpg" alt="Terminator Destino Oscuro (2020)" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.419</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Terminator Destino Oscuro (2020)</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Terminator%20Destino%20Oscuro%20(2020)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Películas" data-nombre="the matrix 1 (1999)">
             <div class="poster-wrapper">
                 <img src="caratulas/the_matrix_1_1999.jpg" alt="The Matrix 1 (1999)" loading="lazy" decoding="async">
@@ -2668,6 +2813,19 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Películas" data-nombre="amores materialistas (2025)">
+            <div class="poster-wrapper">
+                <img src="caratulas/amores_materialistas_2025.jpg" alt="Amores Materialistas (2025)" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.3</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Amores Materialistas (2025)</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Amores%20Materialistas%20(2025)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Películas" data-nombre="anarchy la noche de las bestias">
             <div class="poster-wrapper">
                 <img src="caratulas/anarchy_la_noche_de_las_bestias.jpg" alt="Anarchy La Noche De Las Bestias" loading="lazy" decoding="async">
@@ -2717,6 +2875,19 @@ footer strong { color: #ff6b1a; }
                 <h3 class="titulo-peli">Cell (2016)</h3>
                 <span class="categoria-tag">Películas</span>
                 <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Cell%20(2016)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="coming 2 america 2021">
+            <div class="poster-wrapper">
+                <img src="caratulas/coming_2_america_2021.jpg" alt="Coming 2 America 2021" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.31</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Coming 2 America 2021</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Coming%202%20America%202021" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -2795,6 +2966,19 @@ footer strong { color: #ff6b1a; }
                 <h3 class="titulo-peli">El Abismo</h3>
                 <span class="categoria-tag">Películas</span>
                 <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Abismo" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="el cazador y la reina del hielo (2016)">
+            <div class="poster-wrapper">
+                <img src="caratulas/el_cazador_y_la_reina_del_hielo_2016.jpg" alt="El Cazador y la Reina Del Hielo (2016)" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.29</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">El Cazador y la Reina Del Hielo (2016)</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Cazador%20y%20la%20Reina%20Del%20Hielo%20(2016)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -2941,6 +3125,19 @@ footer strong { color: #ff6b1a; }
             </div>
         </div>
 
+        <div class="tarjeta" data-categoria="Películas" data-nombre="inconceivable 2017 720p dual audio ()">
+            <div class="poster-wrapper">
+                <img src="caratulas/inconceivable_2017_720p_dual_audio.jpg" alt="Inconceivable 2017 720p Dual Audio ()" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 5.5</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Inconceivable 2017 720p Dual Audio ()</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Inconceivable%202017%20720p%20Dual%20Audio%20()" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
         <div class="tarjeta" data-categoria="Películas" data-nombre="interestelar (2024)">
             <div class="poster-wrapper">
                 <img src="caratulas/interestelar_2024.jpg" alt="Interestelar (2024)" loading="lazy" decoding="async">
@@ -2951,6 +3148,19 @@ footer strong { color: #ff6b1a; }
                 <h3 class="titulo-peli">Interestelar (2024)</h3>
                 <span class="categoria-tag">Películas</span>
                 <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Interestelar%20(2024)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="khuda haafiz 2020">
+            <div class="poster-wrapper">
+                <img src="caratulas/khuda_haafiz_2020.jpg" alt="Khuda Haafiz 2020" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 6.886</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Khuda Haafiz 2020</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Khuda%20Haafiz%202020" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -3094,6 +3304,19 @@ footer strong { color: #ff6b1a; }
                 <h3 class="titulo-peli">Red Tóxica (2025)</h3>
                 <span class="categoria-tag">Películas</span>
                 <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Red%20Tóxica%20(2025)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Películas" data-nombre="rogue 2020">
+            <div class="poster-wrapper">
+                <img src="caratulas/rogue_2020.jpg" alt="Rogue 2020" loading="lazy" decoding="async">
+                
+                <span class="badge-rating">⭐ 5.6</span>
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Rogue 2020</h3>
+                <span class="categoria-tag">Películas</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Rogue%202020" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -3263,6 +3486,19 @@ footer strong { color: #ff6b1a; }
                 <h3 class="titulo-peli">El Tabo Su Propia Guerra (1 - 10)</h3>
                 <span class="categoria-tag">Series</span>
                 <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20El%20Tabo%20Su%20Propia%20Guerra%20(1%20-%2010)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
+            </div>
+        </div>
+
+        <div class="tarjeta" data-categoria="Series" data-nombre="avatar la leyenda de aang (2024) (2da temporada)">
+            <div class="poster-wrapper">
+                <img src="caratulas/avatar_la_leyenda_de_aang_2024_2da_temporada.jpg" alt="Avatar La leyenda de Aang (2024) (2da Temporada)" loading="lazy" decoding="async">
+                
+                
+            </div>
+            <div class="info">
+                <h3 class="titulo-peli">Avatar La leyenda de Aang (2024) (2da Temporada)</h3>
+                <span class="categoria-tag">Series</span>
+                <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20esta%3A%20Avatar%20La%20leyenda%20de%20Aang%20(2024)%20(2da%20Temporada)" target="_blank" rel="noopener" class="btn-whatsapp">💬 Quiero esta</a>
             </div>
         </div>
 
@@ -4167,7 +4403,7 @@ footer strong { color: #ff6b1a; }
             var fondos = document.querySelectorAll(".fondo-slide");
             if (fondos.length <= 1) return;
             var actual = 0;
-            var SEGUNDOS = 10000;
+            var SEGUNDOS = 12000;
             setInterval(function() {
                 fondos[actual].classList.remove("activo");
                 actual = (actual + 1) % fondos.length;
@@ -4176,160 +4412,5 @@ footer strong { color: #ff6b1a; }
         })();
         </script>
 
-
-    <script>
-    (function() {
-        'use strict';
-        var BAT_COUNT = 2;
-        var SCROLL_STOP_DELAY = 1000;
-        var BAT_WIDTH = 40;
-        var bats = [];
-        var scrollTimer = null;
-        var isReady = false;
-
-        function getRandomVisiblePoster() {
-            var posters = document.querySelectorAll('.poster-wrapper');
-            if (posters.length === 0) return null;
-            var vh = window.innerHeight;
-            var visible = [];
-            for (var i = 0; i < posters.length; i++) {
-                var p = posters[i];
-                var r = p.getBoundingClientRect();
-                if (r.bottom > 150 && r.bottom < vh - 40 && r.width > 50) {
-                    visible.push({ el: p, rect: r });
-                }
-            }
-            if (visible.length > 0) return visible[Math.floor(Math.random() * visible.length)];
-            var fallback = posters[Math.floor(Math.random() * posters.length)];
-            return { el: fallback, rect: fallback.getBoundingClientRect() };
-        }
-        function computePosterAttach(post) {
-            var x = post.rect.left + post.rect.width / 2 - BAT_WIDTH / 2 + (Math.random() * 20 - 10);
-            var y = post.rect.bottom - 4;
-            return { x: x, y: y };
-        }
-        function sleepBat(bat, poster) {
-            var pos = computePosterAttach(poster);
-            bat.el.style.left = pos.x + 'px';
-            bat.el.style.top = pos.y + 'px';
-            bat.posterEl = poster.el;
-            setTimeout(function() {
-                bat.el.classList.remove('flying', 'waking');
-                bat.el.classList.add('sleeping');
-                bat.state = 'sleeping';
-            }, 1500);
-        }
-        function wakeBat(bat) {
-            if (bat.state !== 'sleeping') return;
-            bat.el.classList.remove('sleeping');
-            bat.el.classList.add('waking');
-            bat.state = 'waking';
-            setTimeout(function() { flyBat(bat); }, 280);
-        }
-        function flyBat(bat) {
-            var maxX = Math.max(100, window.innerWidth - BAT_WIDTH - 30);
-            var maxY = Math.max(200, Math.min(window.innerHeight - 150, 500));
-            var x = 20 + Math.random() * (maxX - 40);
-            var y = 100 + Math.random() * (maxY - 100);
-            bat.el.style.left = x + 'px';
-            bat.el.style.top = y + 'px';
-            bat.el.classList.remove('waking');
-            bat.el.classList.add('flying');
-            bat.state = 'flying';
-        }
-        function onScroll() {
-            if (!isReady) return;
-            for (var i = 0; i < bats.length; i++) wakeBat(bats[i]);
-            clearTimeout(scrollTimer);
-            scrollTimer = setTimeout(function() {
-                for (var i = 0; i < bats.length; i++) {
-                    var bat = bats[i];
-                    if (bat.state === 'flying' || bat.state === 'waking') {
-                        var poster = getRandomVisiblePoster();
-                        if (poster) sleepBat(bat, poster);
-                    }
-                }
-            }, SCROLL_STOP_DELAY);
-        }
-        function createBatSvg(index) {
-            var g1 = 'bg' + index, g2 = 'bf' + index;
-            return '<svg class="bat-form bat-form-sleep" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">'
-                + '<defs><linearGradient id="' + g1 + '" x1="0%" y1="0%" x2="0%" y2="100%">'
-                + '<stop offset="0%" stop-color="#3a1a4a"/><stop offset="100%" stop-color="#0d0d0d"/>'
-                + '</linearGradient></defs>'
-                + '<line x1="36" y1="2" x2="36" y2="10" stroke="#1a0a1a" stroke-width="2.5" stroke-linecap="round"/>'
-                + '<line x1="44" y1="2" x2="44" y2="10" stroke="#1a0a1a" stroke-width="2.5" stroke-linecap="round"/>'
-                + '<path d="M 40 8 Q 27 22 27 45 Q 27 65 32 70 Q 36 74 40 74 Q 44 74 48 70 Q 53 65 53 45 Q 53 22 40 8 Z" fill="url(#' + g1 + ')"/>'
-                + '<polygon points="33,64 32,54 37,63" fill="#0d0d0d"/>'
-                + '<polygon points="47,64 48,54 43,63" fill="#0d0d0d"/>'
-                + '<circle class="bat-eye" cx="36" cy="66" r="1.6" fill="#ff2e2e"/>'
-                + '<circle class="bat-eye" cx="44" cy="66" r="1.6" fill="#ff2e2e"/>'
-                + '</svg>'
-                + '<svg class="bat-form bat-form-fly" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">'
-                + '<defs><linearGradient id="' + g2 + '" x1="0%" y1="0%" x2="0%" y2="100%">'
-                + '<stop offset="0%" stop-color="#3a1a4a"/><stop offset="100%" stop-color="#0d0d0d"/>'
-                + '</linearGradient></defs>'
-                + '<g class="bat-wing-l"><path d="M 38 40 Q 15 12 2 30 Q 10 33 6 40 Q 14 38 10 45 Q 20 44 16 50 Q 26 47 32 50 Q 36 45 38 40 Z" fill="url(#' + g2 + ')"/></g>'
-                + '<g class="bat-wing-r"><path d="M 42 40 Q 65 12 78 30 Q 70 33 74 40 Q 66 38 70 45 Q 60 44 64 50 Q 54 47 48 50 Q 44 45 42 40 Z" fill="url(#' + g2 + ')"/></g>'
-                + '<ellipse cx="40" cy="42" rx="4.5" ry="9" fill="url(#' + g2 + ')"/>'
-                + '<polygon points="37,36 36,28 39,35" fill="#0d0d0d"/>'
-                + '<polygon points="41,35 44,28 43,36" fill="#0d0d0d"/>'
-                + '<circle cx="38" cy="39" r="1.2" fill="#ff2e2e"/>'
-                + '<circle cx="42" cy="39" r="1.2" fill="#ff2e2e"/>'
-                + '</svg>';
-        }
-        function init() {
-            var container = document.getElementById('bats-container');
-            if (!container) return;
-            for (var i = 0; i < BAT_COUNT; i++) {
-                var el = document.createElement('div');
-                el.className = 'bat-hanging';
-                el.innerHTML = createBatSvg(i);
-                container.appendChild(el);
-                bats.push({ el: el, state: 'idle', posterEl: null });
-            }
-            setTimeout(function() {
-                isReady = true;
-                for (var i = 0; i < bats.length; i++) {
-                    (function(idx) {
-                        setTimeout(function() {
-                            var bat = bats[idx];
-                            var poster = getRandomVisiblePoster();
-                            if (poster) {
-                                var pos = computePosterAttach(poster);
-                                bat.el.style.left = pos.x + 'px';
-                                bat.el.style.top = pos.y + 'px';
-                                bat.el.style.opacity = '1';
-                                bat.el.classList.add('sleeping');
-                                bat.state = 'sleeping';
-                                bat.posterEl = poster.el;
-                            }
-                        }, idx * 400);
-                    })(i);
-                }
-            }, 800);
-            window.addEventListener('scroll', onScroll, { passive: true });
-            window.addEventListener('resize', function() {
-                for (var i = 0; i < bats.length; i++) {
-                    var bat = bats[i];
-                    if (bat.state === 'sleeping' && bat.posterEl) {
-                        var r = bat.posterEl.getBoundingClientRect();
-                        var vh = window.innerHeight;
-                        if (r.bottom > 100 && r.bottom < vh - 30) {
-                            bat.el.style.left = (r.left + r.width / 2 - BAT_WIDTH / 2) + 'px';
-                            bat.el.style.top = (r.bottom - 4) + 'px';
-                        }
-                    }
-                }
-            });
-        }
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', init);
-        } else {
-            init();
-        }
-    })();
-    </script>
-    
 </body>
 </html>
