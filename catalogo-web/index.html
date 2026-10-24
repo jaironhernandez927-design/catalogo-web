@@ -1,0 +1,2886 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0a0a0f">
+    <title>La Balanza · Catálogo Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #e50914; --primary-dark: #b0060f; --bg-dark: #0a0a0f;
+            --bg-card: #16161d; --bg-glass: rgba(22, 22, 29, 0.8);
+            --text-primary: #ffffff; --text-secondary: #a0a0a8;
+            --border: rgba(255, 255, 255, 0.1);
+            --gradient-red: linear-gradient(135deg, #e50914 0%, #b0060f 100%);
+            --whatsapp: #25D366;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background: var(--bg-dark); color: var(--text-primary); overflow-x: hidden; min-height: 100vh; padding-bottom: 80px; }
+        
+        .navbar { position: fixed; top: 0; width: 100%; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(10, 10, 15, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        .logo { font-size: 1.6rem; font-weight: 900; background: var(--gradient-red); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -1px; }
+        .nav-actions { display: flex; gap: 1rem; align-items: center; }
+        .search-box { position: relative; }
+        .search-box input { background: var(--bg-glass); border: 1px solid var(--border); padding: 0.6rem 1rem 0.6rem 2.5rem; border-radius: 50px; color: var(--text-primary); width: 180px; transition: all 0.3s; outline: none; }
+        .search-box input:focus { width: 250px; border-color: var(--primary); }
+        .search-box::before { content: '🔍'; position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 0.9rem; }
+        
+        .hero { height: 60vh; position: relative; display: flex; align-items: center; padding: 0 5%; margin-top: 70px; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 50%, rgba(229, 9, 20, 0.25) 0%, transparent 60%); }
+        .hero-bg { position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1920'); background-size: cover; background-position: center; opacity: 0.2; z-index: -1; }
+        .hero-content { max-width: 700px; z-index: 2; animation: fadeInUp 0.8s ease; }
+        .hero-badge { display: inline-block; padding: 0.4rem 1rem; background: var(--bg-glass); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: 50px; font-size: 0.85rem; margin-bottom: 1.5rem; color: var(--primary); font-weight: 600; }
+        .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -2px; }
+        .hero h1 span { color: var(--primary); }
+        .hero p { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.6; }
+        .btn-primary { background: var(--gradient-red); color: white; padding: 0.9rem 2rem; border: none; border-radius: 50px; font-weight: 700; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(229, 9, 20, 0.6); }
+        
+        .catalog { padding: 4rem 5%; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+        .section-title { font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; }
+        .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .filter-btn { padding: 0.5rem 1.2rem; background: var(--bg-glass); border: 1px solid var(--border); border-radius: 50px; color: var(--text-secondary); cursor: pointer; transition: all 0.3s; font-size: 0.9rem; font-weight: 600; }
+        .filter-btn:hover, .filter-btn.active { background: var(--gradient-red); color: white; border-color: transparent; }
+        
+        .movies-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.5rem; margin-top: 1rem; }
+        .movie-card { background: var(--bg-card); border-radius: 16px; overflow: hidden; cursor: pointer; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 1px solid var(--border); position: relative; }
+        .movie-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 35px rgba(229, 9, 20, 0.25); border-color: var(--primary); }
+        .movie-poster { position: relative; aspect-ratio: 2/3; overflow: hidden; background: #000; }
+        .movie-poster img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+        .movie-card:hover .movie-poster img { transform: scale(1.1); }
+        
+        .badge-sin { position: absolute; top: 10px; right: 10px; background: var(--primary); color: white; font-size: 0.7rem; font-weight: 800; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; z-index: 2; }
+        .badge-rating { position: absolute; bottom: 10px; left: 10px; background: rgba(0, 0, 0, 0.8); color: #ffd700; font-size: 0.8rem; font-weight: 700; padding: 4px 8px; border-radius: 6px; border: 1px solid rgba(255, 215, 0, 0.3); z-index: 2; backdrop-filter: blur(4px); display: flex; align-items: center; gap: 4px; }
+        
+        .movie-info { padding: 1rem; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+        .movie-title { font-size: 0.95rem; font-weight: 700; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .movie-genre { color: var(--primary); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; }
+        .btn-wa-item { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px; background: rgba(37, 211, 102, 0.1); color: var(--whatsapp); text-decoration: none; font-size: 0.85rem; font-weight: 700; border-radius: 8px; border: 1px solid rgba(37, 211, 102, 0.3); margin-top: auto; transition: all 0.2s; }
+        .btn-wa-item:hover { background: var(--whatsapp); color: #000; }
+        
+        .bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(20px); border-top: 1px solid var(--border); z-index: 90; padding: 8px 4px; padding-bottom: calc(8px + env(safe-area-inset-bottom)); }
+        .bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; max-width: 600px; margin: 0 auto; }
+        .bottom-nav-btn { background: none; border: none; color: var(--text-secondary); padding: 8px 4px; display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; border-radius: 12px; min-width: 50px; transition: all 0.2s; }
+        .bottom-nav-btn.active { color: var(--primary); }
+        .bottom-nav-btn .bn-icon { font-size: 1.4rem; }
+        .bottom-nav-btn .bn-label { font-size: 0.65rem; font-weight: 700; }
+        
+        footer { background: var(--bg-card); padding: 3rem 5% 1.5rem; margin-top: 4rem; border-top: 1px solid var(--border); text-align: center; }
+        .footer-bottom { color: var(--text-secondary); font-size: 0.9rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+        
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); z-index: 2000; align-items: center; justify-content: center; padding: 1rem; }
+        .modal.active { display: flex; }
+        .modal-content { background: var(--bg-card); border-radius: 20px; max-width: 500px; width: 100%; overflow: hidden; border: 1px solid var(--border); animation: fadeInUp 0.3s; position: relative; max-height: 90vh; overflow-y: auto; }
+        .modal-close { position: absolute; top: 1rem; right: 1rem; background: rgba(0,0,0,0.6); border: 1px solid var(--border); color: white; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; z-index: 10; }
+        
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 768px) {
+            .nav-actions .search-box { display: none; }
+            .hero { height: 50vh; }
+            .hero h1 { font-size: 2.2rem; }
+            .movies-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 0; }
+            .bottom-nav { display: block; }
+            .filters { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">LA BALANZA</div>
+        <div class="nav-actions">
+            <div class="search-box"><input type="text" id="searchInput" placeholder="Buscar en el catálogo..."></div>
+            <a href="https://wa.me/5353549987?text=Hola%2C%20quiero%20hacer%20un%20pedido" target="_blank" class="btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">💬 Pedir</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <span class="hero-badge">🔥 Catálogo Actualizado 2026</span>
+            <h1>Grabaciones <span>Premium</span></h1>
+            <p>Películas, Series, Animes, Doramas y Muñes de colección. La mejor calidad directamente a tu dispositivo.</p>
+            <a href="#catalogo" class="btn-primary">▶ Explorar Catálogo</a>
+        </div>
+    </section>
+
+    <section class="catalog" id="catalogo">
+        <div class="section-header">
+            <h2 class="section-title">🎬 Catálogo Completo</h2>
+            <div class="filters" id="topFilters"></div>
+        </div>
+        <div class="movies-grid" id="moviesGrid"></div>
+        <div id="noResults" style="display: none; text-align: center; padding: 40px; color: var(--text-secondary); grid-column: 1 / -1;">😕 No se encontraron resultados</div>
+    </section>
+
+    <footer>
+        <div class="logo" style="margin-bottom: 1rem; font-size: 1.4rem;">LA BALANZA</div>
+        <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto;">Tu fuente confiable de entretenimiento premium y figuras de colección en Cuba.</p>
+        <div class="footer-bottom">© 2026 La Balanza · Pedidos al WhatsApp: <strong style="color: var(--primary);">+53 5353549987</strong></div>
+    </footer>
+
+    <nav class="bottom-nav">
+        <div class="bottom-nav-inner" id="bottomNav"></div>
+    </nav>
+
+    <div class="modal" id="movieModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script>
+        const WHATSAPP_NUM = "5353549987";
+        const CATEGORIAS = [
+    {
+        "id": "todos",
+        "label": "Todos",
+        "emoji": "🏠"
+    },
+    {
+        "id": "Muñes",
+        "label": "Muñes",
+        "emoji": "🧸"
+    },
+    {
+        "id": "Películas",
+        "label": "Películas",
+        "emoji": "🎥"
+    },
+    {
+        "id": "Series",
+        "label": "Series",
+        "emoji": "📺"
+    },
+    {
+        "id": "Animes",
+        "label": "Animes",
+        "emoji": "🎌"
+    },
+    {
+        "id": "Doramas",
+        "label": "Doramas",
+        "emoji": "💕"
+    }
+];
+        const catalogo = [
+    {
+        "nombre": "101 Dalmatas",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_101_dalmatas.jpg",
+        "rating": 7.2,
+        "sin_caratula": false,
+        "sinopsis": "Pongo y Perdita, los dalmatas protagonistas, son una feliz pareja canina que vive rodeada de sus cachorros junto a sus amos, Roger y Anita. Pero la felicidad no es eterna y hay una malvada mujer, que vive en una gran mansion, que es la mayor enemiga del perro.Cuando se entera de que los protagonistas tienen nada menos que quince cachorros dalmatas, su sueño de obtener un exclusivo abrigo de piel de los pequeños perros, se convierte en una obsesion. Para conseguirlo contrata a dos ladrones y pone en marcha un malvado plan con el unico fin de secuestrar a los dalmatas."
+    },
+    {
+        "nombre": "Aladdin (1992)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_aladdin_1992.jpg",
+        "rating": 7.7,
+        "sin_caratula": false,
+        "sinopsis": "Aladdín es un ingenioso joven que vive en una extrema pobreza, y que sueña con casarse con la bella hija del sultán, la princesa Jasmine. El destino interviene cuando el astuto visir del Sultán, Jafar, recluta a Aladdín para que le ayude a recuperar una lámpara mágica de las profundidades de la Cueva de las Maravillas. Aladdín encuentra una lámpara maravillosa con un genio dentro, y sus deseos comienzan a hacerse realidad."
+    },
+    {
+        "nombre": "Anastasia",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_anastasia.jpg",
+        "rating": 7.601,
+        "sin_caratula": false,
+        "sinopsis": "Cuando la sombra de la revolución se cierne sobre Rusia, Anastasia, la hija más joven de la familia real, apenas consigue escapar con vida. Años despúes conoce al joven Dimitri. Cuando se dirigen a París para reclamar los derechos del legado de Anastasia, se verán envueltos en una cruenta lucha contra el malvado monje Rasputín y su sicario, el murciélago Bartok."
+    },
+    {
+        "nombre": "Arthur (Y Los Minimoys) (2007)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_arthur_y_los_minimoys_2007.jpg",
+        "rating": 6.397,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Asterix And Cleopatra",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_asterix_and_cleopatra.jpg",
+        "rating": 6.932,
+        "sin_caratula": false,
+        "sinopsis": "Cleopatra quiere demostrar a Julio César que los egipcios son capaces de construir mejor que los romanos y, para ello, encarga a Numerobis, el arquitecto, que proyecte un palacio y lo construya en el plazo de tres meses. Numerobis se siente incapaz de hacerlo, por lo que pide ayuda a su amigo el druida Panorámix. Este parte hacia Alejandría en busca de su amigo, y lo hace acompañado por Astérix y Obélix. Juntos sortearán un sinfín de peligros, visitarán la Esfinge y las Pirámides, navegarán por el Nilo, incluso pasarán un rato en la cárcel."
+    },
+    {
+        "nombre": "Atlantis",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_atlantis.jpg",
+        "rating": 7.052,
+        "sin_caratula": false,
+        "sinopsis": "Un joven aventurero llamado Milo encuentra un antiguo diario que contiene pistas de cómo llegar a Atlantis, el mítico reino hundido. Junto a otros intrépidos personajes Milo decide embarcarse en el Ulises, un impresionante submarino, en una arriesgada expedición al fondo del mar."
+    },
+    {
+        "nombre": "Blancanieves Y Los Siete Enanitos",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_blancanieves_y_los_siete_enanitos.jpg",
+        "rating": 7.1,
+        "sin_caratula": false,
+        "sinopsis": "La malvada madrastra de la princesa Blancanieves decide deshacerse de ella porque no puede soportar que la belleza de la joven sea superior a la de ella. Sin embargo, Blancanieves consigue salvarse y se refugia en la cabaña de los siete enanitos. A pesar de todo, su cruel madrastra consigue encontrarla y la envenena con una manzana. Pero la princesa no está muerta, sólo dormida, a la espera de que un príncipe azul la rescate."
+    },
+    {
+        "nombre": "Buscando A Nemo (2003)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_buscando_a_nemo_2003.jpg",
+        "rating": 7.822,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Dumbo (1941)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_dumbo_1941.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "El Extraño Mundo De Jack",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_el_extrano_mundo_de_jack.jpg",
+        "rating": 7.85,
+        "sin_caratula": false,
+        "sinopsis": "Cuando Jack Skellington, el Señor de Halloween, descubre la Navidad, se queda fascinado y decide mejorarla. Sin embargo, su visión de la festividad es totalmente contraria al espíritu navideño. Sus planes incluyen el secuestro de Santa Claus y la introducción de cambios bastante macabros. Sólo su novia Sally es consciente del error que está cometiendo."
+    },
+    {
+        "nombre": "Estudios Pixar Cortos",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_estudios_pixar_cortos.jpg",
+        "rating": 6.2,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "La Bella Durmiente",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_la_bella_durmiente.jpg",
+        "rating": 6.945,
+        "sin_caratula": false,
+        "sinopsis": "Había una vez dos reyes que esperaban con alegría el nacimiento de su primera hija, a la que llamarían Aurora. Para celebrarlo, organizaron una fiesta a la que invitaron a todos los habitantes del reino. Pero olvidaron invitar a la malvada bruja Maléfica que, enfurecida, lanzó un terrible hechizo sobre la princesa: el día de su décimosexto cumpleaños, se pincharía con el uso de una rueca y moriría. Pero sus tres divertidas hadas madrinas descubren una forma de romper el maleficio: no morirá, permanecerá dormida hasta que un valiente príncipe la bese."
+    },
+    {
+        "nombre": "La Dama Y El Vagabundo",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_la_dama_y_el_vagabundo.jpg",
+        "rating": 7.1,
+        "sin_caratula": false,
+        "sinopsis": "Reina es una preciosa perrita de pura raza que vive feliz en su hogar. Jaimito y Linda, la miman mucho y ella corresponde feliz a sus cuidados. Sin embargo, el día en que sus dueños deciden hacer un viaje, la vida de Reina se ve alterada; la llegada de la tía Sara con sus gatos no provoca más que sobresaltos. Menos mal que conoce a Golfo, un perro vagabundo muy simpático"
+    },
+    {
+        "nombre": "La Ruta Hacia El Dorado",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_la_ruta_hacia_el_dorado.jpg",
+        "rating": 7.305,
+        "sin_caratula": false,
+        "sinopsis": "Siglo XVI. Dos jóvenes estafadores ganan en un juego de dados un mapa a El Dorado pero son descubiertos y perseguidos por los guardias. Logran escapar pero terminan por meterse en el barco del mismisimo Hernán Cortés. Escapan en un bote del barco y llegan a tierra arrastrados por el mar. Allí deciden emprender la búsqueda de la ciudad de oro al reconocer indicios que aparecían en el mapa, pero su aventura no terminará como ellos lo esperan."
+    },
+    {
+        "nombre": "La Sirenita 1",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_la_sirenita_1.jpg",
+        "rating": 7.352,
+        "sin_caratula": false,
+        "sinopsis": "Ariel es una sirena adolescente, hija de Tritón, el rey del mar. Desobedeciendo a su padre, visita la superficie y se enamora del príncipe Eric. Con la esperanza de encontrar a su amado, la sirenita cae inocentemente bajo los encantos de Úrsula, la bruja del mar, que la transforma en un ser humano. Pero la bruja tiene planes terribles para Ariel y su padre."
+    },
+    {
+        "nombre": "1 Bratz Starrin' & Stylin' (2004)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_1_bratz_starrin_stylin_2004.jpg",
+        "rating": 6.9,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "10 Bratz Kids Fairy Tales (2008)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_10_bratz_kids_fairy_tales_2008.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "12 Bratz Pampered Petz (2011)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_12_bratz_pampered_petz_2011.jpg",
+        "rating": 7.3,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "13 Bratz Good Vibes (2011)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_13_bratz_good_vibes_2011.jpg",
+        "rating": 8.9,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "2 Bratz Rock Angelz (2005)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_2_bratz_rock_angelz_2005.jpg",
+        "rating": 7.5,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "3 Bratz Genie Magic (2006)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_3_bratz_genie_magic_2006.jpg",
+        "rating": 7.1,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "4 Bratz Babyz The Movie (2006)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_4_bratz_babyz_the_movie_2006.jpg",
+        "rating": 8.0,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "5 Bratz Passion 4 Fashion Diamondz (2006)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_5_bratz_passion_4_fashion_diamondz_2006.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "6 Bratz Kidz Sleep Over Adventures (2007)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_6_bratz_kidz_sleep_over_adventures_2007.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "7 Bratz Fashion Pixiez (2007)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_7_bratz_fashion_pixiez_2007.jpg",
+        "rating": 7.7,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "8 Bratz Super Babyz (2007)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_8_bratz_super_babyz_2007.jpg",
+        "rating": 6.5,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "9 Bratz Girlz Really Rock (2008)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_9_bratz_girlz_really_rock_2008.jpg",
+        "rating": 7.2,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Los Aristogatos",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_los_aristogatos.jpg",
+        "rating": 7.302,
+        "sin_caratula": false,
+        "sinopsis": "1910. En París una anciana millonaria y excéntrica lleva una vida feliz con sus gatos en su enorme mansión, con la única ayuda de su fiel mayordomo Edgar. Allí, Duquesa vive despreocupadamente con sus tres traviesos cachorros, sin saber que Edgar planea acabar con todos los gatos para convertirse en el único heredero de la enorme fortuna de la anciana Madame Bonfamille. Con este propósito, los abandona en un lugar remoto, pero quiere la suerte que se encuentren con Thomas O’Malley, un atractivo gato vagabundo y mundano. Desde el principio, O’Malley, atraído por la elegancia de Duquesa, se propone ayudarla a regresar a casa de Madame Bonfamille, aunque para ello tenga que enfrentarse con todos los peligros de la gran ciudad. Afortunadamente, contarán también con la ayuda de Scat Cat y sus gatos swing, que añaden un toque de ritmo y diversión a la vida de Duquesa y de los cachorros."
+    },
+    {
+        "nombre": "Manuelita La Tortuguita",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_manuelita_la_tortuguita.jpg",
+        "rating": 6.6,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Mariposas Negras",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_mariposas_negras.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "El viaje de tres mujeres que huyen de un terreno inhabitable hacia nuevas vidas que distan mucho de ser acogedoras."
+    },
+    {
+        "nombre": "Mowgli Y Baloo El Libro De La Selva 2",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_mowgli_y_baloo_el_libro_de_la_selva_2.jpg",
+        "rating": 5.8,
+        "sin_caratula": false,
+        "sinopsis": "India, 1890. En una selva inexplorada, con sus espectaculares gargantas y legendarios paisajes montañosos, vive el pequeño Mowgli y sus amigos salvajes, que busca descubrirse a sí mismo y así establecer su lugar en la selva y luchar contra la intromisión del hombre. Típico producto estrenado en las Navidades para el disfrute de los niños."
+    },
+    {
+        "nombre": "Mulan",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_mulan.jpg",
+        "rating": 7.903,
+        "sin_caratula": false,
+        "sinopsis": "Mulán, una joven china hija única de la familia Fa, en lugar de buscar novio, como sus amigas, trata por todos los medios de alistarse en el ejército imperial para evitar que su anciano padre sea llamado a filas para defender al Emperador del acoso de los Hunos. Cuando el emisario imperial lleva a cabo la orden de reclutar a los varones de todas las familias, Mulán se hará pasar por soldado y se someterá a un duro entrenamiento hasta hacerse merecedora de la estima y de la confianza del resto de su escuadrón."
+    },
+    {
+        "nombre": "Peter Pan Pelicula",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_peter_pan_pelicula.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Pocahontas (1995)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_pocahontas_1995.jpg",
+        "rating": 6.912,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Pocahontas (1998)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_pocahontas_1998.jpg",
+        "rating": 5.562,
+        "sin_caratula": false,
+        "sinopsis": "Pocahontas vive el mayor reto de su vida en su viaje a Inglaterra. Con la ayuda del apuesto John Rolfe, buscará la paz de su pueblo. Mientra se prepara para el baile de la Caceria, abre poco a poco su corazón a Rolfe. Pero la misteriosa aparición de John Smith sumerge a Pocahontas en un dilema... elegir entre dos amores y dos maneras de vivir."
+    },
+    {
+        "nombre": "Ratatouille (2007)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_ratatouille_2007.jpg",
+        "rating": 7.8,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Simbad La Leyenda De Los 7 Mares",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_simbad_la_leyenda_de_los_7_mares.jpg",
+        "rating": 7.067,
+        "sin_caratula": false,
+        "sinopsis": "Simbad, el aventurero más osado y famoso que cruzó los siete mares, tiene que afrontar el peligro más grande de su vida. Acusado de robar el Libro de la Paz, uno de los tesoros más valiosos del mundo, tendría que encontrarlo para salvar a Proteus, su mejor amigo. Será Marina, la prometida de Proteus, quien convenza a Simbad de que tiene el deber de cumplir esa misión. Eris, la diosa del caos, trata de impedírselo arrojando contra él la furia de los elementos y una legión de criaturas monstruosas. (FILMAFFINITY)"
+    },
+    {
+        "nombre": "Tarzan",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_tarzan.jpg",
+        "rating": 7.4,
+        "sin_caratula": false,
+        "sinopsis": "Cuando Kala, una gorila hembra, encuentra un niño huérfano en la jungla, decide adoptarlo como su propio hijo a pesar de la oposición de Kerchak, el jefe de la manada. Junto a Terk, un gracioso mono, y Tantor, un elefante algo neurótico, Tazán crecerá en la jungla desarrollando los instintos de los animales y aprendiendo a deslizarse entre los árboles a velocidad de vértigo. Pero cuando una expedición se adentra en la jungla y Tarzán conoce a Jane, descubrirá quién es realmente y cuál es el mundo al que pertenece..."
+    },
+    {
+        "nombre": "Tierra De Osos (2003)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_tierra_de_osos_2003.jpg",
+        "rating": 7.287,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Tierra De Osos 2 (2006)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_tierra_de_osos_2_2006.jpg",
+        "rating": 6.659,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Walt Disney's The Old Mill (1937)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_walt_disney_s_the_old_mill_1937.jpg",
+        "rating": 7.343,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Hotel Transylvania 1 (2012)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_hotel_transylvania_1_2012.jpg",
+        "rating": 6.97,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Hotel Transylvania 2",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_hotel_transylvania_2.jpg",
+        "rating": 6.764,
+        "sin_caratula": false,
+        "sinopsis": "Todo parece mejorar en el Hotel Transilvania. La rígida norma establecida por Drácula de “sólo para monstruos” se ha suprimido y se aceptan también huéspedes humanos. Lo que preocupa al conde es que que su adorable nieto Dennis, medio humano y medio vampiro, no dé señal alguna de vampirismo. Aprovechando que Mavis ha ido a visitar a sus suegros humanos, Drácula recluta a sus amigos Frank, Murray, Wayne y Griffin para hacer que Dennis pase por un campamento de “entrenamiento de monstruos”. Lo que ignoran es que Vlad, el gruñón padre de Drácula, está a punto de llegar al hotel. Y cuando descubra que su bisnieto no es de sangre pura y que los humanos pueden frecuentar el establecimiento las cosas se complicarán."
+    },
+    {
+        "nombre": "Hotel Transylvania 3 Unas Vacaciones Monstruosas",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_hotel_transylvania_3_unas_vacaciones_monstruosas.jpg",
+        "rating": 6.84,
+        "sin_caratula": false,
+        "sinopsis": "Nuestra familia de monstruos favorita se embarca en un crucero de lujo para que por fin Drac pueda tomarse un descanso de proveer de vacaciones al resto en el hotel. Es una navegación tranquila para la pandilla de Drac, ya que los monstruos se entregan a toda la diversión a bordo que ofrece el crucero, desde el voleibol de monstruos y las excursiones exóticas, a ponerse al día con sus bronceados de luna. Pero las vacaciones de ensueño se convierten en una pesadilla cuando Mavis se da cuenta de que Drac se ha enamorado de la misteriosa capitana de la nave, Ericka, quien esconde un peligroso secreto que podría destruir a todos los monstruos."
+    },
+    {
+        "nombre": "Hotel Transylvania Transformanía 4",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_hotel_transylvania_transformania_4.jpg",
+        "rating": 7.025,
+        "sin_caratula": false,
+        "sinopsis": "Drac y la pandilla vuelven, como nunca los habías visto antes en Hotel Transilvania: Transformanía. Volveremos a encontrarnos con nuestros monstruos favoritos en una aventura completamente nueva en la que Drac se enfrentará a una de las situaciones más aterradoras vividas hasta el momento. Cuando el misterioso invento de Van Helsing, el \"Rayo Monstrificador\", se vuelve totalmente fuera de control, Drac y sus monstruosos amigos se transforman en humanos, ¡y Johnny se convierte en un monstruo!"
+    },
+    {
+        "nombre": "Cenicienta (1950)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_cenicienta_1950.jpg",
+        "rating": 7.056,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Cenicienta Qué Pasaría Si 3 (2007)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_cenicienta_que_pasaria_si_3_2007.jpg",
+        "rating": 6.56,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Cinderella II Dreams Come True 2 (2002)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_cinderella_ii_dreams_come_true_2_2002.jpg",
+        "rating": 6.118,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "La Era De Hielo (2002)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_la_era_de_hielo_2002.jpg",
+        "rating": 7.4,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "La Era De Hielo (2006)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_la_era_de_hielo_2006.jpg",
+        "rating": 6.73,
+        "sin_caratula": false,
+        "sinopsis": "¡Tus héroes favoritos han vuelto con otra magnífica aventura en esta gélida secuela del magnífico éxito mundial Ice Age! Y esta vez la cosa se calienta como la temperatura ambiente para Manny, Sid, Diego y Scrat, que abandonan su valle para escapar a una auténtica inundación de problemas y emprenden un divertidísimo viaje por un paisaje en pleno deshielo durante el cual conocen a Ellie."
+    },
+    {
+        "nombre": "La Era De Hielo 3 El Origen De Los Dinosaurios (2009)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_la_era_de_hielo_3_el_origen_de_los_dinosaurios_2009.jpg",
+        "rating": 6.78,
+        "sin_caratula": false,
+        "sinopsis": "Tercera parte de las aventuras de Diego, Scrat y compañía. En esta ocasión, les tocará lidiar con varios dinosaurios. Scrat sigue intentando apoderarse de la muy escurridiza bellota; Manny y Ellie esperan el nacimiento de su mini-mamut; Sid, el perezoso, se mete en un buen lío al formar de repente una familia propia tras encontrarse unos huevos de dinosaurio."
+    },
+    {
+        "nombre": "La Era De Hielo 4 (2012)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_la_era_de_hielo_4_2012.jpg",
+        "rating": 6.396,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Madagascar 1",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_madagascar_1.jpg",
+        "rating": 6.934,
+        "sin_caratula": false,
+        "sinopsis": "Desplieguen la alfombra roja para Skipper, Kowalski, Rico y Privado, y al estreno mundial de su primer largometraje-DVD – con las misiones nunca antes vistas! Podra pensar que son un bonito paquete de pingüinos, pero estas aves no voladoras son en realidad una fuerza de ataque de élite con habilidades de comando sin igual. Y, si quieren mantener el orden en el zoológico, tendrán que ser más listas que los animales residentes…"
+    },
+    {
+        "nombre": "Madagascar 2 Escape de África (2008)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_madagascar_2_escape_de_africa_2008.jpg",
+        "rating": 6.536,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Madagascar 3",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_madagascar_3.jpg",
+        "rating": 6.65,
+        "sin_caratula": false,
+        "sinopsis": "Alex el león, Marty la cebra, Melman la jirafa y Gloria la hipopótamo están decididos a regresar como sea al Zoo de Central Park en Nueva York. Tras abandonar África, toman un desvío y emergen, literalmente, en Europa, persiguiendo a los pingüinos y chimpancés que se las han arreglado para hacer saltar la banca de un casino de Montecarlo. Pronto, los animales son descubiertos por la capitana Chantel DuBois, una testaruda francesa encargada del control de animales, y a la que no le gusta nada que unos animales del zoo anden sueltos por su ciudad."
+    },
+    {
+        "nombre": "Madagascar I Hd (2005)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_madagascar_i_hd_2005.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Mi Villano Favorito 1 (2010)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_mi_villano_favorito_1_2010.jpg",
+        "rating": 7.1,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Mi Villano Favorito 2 (2013)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_mi_villano_favorito_2_2013.jpg",
+        "rating": 6.9,
+        "sin_caratula": false,
+        "sinopsis": "La película de animación de los estudios Universal, giraba en torno a una apacible y colorida población en la que vivía el malvado Gru. Ayudado por su batallón de Minions, unos pequeños seres de color amarillo, intentaron robar la Luna, aunque no todo acabó como esperaban. Tres niñas curiosas y algo traviesas se cruzaron en su camino, entorpeciéndole todos sus planes y conviertiendo su objetivo en una alocada hazaña interestelar.  Ahora, 'Gru, mi villano favorito 2', narra una nueva aventura en la que Gru volverá a estar acompañado de simpáticos humanoides."
+    },
+    {
+        "nombre": "Mi Villano Favorito 3 (2017)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_mi_villano_favorito_3_2017.jpg",
+        "rating": 6.468,
+        "sin_caratula": false,
+        "sinopsis": "A Gru lo han despedido. Se ha quedado sin trabajo porque ha dejado escapar al supervillano Balthazar Bratt, estrella infantil de los años 80 que con la llegada de la pubertad lo perdió todo y ha estado creando el caos en todo el planeta.  Además, Gru va a conocer a su hermano gemelo Dru y tendrá que decidir si está listo para continuar la tradición familiar de dedicarse al crimen, y unirse a el para llevar a cabo un último golpe. Aunque ha dejado esa vida atrás… ¿volverá a convertirse Gru en un villano?"
+    },
+    {
+        "nombre": "Mi Villano Favorito 4 (2024)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_mi_villano_favorito_4_2024.jpg",
+        "rating": 6.966,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Shrek (2001)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_shrek_2001.jpg",
+        "rating": 7.78,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Shrek 2",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_shrek_2.jpg",
+        "rating": 7.332,
+        "sin_caratula": false,
+        "sinopsis": "Cuando Shrek y la princesa Fiona regresan de su luna de miel, los padres de ella los invitan a visitar el reino de Muy Muy Lejano para celebrar la boda. Para Shrek, al que nunca abandona su fiel amigo Asno, esto constituye un gran problema. Los padres de Fiona, por su parte, no esperaban que su yerno tuviera un aspecto semejante y, mucho menos, que su hija hubiera cambiado tanto. Todo esto trastoca los planes del rey respecto al futuro del reino. Pero entonces entran en escena la maquiavélica Hada Madrina, su arrogante hijo el Príncipe Encantador y un minino muy especial: el Gato con Botas, experto cazador de ogros."
+    },
+    {
+        "nombre": "Shrek 3",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_shrek_3.jpg",
+        "rating": 6.0,
+        "sin_caratula": false,
+        "sinopsis": "Fiona es secuestrada por el malvado Lord Farquaad como fantasma. Shrek deberá salvar a Fiona, acompañado por Burro y Dragón."
+    },
+    {
+        "nombre": "Shrek 4 Para Siempre",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_shrek_4_para_siempre.jpg",
+        "rating": 6.415,
+        "sin_caratula": false,
+        "sinopsis": "En lugar de espantar a los aldeanos como él solía hacerlo, un recluido Shrek ahora accede a autografiar horquillas para siembra. Anhelando los días cuando se sentía un \"ogro real\", Shrek es embaucado al firmar un pacto con el afable negociador Rumpelstiltskin. De pronto Shrek se encuentra en una retorcida versión alterna de Muy Muy Lejano, donde Fiona es un ogro de caza, Rumpelstiltskin es el rey, Burro nunca ha conocido a Shrek, el Gato con Botas es obeso y perezoso, y Shrek y Fiona no se conocían. Ahora, está en las manos de Shrek deshacer todo lo que hizo con la esperanza de salvar a sus amigos, restaurar su mundo y recuperar a su único y verdadero amor."
+    },
+    {
+        "nombre": "Toy Story 1",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_toy_story_1.jpg",
+        "rating": 7.99,
+        "sin_caratula": false,
+        "sinopsis": "Los juguetes de Andy, un niño de seis años, temen que haya llegado su hora y que un nuevo regalo de cumpleaños les sustituya en el corazón de su dueño. Woody, un vaquero que ha sido hasta ahora el juguete favorito de Andy, trata de tranquilizarlos hasta que aparece Buzz Lightyear, un héroe espacial dotado de todo tipo de avances tecnológicos. Woody es relegado a un segundo plano, pero su constante rivalidad se transformará en una gran amistad cuando ambos se pierden en la ciudad sin saber cómo volver a casa."
+    },
+    {
+        "nombre": "Toy Story 2",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_toy_story_2.jpg",
+        "rating": 7.624,
+        "sin_caratula": false,
+        "sinopsis": "Cuando Andy se va de campamento dejando solos a los juguetes, Al McWhiggin, un compulsivo coleccionista de juguetes valiosos, secuestra a Woody. Buzz Lightyear y el resto de los juguetes de Andy deberán actuar con rapidez para rescatarlo, poniéndose al frente de una operación de rescate durante la cual se enfrentarán a múltiples peligros y divertidas situaciones."
+    },
+    {
+        "nombre": "Toy Story 3",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_toy_story_3.jpg",
+        "rating": 7.818,
+        "sin_caratula": false,
+        "sinopsis": "Sabiendo que su dueño Andy, que ya no es un niño, se prepara para ir a la universidad, el vaquero Woody, el astronauta Buzz y el resto de sus amigos juguetes comienzan a preocuparse ante su incierto futuro. Efectivamente todos acaban en una guardería, donde por ejemplo la muñeca Barbie conocerá al guapo Ken. Esta reunión de nuestros amigos con otros nuevos juguetes no será sino el inicio de un montón de trepidantes y divertidas aventuras."
+    },
+    {
+        "nombre": "Toy Story 4",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_toy_story_4.jpg",
+        "rating": 7.5,
+        "sin_caratula": false,
+        "sinopsis": "Woody siempre ha tenido claro cuál es su labor en el mundo y cuál es su prioridad: cuidar a su dueño, ya sea Andy o Bonnie. Sin embargo, Woody descubrirá lo grande que puede ser el mundo para un juguete cuando Forky se convierta en su nuevo compañero de habitación. Los juguetes se embarcarán en una aventura de la que no se olvidarán jamás."
+    },
+    {
+        "nombre": "Toy Story 5",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_toy_story_5.jpg",
+        "rating": 8.292,
+        "sin_caratula": false,
+        "sinopsis": "Los juguetes de Bonnie se enfrentan a otra amenaza cuando la niña recibe una tableta llamada Lilypad, la cual absorbe toda su atención y pone en peligro el juego tradicional. Todos deben unirse para competir contra la tecnología y recuperar su lugar."
+    },
+    {
+        "nombre": "Angry Birds (Serie)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_angry_birds_serie.jpg",
+        "rating": 6.568,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Bluey (28 min de Compilacion)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_bluey_28_min_de_compilacion.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "El Pájaro Loco En Español (1 Hora De Compilación)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_el_pajaro_loco_en_espanol_1_hora_de_compilacion.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Regal Academy (Serie) Temp 1",
+        "categoria": "Series",
+        "poster": "caratulas/cover_regal_academy_serie_temp_1.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Scooby Doo (Serie Animada)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_scooby_doo_serie_animada.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "AAA La Película 2010",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_aaa_la_pelicula_2010.jpg",
+        "rating": 6.5,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Adventures of petey and friends 2019",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_adventures_of_petey_and_friends_2019.jpg",
+        "rating": 6.0,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Ahi Viene Cascarrabias 2018",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_ahi_viene_cascarrabias_2018.jpg",
+        "rating": 5.8,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Ana Y Bruno 2019",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_ana_y_bruno_2019.jpg",
+        "rating": 7.6,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Angry Birds 2, La Pelicula 2019",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_angry_birds_2_la_pelicula_2019.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Astro Boy (2014)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_astro_boy_2014.jpg",
+        "rating": 6.343,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Avatar Aang El último Maestro Aire (2026)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_avatar_aang_el_ultimo_maestro_aire_2026.jpg",
+        "rating": 9.04,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Aviones Equipo de Rescate 2014 532,7 Mb",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_aviones_equipo_de_rescate_2014_532_7_mb.jpg",
+        "rating": 6.2,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Bee Movie La Historia De Una Abeja (2007)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_bee_movie_la_historia_de_una_abeja_2007.jpg",
+        "rating": 6.053,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Bling 2016",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_bling_2016.jpg",
+        "rating": 5.5,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Bob Esponja En Busca De Los Pantalones Cuadrados (2025)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_bob_esponja_en_busca_de_los_pantalones_cuadrados_2025.jpg",
+        "rating": 6.8,
+        "sin_caratula": false,
+        "sinopsis": "Desesperado por ser un gran tipo, Bob Esponja se propone demostrar su valentía al Sr. Krabs siguiendo a The Flying Dutchman, un misterioso pirata fantasma, en una aventura marítima que lo lleva a las profundidades más profundas del mar profundo, donde ninguna Esponja ha ido antes."
+    },
+    {
+        "nombre": "Buscando A Dory (2016)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_buscando_a_dory_2016.jpg",
+        "rating": 7.044,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Coco (2017)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_coco_2017.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Coyote Vs Acme (2026)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_coyote_vs_acme_2026.jpg",
+        "rating": 7.5,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "El Libro De La Selva 2",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_el_libro_de_la_selva_2.jpg",
+        "rating": 5.9,
+        "sin_caratula": false,
+        "sinopsis": "Mowgli vive ahora en la aldea con los hombres, pero echa de menos a su querido compañero Baloo, que también extraña a su pequeño amigo. Pero Baloo no es el único que desea ver de nuevo a Mowgli... el malvado tigre Shre Khan también aguarda impaciente su venganza. Un día Baloo decide hacerle una visita a Mowgli. Atrapado por la alegría que supone ver de nuevo al viejo Baloo, Mowgli regresa a la selva . Pero cuando el niño se adentra en la jungla, la persecución será a ver quién da con él primero: su viejo amigo Baloo, su nueva familia o el tigre."
+    },
+    {
+        "nombre": "El Origen De Los Guardianes",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_el_origen_de_los_guardianes.jpg",
+        "rating": 7.4,
+        "sin_caratula": false,
+        "sinopsis": "Una aventura épica y mágica que cuenta la historia de Santa Claus, el Conejo de Pascua, el Hada de los Dientes y Jack Escarcha; personajes legendarios con desconocidas habilidades extraordinarias. Cuando un espíritu maligno, conocido como Sombra, decide inundar de miedo los corazones de los niños, los Guardianes inmortales unen sus fuerzas para proteger los deseos, las creencias y la imaginación de los niños."
+    },
+    {
+        "nombre": "Elementos (2023)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_elementos_2023.jpg",
+        "rating": 7.591,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Epic El Reino Secreto (2013)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_epic_el_reino_secreto_2013.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Ferdinand (2018)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_ferdinand_2018.jpg",
+        "rating": 7.209,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Frozen 2",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_frozen_2.jpg",
+        "rating": 7.221,
+        "sin_caratula": false,
+        "sinopsis": "¿Por qué nació Elsa con poderes mágicos? La respuesta le está llamando y amenaza su reino. Junto con Anna, Kristoff, Olaf y Sven emprenderá un viaje peligroso e inolvidable. En 'Frozen: El Reino del Hielo', Elsa temía que sus poderes fueran demasiado para el mundo. En 'Frozen 2', deseará que sean suficientes."
+    },
+    {
+        "nombre": "Frozen El Reino Del Hielo",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_frozen_el_reino_del_hielo.jpg",
+        "rating": 7.25,
+        "sin_caratula": false,
+        "sinopsis": "Cuando una profecía condena a un reino a un invierno eterno, Anna, una joven optimista se une a un temerario montañero llamado Kristoff y a su compinche el reno Sven. Juntos emprenden un viaje épico en busca de Elsa, hermana de Anna y reina de Las Nieves para poner fin al gélido hechizo."
+    },
+    {
+        "nombre": "Goat (2026)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_goat_2026.jpg",
+        "rating": 8.0,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Guardianes Del Museo 2",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_guardianes_del_museo_2.jpg",
+        "rating": 6.25,
+        "sin_caratula": false,
+        "sinopsis": "Hace dos años, nuestros personajes, el ratón Maurice, y los gatos Vincent y Cleopatra, salvaron la Mona Lisa. Ahora están ansiosos por vivir nuevas aventuras. Maurice encuentra un antiguo papiro que revela la ubicación de un Genio egipcio, quien solo concede un deseo cada mil años. Todos los personajes quieren algo diferente, por lo que compiten para llegar al Genio primero. Durante su viaje por Egipto, visitan las Pirámides, navegan por el Nilo y exploran los túneles secretos de Luxor. A pesar de enfrentarse a peligros, descubren que no necesitan al Genio para cumplir sus deseos, ya que la verdadera riqueza está en la amistad y el trabajo en equipo. Por otro lado, Keisuke Fujiki, un neurocirujano, es acusado injustamente de empujar a su novia desde la azotea del hospital. Ahora es un fugitivo que busca descubrir la verdad detrás de la muerte de su novia."
+    },
+    {
+        "nombre": "Hop, Rebelde Sin Pascua Castellano (2011)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_hop_rebelde_sin_pascua_castellano_2011.jpg",
+        "rating": 5.8,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Horton Castellano (2008)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_horton_castellano_2008.jpg",
+        "rating": 6.526,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Huevitos Congelados",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_huevitos_congelados.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sigue las aventuras de Toto y su familia, que tendrán que viajar al Polo Sur para cumplir la promesa de devolver a un oso polar y a unos pingüinos españoles a su hogar.  Para lograr cumplir la promesa, tendrán que superar algunos obstáculos que les enseñarán lo importante que es el trabajo en equipo."
+    },
+    {
+        "nombre": "Hércules Castellano (1997)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_hercules_castellano_1997.jpg",
+        "rating": 7.5,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Intercambiados (2026)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_intercambiados_2026.jpg",
+        "rating": 8.861,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Kung Fu Panda (2008)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_kung_fu_panda_2008.jpg",
+        "rating": 7.342,
+        "sin_caratula": false,
+        "sinopsis": "El protagonista es un oso panda llamado Po, el más vago de todas las criaturas del Valle de la Paz. Con poderosos enemigos acercándose, la esperanza es depositada en una antigua profecía que dice que un héroe se alzará para salvarles. Voces originales de Jack Black, Angelina Jolie, Dustin Hoffman, Lucy Liu & Jackie Chan."
+    },
+    {
+        "nombre": "Kung Fu Panda 4",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_kung_fu_panda_4.jpg",
+        "rating": 6.994,
+        "sin_caratula": false,
+        "sinopsis": "Po se prepara para ser el líder espiritual del Valle de la Paz, buscando un sucesor como Guerrero Dragón. Mientras entrena a un nuevo practicante de kung fu, enfrenta al villano llamado \"el Camaleón\", que evoca villanos del pasado, desafiando todo lo que Po y sus amigos han aprendido."
+    },
+    {
+        "nombre": "Las Guerreras Del Kpop",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_las_guerreras_del_kpop.jpg",
+        "rating": 7.989,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Looney Toons En Accion (La Pelicula)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_looney_toons_en_accion_la_pelicula.jpg",
+        "rating": 6.387,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Los Increibles (2004)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_los_increibles_2004.jpg",
+        "rating": 7.73,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Los Increibles 2 (2018)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_los_increibles_2_2018.jpg",
+        "rating": 7.452,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Minions & Monstruos (2026)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_minions_monstruos_2026.jpg",
+        "rating": 7.564,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Minions El Origen De Gru (2022)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_minions_el_origen_de_gru_2022.jpg",
+        "rating": 7.3,
+        "sin_caratula": false,
+        "sinopsis": "En la década de 1970, Gru crece siendo un gran admirador de \"Los salvajes seis\", un supergrupo de villanos. Para demostrarles que puede ser malvado, diseña un plan con la esperanza de formar parte de la banda."
+    },
+    {
+        "nombre": "Moana (2016)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_moana_2016.jpg",
+        "rating": 7.566,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Moana (2026)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_moana_2026.jpg",
+        "rating": 7.442,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Monster Inc (2008)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_monster_inc_2008.jpg",
+        "rating": 7.859,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Ponyo Y El Secreto De La Sirenita",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_ponyo_y_el_secreto_de_la_sirenita.jpg",
+        "rating": 7.763,
+        "sin_caratula": false,
+        "sinopsis": "La historia se centra en Sosuke, un niño de 5 años, y su relación con una princesa pez que ansía convertirse en un ser humano. Libre adaptación de \"La sirenita\" que obtuvo muy buena acogida de la crítica en el Festival de Venecia 2008."
+    },
+    {
+        "nombre": "Rey Mono",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_rey_mono.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Versión animada de la leyenda mitológica asiática \"Viaje al Oeste\", sigue las aventuras del Rey Mono."
+    },
+    {
+        "nombre": "Sing Ven Y Canta (2016)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_sing_ven_y_canta_2016.jpg",
+        "rating": 7.124,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Sing Ven Y Canta De Nuevo (2021)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_sing_ven_y_canta_de_nuevo_2021.jpg",
+        "rating": 7.833,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Soul (2020)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_soul_2020.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Spermageddon (2024)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_spermageddon_2024.jpg",
+        "rating": 6.5,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Spidey And The Avengers Halloween",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_spidey_and_the_avengers_halloween.jpg",
+        "rating": 6.75,
+        "sin_caratula": false,
+        "sinopsis": "Los planes de Halloween de Spidey y los Vengadores se ponen patas arriba por la misteriosa Eva de los Santos, quien juega trucos mágicos en trucos o tratadores y planea arruinar Halloween para siempre."
+    },
+    {
+        "nombre": "The Good Dinosaur (El viaje de Arlo) (2015)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_the_good_dinosaur_el_viaje_de_arlo_2015.jpg",
+        "rating": 6.755,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "The Pink Panther La Serie",
+        "categoria": "Series",
+        "poster": "caratulas/cover_the_pink_panther_la_serie.jpg",
+        "rating": 7.0,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Trolls (2016)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_trolls_2016.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Trolls 2 (2020)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_trolls_2_2020.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Turning Red (2022)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_turning_red_2022.jpg",
+        "rating": 7.326,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Una Pelicula De Huevos (2006)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_una_pelicula_de_huevos_2006.jpg",
+        "rating": 7.9,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Zootopia (2016)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_zootopia_2016.jpg",
+        "rating": 7.765,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Zootopia 2 (2025)",
+        "categoria": "Muñes",
+        "poster": "caratulas/cover_zootopia_2_2025.jpg",
+        "rating": 7.665,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Cadena Perpetua",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_cadena_perpetua.jpg",
+        "rating": 8.733,
+        "sin_caratula": false,
+        "sinopsis": "Acusado del asesinato de su mujer, Andrew Dufresne, tras ser condenado a cadena perpetua, es enviado a la prisión de Shawshank. Con el paso de los años conseguirá ganarse la confianza del director del centro y el respeto de sus compañeros presidiarios, especialmente de Red, el jefe de la mafia de los sobornos."
+    },
+    {
+        "nombre": "Charlie's Angels",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_charlie_s_angels.jpg",
+        "rating": 5.855,
+        "sin_caratula": false,
+        "sinopsis": "Una peculiar agencia de detectives dirigida por el multimillonario Charlie tiene en sus filas a Natalie (Cameron Diaz), Dylan (Drew Barrymore) y Alex (Lucy Liu), tres expertas en artes marciales, en disfraces y en la más avanzada tecnología. Juntas tendrán que ocuparse de un caso muy importante: el secuestro del genio de la informática Eric Knox (Sam Rockwell) por su rival Roger Corwin (Tim Curry). Si no consiguen liberarlo, quedaría destruida la intimidad de todo el mundo, incluido Charlie, su misterioso jefe."
+    },
+    {
+        "nombre": "Constantine (2005)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_constantine_2005.jpg",
+        "rating": 7.213,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Gladiador (2000)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_gladiador_2000.jpg",
+        "rating": 8.232,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Hechizo De Amor (1998)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_hechizo_de_amor_1998.jpg",
+        "rating": 6.8,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Jack El Caza Gigantes",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_jack_el_caza_gigantes.jpg",
+        "rating": 5.9,
+        "sin_caratula": false,
+        "sinopsis": "Cuenta la historia de una antigua guerra que se reactiva cuando un joven granjero, sin ser consciente de ello, abre una puerta entre nuestro mundo y una aterradora raza de gigantes. Sueltos por la Tierra por primera vez en siglos, los gigantes se esfuerzan por reclamar la tierra que una vez perdieron, obligando al joven, Jack, a entablar la batalla de su vida para detenerlos. Luchando por un reino, por su pueblo y por el amor de una valiente princesa, se enfrenta cara a cara con unos incontenibles guerreros que pensaba que solo existían en la leyenda – y consigue la oportunidad de convertirse, él mismo, en una leyenda."
+    },
+    {
+        "nombre": "Shottas Hermanos En El Crimen (2002)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_shottas_hermanos_en_el_crimen_2002.jpg",
+        "rating": 7.666,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Soy Leyenda (2007)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_soy_leyenda_2007.jpg",
+        "rating": 7.224,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Terminator II Judgment day 1991",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_terminator_ii_judgment_day_1991.jpg",
+        "rating": 8.173,
+        "sin_caratula": false,
+        "sinopsis": "Ha pasado once años desde que Sarah Connor fue marcada como objetivo para ser eliminada por un cyborg del futuro. Ahora su hijo John, el futuro líder de la resistencia, es el objetivo de un Terminator más moderno, más mortífero. Una vez más, la resistencia se las ha ingeniado para enviar un protector de vuelta al pasado para intentar salvar a John y a su madre Sarah."
+    },
+    {
+        "nombre": "Waterworld (1995)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_waterworld_1995.jpg",
+        "rating": 6.246,
+        "sin_caratula": false,
+        "sinopsis": "Los casquetes polares se han derretido y toda la Tierra está cubierta de agua marina. Los hombres sobreviven en plataformas flotantes y su principal ocupación es la búsqueda de agua dulce, el bien más preciado. Entre ellos circula una leyenda según la cual en algún lugar existe tierra firme. Mariner, un viajero errante y solitario que vive del trueque, llega un día a un atolón de chatarra y vende tierra a sus moradores, pero cuando éstos descubren que es un híbrido, mitad pez y mitad humano, lo condenan a muerte."
+    },
+    {
+        "nombre": "Campamento Miasma (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_campamento_miasma_2026.jpg",
+        "rating": 6.2,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Codigo De Venganza (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_codigo_de_venganza_2026.jpg",
+        "rating": 4.9,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Dead Man's Wire (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_dead_man_s_wire_2026.jpg",
+        "rating": 6.513,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "El Heladero (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_el_heladero_2026.jpg",
+        "rating": 4.9,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "El Ultimo Amanecer (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_el_ultimo_amanecer_2026.jpg",
+        "rating": 6.864,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Entrega Al Límite (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_entrega_al_limite_2026.jpg",
+        "rating": 8.3,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Evil Dead En Llamas (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_evil_dead_en_llamas_2026.jpg",
+        "rating": 7.625,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Hope (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_hope_2026.jpg",
+        "rating": 7.1,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Insaciable (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_insaciable_2026.jpg",
+        "rating": 7.053,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "La Boca Del Diablo (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_la_boca_del_diablo_2026.jpg",
+        "rating": 6.493,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "La Ultima Bala (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_la_ultima_bala_2026.jpg",
+        "rating": 7.432,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "La Ultima Casa (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_la_ultima_casa_2026.jpg",
+        "rating": 6.822,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Masterplan (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_masterplan_2026.jpg",
+        "rating": 7.0,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Michael Jackson (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_michael_jackson_2026.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Pinocho (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_pinocho_2026.jpg",
+        "rating": 6.5,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Resident Evil Noche Cero (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_resident_evil_noche_cero_2026.jpg",
+        "rating": 7.302,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Scary Movie Terroríficamente Incorrecta 6",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_scary_movie_terrorificamente_incorrecta_6.jpg",
+        "rating": 6.34,
+        "sin_caratula": false,
+        "sinopsis": "Veintiséis años después de conseguir escapar de un asesino enmascarado sospechosamente familiar, el \"Core Four\" está de vuelta en el punto de mira del asesino y ninguna película de terror está a salvo."
+    },
+    {
+        "nombre": "Tú+yo Solos Contra Todos (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_tu_yo_solos_contra_todos_2026.jpg",
+        "rating": 5.519,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Zona De Riesgo (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_zona_de_riesgo_2026.jpg",
+        "rating": 7.152,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Ángeles De Guerra (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_angeles_de_guerra_2026.jpg",
+        "rating": 4.0,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "American Pie (1999)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_american_pie_1999.jpg",
+        "rating": 6.669,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "American Pie 2 Tu Segunda Vez Es Mejor (2001)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_american_pie_2_tu_segunda_vez_es_mejor_2001.jpg",
+        "rating": 6.343,
+        "sin_caratula": false,
+        "sinopsis": "Jim (Jason Biggs) y sus amigos se reúnen en una casa de la playa después de su primer año de universidad. Allí, Jim busca mejorar sus habilidades sexuales con la ayuda de Michelle (Alyson Hannigan), su antigua cita del baile de graduación. Mientras tanto, Kevin (Thomas Ian Nicholas) intenta recuperar a Vicky (Tara Reid), Oz (Chris Klein) mantiene una relación a distancia con Heather (Mena Suvari), Finch (Eddie Kaye Thomas) practica el tantra y Stifler (Seann William Scott) hace de las suyas con sus bromas y su lujuria. Entre risas, líos y situaciones embarazosas, los amigos planean organizar la fiesta más grande de sus vidas."
+    },
+    {
+        "nombre": "American Pie 3 La Boda",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_american_pie_3_la_boda.jpg",
+        "rating": 6.23,
+        "sin_caratula": false,
+        "sinopsis": "Jim (Jason Biggs) le pide matrimonio a su novia Michelle (Alyson Hannigan) después de un incidente vergonzoso en un restaurante. Ella acepta, pero los problemas no terminan ahí para Jim. Ahora tiene que planear la boda con la ayuda de sus amigos Kevin y Finch, y evitar que Stifler, su grosero compañero de escuela, arruine la fiesta. Jim también se preocupa por caerle bien a los padres de Michelle y por aprender a bailar antes del gran día. Entre bromas pesadas, situaciones cómicas y momentos emotivos, Jim y Michelle intentan llegar al altar sanos y salvos."
+    },
+    {
+        "nombre": "American Pie 4 Presenta El Libro Del Amor",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_american_pie_4_presenta_el_libro_del_amor.jpg",
+        "rating": 5.3,
+        "sin_caratula": false,
+        "sinopsis": "Rob, Nathan y Lube son tres amigos del instituto East Great Falls que se proponen como misión conseguir el éxito entre las chicas. Tras varios intentos fallidos, accidentalmente descubren oculta en una biblioteca la “Biblia del Sexo”, una legendaria guía sobre la seducción que contiene multitud de secretos para el éxito sexual, escrito por alumnos de las generaciones anteriores de la escuela. Pero algunas páginas perdidas conducirán a divertidas sorpresas para todos, incluidos los ex-alumnos."
+    },
+    {
+        "nombre": "American Pie 5 Presents Girls' Rules",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_american_pie_5_presents_girls_rules.jpg",
+        "rating": 6.1,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "American Pie Presenta Campamento De Bandas (2005)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_american_pie_presenta_campamento_de_bandas_2005.jpg",
+        "rating": 5.468,
+        "sin_caratula": false,
+        "sinopsis": "Matt, el hermano pequeño de Stifler, es condenado a pasar un verano en el inmundo campamento de la banda de música, donde hace de las suyas con cámaras ocultas y ardientes tutores. Pero, cuando se queda prendado de su compañera de banda, Elyse, su empeño por maquillar sus rudos modales tiene resultados imprevistos. El padre de Jim vuelve como estrafalario tutor para intentar devolver al redil al descarriado hermano menor de Stifler."
+    },
+    {
+        "nombre": "Busqueda Implacable 3",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_busqueda_implacable_3.jpg",
+        "rating": 6.3,
+        "sin_caratula": false,
+        "sinopsis": "Tercera entrega de la trilogía iniciada en 2008 con 'Venganza' y que cuenta con una secuela en 2012 bajo el título 'Venganza: Conexión Estambul', donde Liam Neeson ('Batman Begins') vuelve a meterse en la piel de Bryan, un espía retirado que no dudará en hacer lo necesario a favor de la justicia y la supervivencia."
+    },
+    {
+        "nombre": "Búsqueda Implacable 1",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_busqueda_implacable_1.jpg",
+        "rating": 7.414,
+        "sin_caratula": false,
+        "sinopsis": "¿Qué podría ser peor para un padre que la impotencia cuando al otro lado de una llamada de móvil oye cómo secuestran a su hija? Esta es la pesadilla que se hace realidad para Bryan (Liam Neeson), un espía retirado que sólo tiene unas horas para recuperar a su hija, que ha sido secuestrada por una peligrosa banda especializada en la venta de jóvenes adolescentes."
+    },
+    {
+        "nombre": "Búsqueda Implacable 2",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_busqueda_implacable_2.jpg",
+        "rating": 6.372,
+        "sin_caratula": false,
+        "sinopsis": "Aunque ya está retirado, Bryan Mills se ve obligado a utilizar todos sus recursos y habilidades de agente de la CIA para salvar tanto la vida de su mujer y de su hija como la suya propia. El padre de uno de los secuestradores albaneses que lo tuvieron en jaque en el primer film jura vengarse y aprovecha las vacaciones de la familia Mills en Estambul para llevar a cabo su plan. Una vez más parece que subestiman al ex agente de la CIA."
+    },
+    {
+        "nombre": "Harry Potter Y El Cáliz De Fuego (2005)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_harry_potter_y_el_caliz_de_fuego_2005.jpg",
+        "rating": 7.803,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Harry Potter Y El Misterio Del Príncipe (2009)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_harry_potter_y_el_misterio_del_principe_2009.jpg",
+        "rating": 7.682,
+        "sin_caratula": false,
+        "sinopsis": "En medio de los desastres que azotan a Inglaterra, Harry y sus compañeros vuelven a Hogwarts para cursar su sexto año de estudios; y aunque las medidas de seguridad han convertido al colegio en una fortaleza, algunos estudiantes son víctimas de ataques inexplicables. Harry sospecha que Draco Malfoy es el responsable de los mismos y decide averiguar la razón. Mientras tanto, Albus Dumbledore y el protagonista exploran el pasado de Lord Voldemort mediante recuerdos que el director ha recolectado. Con esto, Dumbledore planea preparar al muchacho para el día de la batalla final."
+    },
+    {
+        "nombre": "Harry Potter Y El Prisionero De Azkaban (2004)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_harry_potter_y_el_prisionero_de_azkaban_2004.jpg",
+        "rating": 8.0,
+        "sin_caratula": false,
+        "sinopsis": "Harry está deseando que termine el verano para comenzar un nuevo curso en Hogwarts, y abandonar lo antes posible la casa de sus despreciables tíos, los Dursley. Lo que desconoce Harry es que va a tener que abandonar Privet Drive antes de tiempo e inesperadamente después de convertir a su tía Marge en un globo gigante. Un autobús noctámbulo, y encantado por supuesto, le llevará a la taberna El Caldero Chorreante, donde le espera nada menos que Cornelius Fudge, el Ministro de Magia."
+    },
+    {
+        "nombre": "Harry Potter Y La Cámara Secreta (2002)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_harry_potter_y_la_camara_secreta_2002.jpg",
+        "rating": 7.709,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Harry Potter y La Orden Del Fenix (2007)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_harry_potter_y_la_orden_del_fenix_2007.jpg",
+        "rating": 7.673,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Harry Potter Y La Piedra Filosofal (2001)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_harry_potter_y_la_piedra_filosofal_2001.jpg",
+        "rating": 7.905,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Harry Potter Y Las Reliquias De La Muerte Parte 1 (2010)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_harry_potter_y_las_reliquias_de_la_muerte_parte_1_2010.jpg",
+        "rating": 7.733,
+        "sin_caratula": false,
+        "sinopsis": "La segunda parte de la batalla final entre las fuerzas del bien y el mal. El juego nunca ha sido tan peligroso y nadie está a salvo. Se acerca el momento de la confrontación final entre Harry Potter y Lord Voldemort. Todo termina aquí…"
+    },
+    {
+        "nombre": "Harry Potter Y Las Reliquias De La Muerte Parte 2 (2011)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_harry_potter_y_las_reliquias_de_la_muerte_parte_2_2011.jpg",
+        "rating": 8.081,
+        "sin_caratula": false,
+        "sinopsis": "La segunda parte de la batalla final entre las fuerzas del bien y el mal. El juego nunca ha sido tan peligroso y nadie está a salvo. Se acerca el momento de la confrontación final entre Harry Potter y Lord Voldemort. Todo termina aquí…"
+    },
+    {
+        "nombre": "Hombres De Negro 1",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_hombres_de_negro_1.jpg",
+        "rating": 7.232,
+        "sin_caratula": false,
+        "sinopsis": "Los hombres de negro son agentes especiales cuya misión consiste en controlar a los alienígenas, aquí deberán hacer frente al extraterrestre Edgar el Insecto para que no se apropie de la galaxia de otra especie."
+    },
+    {
+        "nombre": "Hombres De Negro 2",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_hombres_de_negro_2.jpg",
+        "rating": 6.394,
+        "sin_caratula": false,
+        "sinopsis": "El agente J es enviado para encontrar al agente K y devolverle la memoria tras la reaparición de un caso del pasado de K."
+    },
+    {
+        "nombre": "Hombres De Negro 3",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_hombres_de_negro_3.jpg",
+        "rating": 6.55,
+        "sin_caratula": false,
+        "sinopsis": "El agente J viaja en el tiempo al año 1969 para evitar que K sea asesinado por el alienígena Boris el Animal pero en esa época hallará cosas que no esperaba."
+    },
+    {
+        "nombre": "Hombres De Negro 5 Internacional",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_hombres_de_negro_5_internacional.jpg",
+        "rating": 5.9,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Avengers Endgame",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_avengers_endgame.jpg",
+        "rating": 8.246,
+        "sin_caratula": false,
+        "sinopsis": "Tras el chasquido de Thanos que eliminó a la mitad de la vida en el universo, los Vengadores supervivientes quedan devastados y divididos. Cinco años después, una inesperada oportunidad les permite intentar revertir la catástrofe. Reuniéndose una vez más, los héroes emprenden una misión extrema que los obliga a viajar al pasado, enfrentarse a sus propias pérdidas y hacer sacrificios definitivos para restaurar el equilibrio del universo."
+    },
+    {
+        "nombre": "Los Vengadores (2012)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_los_vengadores_2012.jpg",
+        "rating": 8.081,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Vengadores Infinity War",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_vengadores_infinity_war.jpg",
+        "rating": 8.245,
+        "sin_caratula": false,
+        "sinopsis": "El todopoderoso Thanos ha despertado con la promesa de arrasar con todo a su paso, portando el Guantelete del Infinito, que le confiere un poder incalculable. Los únicos capaces de pararle los pies son los Vengadores y el resto de superhéroes de la galaxia, que deberán estar dispuestos a sacrificarlo todo por un bien mayor. Capitán América e Ironman deberán limar sus diferencias, Black Panther apoyará con sus tropas desde Wakanda, Thor y los Guardianes de la Galaxia e incluso Spider-Man se unirán antes de que los planes de devastación y ruina pongan fin al universo. ¿Serán capaces de frenar el avance del titán del caos?"
+    },
+    {
+        "nombre": "Vengadores La era de Ultrón",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_vengadores_la_era_de_ultron.jpg",
+        "rating": 7.278,
+        "sin_caratula": false,
+        "sinopsis": "Cuando Tony Stark intenta reactivar un programa caído en desuso cuyo objetivo es mantener la paz, las cosas empiezan a torcerse y los héroes más poderosos de la Tierra, incluyendo a Iron Man, Capitán América, Thor, El Increíble Hulk, Viuda Negra y Ojo de Halcón, tendrán que afrontar la prueba definitiva cuando el destino del planeta se ponga en juego. Cuando el villano Ultron emerge, le corresponderá a Los Vengadores detener sus terribles planes, que junto a incómodas alianzas llevarán a una inesperada acción que allanará el camino para una épica y única aventura."
+    },
+    {
+        "nombre": "Piratas Del Caribe El Cofre Del Hombre Muerto 2",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_piratas_del_caribe_el_cofre_del_hombre_muerto_2.jpg",
+        "rating": 7.391,
+        "sin_caratula": false,
+        "sinopsis": "Will Turner y Elizabeth Swann se van a casar, pero ambos son hechos prisioneros por Lord Cutler Beckett y acusados de haber liberado al capitán Jack Sparrow. Para salvar su vida, Will tendrá que encontrar a Jack y conseguir su misteriosa brújula. Esta esconde un gran poder, además de la clave de una deuda de sangre del pirata con un temible y siniestro Davy Jones, el legendario capitán del barco fantasma Holandés Errante."
+    },
+    {
+        "nombre": "Piratas Del Caribe En El Fin Del Mundo 3",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_piratas_del_caribe_en_el_fin_del_mundo_3.jpg",
+        "rating": 7.279,
+        "sin_caratula": false,
+        "sinopsis": "Siguiendo la estela de lo sucedido en “Piratas del caribe: el cofre del hombre muerto”, encontramos a nuestros héroes Will Turner y Elizabeth Swann aliados con el capitán Barbossa, en una búsqueda desesperada para liberar al capitán Jack Sparrow de las manos de Davy Jones. Mientras, el terrorífico barco fantasma, el Holandés Errante, bajo el control de la Compañía de las Indias Orientales, causa estragos a lo largo de los Siete Mares. Will y Elizabeth, navegando en medio de la traición, la felonía y mares salvajes, deben seguir adelante rumbo a Singapur y enfrentarse al astuto pirata chino Sao Feng. Ahora, en los mismísimos confines de la tierra, todos ellos deben elegir un bando en la batalla final, ya que no sólo sus vidas y fortunas, sino también el futuro de la piratería clásica, pende de un hilo..."
+    },
+    {
+        "nombre": "Piratas Del Caribe En Mareas Misteriosas 4",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_piratas_del_caribe_en_mareas_misteriosas_4.jpg",
+        "rating": 6.574,
+        "sin_caratula": false,
+        "sinopsis": "Cuando Jack Sparrow vuelve a encontrarse con una mujer a la que había conocido años atrás, no está seguro de si se trata de amor o si ella es una estafadora sin escrúpulos que lo está utilizando para encontrar la legendaria Fuente de la Juventud. A todo esto, Jack es capturado por el Venganza de la Reina Ana, el barco del temible pirata Barbanegra, que lo obliga a unirse a su tripulación, lo que le hará vivir una inesperada aventura en la que no sabe quién le inspira más miedo si Barbanegra o esa mujer que regresa del pasado."
+    },
+    {
+        "nombre": "Piratas Del Caribe La Venganza De Salazar 5",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_piratas_del_caribe_la_venganza_de_salazar_5.jpg",
+        "rating": 6.665,
+        "sin_caratula": false,
+        "sinopsis": "El capitán Jack Sparrow se enfrentará a un grupo de piratas-fantasma comandados por una de sus viejas némesis, el terrorífico capitán Salazar, recién escapado del Triángulo de las Bermudas. La única posibilidad de Sparrow para salir con vida es encontrar el legendario Tridente de Poseidón, un poderoso artefacto que le da a su poseedor el control de los mares."
+    },
+    {
+        "nombre": "Scary Movie 1 (2000)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_scary_movie_1_2000.jpg",
+        "rating": 6.416,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Scary Movie 2 (2001)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_scary_movie_2_2001.jpg",
+        "rating": 5.853,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Scary Movie 3 (2003)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_scary_movie_3_2003.jpg",
+        "rating": 5.979,
+        "sin_caratula": false,
+        "sinopsis": "Después de haberlo pasado fatal -eso siempre según se mire- en las dos anteriores entregas, Cindy Campbell (Anna Faris) está dispuesta a salir adelante. Ahora es una guapa periodista que se propone encontrar una historia con la que poder destacar en un mundo tan duro como el del periodismo televisivo, en el que predomina la basura. Pero en su búsqueda se encuentra con que la Tierra está siendo amenazada por varios casos teroríficos que ponen los pelos de punta a cualquiera."
+    },
+    {
+        "nombre": "Scary Movie 4 (2006)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_scary_movie_4_2006.jpg",
+        "rating": 5.497,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Scary Movie 5 (2013)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_scary_movie_5_2013.jpg",
+        "rating": 4.779,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Spider Man Brand New Day (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_spider_man_brand_new_day_2026.jpg",
+        "rating": 8.448,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Spider Man Homecoming",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_spider_man_homecoming.jpg",
+        "rating": 7.332,
+        "sin_caratula": false,
+        "sinopsis": "Peter Parker comienza a experimentar su recién descubierta identidad como el superhéroe Spider-Man. Después de la experiencia vivida con los Vengadores, Peter regresa a casa, donde vive con su tía. Bajo la atenta mirada de su mentor Tony Stark, Peter intenta mantener una vida normal como cualquier joven de su edad, pero interrumpe en su rutina diaria el nuevo villano Vulture y, con él, lo más importante de la vida de Peter comenzará a verse amenazado."
+    },
+    {
+        "nombre": "Spider Man Lejos De Casa",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_spider_man_lejos_de_casa.jpg",
+        "rating": 7.388,
+        "sin_caratula": false,
+        "sinopsis": "Peter Parker decide irse junto a MJ, Ned y el resto de sus amigos a pasar unas vacaciones a Europa. Sin embargo, el plan de Parker por dejar de lado sus superpoderes durante unas semanas se ven truncados cuando Nick Fury contacta con él para solicitarle ayuda para frenar el ataque de unas criaturas elementales que están causando el caos en el continente. En ese momento, Parker vuelve a ponerse el traje de Spider-Man para cumplir con su labor."
+    },
+    {
+        "nombre": "Spider Man Sin Camino A Casa",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_spider_man_sin_camino_a_casa.jpg",
+        "rating": 7.948,
+        "sin_caratula": false,
+        "sinopsis": "Peter Parker es desenmascarado y por tanto no es capaz de separar su vida normal de los enormes riesgos que conlleva ser un súper héroe. Cuando pide ayuda a Doctor Strange, los riesgos pasan a ser aún más peligrosos, obligándole a descubrir lo que realmente significa ser Spider-Man."
+    },
+    {
+        "nombre": "Step Up (2006)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_step_up_2006.jpg",
+        "rating": 6.9,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Step Up 2 The Streets (2008)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_step_up_2_the_streets_2008.jpg",
+        "rating": 6.7,
+        "sin_caratula": false,
+        "sinopsis": "Cuando Andie, una temperamental bailarina, ingresa en la Maryland School of the Arts, no le resulta fácil integrarse en el grupo sin perder su personalidad. Así que decide unirse a Chase, el bailarin con más carácter de la escuela, para formar un grupo de alumnos marginados que participarán en una competición de baile alternativo de Baltimore."
+    },
+    {
+        "nombre": "Step Up 3 (2010)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_step_up_3_2010.jpg",
+        "rating": 6.8,
+        "sin_caratula": false,
+        "sinopsis": "El intenso baile callejero del metro de Nueva York cobra vida en 3D en la tercera entrega de la franquicia Step Up (2006), cuando la cruda y apasionada cultura se globaliza. Un cerrado grupo de bailarines callejeros, que incluye a Luke y a Natalie, se reúne con el novato Moose y juntos terminan enfrentados a los mejores bailarines de breakdance del mundo en una confrontación final que cambiará sus vidas para siempre."
+    },
+    {
+        "nombre": "Step Up 4 Revolution (2012)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_step_up_4_revolution_2012.jpg",
+        "rating": 6.9,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Step Up 5 (2014)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_step_up_5_2014.jpg",
+        "rating": 6.8,
+        "sin_caratula": false,
+        "sinopsis": "Sean Asa, bailarín callejero en Miami, se traslada a Hollywood en busca de fama y fortuna, sólo para descubrir que es casi imposible triunfar en el mundo del baile profesional. Pero, cuando el nuevo equipo de baile que forma con la hermosa y testaruda Andie West llega a las últimas rondas de un concurso televisivo de baile en la fastuosa ciudad de Las Vegas, tiene una oportunidad de hacer realidad por fin sus sueños.  Para ello necesita dejar de lado viejas lealtades y antiguas rivalidades, y limitarse a hacer lo que más le apasiona: bailar."
+    },
+    {
+        "nombre": "Terminator Destino Oscuro (2020)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_terminator_destino_oscuro_2020.jpg",
+        "rating": 6.419,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "The Matrix 1 (1999)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_the_matrix_1_1999.jpg",
+        "rating": 8.26,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "The Matrix Reloaded 2 (2003)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_the_matrix_reloaded_2_2003.jpg",
+        "rating": 7.085,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "The Matrix Resurrections 4 (2021)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_the_matrix_resurrections_4_2021.jpg",
+        "rating": 6.3,
+        "sin_caratula": false,
+        "sinopsis": "En un mundo compuesto por dos realidades, lo cotidiano y lo oculto tras ella, Thomas Anderson se ve obligado de nuevo a ir tras el conejo blanco. Dicha elección continúa siendo la vía de acceso a Matrix, que esta vez es más poderosa e intrincada que en ocasiones anteriores."
+    },
+    {
+        "nombre": "The Matrix Revolutions 3 (2003)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_the_matrix_revolutions_3_2003.jpg",
+        "rating": 6.76,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "X Men (2000)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_x_men_2000.jpg",
+        "rating": 7.023,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "X Men II (2003)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_x_men_ii_2003.jpg",
+        "rating": 7.047,
+        "sin_caratula": false,
+        "sinopsis": "Los mutantes son seres humanos con alguna variación genética que les dota de características especiales. También son la más moderna minoría perseguida del mundo. En medio de un clima de rabia y persecución, el profesor Xavier ha creado un instituto, un refugio, para estos seres poderosos. En este lugar los iniciados son preparados para aceptar y dominar sus habilidades, y ponerlas al servicio de la tolerancia y el combate contra la creciente histeria colectiva que está amenazando con su existencia. Pero la reputación de los mutantes será todavía peor cuando uno de ellos lanza un devastador ataque, lo que causa una pública recriminación hacia todos ellos y nuevos poderes para la Mutant Registration Act y William Stryker, un líder militar que pretende acabar con todos ellos centrándose en la escuela de X-Men."
+    },
+    {
+        "nombre": "X Men III La Batalla Final (2006)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_x_men_iii_la_batalla_final_2006.jpg",
+        "rating": 6.428,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "12 Años De Esclavitud",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_12_anos_de_esclavitud.jpg",
+        "rating": 7.928,
+        "sin_caratula": false,
+        "sinopsis": "Basada en un hecho real ocurrido en 1850, narra la historia de Solomon Northup, un culto músico negro -y hombre libre- que vivía con su familia en Nueva York. Tras compartir una copa con dos desconocidos, Solomon descubre que ha sido drogado y secuestrado para ser vendido como esclavo en el Sur en una plantación de Louisiana. Renunciando a abandonar la esperanza, Solomon contempla cómo todos a su alrededor sucumben a la violencia, al abuso emocional y a la desesperanza. Entonces decide correr riesgos increíbles y confiar en la gente menos aparente para intentar recuperar su libertad y reunirse con su familia."
+    },
+    {
+        "nombre": "Al Borde De La Extincion (2023)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_al_borde_de_la_extincion_2023.jpg",
+        "rating": 5.0,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Amigos por siempre (2017)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_amigos_por_siempre_2017.jpg",
+        "rating": 7.113,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Amores Materialistas (2025)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_amores_materialistas_2025.jpg",
+        "rating": 6.3,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Anarchy La Noche De Las Bestias",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_anarchy_la_noche_de_las_bestias.jpg",
+        "rating": 6.618,
+        "sin_caratula": false,
+        "sinopsis": "El crimen hace estragos en Estados Unidos y las cárceles están llenas. El gobierno decide que una noche al año, durante doce horas, cualquier actividad criminal, incluso el asesinato, será legal. No se puede llamar a la policía, los hospitales no admiten pacientes, los ciudadanos deben arreglárselas solos porque cometer un delito no está castigado. Durante esa noche plagada de peligros, 5 personas que se han quedado fuera de sus casas deciden juntarse para poder enfrentarse mejor a los ciudadanos salvajes que buscan calmar sus ansias de violencia."
+    },
+    {
+        "nombre": "Aquaman Y El Reino Perdido",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_aquaman_y_el_reino_perdido.jpg",
+        "rating": 6.484,
+        "sin_caratula": false,
+        "sinopsis": "Al no poder derrotar a Aquaman la primera vez, Black Manta, todavía impulsado por la necesidad de vengar la muerte de su padre, no se detendrá ante nada para derrotar a Aquaman de una vez por todas. Esta vez Black Manta es más formidable que nunca y ejerce el poder del mítico Tridente Negro, que desata una fuerza antigua y malévola.  Para derrotarlo, Aquaman recurrirá a su hermano encarcelado Orm, el ex rey de la Atlántida, para forjar una alianza improbable. Juntos, deben dejar de lado sus diferencias para proteger su reino y salvar a la familia de Aquaman, y al mundo, de una destrucción irreversible."
+    },
+    {
+        "nombre": "Avatar Fire And Ash (2025)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_avatar_fire_and_ash_2025.jpg",
+        "rating": 7.6,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Carry On (2024)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_carry_on_2024.jpg",
+        "rating": 6.868,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Cell (2016)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_cell_2016.jpg",
+        "rating": 4.709,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Coming 2 America 2021",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_coming_2_america_2021.jpg",
+        "rating": 6.31,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Como Entrenar A Tu Dragon (2025)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_como_entrenar_a_tu_dragon_2025.jpg",
+        "rating": 7.9,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Deadpool & Wolverine",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_deadpool_wolverine.jpg",
+        "rating": 7.588,
+        "sin_caratula": false,
+        "sinopsis": "Un apático Wade Wilson se afana en la vida civil tras dejar atrás sus días como Deadpool, un mercenario moralmente flexible. Pero cuando su mundo natal se enfrenta a una amenaza existencial, Wade debe volver a vestirse a regañadientes con un Lobezno aún más reacio a ayudar."
+    },
+    {
+        "nombre": "Deadpool (2016)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_deadpool_2016.jpg",
+        "rating": 7.626,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Deadpool 2 (2018)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_deadpool_2_2018.jpg",
+        "rating": 7.488,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "El Abismo",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_el_abismo.jpg",
+        "rating": 7.702,
+        "sin_caratula": false,
+        "sinopsis": "Mandan a dos operativos de élite a vigilar lados opuestos de un misterioso abismo y allí intiman desde la distancia, pero deberán aunar fuerzas para sobrevivir al mal que esconde el abismo."
+    },
+    {
+        "nombre": "El Cazador y la Reina Del Hielo (2016)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_el_cazador_y_la_reina_del_hielo_2016.jpg",
+        "rating": 6.29,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "El Conjuro 4",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_el_conjuro_4.jpg",
+        "rating": 6.941,
+        "sin_caratula": false,
+        "sinopsis": "Los investigadores de lo paranormal Ed y Lorraine Warren se enfrentan a un último caso aterrador en el que están implicadas entidades misteriosas a las que deben enfrentarse."
+    },
+    {
+        "nombre": "El Dia De La Revelacion (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_el_dia_de_la_revelacion_2026.jpg",
+        "rating": 7.446,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "El Elixir De La Inmortalidad",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_el_elixir_de_la_inmortalidad.jpg",
+        "rating": 5.9,
+        "sin_caratula": false,
+        "sinopsis": "Un elixir revive a los muertos en un pueblo. Una familia con conflictos internos deberá unir fuerzas y luchar para sobrevivir cuando su ciudad natal peligra."
+    },
+    {
+        "nombre": "El Exorcismo De Dios",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_el_exorcismo_de_dios.jpg",
+        "rating": 7.1,
+        "sin_caratula": false,
+        "sinopsis": "Un sacerdote estadounidense que trabaja en México es considerado un santo por muchos feligreses locales. Sin embargo, debido a un exorcismo fallido, guarda un secreto que lo está comiendo vivo hasta que tenga la oportunidad de enfrentarse a su demonio por última vez."
+    },
+    {
+        "nombre": "El Exorcismo De Emily Rose",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_el_exorcismo_de_emily_rose.jpg",
+        "rating": 6.608,
+        "sin_caratula": false,
+        "sinopsis": "Emily Rose deja el protegido ambiente de su hogar rural para ir a la universidad sin la menor sospecha de lo que le espera. Una noche, sola en su dormitorio, sufre la primera \"alucinación\" aterradora, así como una pérdida de conocimiento. Puesto que los ataques son cada vez más frecuentes e intensos, Emily, católica devota, decide someterse a un exorcismo dirigido por el cura de su parroquia, el padre Richard Moore. Al morir la joven durante el aterrador exorcismo, acusan al sacerdote de homicidio negligente. Erin Bruner, una sobresaliente abogada defensora, acepta de mala gana representar al Padre Moore a cambio de la seguridad de un contrato de sociedad con su bufete de abogados. A medida que el juicio avanza, el cinismo y ateísmo de Erin se tambalean debido a la fe inquebrantable del Padre Moore y a los hechos, espeluznantes e inexplicables, que rodean el caso..."
+    },
+    {
+        "nombre": "El Gran Huracán Categoría 5",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_el_gran_huracan_categoria_5.jpg",
+        "rating": 5.7,
+        "sin_caratula": false,
+        "sinopsis": "Una banda de ladrones se infiltran en una instalación de una pequeña ciudad costera para robar 102 millones de dólares justo cuando un tornado de categoría 5, la tormenta del siglo, está a punto de estallar. Las únicas dos personas que quedan en el pueblo son un meteorólogo y una agente del tesoro, que deberán sobrevivir a la tormenta y evitar que los ladrones salgan impunes del robo del siglo."
+    },
+    {
+        "nombre": "El Hoyo",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_el_hoyo.jpg",
+        "rating": 6.965,
+        "sin_caratula": false,
+        "sinopsis": "Un lugar misterioso, una prisión indescriptible, un agujero muy profundo. Un número desconocido de niveles. Dos reclusos viviendo en cada nivel. Una plataforma descendente que contiene alimentos para todos ellos. Una lucha inhumana por la supervivencia, pero también una oportunidad para ser solidario."
+    },
+    {
+        "nombre": "El Sobreviviente",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_el_sobreviviente.jpg",
+        "rating": 6.7,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "El Susurro (2025)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_el_susurro_2025.jpg",
+        "rating": 7.155,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "El Último Exorcismo",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_el_ultimo_exorcismo.jpg",
+        "rating": 5.671,
+        "sin_caratula": false,
+        "sinopsis": "Después de años de realizar \"exorcismos\" y de tomar el dinero de los creyentes, el Reverendo Marcus viaja a Luisiana rural con un equipo de la película así que él puede disipar lo que cree es el mito de la posesión demoníaca. El reverendo dinámico está seguro de que este será otro \"exorcismo\" de rutina sobre un fanático religioso perturbado, pero en su lugar se acerca a la granja ensangrentada de la familia Sweetzer y un verdadero mal que nunca habría imaginado."
+    },
+    {
+        "nombre": "Havoc (2025)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_havoc_2025.jpg",
+        "rating": 6.395,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Inconceivable 2017 720p Dual Audio ()",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_inconceivable_2017_720p_dual_audio.jpg",
+        "rating": 5.5,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Interestelar (2024)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_interestelar_2024.jpg",
+        "rating": 8.491,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Khuda Haafiz 2020",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_khuda_haafiz_2020.jpg",
+        "rating": 6.886,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Kill Masacre En El Tren (2023)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_kill_masacre_en_el_tren_2023.jpg",
+        "rating": 7.173,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Kraven (2025)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_kraven_2025.jpg",
+        "rating": 6.414,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "La Hermanastra Fea (2025)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_la_hermanastra_fea_2025.jpg",
+        "rating": 7.334,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "La Liga De La Justicia De Zack Snyder (2021)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_la_liga_de_la_justicia_de_zack_snyder_2021.jpg",
+        "rating": 8.07,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "La Llamada De Lo Salvaje (2020)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_la_llamada_de_lo_salvaje_2020.jpg",
+        "rating": 7.504,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Liga De La Justicia (2017)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_liga_de_la_justicia_2017.jpg",
+        "rating": 6.065,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Los Ilusionistas 3 (2025)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_los_ilusionistas_3_2025.jpg",
+        "rating": 6.4,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Operacion Teheran (2024)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_operacion_teheran_2024.jpg",
+        "rating": 6.831,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Perdido En La Montaña",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_perdido_en_la_montana.jpg",
+        "rating": 7.0,
+        "sin_caratula": false,
+        "sinopsis": "Basada en el libro del mismo nombre, la película narra la inspiradora historia de un niño de 12 años que, separado de su familia por una tormenta que avanza a toda velocidad, debe luchar por mantenerse con vida durante su aventura de nueve días perdido en los bosques de Maine."
+    },
+    {
+        "nombre": "Rabbit Trap (2025)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_rabbit_trap_2025.jpg",
+        "rating": 5.6,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Red Tóxica (2025)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_red_toxica_2025.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Rogue 2020",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_rogue_2020.jpg",
+        "rating": 5.6,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Soulm8te (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_soulm8te_2026.jpg",
+        "rating": 7.463,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Supergirl (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_supergirl_2026.jpg",
+        "rating": 6.658,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "The Ministry Of Ungentlemanly Warfare (2024)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_the_ministry_of_ungentlemanly_warfare_2024.jpg",
+        "rating": 6.99,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "The Purge La Pelicula",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_the_purge_la_pelicula.jpg",
+        "rating": 5.993,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "The Trap (2019)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_the_trap_2019.jpg",
+        "rating": 4.888,
+        "sin_caratula": false,
+        "sinopsis": "Un buen hombre (Consejo \"TI\" Harris) regresa a su hogar en Atlanta para ayudar a salvar a su hermano (Mike Epps) y al restaurante degradado de su madre (Loretta Devine). Un toque en la receta del pollo de repente trae grandes negocios al restaurante ... y grandes problemas."
+    },
+    {
+        "nombre": "The Uprising",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_the_uprising.jpg",
+        "rating": 7.933,
+        "sin_caratula": false,
+        "sinopsis": "En la Inglaterra del siglo XIV, asolada por la peste, un campesino desencadena una rebelión contra el rey Ricardo II y se convierte involuntariamente en una leyenda de la resistencia."
+    },
+    {
+        "nombre": "Tiburon De Guerra (2025)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_tiburon_de_guerra_2025.jpg",
+        "rating": 6.2,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Trece Vidas (2022)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_trece_vidas_2022.jpg",
+        "rating": 7.831,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Tron Ares (2025)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_tron_ares_2025.jpg",
+        "rating": 6.5,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Tu Corazón Será Destrozado (2026)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_tu_corazon_sera_destrozado_2026.jpg",
+        "rating": 7.04,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Una Verdad Inquietante (2018)",
+        "categoria": "Películas",
+        "poster": "caratulas/cover_una_verdad_inquietante_2018.jpg",
+        "rating": 5.2,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Dany y el Club de los Berracos",
+        "categoria": "Series",
+        "poster": "caratulas/cover_dany_y_el_club_de_los_berracos.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "El Tabo Su Propia Guerra (1ra Temporada)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_el_tabo_su_propia_guerra_1ra_temporada.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Avatar La leyenda de Aang (2024) (2da Temporada)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_avatar_la_leyenda_de_aang_2024_2da_temporada.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Carrie (1ra Temporada) (2026)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_carrie_1ra_temporada_2026.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Chicago Fire (1ra Temporada)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_chicago_fire_1ra_temporada.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Chicago Fire (2da Temporada)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_chicago_fire_2da_temporada.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Coven Academy (1ra Temporada) (El Secreto De Las Brujas)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_coven_academy_1ra_temporada_el_secreto_de_las_brujas.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Good Omens (1ra Temporada) (2019)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_good_omens_1ra_temporada_2019.jpg",
+        "rating": 7.621,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Jack Ryan (1ra Temporada) (2026)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_jack_ryan_1ra_temporada_2026.jpg",
+        "rating": 6.925,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "La Lista Final (1ra Temporada)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_la_lista_final_1ra_temporada.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Mirame Asi El Camino De Noa (Transmision (2026)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_mirame_asi_el_camino_de_noa_transmision_2026.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Neagley (1era Temporada) (2026)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_neagley_1era_temporada_2026.jpg",
+        "rating": 8.13,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Operativo Lioness (1ra Temporada)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_operativo_lioness_1ra_temporada.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Operativo Lioness (2da Temporada)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_operativo_lioness_2da_temporada.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Oz (1ra Temporada) (1997)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_oz_1ra_temporada_1997.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Reacher (1era Temporada)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_reacher_1era_temporada.jpg",
+        "rating": 8.136,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "See (1ra Temporada) (2019)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_see_1ra_temporada_2019.jpg",
+        "rating": 8.1,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Teen Wolf (1ra Temporada) (2011)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_teen_wolf_1ra_temporada_2011.jpg",
+        "rating": 7.429,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "The Punisher (1ra Temp)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_the_punisher_1ra_temp.jpg",
+        "rating": 8.254,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "The Punisher (2da Temp)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_the_punisher_2da_temp.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "The Purge (1era Temporada) (2018)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_the_purge_1era_temporada_2018.jpg",
+        "rating": 6.246,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "The Rookie (1ra Temporada) (2018)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_the_rookie_1ra_temporada_2018.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "The Witcher (1ra Temporada)",
+        "categoria": "Series",
+        "poster": "caratulas/cover_the_witcher_1ra_temporada.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Appleseed Ex Machina (2007)",
+        "categoria": "Animes",
+        "poster": "caratulas/cover_appleseed_ex_machina_2007.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Appleseed The Beginning (2004)",
+        "categoria": "Animes",
+        "poster": "caratulas/cover_appleseed_the_beginning_2004.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Bartender Glass Of God",
+        "categoria": "Animes",
+        "poster": "caratulas/cover_bartender_glass_of_god.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Serie de TV (2024). Remake de la serie anime \"Bartender\"."
+    },
+    {
+        "nombre": "Castlevania 1ra Temporada",
+        "categoria": "Animes",
+        "poster": "caratulas/cover_castlevania_1ra_temporada.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Castlevania 2da Temporada",
+        "categoria": "Animes",
+        "poster": "caratulas/cover_castlevania_2da_temporada.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Devil May Cry 1ra Temporada",
+        "categoria": "Animes",
+        "poster": "caratulas/cover_devil_may_cry_1ra_temporada.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Devil May Cry 2da Temporada",
+        "categoria": "Animes",
+        "poster": "caratulas/cover_devil_may_cry_2da_temporada.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Gantz O (2016)",
+        "categoria": "Animes",
+        "poster": "caratulas/cover_gantz_o_2016.jpg",
+        "rating": 7.386,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Hellsing 1ra Temporada",
+        "categoria": "Animes",
+        "poster": "caratulas/cover_hellsing_1ra_temporada.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Jin Roh The Wolf Brigade (1999)",
+        "categoria": "Animes",
+        "poster": "caratulas/cover_jin_roh_the_wolf_brigade_1999.jpg",
+        "rating": 7.4,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Acaramelados (Transmision)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_acaramelados_transmision.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Alquimia De Almas Temp 1 Hd Completa Latino Dual (2022)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_alquimia_de_almas_temp_1_hd_completa_latino_dual_2022.jpg",
+        "rating": 8.6,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Alquimia De Almas Temporada 2 Hd Latino Dual (2022)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_alquimia_de_almas_temporada_2_hd_latino_dual_2022.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Belleza Verdadera",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_belleza_verdadera.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "[True Beauty] Después de ver vídeos de belleza en Internet, una tímida fanática del cómic domina el arte del maquillaje y ve cómo su posición social se dispara cuando se convierte en la chica más bonita de su escuela, literalmente, de la noche a la mañana. ¿Pero su estatus de élite será de corta duración? ¿Cuánto tiempo puede ella mantener su \"yo real\" en secreto? ¿Y qué hay de ese chico lindo que le gusta? ¿Te imaginas si se enterara de la verdad? Lee Su Ho es el único que ha visto su rostro desnudo, quien no solo es uno de los mejores estudiantes, sino que también llama la atención de todas las chicas que lo rodean. A pesar de su popularidad, Lee Su Ho tiene un lado tímido, se pone rojo brillante cuando se avergüenza y dice cosas que lamenta. Por otro lado están Han Seo Jun, un chico alto y atractivo como un modelo, rudo a primera vista pero también con un par de secretos; y Kang Su Jin, una diosa en toda regla, al menos físicamente hablando."
+    },
+    {
+        "nombre": "Cuando El Telefono Suena (Coreana)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_cuando_el_telefono_suena_coreana.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Cuatro manos y dos sonatas (Transmision)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_cuatro_manos_y_dos_sonatas_transmision.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Doctor",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_doctor.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Doctor Who es una serie de televisión británica de ciencia ficción producida por la BBC. La denominada serie clásica, se emitió entre 1963 y 1989. \n\nEl programa muestra las aventuras de un Señor del Tiempo conocido como \"El Doctor\", que explora el universo en su TARDIS, una nave espacial con conciencia propia capaz de viajar a través del tiempo y el espacio. Por fuera, simula ser una cabina de policía azul. Con la ayuda de distintos acompañantes, el Doctor se enfrenta a una variedad de enemigos mientras salva civilizaciones, visita tanto el pasado como el futuro, ayuda a gente común y corrige injusticias."
+    },
+    {
+        "nombre": "Doctor X Mafia De Blanco (Transmision)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_doctor_x_mafia_de_blanco_transmision.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Dream To You (2026)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_dream_to_you_2026.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "El Genio Y Los Deseos (Gene Make A Wish) (Corea) (13 Caps) (Cast)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_el_genio_y_los_deseos_gene_make_a_wish_corea_13_caps_cast.jpg",
+        "rating": 7.9,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "El Prisionero De La Belleza",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_el_prisionero_de_la_belleza.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Qiao Nvjiao, Jun Houxiao, una pareja maravillosa hecha por la naturaleza. El rojo es mejor que el fuego, el negro es como la tinta, ¡es muy bueno para atraer riqueza y felicidad!"
+    },
+    {
+        "nombre": "Fatalidad A Tu Servicio (2021)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_fatalidad_a_tu_servicio_2021.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Forest (2020)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_forest_2020.jpg",
+        "rating": 6.7,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Here We Meet Again (2023)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_here_we_meet_again_2023.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Hola Tirador",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_hola_tirador.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Humana Por Accidente (2026)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_humana_por_accidente_2026.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "La Chispa Del Amor (2026)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_la_chispa_del_amor_2026.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "La Corona Perfecta (2026)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_la_corona_perfecta_2026.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "La Leyenda De La General",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_la_leyenda_de_la_general.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Una general con una apariencia gentil pero un espíritu fuerte en su interior, y un general con un exterior y un interior fríos pero con una destreza marcial más fuerte. Los dos unen sus fuerzas para combatir el engaño, ayudar a los débiles y eliminar las amenazas externas."
+    },
+    {
+        "nombre": "La Princesa Y El Hombre Lobo",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_la_princesa_y_el_hombre_lobo.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "La Reina De Las Lagrimas (Coreana)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_la_reina_de_las_lagrimas_coreana.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Los SuperFrikis (2026)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_los_superfrikis_2026.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Mi nemesis con aire de realeza (2026)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_mi_nemesis_con_aire_de_realeza_2026.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Otra Vez Senorita Oh",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_otra_vez_senorita_oh.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Oh Hae-young puede ser un nombre muy común, pero muy especial si se trata de marcar el destino de dos mujeres. Una es la Oh Hae-young «normal», una mujer que siempre se ha estado a la sombra de la Oh Hae-young «guapa» desde que eran jóvenes. Sus destinos una vez más se verán cruzados y cambiados a causa de sus nombres y de un hombre: Park Do-kyung, el cual repentinamente comenzará a tener visiones del futuro y todas relacionadas con la Oh Hae-young «normal». Sin embargo, él todavía no conoce aún a la chica de sus visiones. ¿Por qué el futuro de Park Do-kyung esta enredado con el de una mujer desconocida?"
+    },
+    {
+        "nombre": "Perros De Caza",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_perros_de_caza.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Dos jóvenes boxeadores se alían con un prestamista benévolo para acabar con un despiadado usurero que se aprovecha de los más endeudados... y desesperados."
+    },
+    {
+        "nombre": "Primavera Temprana (2026)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_primavera_temprana_2026.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Regreso Del Margen",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_regreso_del_margen.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Ruler Master Of The Mask (K Dorama) 40 Cap (2017)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_ruler_master_of_the_mask_k_dorama_40_cap_2017.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Strong Woman Do Bong Soon (2017)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_strong_woman_do_bong_soon_2017.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Sweet Home Temp 1 Caps 10 Sub",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_sweet_home_temp_1_caps_10_sub.jpg",
+        "rating": 8.2,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Un Beso Romantico",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_un_beso_romantico.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    },
+    {
+        "nombre": "Un Buen Dia Para Ser Un Perro",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_un_buen_dia_para_ser_un_perro.jpg",
+        "rating": null,
+        "sin_caratula": false,
+        "sinopsis": "Hae-na está destinada a heredar la maldición de su familia, que consiste en convertirse en perro tras recibir su primer beso. La única forma de romper la maldición es recibir un segundo beso. El problema es que el chico que le dio a Hae-na su primer beso tiene miedo a los perros."
+    },
+    {
+        "nombre": "When The Weather Is Fine (2020)",
+        "categoria": "Doramas",
+        "poster": "caratulas/cover_when_the_weather_is_fine_2020.jpg",
+        "rating": 7.3,
+        "sin_caratula": false,
+        "sinopsis": "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!"
+    }
+];
+
+        let filtroActual = "todos";
+
+        function getWaLink(nombre) {
+            return `https://wa.me/${WHATSAPP_NUM}?text=${encodeURIComponent('Hola, quiero esta: ' + nombre)}`;
+        }
+
+        function renderTopFilters() {
+            document.getElementById('topFilters').innerHTML = CATEGORIAS.map(cat => 
+                `<button class="filter-btn ${cat.id === 'todos' ? 'active' : ''}" data-filter="${cat.id}">${cat.label}</button>`
+            ).join('');
+        }
+
+        function renderBottomNav() {
+            document.getElementById('bottomNav').innerHTML = CATEGORIAS.map(cat => 
+                `<button class="bottom-nav-btn ${cat.id === 'todos' ? 'active' : ''}" data-filter="${cat.id}"><span class="bn-icon">${cat.emoji}</span><span class="bn-label">${cat.label}</span></button>`
+            ).join('');
+        }
+
+        function renderGrid() {
+            const grid = document.getElementById('moviesGrid');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            const filtrados = catalogo.filter(item => {
+                const matchCat = filtroActual === "todos" || item.categoria === filtroActual;
+                const matchSearch = item.nombre.toLowerCase().includes(searchTerm);
+                return matchCat && matchSearch;
+            });
+
+            document.getElementById('noResults').style.display = filtrados.length === 0 ? 'block' : 'none';
+
+            grid.innerHTML = filtrados.map(item => {
+                const badgeSin = item.sin_caratula ? '<span class="badge-sin">Próximamente</span>' : '';
+                const badgeRating = item.rating ? `<span class="badge-rating">⭐ ${item.rating}</span>` : '';
+                const waLink = getWaLink(item.nombre);
+                const imgSrc = item.poster;
+                const nombreEscapado = item.nombre.replace(/'/g, "\\'");
+
+                return `
+                <div class="movie-card" onclick="openModal('${nombreEscapado}')">
+                    <div class="movie-poster">
+                        <img src="${imgSrc}" alt="${item.nombre}" loading="lazy" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iNDUwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMTYxNjFkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjZTUwOTE0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5TSU4gQ0FSw4FUVUxBPC90ZXh0Pjwvc3ZnPg=='">
+                        ${badgeSin}
+                        ${badgeRating}
+                    </div>
+                    <div class="movie-info">
+                        <span class="movie-genre">${item.categoria}</span>
+                        <h3 class="movie-title">${item.nombre}</h3>
+                        <a href="${waLink}" target="_blank" rel="noopener" class="btn-wa-item" onclick="event.stopPropagation()">💬 Pedir</a>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function setFilter(catId) {
+            filtroActual = catId;
+            document.querySelectorAll('.filter-btn').forEach(t => t.classList.toggle('active', t.dataset.filter === catId));
+            document.querySelectorAll('.bottom-nav-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === catId));
+            renderGrid();
+        }
+
+        function openModal(nombre) {
+            const item = catalogo.find(m => m.nombre === nombre);
+            if (!item) return;
+            const waLink = getWaLink(item.nombre);
+            const badgeRating = item.rating ? `⭐ ${item.rating} · ` : '';
+            const sinopsis = item.sinopsis || "Sinopsis no disponible. ¡Pregúntanos por WhatsApp para más detalles!";
+            
+            document.getElementById('modalBody').innerHTML = `
+                <img src="${item.poster}" style="width:100%; height:250px; object-fit:cover;" onerror="this.style.display='none'">
+                <div style="padding: 1.5rem;">
+                    <span style="color: var(--primary); font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">${item.categoria}</span>
+                    <h2 style="margin: 0.5rem 0 1rem 0; font-size: 1.5rem; font-weight: 800;">${item.nombre}</h2>
+                    <div style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">${badgeRating} 2026</div>
+                    <p style="color: var(--text-primary); line-height: 1.6; margin-bottom: 1.5rem; font-size: 0.95rem; white-space: pre-wrap;">${sinopsis}</p>
+                    <a href="${waLink}" target="_blank" class="btn-primary" style="width: 100%; justify-content: center; text-decoration: none;">💬 Pedir por WhatsApp Ahora</a>
+                </div>`;
+            document.getElementById('movieModal').classList.add('active');
+        }
+
+        function closeModal() { document.getElementById('movieModal').classList.remove('active'); }
+
+        document.getElementById('topFilters').addEventListener('click', (e) => { if (e.target.classList.contains('filter-btn')) setFilter(e.target.dataset.filter); });
+        document.getElementById('bottomNav').addEventListener('click', (e) => { const btn = e.target.closest('.bottom-nav-btn'); if (btn) setFilter(btn.dataset.filter); });
+        document.getElementById('searchInput').addEventListener('input', () => { clearTimeout(window.searchTimeout); window.searchTimeout = setTimeout(renderGrid, 150); });
+        document.getElementById('movieModal').addEventListener('click', (e) => { if (e.target.id === 'movieModal') closeModal(); });
+
+        renderTopFilters();
+        renderBottomNav();
+        renderGrid();
+    </script>
+</body>
+</html>
